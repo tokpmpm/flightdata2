@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣航空載客率數據分析儀表板</title>
+    <meta name="description" content="互動式台灣航空載客率數據分析，提供機場、航點篩選及多種視覺化圖表">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9747455231872729"
+        crossorigin="anonymous"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCJEFVJ5JX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DCJEFVJ5JX');
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">✈️</span>
+                    <h1 class="logo-text">台灣航空載客率數據分析</h1>
+                </div>
+                <p class="subtitle">Interactive Passenger Load Factor Dashboard</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Filters Section -->
+            <section class="filters-section">
+                <div class="filters-card">
+                    <h2 class="section-title">
+                        <span class="icon">🔍</span>
+                        數據篩選
+                    </h2>
+
+                    <div class="filters-grid">
+                        <!-- Airport Filter -->
+                        <div class="filter-group">
+                            <label for="airport-select" class="filter-label">
+                                <span class="label-icon">🛫</span>
+                                台灣機場
+                            </label>
+                            <select id="airport-select" class="filter-select">
+                                <option value="">載入中...</option>
+                            </select>
+                        </div>
+
+                        <!-- Destination Filter -->
+                        <div class="filter-group">
+                            <label for="destination-select" class="filter-label">
+                                <span class="label-icon">🌏</span>
+                                目的地航點
+                            </label>
+                            <select id="destination-select" class="filter-select">
+                                <option value="">請先選擇機場</option>
+                            </select>
+                        </div>
+
+                        <!-- Date Range Selection -->
+                        <div class="filter-group date-range-group">
+                            <label class="filter-label">
+                                <span class="label-icon">📅</span>
+                                統計期間
+                            </label>
+                            <div class="date-inputs">
+                                <div class="date-input-group">
+                                    <select id="start-year" class="filter-select date-select"></select>
+                                    <span class="date-separator">年</span>
+                                    <select id="start-month" class="filter-select date-select"></select>
+                                    <span class="date-separator">月</span>
+                                </div>
+                                <span class="range-separator">至</span>
+                                <div class="date-input-group">
+                                    <select id="end-year" class="filter-select date-select"></select>
+                                    <span class="date-separator">年</span>
+                                    <select id="end-month" class="filter-select date-select"></select>
+                                    <span class="date-separator">月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button id="apply-filters" class="btn btn-primary">
+                            <span class="btn-icon">🔄</span>
+                            更新數據
+                        </button>
+                        <button id="reset-filters" class="btn btn-secondary">
+                            <span class="btn-icon">↩️</span>
+                            重置篩選
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <!-- Load Factor Trend Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">📈</span>
+                        各航空公司載客率趨勢
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="load-factor-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Stacked Passengers Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">📊</span>
+                        每月總載客人數（堆疊）
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="stacked-passengers-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- YoY Comparison Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">📉</span>
+                        每月總載客人數（YoY 對比）
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="yoy-comparison-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Table Section -->
+            <section class="table-section">
+                <div class="table-card">
+                    <h2 class="section-title">
+                        <span class="icon">📋</span>
+                        航空公司詳細月度數據
+                    </h2>
+
+                    <!-- Airline Tabs -->
+                    <div class="tabs" id="airline-tabs">
+                        <button class="tab active" data-airline="all">全部</button>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="table-wrapper">
+                        <div class="table-wrapper-inner">
+                            <table class="data-table" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>年月</th>
+                                        <th>航空公司</th>
+                                        <th>航班數</th>
+                                        <th>總座位數</th>
+                                        <th>載客人數</th>
+                                        <th>載客率 (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    <tr>
+                                        <td colspan="6" class="loading-cell">載入數據中...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 台灣航空載客率數據分析 by <a href="https://blog.meshthings.com" target="_blank"
+                    style="color: inherit; text-decoration: none; border-bottom: 1px solid currentColor;">外勞芭</a> |
+                數據來源：民航局</p>
+            <p class="footer-subtext">Interactive Dashboard | Built with Chart.js</p>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script src="data/flight_data_new.js"></script>
+    <script src="js/app.js?v=7"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/table.js"></script>
+</body>
+
+</html>
