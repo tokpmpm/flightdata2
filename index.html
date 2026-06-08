@@ -14,7 +14,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 
     <!-- Google AdSense -->
@@ -39,14 +40,32 @@
 
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <span class="logo-icon">✈️</span>
+                    <span class="logo-icon" aria-hidden="true">✈️</span>
                     <h1 class="logo-text">台灣航空載客率數據分析</h1>
                 </div>
                 <p class="subtitle">Interactive Passenger Load Factor Dashboard</p>
+            </div>
+            <!-- KPI Summary Row -->
+            <div class="kpi-row" id="kpi-row" role="region" aria-label="關鍵指標摘要">
+                <div class="kpi-card">
+                    <span class="kpi-icon" aria-hidden="true">✈️</span>
+                    <div class="kpi-value" id="kpi-airlines">--</div>
+                    <div class="kpi-label">航空公司數</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon" aria-hidden="true">🛫</span>
+                    <div class="kpi-value" id="kpi-routes">--</div>
+                    <div class="kpi-label">航點數</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon" aria-hidden="true">📊</span>
+                    <div class="kpi-value" id="kpi-avg-load">--%</div>
+                    <div class="kpi-label">平均載客率</div>
+                </div>
             </div>
         </div>
     </header>
@@ -69,7 +88,7 @@
                                 <span class="label-icon">🛫</span>
                                 台灣機場
                             </label>
-                            <select id="airport-select" class="filter-select">
+                            <select id="airport-select" class="filter-select" aria-label="選擇台灣機場">
                                 <option value="">載入中...</option>
                             </select>
                         </div>
@@ -80,7 +99,7 @@
                                 <span class="label-icon">🌏</span>
                                 目的地航點
                             </label>
-                            <select id="destination-select" class="filter-select">
+                            <select id="destination-select" class="filter-select" aria-label="選擇目的地航點">
                                 <option value="">請先選擇機場</option>
                             </select>
                         </div>
@@ -130,8 +149,8 @@
                         <span class="icon">📈</span>
                         各航空公司載客率趨勢
                     </h2>
-                    <div class="chart-container">
-                        <canvas id="load-factor-chart"></canvas>
+                    <div class="chart-container" role="img" aria-label="各航空公司載客率趨勢折線圖">
+                        <canvas id="load-factor-chart" aria-hidden="true"></canvas>
                     </div>
                 </div>
 
@@ -141,8 +160,8 @@
                         <span class="icon">📊</span>
                         每月總載客人數（堆疊）
                     </h2>
-                    <div class="chart-container">
-                        <canvas id="stacked-passengers-chart"></canvas>
+                    <div class="chart-container" role="img" aria-label="每月總載客人數堆疊長條圖">
+                        <canvas id="stacked-passengers-chart" aria-hidden="true"></canvas>
                     </div>
                 </div>
 
@@ -152,8 +171,8 @@
                         <span class="icon">📉</span>
                         每月總載客人數（YoY 對比）
                     </h2>
-                    <div class="chart-container">
-                        <canvas id="yoy-comparison-chart"></canvas>
+                    <div class="chart-container" role="img" aria-label="年度同期對比長條圖">
+                        <canvas id="yoy-comparison-chart" aria-hidden="true"></canvas>
                     </div>
                 </div>
             </section>
@@ -199,17 +218,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <p class="footer-text">© 2025 台灣航空載客率數據分析 by <a href="https://blog.meshthings.com" target="_blank"
-                    style="color: inherit; text-decoration: none; border-bottom: 1px solid currentColor;">外勞芭</a> |
+                    rel="noopener">外勞芭</a> |
                 數據來源：民航局</p>
-            <p class="footer-subtext">Interactive Dashboard | Built with Chart.js</p>
+            <p class="footer-subtext">Interactive Dashboard · Built with Chart.js</p>
         </div>
     </footer>
 
     <!-- Custom Scripts -->
-    <script src="data/flight_data_new.js"></script>
+    <script src="data/flight_data_new.js?v=202604"></script>
     <script src="js/app.js?v=7"></script>
     <script src="js/charts.js"></script>
     <script src="js/table.js"></script>
