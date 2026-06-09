@@ -810,8 +810,8 @@ document.addEventListener('DOMContentLoaded', initApp);
 const AIRPORT_CODES = {
     '桃園國際機場': 'tpe',
     '高雄國際機場': 'khh',
-    '松山機場': 'tsa',
-    '臺中機場': 'rmq',
+    '臺北松山機場': 'tsa',
+    '臺中清泉崗機場': 'rmq',
     '臺南機場': 'tnn',
     '花蓮機場': 'hun'
 };
@@ -819,8 +819,8 @@ const AIRPORT_CODES = {
 const AIRPORT_CODES_REVERSE = {
     'tpe': '桃園國際機場',
     'khh': '高雄國際機場',
-    'tsa': '松山機場',
-    'rmq': '臺中機場',
+    'tsa': '臺北松山機場',
+    'rmq': '臺中清泉崗機場',
     'tnn': '臺南機場',
     'hun': '花蓮機場'
 };
@@ -922,8 +922,8 @@ function applyStateFromURL() {
     const airportCodes = {
         'tpe': '桃園國際機場',
         'khh': '高雄國際機場',
-        'tsa': '松山機場',
-        'rmq': '臺中機場',
+        'tsa': '臺北松山機場',
+        'rmq': '臺中清泉崗機場',
         'tnn': '臺南機場',
         'hun': '花蓮機場'
     };

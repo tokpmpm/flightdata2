@@ -13,8 +13,8 @@ const SITE_URL = 'https://flightdata2.meshthings.com';
 const airportCodes = {
     '桃園國際機場': 'tpe',
     '高雄國際機場': 'khh',
-    '松山機場': 'tsa',
-    '臺中機場': 'rmq',
+    '臺北松山機場': 'tsa',
+    '臺中清泉崗機場': 'rmq',
     '臺南機場': 'tnn',
     '花蓮機場': 'hun'
 };
