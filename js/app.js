@@ -40,6 +40,12 @@ async function initApp() {
         // Initial render
         updateDashboard();
 
+        // Update footer year dynamically
+        const footerYear = document.getElementById('footer-year');
+        if (footerYear) {
+            footerYear.textContent = new Date().getFullYear();
+        }
+
         console.log('Application initialized successfully');
     } catch (error) {
         console.error('Error initializing app:', error);
@@ -227,24 +233,34 @@ function updateDestinationDropdown(airport) {
     });
 
     // Render groups
-    // Order: Northeast Asia, Southeast Asia, Hong Kong/Macau/China, America, Europe, Oceania, Others
-    const regionOrder = ['東北亞', '東南亞', '港澳大陸', '美洲', '歐洲', '大洋洲', '其他'];
+    // Order: Northeast Asia, Southeast Asia, Hong Kong/Macau/China, America, Europe, Oceania, Middle East, Africa, Others
+    const regionOrder = ['東北亞', '東南亞', '港澳大陸', '美洲', '歐洲', '大洋洲', '中東', '非洲', '其他'];
 
-    regionOrder.forEach(region => {
+    // 防禦性設計：動態收集所有已分類但未列在 regionOrder 內的新地區，確保資料永不遺漏
+    const allRegionsInData = Object.keys(grouped);
+    const missingRegions = allRegionsInData.filter(r => !regionOrder.includes(r));
+    
+    // 將遺漏的地區插到「其他」之前
+    const finalOrder = [...regionOrder];
+    const otherIndex = finalOrder.indexOf('其他');
+    if (otherIndex !== -1) {
+        finalOrder.splice(otherIndex, 0, ...missingRegions);
+    } else {
+        finalOrder.push(...missingRegions);
+    }
+
+    finalOrder.forEach(region => {
         if (grouped[region]) {
             const regionGroup = document.createElement('optgroup');
             regionGroup.label = `=== ${region} ===`;
             destinationSelect.appendChild(regionGroup);
 
             Object.keys(grouped[region]).sort().forEach(country => {
-                // If multiple countries in region, maybe add sub-label or just list
-                // HTML select doesn't support nested optgroups.
-                // We will just list cities sorted by country.
-
+                // If multiple countries in region, list cities sorted by country
                 grouped[region][country].sort().forEach(dest => {
                     const option = document.createElement('option');
                     option.value = dest;
-                    // Show "Country - City" if not implicit
+                    // Show "Country - City"
                     option.textContent = `${country} - ${dest}`;
                     destinationSelect.appendChild(option);
                 });
@@ -257,17 +273,24 @@ function updateDestinationDropdown(airport) {
  * Set up event listeners
  */
 function setupEventListeners() {
+    const triggerPulse = () => {
+        const btn = document.getElementById('apply-filters');
+        if (btn) btn.classList.add('btn-pulse');
+    };
+
     // Airport change
     document.getElementById('airport-select').addEventListener('change', (e) => {
         AppState.selectedAirport = e.target.value;
         updateDestinationDropdown(e.target.value);
         AppState.selectedDestination = '';
         document.getElementById('destination-select').value = '';
+        triggerPulse();
     });
 
     // Destination change
     document.getElementById('destination-select').addEventListener('change', (e) => {
         AppState.selectedDestination = e.target.value;
+        triggerPulse();
     });
 
     // Date changes
@@ -276,6 +299,7 @@ function setupEventListeners() {
         AppState.dateRange.startMonth = parseInt(document.getElementById('start-month').value);
         AppState.dateRange.endYear = parseInt(document.getElementById('end-year').value);
         AppState.dateRange.endMonth = parseInt(document.getElementById('end-month').value);
+        triggerPulse();
     };
 
     ['start-year', 'start-month', 'end-year', 'end-month'].forEach(id => {
@@ -356,17 +380,32 @@ function applyFilters() {
 /**
  * Update entire dashboard with filtered data
  */
-function updateDashboard() {
+function updateDashboard(skipTable = false) {
     applyFilters();
+
+    // Update insights
+    if (window.calculateInsightsData) {
+        const insightsData = calculateInsightsData(AppState.filteredData, AppState.rawData);
+        if (window.renderInsightsUI) renderInsightsUI(insightsData);
+    }
 
     // Update charts
     if (window.updateLoadFactorChart) updateLoadFactorChart();
     if (window.updateStackedPassengersChart) updateStackedPassengersChart();
     if (window.updateYoYComparisonChart) updateYoYComparisonChart();
+    if (window.updateAirlineShareChart) updateAirlineShareChart();
 
     // Update table
-    if (window.updateDataTable) updateDataTable();
-    if (window.updateAirlineTabs) updateAirlineTabs();
+    if (!skipTable) {
+        if (window.updateDataTable) updateDataTable();
+        if (window.updateAirlineTabs) updateAirlineTabs();
+    } else {
+        if (window.updateAirlineTabs) updateAirlineTabs();
+        if (window.initTableHeaders) initTableHeaders();
+    }
+
+    const btn = document.getElementById('apply-filters');
+    if (btn) btn.classList.remove('btn-pulse');
 }
 
 /**
