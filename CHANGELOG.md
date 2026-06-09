@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## [2026-06-09] 自動化抓取與發布：新增 flightdata2 自動化 Pipeline 及 GitHub Actions 工作流
+
+### 問題現狀
+1. **數據更新耗費人工**：每個月底需要手動到民航局網站檢查新數據、下載 XLS、在本地執行 Node.js 解析與靜態渲染，最後手動部署，流程繁瑣。
+2. **爬蟲腳本含有年份硬編碼技術債**：`parse_and_download.py` 原本寫死了 `111` 至 `115` 的字串過濾，當時間進入民國 116 年後，將無法自動下載新檔案。
+3. **缺乏遠端託管**：專案僅存在於本地，未與 GitHub 關聯，無法實現雲端 CI/CD 自動排程。
+
+### 根本原因 (Root Cause)
+1. 專案早期未規劃自動化 CI/CD 排程任務，且無 Git 遠端倉庫。
+2. 年份檢測使用寫死的字串列表，未採用靈活的正則數值比對與動態計算。
+
+### 修正方案
+1. **建立遠端倉庫**：使用 GitHub CLI (`gh repo create`) 建立公開的 GitHub Repo `flightdata2` 並將本地專案歷史推上遠端。
+2. **重構爬蟲年份檢測與路徑**：
+   - 移除寫死的 `111-115` 年份列表，改用正則 `(\d+)年` 動態提取檔名中民國年份並進行數值比較（大於等於 `111`），徹底清除技術債。
+   - 將檔案輸出目錄 `extracted/` 設定為相對於 Python 腳本的相對路徑，確保其能適應 GitHub Actions 容器環境。
+3. **建立自動化 Actions 工作流**：
+   - 新增 [.github/workflows/auto-update.yml](file:///Users/pmpmpm/Antigravity/passenger_capacity/.github/workflows/auto-update.yml)。
+   - 配置排程為每月 25-31 號的週一至週五 UTC 4:00（台灣時間 12:00）自動執行。
+   - 工作流中會自動比對 CAA 網頁連結與 repo 中 `extracted/` 目錄，若有新檔案則自動下載、執行 `node process_data.js` 及 `node prerender.js`，最後將更新 commit 並 push，無縫觸發 Vercel 自動部署。
+
+### 驗證結果
+- ✅ **GitHub 遠端推成功**：已成功建立 Repo 並推送完畢，連結為 `https://github.com/tokpmpm/flightdata2`。
+- ✅ **爬蟲本機測試通過**：執行 `python3 parse_and_download.py` 比對現有檔案正常，印出 `Total downloaded: 0`。
+
 ## [2026-06-09] 邏輯與介面修復：修正首次載入無表格分頁及載客率圖示樣式缺失 Bug
 
 ### 問題現狀

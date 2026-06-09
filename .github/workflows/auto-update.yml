@@ -1,0 +1,70 @@
+name: Auto Update Flight Data
+
+on:
+  schedule:
+    # UTC 04:00 (Taipei Time 12:00) from the 25th to the 31st of every month, Monday to Friday
+    - cron: '0 4 25-31 * 1-5'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Install Node.js dependencies
+        run: npm ci || npm install
+
+      - name: Run Crawler
+        run: python parse_and_download.py
+
+      - name: Check for new files
+        id: check-changes
+        run: |
+          git_status=$(git status --porcelain extracted/)
+          if [ -z "$git_status" ]; then
+            echo "New data has not been published yet. Skipping pipeline."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "New data files found!"
+            echo "$git_status"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Process raw XLS data
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: node process_data.js
+
+      - name: Pre-render static pages (SSG)
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: npm run build
+
+      - name: Commit and push changes
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add extracted/ data/ index.html airport/ sitemap.xml robots.txt
+          git commit -m "feat(data): auto update flight data [skip ci]"
+          git push

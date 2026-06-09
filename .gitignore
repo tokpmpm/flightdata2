@@ -1,0 +1,13 @@
+.vercel
+.env*.local
+node_modules/
+.DS_Store
+*.zip
+tmp_skills_repo/
+analysis_debug.txt
+analysis_output*.txt
+analysis_result*.json
+cny_prediction_result*.json
+dist/
+build/
+.vscode/
