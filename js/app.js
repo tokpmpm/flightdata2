@@ -805,6 +805,81 @@ function updateCharts() {
 document.addEventListener('DOMContentLoaded', initApp);
 
 /**
+ * Airport code mappings for clean URLs
+ */
+const AIRPORT_CODES = {
+    '桃園國際機場': 'tpe',
+    '高雄國際機場': 'khh',
+    '松山機場': 'tsa',
+    '臺中機場': 'rmq',
+    '臺南機場': 'tnn',
+    '花蓮機場': 'hun'
+};
+
+const AIRPORT_CODES_REVERSE = {
+    'tpe': '桃園國際機場',
+    'khh': '高雄國際機場',
+    'tsa': '松山機場',
+    'rmq': '臺中機場',
+    'tnn': '臺南機場',
+    'hun': '花蓮機場'
+};
+
+/**
+ * Base64 helpers for clean URLs
+ */
+function safeBtoa(str) {
+    if (typeof btoa === 'function') return btoa(str);
+    if (typeof Buffer !== 'undefined') return Buffer.from(str, 'binary').toString('base64');
+    return str;
+}
+
+function safeAtob(str) {
+    if (typeof atob === 'function') return atob(str);
+    if (typeof Buffer !== 'undefined') return Buffer.from(str, 'base64').toString('binary');
+    return str;
+}
+
+function base64Encode(str) {
+    if (!str) return '';
+    try {
+        const bytes = new TextEncoder().encode(str);
+        let binString = '';
+        for (let i = 0; i < bytes.length; i++) {
+            binString += String.fromCharCode(bytes[i]);
+        }
+        const b64 = safeBtoa(binString);
+        return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    } catch (e) {
+        console.error('Base64 encoding failed', e);
+        return encodeURIComponent(str);
+    }
+}
+
+function base64Decode(b64) {
+    if (!b64) return '';
+    try {
+        let str = b64.replace(/-/g, '+').replace(/_/g, '/');
+        while (str.length % 4) {
+            str += '=';
+        }
+        const binString = safeAtob(str);
+        const bytes = new Uint8Array(binString.length);
+        for (let i = 0; i < binString.length; i++) {
+            bytes[i] = binString.charCodeAt(i);
+        }
+        return new TextDecoder().decode(bytes);
+    } catch (e) {
+        console.error('Base64 decoding failed', e);
+        try {
+            return decodeURIComponent(b64);
+        } catch (inner) {
+            return b64;
+        }
+    }
+}
+
+/**
  * Sync AppState to URL Query Parameters
  */
 function syncStateToURL() {
@@ -816,11 +891,12 @@ function syncStateToURL() {
     const isAirportSubpage = path.includes('/airport/');
     
     if (!isAirportSubpage && AppState.selectedAirport) {
-        urlParams.set('airport', AppState.selectedAirport);
+        const code = AIRPORT_CODES[AppState.selectedAirport];
+        urlParams.set('airport', code || AppState.selectedAirport);
     }
     
     if (AppState.selectedDestination) {
-        urlParams.set('dest', AppState.selectedDestination);
+        urlParams.set('dest', base64Encode(AppState.selectedDestination));
     }
     
     urlParams.set('sy', AppState.dateRange.startYear);
@@ -867,7 +943,7 @@ function applyStateFromURL() {
     } else {
         const airportParam = urlParams.get('airport');
         if (airportParam) {
-            selectedAirport = airportParam;
+            selectedAirport = AIRPORT_CODES_REVERSE[airportParam.toLowerCase()] || airportParam;
         }
     }
     
@@ -878,7 +954,7 @@ function applyStateFromURL() {
     // Set Destination
     const destParam = urlParams.get('dest');
     if (destParam) {
-        AppState.selectedDestination = destParam;
+        AppState.selectedDestination = base64Decode(destParam);
     }
     
     // Set Dates

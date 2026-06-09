@@ -205,10 +205,18 @@ function build() {
         html = html.replace(/<title>.*?<\/title>/, `<title>${pageTitle}</title>`);
         html = html.replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${pageDesc}">`);
 
-        // Inject Canonical URL
+        // Inject Canonical URL & OG Meta Tags
         const canonicalUrl = `${SITE_URL}${relativeUrlPath}`;
-        const canonicalTag = `<link rel="canonical" href="${canonicalUrl}">`;
-        html = html.replace('</head>', `${canonicalTag}\n</head>`);
+        const ogTags = `
+    <link rel="canonical" href="${canonicalUrl}">
+    <meta property="og:title" content="${pageTitle}">
+    <meta property="og:description" content="${pageDesc}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${canonicalUrl}">
+    <meta property="og:image" content="${SITE_URL}/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">`;
+        html = html.replace('</head>', `${ogTags}\n</head>`);
+
 
         // Inject JSON-LD Schema.org Structured Data
         const datasetName = targetAirport 
