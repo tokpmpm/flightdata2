@@ -36,7 +36,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-<link rel="canonical" href="https://flightdata2.meshthings.com/airport/hun/">
+
+    <link rel="canonical" href="https://flightdata2.meshthings.com/airport/hun/">
+    <meta property="og:title" content="花蓮機場(HUN)航空載客率數據分析儀表板">
+    <meta property="og:description" content="花蓮機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 38,698 人。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightdata2.meshthings.com/airport/hun/">
+    <meta property="og:image" content="https://flightdata2.meshthings.com/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -176,6 +183,7 @@
                             重置篩選
                         </button>
                     </div>
+
                 </div>
             </section>
 
@@ -191,7 +199,7 @@
                         <div class="insights-content">
                             <div class="insights-text-panel">
                                 <ul class="insights-list" id="insights-list">
-<li><span class="insight-icon">🛫</span> <span class="insight-text">在選定統計期間內，<strong>花蓮機場</strong> 的出入境旅客人次達 38,698 人，佔全台總運量的 <strong>0.1%</strong>。</span></li><li><span class="insight-icon">🏆</span> <span class="insight-text">表現最佳的航空公司為 <strong>香港快運</strong>，在執飛 448 班次中平均載客率高達 <strong>48.0%</strong>。</span></li><li><span class="insight-icon">🔥</span> <span class="insight-text">統計期間內的載客率巔峰期落於 <strong>2024年12月</strong>，全體平均座位利用率衝上 <strong>69.3%</strong>（暑假或年節效應）。</span></li><li><span class="insight-icon">📊</span> <span class="insight-text"><strong>同期對比 (YoY)</strong>：2026 年 1至1 月 載客量相比 2025 年同期呈現 <strong>-94.4%</strong> 的增減變化。</span></li><li><span class="insight-icon">⏳</span> <span class="insight-text"><strong>淡旺季分析</strong>：<strong>香港</strong> 航線歷史上以 <strong>2月</strong> 最旺（平均載客率 67.9%），而 <strong>11月</strong> 則為相對淡季（平均載客率 19.0%）。</span></li>
+<li><span class="insight-icon">✈️</span> <span class="insight-text">在選定統計期間內，往返 <strong>香港</strong> 的出入境旅客人次達 38,698 人，佔 <strong>花蓮機場</strong> 該期間總出入境運量的 <strong>100.00%</strong>。</span></li><li><span class="insight-icon">🏆</span> <span class="insight-text">表現最佳的航空公司為 <strong>香港快運</strong>，在執飛 448 班次中平均載客率高達 <strong>48.0%</strong>。</span></li><li><span class="insight-icon">🔥</span> <span class="insight-text">統計期間內的載客率巔峰期落於 <strong>2024年12月</strong>，全體平均座位利用率衝上 <strong>69.3%</strong>（暑假或年節效應）。</span></li><li><span class="insight-icon">📊</span> <span class="insight-text"><strong>同期對比 (YoY)</strong>：2026 年 1至1 月 載客量相比 2025 年同期呈現 <strong>-94.4%</strong> 的增減變化。</span></li><li><span class="insight-icon">⏳</span> <span class="insight-text"><strong>淡旺季分析</strong>：<strong>香港</strong> 航線歷史上以 <strong>2月</strong> 最旺（平均載客率 67.9%），而 <strong>11月</strong> 則為相對淡季（平均載客率 19.0%）。</span></li>
 </ul>
                             </div>
                             <hr class="insights-divider">
@@ -560,6 +568,13 @@
     <script src="js/app.js?v=8"></script>
     <script src="js/charts.js?v=8"></script>
     <script src="js/table.js?v=8"></script>
+    
+    <button id="share-filters" class="btn-float-share" title="分享數據與洞察">
+        <span class="btn-icon">🔗</span>
+        分享數據與洞察
+    </button>
+
+    <div class="share-toast" id="share-toast"></div>
 </body>
 
 </html>

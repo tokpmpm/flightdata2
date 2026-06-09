@@ -36,7 +36,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-<link rel="canonical" href="https://flightdata2.meshthings.com/airport/rmq/">
+
+    <link rel="canonical" href="https://flightdata2.meshthings.com/airport/rmq/">
+    <meta property="og:title" content="臺中機場(RMQ)航空載客率數據分析儀表板">
+    <meta property="og:description" content="臺中機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 0 人。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightdata2.meshthings.com/airport/rmq/">
+    <meta property="og:image" content="https://flightdata2.meshthings.com/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -176,6 +183,7 @@
                             重置篩選
                         </button>
                     </div>
+
                 </div>
             </section>
 
@@ -338,6 +346,13 @@
     <script src="js/app.js?v=8"></script>
     <script src="js/charts.js?v=8"></script>
     <script src="js/table.js?v=8"></script>
+    
+    <button id="share-filters" class="btn-float-share" title="分享數據與洞察">
+        <span class="btn-icon">🔗</span>
+        分享數據與洞察
+    </button>
+
+    <div class="share-toast" id="share-toast"></div>
 </body>
 
 </html>

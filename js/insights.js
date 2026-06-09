@@ -105,12 +105,47 @@ function calculateInsightsData(filteredData, rawData = []) {
     // 5. Smart NLP Insights Generation
     const textInsights = [];
 
-    // Insight A: Airport share (if specific airport filtered, show its share. Otherwise, show top airport)
+    // Insight A: Airport and Destination share
     const isSpecificAirport = filteredData.every(d => d.airport === filteredData[0].airport);
     const activeAirport = isSpecificAirport ? filteredData[0].airport : null;
 
-    if (activeAirport && rawData && rawData.length > 0) {
-        // Calculate this airport's share relative to all airports in the same period
+    const isSpecificDest = filteredData.every(d => d.destination === filteredData[0].destination);
+    const activeDest = isSpecificDest ? filteredData[0].destination : null;
+
+    if (activeDest && rawData && rawData.length > 0) {
+        // Calculate date filter set
+        const dateFilterSet = new Set(filteredData.map(d => d.yearMonth));
+        let periodTotalPassengers = 0;
+        let airportTotalPassengers = 0;
+
+        rawData.forEach(d => {
+            if (dateFilterSet.has(d.yearMonth)) {
+                periodTotalPassengers += d.passengers || 0;
+                if (activeAirport && d.airport === activeAirport) {
+                    airportTotalPassengers += d.passengers || 0;
+                }
+            }
+        });
+
+        if (activeAirport) {
+            // Case 1: Route-specific share inside the airport
+            const routeShare = airportTotalPassengers ? (totalPassengers / airportTotalPassengers) * 100 : 0;
+            textInsights.push({
+                icon: '✈️',
+                text: `在選定統計期間內，往返 <strong>${activeDest}</strong> 的出入境旅客人次達 ${totalPassengers.toLocaleString()} 人，佔 <strong>${activeAirport}</strong> 該期間總出入境運量的 <strong>${routeShare.toFixed(2)}%</strong>。`,
+                highlight: activeDest
+            });
+        } else {
+            // Case 2: Destination-specific share inside the whole country
+            const destShare = periodTotalPassengers ? (totalPassengers / periodTotalPassengers) * 100 : 0;
+            textInsights.push({
+                icon: '🌏',
+                text: `在選定統計期間內，全台往返 <strong>${activeDest}</strong> 的出入境旅客人次達 ${totalPassengers.toLocaleString()} 人，佔全台總運量的 <strong>${destShare.toFixed(2)}%</strong>。`,
+                highlight: activeDest
+            });
+        }
+    } else if (activeAirport && rawData && rawData.length > 0) {
+        // Case 3: Airport-wide share (no specific destination selected)
         const dateFilterSet = new Set(filteredData.map(d => d.yearMonth));
         let periodTotalPassengers = 0;
         let airportTotalPassengers = 0;
@@ -131,7 +166,7 @@ function calculateInsightsData(filteredData, rawData = []) {
             highlight: activeAirport
         });
     } else {
-        // Find top airport in filtered data
+        // Case 4: Default (no filters, show top airport)
         const airportStats = {};
         filteredData.forEach(d => {
             if (!airportStats[d.airport]) airportStats[d.airport] = 0;

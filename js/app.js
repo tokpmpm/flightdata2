@@ -4,6 +4,7 @@
  */
 
 // Global state
+
 const AppState = {
     rawData: [],
     filteredData: [],
@@ -30,6 +31,9 @@ async function initApp() {
     try {
         // Load data
         await loadData();
+
+        // Apply state from URL before initializing filters DOM
+        applyStateFromURL();
 
         // Initialize filters
         initializeFilters();
@@ -198,8 +202,16 @@ function initializeFilters() {
     populateSelect('start-month', 1, 12, AppState.dateRange.startMonth);
     populateSelect('end-month', 1, 12, AppState.dateRange.endMonth);
 
-    // Initial destination update
-    updateDestinationDropdown('');
+    // Initial destination update based on selected airport
+    updateDestinationDropdown(AppState.selectedAirport || '');
+
+    // Restore select values from AppState
+    if (AppState.selectedAirport) {
+        document.getElementById('airport-select').value = AppState.selectedAirport;
+    }
+    if (AppState.selectedDestination) {
+        document.getElementById('destination-select').value = AppState.selectedDestination;
+    }
 }
 
 /**
@@ -308,13 +320,19 @@ function setupEventListeners() {
 
     // Apply filters button
     document.getElementById('apply-filters').addEventListener('click', () => {
-        updateDashboard();
+        updateDashboard(false, true);
     });
 
     // Reset filters button
     document.getElementById('reset-filters').addEventListener('click', () => {
         resetFilters();
     });
+
+    // Share filters button
+    const shareBtn = document.getElementById('share-filters');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', handleShare);
+    }
 }
 
 /**
@@ -345,6 +363,11 @@ function resetFilters() {
 
     updateDestinationDropdown('');
     updateDashboard();
+
+    // Clear URL query parameters
+    if (typeof window !== 'undefined') {
+        window.history.replaceState({}, '', window.location.pathname);
+    }
 }
 
 /**
@@ -380,7 +403,7 @@ function applyFilters() {
 /**
  * Update entire dashboard with filtered data
  */
-function updateDashboard(skipTable = false) {
+function updateDashboard(skipTable = false, showAnimation = false) {
     applyFilters();
 
     // Update insights
@@ -406,6 +429,13 @@ function updateDashboard(skipTable = false) {
 
     const btn = document.getElementById('apply-filters');
     if (btn) btn.classList.remove('btn-pulse');
+
+    // Sync state to URL params
+    syncStateToURL();
+
+    if (showAnimation) {
+        triggerInlineFlightAnimation();
+    }
 }
 
 /**
@@ -773,3 +803,287 @@ function updateCharts() {
 
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', initApp);
+
+/**
+ * Sync AppState to URL Query Parameters
+ */
+function syncStateToURL() {
+    if (typeof window === 'undefined') return;
+    const urlParams = new URLSearchParams();
+    
+    // Only set airport if on index.html (not airport subpages)
+    const path = window.location.pathname.toLowerCase();
+    const isAirportSubpage = path.includes('/airport/');
+    
+    if (!isAirportSubpage && AppState.selectedAirport) {
+        urlParams.set('airport', AppState.selectedAirport);
+    }
+    
+    if (AppState.selectedDestination) {
+        urlParams.set('dest', AppState.selectedDestination);
+    }
+    
+    urlParams.set('sy', AppState.dateRange.startYear);
+    urlParams.set('sm', AppState.dateRange.startMonth);
+    urlParams.set('ey', AppState.dateRange.endYear);
+    urlParams.set('em', AppState.dateRange.endMonth);
+    
+    const queryString = urlParams.toString();
+    const newURL = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
+    
+    window.history.replaceState({}, '', newURL);
+}
+
+/**
+ * Apply state from URL Query Parameters & Path
+ */
+function applyStateFromURL() {
+    if (typeof window === 'undefined') return;
+    
+    // 1. Resolve airport from pathname (prerender pages like /airport/tpe/)
+    const path = window.location.pathname.toLowerCase();
+    let airportFromPath = '';
+    const airportCodes = {
+        'tpe': '桃園國際機場',
+        'khh': '高雄國際機場',
+        'tsa': '松山機場',
+        'rmq': '臺中機場',
+        'tnn': '臺南機場',
+        'hun': '花蓮機場'
+    };
+    for (const code in airportCodes) {
+        if (path.includes('/airport/' + code + '/')) {
+            airportFromPath = airportCodes[code];
+            break;
+        }
+    }
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Set Airport
+    let selectedAirport = '';
+    if (airportFromPath) {
+        selectedAirport = airportFromPath;
+    } else {
+        const airportParam = urlParams.get('airport');
+        if (airportParam) {
+            selectedAirport = airportParam;
+        }
+    }
+    
+    if (selectedAirport) {
+        AppState.selectedAirport = selectedAirport;
+    }
+    
+    // Set Destination
+    const destParam = urlParams.get('dest');
+    if (destParam) {
+        AppState.selectedDestination = destParam;
+    }
+    
+    // Set Dates
+    const sy = urlParams.get('sy');
+    const sm = urlParams.get('sm');
+    const ey = urlParams.get('ey');
+    const em = urlParams.get('em');
+    
+    if (sy) AppState.dateRange.startYear = parseInt(sy);
+    if (sm) AppState.dateRange.startMonth = parseInt(sm);
+    if (ey) AppState.dateRange.endYear = parseInt(ey);
+    if (em) AppState.dateRange.endMonth = parseInt(em);
+}
+
+/**
+ * Handle Share Button Click
+ */
+function handleShare() {
+    if (typeof window === 'undefined') return;
+
+    const airportName = AppState.selectedAirport || '全部機場';
+    const destName = AppState.selectedDestination || '全部航點';
+    
+    // Get KPI values from DOM
+    const passengers = document.getElementById('kpi-passengers-value')?.textContent || '0';
+    const flights = document.getElementById('kpi-flights-value')?.textContent || '0';
+    const loadFactor = document.getElementById('kpi-load-factor-value')?.textContent || '0%';
+    
+    const startText = `${AppState.dateRange.startYear}年${AppState.dateRange.startMonth}月`;
+    const endText = `${AppState.dateRange.endYear}年${AppState.dateRange.endMonth}月`;
+    
+    const shareUrl = window.location.href;
+    
+    const textContent = 
+`✈️ 台灣航空載客率數據洞察
+📍 航線：${airportName} ➔ ${destName}
+📊 期間：${startText} ~ ${endText}
+🔥 平均載客率：${loadFactor} (航班：${flights}班，旅客：${passengers}人次)
+🔗 連結：${shareUrl}
+
+#航空數據 #載客率 #台灣航空`;
+
+    const shareBtn = document.getElementById('share-filters');
+    const toast = document.getElementById('share-toast');
+
+    const showSuccessUI = () => {
+        if (shareBtn) {
+            shareBtn.classList.add('shared');
+            const originalHTML = shareBtn.innerHTML;
+            shareBtn.innerHTML = '<span class="btn-icon">✔️</span>已複製連結！';
+            
+            setTimeout(() => {
+                shareBtn.classList.remove('shared');
+                shareBtn.innerHTML = originalHTML;
+            }, 1500);
+        }
+        
+        if (toast) {
+            toast.textContent = '✅ 連結與數據摘要已複製到剪貼簿！';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1800);
+        }
+    };
+
+    // Use Web Share API if available and on HTTPS/mobile
+    if (navigator.share) {
+        navigator.share({
+            title: '台灣航空載客率數據分析',
+            text: textContent,
+            url: shareUrl
+        })
+        .then(showSuccessUI)
+        .catch((err) => {
+            // If user cancels, do not throw error or fallback
+            if (err.name !== 'AbortError') {
+                copyToClipboard(textContent, showSuccessUI);
+            }
+        });
+    } else {
+        copyToClipboard(textContent, showSuccessUI);
+    }
+}
+
+/**
+ * Clipboard utilities with fallbacks
+ */
+function copyToClipboard(text, callback) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+            .then(callback)
+            .catch(() => fallbackCopyToClipboard(text, callback));
+    } else {
+        fallbackCopyToClipboard(text, callback);
+    }
+}
+
+function fallbackCopyToClipboard(text, callback) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) callback();
+    } catch (err) {
+        console.error('Fallback copy failed', err);
+    }
+    document.body.removeChild(textArea);
+}
+
+/**
+ * Trigger Dynamic Inline Flight Path Animation
+ * Calculates coordinates of starting (🛫) and ending (🌏) icons in the DOM
+ * and draws a temporary SVG path curve for the airplane to fly along.
+ */
+function triggerInlineFlightAnimation() {
+    if (typeof window === 'undefined') return;
+    
+    const card = document.querySelector('.filters-card');
+    // Find label icons: First filter-group is Airport (origin), second is Destination
+    const groups = document.querySelectorAll('.filter-group');
+    if (!card || groups.length < 2) return;
+    
+    const originIcon = groups[0].querySelector('.label-icon');
+    const destIcon = groups[1].querySelector('.label-icon');
+    if (!originIcon || !destIcon) return;
+    
+    // Remove existing animation plane element if any
+    const oldPlane = document.getElementById('inline-flight-plane-el');
+    if (oldPlane) oldPlane.remove();
+    
+    // Get absolute positioning relative to filters-card parent
+    const cardRect = card.getBoundingClientRect();
+    const originRect = originIcon.getBoundingClientRect();
+    const destRect = destIcon.getBoundingClientRect();
+    
+    // Resolve computed style offsets (border & padding) since absolute children position
+    // relative to the padding box, whereas getBoundingClientRect() is relative to the border box.
+    const style = window.getComputedStyle(card);
+    const borderLeft = parseFloat(style.borderLeftWidth) || 0;
+    const borderTop = parseFloat(style.borderTopWidth) || 0;
+    const paddingLeft = parseFloat(style.paddingLeft) || 0;
+    const paddingTop = parseFloat(style.paddingTop) || 0;
+    
+    const originX = cardRect.left + borderLeft + paddingLeft;
+    const originY = cardRect.top + borderTop + paddingTop;
+    
+    // Calculate center points relative to card's padding box coordinates
+    const x1 = originRect.left - originX + originRect.width / 2;
+    const y1 = originRect.top - originY + originRect.height / 2;
+    
+    const x2 = destRect.left - originX + destRect.width / 2;
+    const y2 = destRect.top - originY + destRect.height / 2;
+    
+    // Compute distance and curve arch height
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const distance = Math.sqrt(dx*dx + dy*dy);
+    
+    // If elements are too close (e.g., stacked layout hidden or rendering error), skip
+    if (distance < 30) return;
+    
+    // Calculate bezier Q control point (arches upwards)
+    const cx = (x1 + x2) / 2;
+    const cy = Math.min(y1, y2) - Math.max(50, distance * 0.22);
+    
+    // Airplane Div element
+    const plane = document.createElement('div');
+    plane.setAttribute('id', 'inline-flight-plane-el');
+    plane.className = 'inline-flight-plane';
+    plane.textContent = '✈️';
+    plane.style.position = 'absolute';
+    plane.style.top = '0';
+    plane.style.left = '0';
+    plane.style.margin = '0';
+    plane.style.padding = '0';
+    plane.style.lineHeight = '1';
+    plane.style.fontSize = '1.3rem';
+    plane.style.color = '#06b6d4';
+    plane.style.textShadow = '0 0 10px #06b6d4, 0 0 20px #6366f1';
+    plane.style.pointerEvents = 'none';
+    plane.style.zIndex = '20';
+    plane.style.offsetAnchor = 'center';
+    
+    // Configure CSS motion path offset
+    plane.style.offsetPath = `path('M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}')`;
+    plane.style.offsetDistance = '0%';
+    plane.style.offsetRotate = 'auto 45deg';
+    plane.style.transformOrigin = 'center';
+    plane.style.animation = 'flight-takeoff-inline 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards';
+    
+    // Insert components to filters card
+    card.appendChild(plane);
+    
+    // Self-destruct after animation concludes
+    setTimeout(() => {
+        plane.style.opacity = '0';
+        setTimeout(() => {
+            plane.remove();
+        }, 200);
+    }, 900);
+}

@@ -36,7 +36,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-<link rel="canonical" href="https://flightdata2.meshthings.com/">
+
+    <link rel="canonical" href="https://flightdata2.meshthings.com/">
+    <meta property="og:title" content="台灣航空載客率數據分析儀表板 | 互動統計與趨勢">
+    <meta property="og:description" content="台灣航空載客率數據分析，提供起降航班數、總座位數、載客人數統計。累計總旅客人次達 133,267,298 人，平均載客率 80.8%。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightdata2.meshthings.com/">
+    <meta property="og:image" content="https://flightdata2.meshthings.com/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -171,6 +178,7 @@
                             重置篩選
                         </button>
                     </div>
+
                 </div>
             </section>
 
@@ -23417,6 +23425,13 @@
     <script src="js/app.js?v=8"></script>
     <script src="js/charts.js?v=8"></script>
     <script src="js/table.js?v=8"></script>
+    
+    <button id="share-filters" class="btn-float-share" title="分享數據與洞察">
+        <span class="btn-icon">🔗</span>
+        分享數據與洞察
+    </button>
+
+    <div class="share-toast" id="share-toast"></div>
 </body>
 
 </html>
