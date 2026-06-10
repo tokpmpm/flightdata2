@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## [2026-06-10] SEO 優化：修改首頁 Page Title 以提升搜尋引擎（SEO/AIEO）品牌與航線識別度
+
+### 問題現狀
+本站原本首頁的搜尋引擎呈現名字（Title）為「台灣航空載客率數據分析儀表板 | 互動統計與趨勢」，未能突出「主要航線」的特色以及開發品牌「外勞芭 AI 招喚工坊」，不利於 SEO 搜尋排行與品牌建立。
+
+### 根本原因 (Root Cause)
+`template.html` 與 `prerender.js` 中對首頁的 pageTitle 變數為舊版通用設定，未將品牌名稱與「台灣主要航線」之關鍵字精確融合。
+
+### 修正方案
+1. **修改預渲染設定 (prerender.js)**：將首頁預渲染的 `pageTitle` 變數修改為 `台灣主要航線- 航空公司載客數據儀表板 - 外勞芭 AI 招喚工坊`。
+2. **修改範本檔 (template.html)**：將 `template.html` 內部的原始 `<title>` 設定同步變更，確保首頁在動態與靜態下均呈現正確名稱。
+3. **重新預渲染與自動化驗證**：執行 `npm run build` 重新渲染全站。
+
+### 驗證結果
+- ✅ **首頁 Title 修改生效**：首頁網頁原始碼中的 `<title>` 與 `og:title` 均成功更新。
+
+## [2026-06-10] 部署優化：修改 vercel.json 以停用雲端 Build 流程，改為直接靜態託管
+
+### 問題現狀
+當我們執行 Git Push 或使用 Vercel CLI 時，Vercel 雲端依然會嘗試下載 npm 依賴並執行 `npm run build`，這在 Vercel 雲端的 serverless 唯讀或受限環境中會因為環境差異而編譯失敗。
+
+### 根本原因 (Root Cause)
+Vercel 預設會為 Node.js 專案自動偵測並執行 build 腳本。但本專案在本地已經預渲染好了所有的 HTML（`index.html`、`airline/*/index.html` 等），且已全數提交至 Git。因此 Vercel 無需在雲端重新跑 pre-render 與驗證，直接進行靜態檔案發布即可。
+
+### 修正方案
+1. **設定 Vercel 配置**：更新 `vercel.json`，加入 `"buildCommand": "echo 'No build'"` 與 `"installCommand": "echo 'No install'"`，明確指示 Vercel 停用雲端的 build 與 npm install 流程。
+2. **靜態部署上線**：直接以我們 Git 中的靜態目錄（`.`）作為 Vercel 輸出，實現純靜態託管。
+
+### 驗證結果
+- ✅ **Vercel 雲端部署成功**：停用 build 流程後，Vercel 可以直接解析我們已經生成好的靜態頁面並發布，避免了任何雲端 build 報錯，並順利完成了部署。
+
 ## [2026-06-10] 功能與 UI 優化：整合 E-E-A-T 開發者介紹並修復導航下拉選單被 KPI 卡片遮擋問題
 
 ### 問題現狀

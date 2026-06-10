@@ -394,7 +394,7 @@ function build() {
         const tableHtml = renderStaticTable(filteredRecords);
 
         // Page variables
-        let pageTitle = '台灣航空載客率數據分析儀表板 | 互動統計與趨勢';
+        let pageTitle = '台灣主要航線- 航空公司載客數據儀表板 - 外勞芭 AI 招喚工坊';
         let pageDesc = `台灣航空載客率數據分析，提供起降航班數、總座位數、載客人數統計。累計總旅客人次達 ${insightsData.kpis.totalPassengers.toLocaleString()} 人，平均載客率 ${insightsData.kpis.avgLoadFactor.toFixed(1)}%。`;
         let breadcrumbHtml = '';
 
