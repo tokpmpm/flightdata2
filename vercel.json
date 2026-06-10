@@ -1,6 +1,8 @@
 {
     "version": 2,
     "name": "taiwan-flight-load-factor",
+    "buildCommand": "echo 'No build'",
+    "installCommand": "echo 'No install'",
     "outputDirectory": ".",
     "headers": [
         {
