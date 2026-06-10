@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 日本航線數據洞察</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .header p {
+            color: var(--text-light);
+            margin-top: 8px;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+            color: var(--primary);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Remove special card styles for consistency */
+        .market-stat-group {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .market-item {
+            text-align: center;
+        }
+
+        .market-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 8px 0;
+            color: var(--primary);
+        }
+
+        .market-growth {
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 16px;
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .kobe-stat {
+                font-size: 3rem;
+            }
+
+            .market-stat-group {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>🇯🇵 2025 日本航線數據洞察</h1>
+        <p>統計期間：2025年1-11月 vs 2024年同期</p>
+    </div>
+
+    <div class="grid-container">
+
+        <!-- Market Overview -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>📊 市場概況 Overview</h2>
+            <div class="market-stat-group">
+                <div class="market-item">
+                    <div class="kobe-label">總座位數 (Seats)</div>
+                    <div class="market-value" id="marketSeats" style="color: var(--secondary);"></div>
+                    <div class="market-growth" id="marketSeatsGrowth"
+                        style="background: rgba(52, 152, 219, 0.1); color: var(--secondary);"></div>
+                </div>
+                <div class="market-item">
+                    <div class="kobe-label">總旅客人次 (Passengers)</div>
+                    <div class="market-value" id="marketPassengers" style="color: var(--accent);">-</div>
+                    <div class="market-growth" id="marketGrowth"
+                        style="background: rgba(231, 76, 60, 0.1); color: var(--accent);">-</div>
+                </div>
+            </div>
+            <div class="footer">資料來源：民航局數據 (日本航線限定)</div>
+        </div>
+
+        <!-- Top 10 Destinations -->
+        <div class="card">
+            <h2>🏆 熱門航點 Top 10</h2>
+            <div class="chart-wrapper">
+                <canvas id="chartTop"></canvas>
+            </div>
+            <div class="footer">按旅客人次排序</div>
+        </div>
+
+        <!-- Rising Stars -->
+        <div class="card">
+            <h2>🚀 爆發性成長 (穩定航班)</h2>
+            <div class="chart-wrapper">
+                <canvas id="chartGrowth"></canvas>
+            </div>
+            <div class="footer">排除新航點，僅計2024年>1萬人次之航點</div>
+        </div>
+
+        <!-- Load Factor Best 10 -->
+        <div class="card">
+            <h2>🔥 載客率王 Top 10</h2>
+            <div class="chart-wrapper" style="height: 400px;">
+                <canvas id="chartBestLF"></canvas>
+            </div>
+            <div class="footer">一票難求</div>
+        </div>
+
+        <!-- Load Factor Worst 10 -->
+        <div class="card">
+            <h2>⚠️ 還有空位 Worst 10</h2>
+            <div class="chart-wrapper" style="height: 400px;">
+                <canvas id="chartWorstLF"></canvas>
+            </div>
+            <div class="footer">載客率較低</div>
+        </div>
+
+        <!-- Kobe Special -->
+        <div class="card card-kobe">
+            <h2>🌟 關西新門戶：神戶</h2>
+            <div class="kobe-label">2024 (1-11月)</div>
+            <div class="kobe-stat" style="color: #bdc3c7; font-size: 2.5rem;">0</div>
+            <div class="kobe-arrow">⬇️ New Opening ⬇️</div>
+            <div class="kobe-label">2025 (1-11月)</div>
+            <div class="kobe-stat">12.8 萬</div>
+            <div class="footer" style="width: 100%;">人次突破</div>
+        </div>
+
+    </div>
+
+    <script>
+        Chart.register(ChartDataLabels);
+        Chart.defaults.font.family = "'Noto Sans TC', 'Roboto', sans-serif";
+        Chart.defaults.color = '#2c3e50';
+
+        // Generated Data (2025 Jan-Nov)
+        const chartData = {
+            "market": {
+                "seats": "1781.7",
+                "passengers": "1508.9",
+                "passengerGrowth": "12.5",
+                "seatsGrowth": "15.3"
+            },
+            "topDestinations": {
+                "labels": [
+                    "東京成田",
+                    "大阪",
+                    "沖繩",
+                    "東京羽田",
+                    "福岡",
+                    "札幌",
+                    "名古屋",
+                    "仙台",
+                    "熊本",
+                    "岡山"
+                ],
+                "data": [
+                    "365.3",
+                    "315.5",
+                    "177.4",
+                    "154.3",
+                    "118.1",
+                    "99.8",
+                    "92.7",
+                    "35.6",
+                    "27.0",
+                    "18.4"
+                ]
+            },
+            "growthDestinations": {
+                "labels": [
+                    "鹿兒島",
+                    "高松",
+                    "松山",
+                    "岡山",
+                    "熊本",
+                    "福島",
+                    "沖繩",
+                    "佐賀",
+                    "旭川",
+                    "札幌"
+                ],
+                "data": [
+                    "91.2",
+                    "78.5",
+                    "65.0",
+                    "59.8",
+                    "50.1",
+                    "38.7",
+                    "37.3",
+                    "28.9",
+                    "22.6",
+                    "22.0"
+                ]
+            },
+            "top10LF": {
+                "labels": [
+                    "桃園-靜岡",
+                    "桃園-北九州",
+                    "桃園-下地島",
+                    "桃園-高知",
+                    "桃園-函館",
+                    "桃園-岡山",
+                    "臺北松山-東京羽田",
+                    "高雄-札幌",
+                    "桃園-福岡",
+                    "臺中清泉崗-神戶"
+                ],
+                "data": [
+                    "95.6",
+                    "94.8",
+                    "92.2",
+                    "91.4",
+                    "90.4",
+                    "90.0",
+                    "90.0",
+                    "90.0",
+                    "89.6",
+                    "88.8"
+                ]
+            },
+            "bottom10LF": {
+                "labels": [
+                    "桃園-鹿兒島",
+                    "桃園-茨城",
+                    "桃園-高松",
+                    "桃園-廣島",
+                    "高雄-仙台",
+                    "臺中清泉崗-高松",
+                    "桃園-松山",
+                    "桃園-米子",
+                    "桃園-青森",
+                    "高雄-大阪"
+                ],
+                "data": [
+                    "69.3",
+                    "70.3",
+                    "72.9",
+                    "73.1",
+                    "74.2",
+                    "75.5",
+                    "78.6",
+                    "79.0",
+                    "79.1",
+                    "79.4"
+                ]
+            }
+        };
+
+        // Update Market Stats
+        document.getElementById('marketSeats').textContent = chartData.market.seats + ' 萬';
+        document.getElementById('marketPassengers').textContent = chartData.market.passengers + ' 萬';
+
+        const seatsGrowthElem = document.getElementById('marketSeatsGrowth');
+        const seatsGrowthVal = parseFloat(chartData.market.seatsGrowth);
+        seatsGrowthElem.textContent = (seatsGrowthVal >= 0 ? '+' : '') + seatsGrowthVal + '%';
+
+        const growthElem = document.getElementById('marketGrowth');
+        const growthVal = parseFloat(chartData.market.passengerGrowth);
+        growthElem.textContent = (growthVal >= 0 ? '+' : '') + growthVal + '%';
+
+        // Common Options
+        const commonOptions = {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                datalabels: {
+                    anchor: 'end',
+                    align: 'end',
+                    color: '#2c3e50',
+                    font: { weight: 'bold', size: 12 },
+                    offset: 4
+                }
+            },
+            scales: {
+                x: { display: false },
+                y: {
+                    grid: { display: false },
+                    ticks: { font: { weight: 'bold' } }
+                }
+            },
+            layout: { padding: { right: 50 } } // Space for labels
+        };
+
+        // Chart 1: Top 10 Destinations
+        new Chart(document.getElementById('chartTop'), {
+            type: 'bar',
+            data: {
+                labels: chartData.topDestinations.labels,
+                datasets: [{
+                    data: chartData.topDestinations.data,
+                    backgroundColor: [
+                        '#e74c3c', '#3498db', '#f1c40f', '#9b59b6', '#2ecc71',
+                        '#e67e22', '#1abc9c', '#34495e', '#e74c3c', '#f39c12'
+                    ],
+                    borderRadius: 8,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    datalabels: { ...commonOptions.plugins.datalabels, formatter: v => v + '萬' }
+                }
+            }
+        });
+
+        // Chart 2: Growth
+        new Chart(document.getElementById('chartGrowth'), {
+            type: 'bar',
+            data: {
+                labels: chartData.growthDestinations.labels,
+                datasets: [{
+                    data: chartData.growthDestinations.data,
+                    backgroundColor: '#e74c3c',
+                    borderRadius: 8,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    datalabels: { ...commonOptions.plugins.datalabels, formatter: v => '+' + v + '%' }
+                }
+            }
+        });
+
+        // Chart 3: Best LF Top 10
+        new Chart(document.getElementById('chartBestLF'), {
+            type: 'bar',
+            data: {
+                labels: chartData.top10LF.labels,
+                datasets: [{
+                    data: chartData.top10LF.data,
+                    backgroundColor: '#2ecc71',
+                    borderRadius: 8,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    datalabels: { ...commonOptions.plugins.datalabels, formatter: v => v + '%' }
+                },
+                scales: { x: { display: false, max: 100 }, y: { grid: { display: false } } }
+            }
+        });
+
+        // Chart 4: Worst LF Top 10
+        new Chart(document.getElementById('chartWorstLF'), {
+            type: 'bar',
+            data: {
+                labels: chartData.bottom10LF.labels,
+                datasets: [{
+                    data: chartData.bottom10LF.data,
+                    backgroundColor: '#95a5a6',
+                    borderRadius: 8,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    datalabels: { ...commonOptions.plugins.datalabels, formatter: v => v + '%' }
+                },
+                scales: { x: { display: false, max: 100 }, y: { grid: { display: false } } }
+            }
+        });
+    </script>
+</body>
+
+</html>

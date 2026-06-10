@@ -101,6 +101,14 @@ function updateAirlineTabs() {
     const tabsContainer = document.getElementById('airline-tabs');
     if (!tabsContainer) return;
 
+    // Hide tabs container entirely if currently on an airline-specific subpage
+    if (typeof AppState !== 'undefined' && AppState.selectedAirline) {
+        tabsContainer.style.display = 'none';
+        return;
+    } else {
+        tabsContainer.style.display = 'flex';
+    }
+
     // Get unique airlines from filtered data
     const airlines = new Set();
     AppState.filteredData.forEach(record => airlines.add(record.airline));
@@ -162,6 +170,39 @@ function updateDataTable(selectedAirline = undefined) {
     }
 
     const airline = TableState.currentAirlineFilter;
+
+    // Handle redirect banner for airline subpages
+    const tabsContainer = document.getElementById('airline-tabs');
+    if (tabsContainer) {
+        let banner = document.getElementById('airline-redirect-banner');
+        if (!banner) {
+            banner = document.createElement('div');
+            banner.id = 'airline-redirect-banner';
+            banner.style.margin = 'var(--space-3) 0';
+            banner.style.padding = 'var(--space-3) var(--space-4)';
+            banner.style.background = 'var(--color-bg-elevated)';
+            banner.style.border = '1px dashed var(--color-primary-light)';
+            banner.style.borderRadius = 'var(--radius-md)';
+            banner.style.fontSize = '0.85rem';
+            banner.style.color = 'var(--color-text-secondary)';
+            banner.style.display = 'none';
+            tabsContainer.parentNode.insertBefore(banner, tabsContainer.nextSibling);
+        }
+
+        if (airline) {
+            const slugMap = { '中華': 'cal', '長榮': 'eva', '星宇': 'starlux', '台灣虎航': 'tiger' };
+            const slug = slugMap[airline];
+            if (slug) {
+                const fullName = (typeof airlineFullNames !== 'undefined' ? airlineFullNames[airline] : null) || airline;
+                banner.innerHTML = `💡 您正在查看大盤中的 ${fullName} 數據。這裡有專為其設計的：<a href="/airline/${slug}/" style="color: var(--color-primary); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--color-primary);">📈 ${fullName} 獨立分析儀表板與航線市佔率分析 ➔</a>`;
+                banner.style.display = 'block';
+            } else {
+                banner.style.display = 'none';
+            }
+        } else {
+            banner.style.display = 'none';
+        }
+    }
 
     // 1. Filter by selected airline if specified
     let dataToShow = AppState.filteredData;

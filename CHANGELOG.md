@@ -1,5 +1,165 @@
 # CHANGELOG
 
+## [2026-06-10] 功能與 UI 優化：整合 E-E-A-T 開發者介紹並修復導航下拉選單被 KPI 卡片遮擋問題
+
+### 問題現狀
+1. 雖然本站已建置了豐富的 `about/index.html`（介紹數據來源、計算方法論與開發者資訊），但使用者和搜尋引擎爬蟲在首頁及各航空公司、機場專頁中，無法直接看到這些關鍵的 E-E-A-T 專業設定與開發者背景資訊，削弱了整站的可信度（Trustworthiness）。
+2. 在大螢幕或常規寬度下，Navbar 的「主要機場」與「主要航空」下拉選單展開時，內容會被下方的 KPI 數據卡片覆蓋遮擋，導致選單項目（如桃園、高雄機場等）「點不到」，嚴重影響站內導航。
+
+### 根本原因 (Root Cause)
+1. 開發者介紹與 GitHub 連結等 EEAT 資訊僅靜態寫死在 `/about/` 頁面內，未整合進公共頁面範本 `template.html`。
+2. 在 `styles.css` 中，`.header-content` 的 `z-index` 被設為 `1`，而下方的 `.kpi-row` 也是 `z-index: 1` 且具備相對定位。由於 `.kpi-row` 在 DOM 結構中位於後方，它的 Stacking Context 會覆蓋在 `.header-content` 上，導致下拉選單彈出時被卡片擋住。
+
+### 修正方案
+1. **公共範本整合 (template.html)**：在 `template.html` 的最底部（緊隨「資料品質與更新指標」卡片後），新增一個高質感的 `.developer-info-card` 區塊，內嵌關於開發者「外勞芭」的自我介紹、其官方網站（外勞芭 AI 招喚工坊）與 GitHub 專案庫個人檔案（`github.com/tokpmpm/`）的直達連結。
+2. **樣式系統與層位修正 (styles.css)**：
+   - 在 `styles.css` 中追加 `.developer-info-card`、`.dev-links` 與 `.dev-link` 的 CSS 類別，確保卡片寬度自適應且視覺風格與「資料品質卡片」保持高度統一。
+   - 將 `.header-content` 的 `z-index` 從 `1` 提昇至 `10`，以使導航下拉選單高於下方 KPI 行。
+3. **Cache Busting 升級**：將 `template.html` 內所有 CSS 及 JS 引用版本號升級為 `?v=20260610-v2`，強制瀏覽器繞過快取下載最新的 CSS 樣式。
+4. **自動化編譯與驗證**：執行 `npm run build`，將此 E-E-A-T 卡片與導航層位修正預渲染至全站 11 個主要 HTML 檔案，並順利通過 `verify_seo.js` 之 60+ 個自動化測試斷言。
+
+### 驗證結果
+- ✅ **全站 E-E-A-T 建立**：首頁及所有航空、機場子專頁的最下方均成功渲染出精緻的「關於開發者」卡片，提供外部與內部方法論連結，建立了強大的信賴度。
+- ✅ **選單層位修復正常**：實測彈出下拉選單，已能順利覆蓋在下方 KPI 卡片上，「主要機場」和「主要航空」的所有項目皆能順暢滑入並順利點擊跳轉，無遮擋現象。
+- ✅ **自動化回歸測試綠燈**：`verify_seo.js` 測試全數通過，建置流程無任何錯誤。
+
+## [2026-06-10] 功能優化：建立全局導航系統 (Navbar) 與首頁數據表格引流提示條 (Redirect Banner)
+
+### 問題現狀
+本站雖有多個分機場、航空公司的獨立優化頁面，但站內缺乏統一的導航管道（Internal Linking），導致使用者（與 AI 搜尋爬蟲）難以在首頁、關於頁面與各個航空專頁之間無縫穿梭。此外，當使用者在首頁的數據表格點選特定航空公司 Tab（如「星宇」）時，表格只是動態過濾了內容，卻未引導使用者前往更豐富的星宇航空專屬獨立分析分頁。
+
+### 根本原因 (Root Cause)
+1. 舊版 UI 的 Header 只有簡單的 Logo 與副標題，未建置導航選單。
+2. 數據表格與獨立專屬頁面之間缺乏跨頁面的關聯引流邏輯。
+
+### 修正方案
+1. **全局導航系統 (Navbar)**：
+   - 於 `css/styles.css` 中設計並追加現代化的 `.header-nav` 與 `.dropdown-content` 響應式下拉選單樣式，搭配微動畫與 HSL 主色調。
+   - 修改 `template.html` 與 `about/index.html` 的 Header 結構，在右側新增導航選單，提供「首頁」、「關於本站」、「主要機場（桃園/高雄/松山/台中）」與「主要航空（華航/長榮/星宇/虎航）」的一鍵式跳轉通道。
+2. **數據表格動態引流提示條 (Redirect Banner)**：
+   - 在 `js/table.js` 的 `updateDataTable()` 中實作動態引流邏輯。當在首頁點選特定的航空公司分頁（如長榮航空）時，表格上方會自動彈出精緻的提示條：`💡 您正在查看大盤中的 長榮航空 數據。這裡有專為其設計的：長榮航空 獨立分析儀表板與航線市佔率分析 ➔`。
+   - 該提示條在使用者切換回「全部」大盤時會自動隱藏，提供流暢非侵入性的極佳用戶體驗。
+3. **快取清理 (Cache Busting)**：
+   - 將 `template.html` 中的 CSS 與 JS 引入版本號升級為 `?v=20260610`，強制瀏覽器繞過快取載入最新的全局導航與引流邏輯。
+4. **編譯驗證**：重新執行 `npm run build` 生成所有 HTML，並通過 `verify_seo.js` 自動化測試。
+
+### 驗證結果
+- ✅ **全局導航列運作完美**：不論在首頁、關於頁面或各個機場與航空專頁，頁首皆出現了極具質感的響應式 Navbar。懸停「主要航空」或「主要機場」時，會出現漂亮的漸現下拉選單，點擊即可無縫穿梭各專屬頁面。
+- ✅ **首頁引流效果滿分**：在首頁數據表格點選「星宇」時，表格上方立即彈出提示條，點擊連結即一鍵跳轉至 `/airline/starlux/` 的星宇專屬聚焦儀表板。
+- ✅ **自動化回歸測試綠燈**：`verify_seo.js` 測試全數通過，建置流程無任何錯誤。
+
+## [2026-06-10] 體驗優化：重構航空公司專屬頁面為深度聚焦模式、客製化所有圖表與標題並隱藏冗餘 Tab
+
+### 問題現狀
+使用者指出在航空公司專屬頁面（如 `/airline/cal/`）上，所有的數據圖表與 UI 元素在水合後，依然呈現了其他航空公司的干擾資訊。具體表現為：
+1. 市佔率圓餅圖在只有華航的情況下，展示華航佔 100% 毫無實際價值。
+2. 折線圖與長條圖標題依然叫「各航空公司...」，顯得空泛。
+3. 表格上方依然出現「全部」與「中華」的切換 Tab，使用者會誤以為還有其他航空公司的數據可以點選。
+4. 本地端若訪問無斜線的路徑（如 `/airline/cal`），水合會因為路徑匹配失敗而退化回顯示全體大盤數據。
+
+### 根本原因 (Root Cause)
+1. 圓餅圖原先在 `js/charts.js` 中是硬編碼按「航空公司」為維度進行統計與分類。
+2. 圖表標題均為寫死在 HTML 模版中，未在單一航空公司模式下進行動態改寫。
+3. `updateAirlineTabs` 在航空公司限制已生效時，依然頑固地繪製出 Tab 按鈕，增加了冗餘性與困惑。
+4. `applyStateFromURL` 裡 pathname 的 `includes` 匹配缺少了防禦性設計，漏掉了無結尾斜線（如 `/airline/cal`）的路由相容。
+
+### 修正方案
+1. **路徑匹配防禦性升級**：在 `js/app.js` 的 `applyStateFromURL()` 中，擴展路徑比對為 `path.includes('/airline/' + code + '/') || path.endsWith('/airline/' + code) || path.includes('/airline/' + code + '?')`，徹底修復在本地或生產環境中未加斜線引致水合失效退化的 bug。
+2. **圓餅圖重構 (目的地佔比)**：修改 `js/charts.js` 中的 `updateAirlineShareChart()`，當處於特定航空公司模式時，自動改以「目的地（destination）」為維度進行統計，將圓餅圖升級為「該航空公司主要目的地運量佔比」（如華航主要航線的市佔比），讓數據極具深度。
+3. **圖表標題動態客製**：在 `js/charts.js` 繪製折線圖與長條圖時，偵測 `AppState.selectedAirline` 狀態，動態用 DOM 更新卡片標題為「{航空公司}座位利用率與載客率趨勢」及「{航空公司}每月載客量與航班量」。
+4. **主標題與 Logo 文字動態水合**：在 `js/app.js` 的 `updateDashboard()` 裡，動態更新頂部 `.logo-text` 的文字為「{航空公司}載客率與航班數據分析」，強化專頁品牌歸屬感。
+5. **隱藏冗餘 Tab**：在 `js/table.js` 的 `updateAirlineTabs()` 中加入限制，若 `AppState.selectedAirline` 存在，直接將 Tab 容器設為 `display = 'none'`，完全隱藏冗餘切換。
+
+### 驗證結果
+- ✅ **完美聚焦模式**：進入 `/airline/cal/` 後，頁面主標誌自動轉為「中華航空載客率與航班數據分析」；折線圖與長條圖標題正確特製化。
+- ✅ **圓餅圖深度加強**：圓餅圖自動變為「中華航空主要目的地運量佔比」，並正確統計出其前五大主要航線的旅客佔比與「其他」比例，視覺效果與意義極大提升。
+- ✅ **表格清爽美觀**：表格上方不再出現多餘的「全部」與「中華」Tab，表格與標題完美銜接，完全只顯示該航空公司的月度數據。
+- ✅ **無斜線路徑適應**：訪問 `http://localhost:3030/airline/cal` 時，水合成功執行，數據穩定聚焦於華航，不再退化回全體大盤數據。
+
+## [2026-06-10] 功能與佈局優化：修復二級路徑資源 404 問題、微調智慧洞察標題並移動資料品質卡片
+
+### 問題現狀
+1. 預渲染生成的二級路徑頁面（例如 `http://localhost:3030/airline/cal/`）因為引入 CSS 與 JS 時使用的是相對路徑（`css/styles.css` 與 `js/*.js`），導致瀏覽器在解析子路徑時產生 404 資源錯誤，網頁無任何樣式格式。
+2. 智慧洞察標題含有英文 `(TL;DR)`，使用者期望將其移除。
+3. 「📊資料品質與更新指標」原本被放置於頁面中間（熱力圖下方），破壞了視覺連貫性，使用者要求將其移至頁面最下方。
+4. 關於頁面中作者的 GitHub 連結與 JSON-LD 主體聲明被誤植為 `https://github.com/pmpmpm`，應為正確的 `https://github.com/tokpmpm/`。
+
+### 根本原因 (Root Cause)
+1. `template.html` 採用相對路徑來引入靜態資源。在根目錄 `/` 雖然正常，但在 `/airline/cal/` 等子資料夾中會被解析為 `/airline/cal/css/styles.css` 因而找不到資源。
+2. 智慧洞察標題文字 `<h3 class="sr-only" id="kf-title">關鍵發現與智慧洞察 (TL;DR)</h3>` 帶有 `(TL;DR)` 贅字。
+3. `template.html` 原先將 `data-quality-card` 放置於 `insights-side-card` 側邊欄中。
+4. 開發者個人 GitHub 網址配置錯誤。
+
+### 修正方案
+1. **絕對路徑轉換**：將 `template.html` 內所有 CSS 與 JS 腳本引用改為以 `/` 開頭的絕對路徑（例如 `/css/styles.css`），徹底解決子目錄 404 問題。
+2. **標題去贅字**：移除 `template.html` 智慧洞察標題中的 `(TL;DR)`。
+3. **佈局位置調整與樣式清理**：
+   - 將 `.data-quality-card` 從側邊欄移至 `#download-section` 下方（頁面主體最底部）。
+   - 移除了卡片內部元素冗餘的 inline styles，回歸已定義好的 `css/styles.css` 樣式，並使卡片在底部能自動適應寬度。
+4. **防禦性正則替換**：修改 `prerender.js` 中對 `dq-update-time` 的替換邏輯，改用強健的正則表達式，確保在清除 HTML 內聯樣式後，預渲染腳本仍能精準替換最新更新時間。
+5. **關於頁面與開發者資訊修正**：
+   - 將 `about/index.html` 內的 CSS 引用改為絕對路徑。
+   - 修正作者個人與 JSON-LD 對應的 GitHub 連結為 `https://github.com/tokpmpm/`。
+   - 更新「關於開發者」區塊之文字，將官方網站連結文字修正為更具個人品牌色彩的「外勞芭 AI 招喚工坊」，並將開發者文字精細化。
+6. **編譯驗證**：重新執行 `npm run build` 生成所有 HTML，並通過 `verify_seo.js` 測試。
+
+### 驗證結果
+- ✅ **二級路徑格式正常**：在 `http://localhost:3030/airline/cal/` 載入時能正確加載 `/css/styles.css`，頁面格式與樣式完美呈現。
+- ✅ **佈局位置正確**：資料品質與更新指標卡片已正確呈現於頁面最下方，且寬度自適應美觀。
+- ✅ **開發者資料與標題更新**：智慧洞察標題不含 `(TL;DR)` 贅字；`about/index.html` 內的 canonical/JSON-LD/網頁文字已正確指向 `https://github.com/tokpmpm/`，且開發者介紹與「外勞芭 AI 招喚工坊」均已更新到位。
+- ✅ **自動化回歸測試綠燈**：`verify_seo.js` 所有的斷言皆全數通過，無任何遺留錯誤。
+
+## [2026-06-10] 邏輯修復：修復客戶端 JS 水合 (Hydration) 時將航空公司頁面數據重置為大盤之 Bug
+
+### 問題現狀
+在航空公司專屬頁面（例如 `/airline/cal/`）預渲染完成後，雖然靜態 HTML 能正確呈現中華航空的數據，但一旦瀏覽器載入客戶端主程式 `js/app.js` 後，頁面會瞬間閃爍並將 KPIs、圖表、熱力圖及表格數據全部重置為全體航空公司的「大盤總和數據」。
+
+### 根本原因 (Root Cause)
+1. 客戶端狀態管理器 `AppState` 中缺乏 `selectedAirline` 的狀態紀錄。
+2. 客戶端初始化時，`applyStateFromURL()` 僅有從路徑還原 `selectedAirport`（機場）的邏輯，未處理 `selectedAirline`（航空公司）。
+3. 當 JS 接管頁面進行水合時，`updateDashboard()` 中執行的 `applyFilters()` 會因為沒有設定航空公司過濾器，而將篩選資料集擴展為全體資料，進而覆蓋了原本靜態渲染好的專屬數據。
+4. `syncStateToURL()` 未對 `airline` 子頁面路徑進行排除，會往網址後方加上多餘的機場與目的地 query 參數。
+
+### 修正方案
+1. **AppState 擴充**：於 `js/app.js` 的 `AppState` 中新增 `selectedAirline: ''` 狀態。
+2. **過濾邏輯修正**：修改 `applyFilters()`，在過濾資料時加入 `if (AppState.selectedAirline && record.airline !== AppState.selectedAirline)` 判斷。
+3. **URL/Path 還原修正**：修改 `applyStateFromURL()`，從 `window.location.pathname` 正則匹配 `/airline/{code}/` 以正確提取並還原 `selectedAirline`。
+4. **網址同步優化**：於 `syncStateToURL()` 中偵測 `isAirlineSubpage = path.includes('/airline/')`，防止在航空公司專屬子網頁上產生多餘的 query string。
+5. **編譯驗證**：重新執行 `npm run build`，確保 SSG 流程與 `verify_seo.js` 驗證順利通過。
+
+### 驗證結果
+- ✅ **水合狀態恢復正常**：造訪 `/airline/cal/` 時，頁面在 JS 載入接管後，KPI、圖表、熱力圖與表格依然保持為中華航空的數據，無任何重置為大盤數據之閃爍。
+- ✅ **自動化回歸測試成功**：`npm run build` 成功完成，無任何 JavaScript 語法錯誤或測試失敗。
+
+## [2026-06-10] 功能優化：全面升級 SEO/AIEO，為 AI 搜尋引擎引流與優化 Dataset
+
+### 問題現狀
+網站雖有基礎預渲染 (SSG) 架構，但在 AIEO / GEO 時代，AI 爬蟲 (如 Perplexity、ChatGPT、Gemini) 難以精確抽取網頁內部的數值細節。此外，網站缺乏結構化的 Dataset 數據目錄標記 (DataCatalog)、精細的微數據標記 (Microdata Answer)、航空公司程式化專屬頁面、資料品質指標及 `llms.txt` 等 AI 專用索引導航，且原 build 腳本未設置自動化 SEO 檢測防退化機制。
+
+### 根本原因 (Root Cause)
+1. 舊版 JSON-LD 僅包含基礎的 `WebPage` 與 `Dataset`，未提供 `DataCatalog` 整合目錄，亦缺乏 `potentialAction: DownloadAction` 指引。
+2. 靜態輸出的「智慧洞察」為純 HTML `<li>` 字串，未套用 Microdata 微數據結構。
+3. 預渲染頁面未包含主要航空公司獨立分頁，且僅導出全台 CSV，限制了長尾搜尋捕捉與 Google Dataset Search 的精準下載定位。
+4. 漏寫 `about/index.html` 的 canonical tag，且缺乏專用 `llms.txt` 檔案與 build 結束後的自動化驗證腳本。
+
+### 修正方案
+1. **升級 JSON-LD 結構化資料**：於 `prerender.js` 中實作動態 JSON-LD 生成，為首頁注入 `DataCatalog`，分頁注入 `Dataset` (帶有指向專屬 CSV 的 `DownloadAction`)、`FAQPage` (依據統計值自動生成問答) 與 `BreadcrumbList`。
+2. **微數據 (Microdata) 標記**：修改 `js/insights.js` 的 `generateStaticInsightsHTML`，為靜態「關鍵發現 (TL;DR)」洞察項目加上 `Answer` 實體和 `itemprop="value"`。
+3. **程式化 SEO 與數據分發**：
+   - 新增主要航空公司專屬靜態頁面渲染（`airline/cal/` (華航)、`airline/eva/` (長榮)、`airline/starlux/` (星宇)、`airline/tiger/` (虎航)）。
+   - 導出邏輯優化，為各機場與航空公司分別導出專屬的 CSV 與 JSON 數據集（如 `data/flight_data_airport-tpe.csv` 等），並更新 HTML 靜態下載連結。
+4. **新增品質指標與關於頁面**：
+   - 於 `template.html` 引入資料品質指標卡片（顯示完整度與更新時間），並修復 `about/index.html` 補齊 canonical 標籤。
+5. **AI 爬蟲導航與自動化測試**：
+   - 生成符合規範的 `llms.txt` 與 `llms-full.txt` 快照索引。
+   - 建立 verify_seo.js 驗證腳本，並與 `package.json` 的 `build` 腳本串聯，在 build 時自動進行回歸測試。
+
+### 驗證結果
+- ✅ **自動化驗證 100% 通過**：執行 `npm run build`，預渲染管線無誤編譯，`verify_seo.js` 之 60+ 個斷言全數合格。
+- ✅ **結構化資料升級**：檢視首頁與分頁，JSON-LD 與 microdata 正確寫入，FAQPage 與 Dataset 完全對應。
+- ✅ **航空公司專屬分頁**：修復原始數據中 key 與代碼之映射（中華/長榮/星宇/台灣虎航），CAL/EVA/Starlux/Tiger 四大航空公司頁面完美生成且數據正確。
+- ✅ **LLM 導航及 Sitemap 補齊**：`llms.txt` 與 Sitemap 皆正確包含新增的航空公司及關於頁面，資料集檔案亦全數分發至 `data/` 目錄。
+
 ## [2026-06-09] 邏輯修復：修復台北與台中機場名稱不匹配導致網址含有中文及預渲染頁面空白之 Bug
 
 ### 問題現狀

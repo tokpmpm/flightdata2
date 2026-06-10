@@ -54,6 +54,17 @@ function updateLoadFactorChart() {
     const ctx = document.getElementById('load-factor-chart');
     if (!ctx) return;
 
+    // Update chart title dynamically if on airline subpage
+    const chartTitle = ctx.closest('.chart-card')?.querySelector('.chart-title');
+    if (chartTitle) {
+        if (AppState.selectedAirline) {
+            const fullName = (typeof airlineFullNames !== 'undefined' ? airlineFullNames[AppState.selectedAirline] : null) || AppState.selectedAirline;
+            chartTitle.innerHTML = `<span class="icon">📈</span>${fullName}座位利用率與載客率趨勢`;
+        } else {
+            chartTitle.innerHTML = `<span class="icon">📈</span>各航空公司載客率趨勢`;
+        }
+    }
+
     // Destroy existing chart if it exists
     if (AppState.charts.loadFactor) {
         AppState.charts.loadFactor.destroy();
@@ -206,6 +217,17 @@ function updateLoadFactorChart() {
 function updateStackedPassengersChart() {
     const ctx = document.getElementById('stacked-passengers-chart');
     if (!ctx) return;
+
+    // Update chart title dynamically if on airline subpage
+    const chartTitle = ctx.closest('.chart-card')?.querySelector('.chart-title');
+    if (chartTitle) {
+        if (AppState.selectedAirline) {
+            const fullName = (typeof airlineFullNames !== 'undefined' ? airlineFullNames[AppState.selectedAirline] : null) || AppState.selectedAirline;
+            chartTitle.innerHTML = `<span class="icon">📊</span>${fullName}每月載客量與航班量`;
+        } else {
+            chartTitle.innerHTML = `<span class="icon">📊</span>每月總載客人數（堆疊）`;
+        }
+    }
 
     if (AppState.charts.stackedPassengers) {
         AppState.charts.stackedPassengers.destroy();
@@ -472,28 +494,39 @@ function updateAirlineShareChart() {
         AppState.charts.airlineShare.destroy();
     }
 
+    const isAirlineMode = !!AppState.selectedAirline;
+    const chartTitle = ctx.closest('.chart-card')?.querySelector('.chart-title');
+    
+    if (chartTitle) {
+        if (isAirlineMode) {
+            const fullName = (typeof airlineFullNames !== 'undefined' ? airlineFullNames[AppState.selectedAirline] : null) || AppState.selectedAirline;
+            chartTitle.innerHTML = `<span class="icon">🍩</span>${fullName}主要目的地運量佔比`;
+        } else {
+            chartTitle.innerHTML = `<span class="icon">🍩</span>航空公司旅客與航班市佔率`;
+        }
+    }
+
     // Aggregate data
-    const airlineStats = {};
+    const statGroup = {};
     let totalVal = 0;
 
     AppState.filteredData.forEach(record => {
-        const airline = record.airline;
+        const key = isAirlineMode ? record.destination : record.airline;
         const val = currentShareMetric === 'passengers' ? record.passengers : record.flights;
 
-        if (!airlineStats[airline]) {
-            airlineStats[airline] = 0;
+        if (!statGroup[key]) {
+            statGroup[key] = 0;
         }
-        airlineStats[airline] += val;
+        statGroup[key] += val;
         totalVal += val;
     });
 
     if (totalVal === 0) {
-        // Render a placeholder or clear
         return;
     }
 
     // Sort and limit to top 5, rest to "Others"
-    const sortedAirlines = Object.entries(airlineStats)
+    const sortedItems = Object.entries(statGroup)
         .map(([name, value]) => ({ name, value }))
         .sort((a, b) => b.value - a.value);
 
@@ -504,12 +537,17 @@ function updateAirlineShareChart() {
     const maxItems = 5;
     let othersSum = 0;
 
-    sortedAirlines.forEach((item, idx) => {
+    sortedItems.forEach((item, idx) => {
         if (idx < maxItems) {
             chartData.push(item.value);
             chartLabels.push(item.name);
-            const color = window.getAirlineColor ? window.getAirlineColor(item.name, idx) : '#3b82f6';
-            chartColors.push(color);
+            if (isAirlineMode) {
+                const destColors = ['#2563eb', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
+                chartColors.push(destColors[idx % destColors.length]);
+            } else {
+                const color = window.getAirlineColor ? window.getAirlineColor(item.name, idx) : '#3b82f6';
+                chartColors.push(color);
+            }
         } else {
             othersSum += item.value;
         }

@@ -1,0 +1,26 @@
+# MeshThings FlightData (台灣航班載客率數據分析)
+
+此站點提供台灣主要機場與主要航空公司的載客率、起降航班與座位利用率統計。所有資料均來自民航局開放資料，包含 2024 年至今的詳細月度數據。
+
+## 主要頁面與資料集 (Dataset URL)
+- 首頁 (全台機場統計): https://flightdata2.meshthings.com/
+- 桃園國際機場 (TPE): https://flightdata2.meshthings.com/airport/tpe/
+- 高雄國際機場 (KHH): https://flightdata2.meshthings.com/airport/khh/
+- 臺北松山機場 (TSA): https://flightdata2.meshthings.com/airport/tsa/
+- 臺中清泉崗機場 (RMQ): https://flightdata2.meshthings.com/airport/rmq/
+- 臺南機場 (TNN): https://flightdata2.meshthings.com/airport/tnn/
+- 花蓮機場 (Hun): https://flightdata2.meshthings.com/airport/hun/
+
+## 航空公司專屬分析 (Airline Analytics)
+- 中華航空 (CAL): https://flightdata2.meshthings.com/airline/cal/
+- 長榮航空 (EVA): https://flightdata2.meshthings.com/airline/eva/
+- 星宇航空 (STARLUX): https://flightdata2.meshthings.com/airline/starlux/
+- 台灣虎航 (TIGER): https://flightdata2.meshthings.com/airline/tiger/
+
+## 開放數據下載 (Open Data Download)
+- 全台載客數據 CSV: https://flightdata2.meshthings.com/data/flight_data_all.csv
+- 全台載客數據 JSON: https://flightdata2.meshthings.com/data/flight_data_all.json
+- 各機場與航空公司專屬數據，可藉由該頁面中的下載按鈕取得。
+
+## 關於與方法論 (E-E-A-T & Methodology)
+- 關於本站、計算公式及數據驗證: https://flightdata2.meshthings.com/about/

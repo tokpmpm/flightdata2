@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style A - Dark Executive</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,600,700&f[]=satoshi@400,500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --accent: #EAB308;
+
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+
+            --slide-padding: clamp(2rem, 5vw, 4rem);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 1s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: radial-gradient(circle at 80% 0%, rgba(30, 41, 59, 1) 0%, transparent 50%);
+        }
+
+        .slide {
+            padding: var(--slide-padding);
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--accent);
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: container-reveal 1.2s var(--ease-out-expo) forwards;
+        }
+
+        .badge {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: text-reveal var(--duration-normal) var(--ease-out-expo) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes container-reveal {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes text-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="slide">
+        <span class="badge reveal delay-1">Annual Review</span>
+        <h1 class="reveal delay-2">2024-2025 YoY<br>Capacity Analysis</h1>
+        <p class="reveal delay-3">A data-driven deep dive into the passenger volume trends, identifying strategic growth
+            points in the aviation sector.</p>
+    </section>
+</body>
+
+</html>

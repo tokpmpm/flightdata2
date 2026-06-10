@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024-2025 航空運量分析報告 (YoY Capacity Analysis)</title>
+    <!-- Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES (THEME: NEON CYBER)
+           =========================================== */
+        :root {
+            --bg-primary: #050505;
+            --bg-glass: rgba(10, 10, 12, 0.7);
+            --text-primary: #FFFFFF;
+            --text-secondary: #8892B0;
+            --accent-cyan: #00F0FF;
+            --accent-magenta: #FF003C;
+            --accent-yellow: #FCEE09;
+
+            --font-body: 'General Sans', 'Noto Sans TC', sans-serif;
+            --font-mono: monospace;
+
+            --slide-padding: clamp(2rem, 5vw, 4rem);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.8s;
+            --duration-fast: 0.4s;
+        }
+
+        /* ===========================================
+           BASE STYLES
+           =========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            /* Cyber grid background */
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Customize scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-secondary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* ===========================================
+           SLIDE CONTROLS (Dots)
+           =========================================== */
+        .nav-vertical {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot.active {
+            background-color: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            transform: scale(1.5);
+        }
+
+        /* ===========================================
+           SLIDE CONTAINER
+           =========================================== */
+        .slide {
+            min-height: 100vh;
+            padding: var(--slide-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* ===========================================
+           TYPOGRAPHY & EFFECTS
+           =========================================== */
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .title-accent {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cyan);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .sys-code {
+            font-family: var(--font-mono);
+            color: var(--accent-magenta);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            background: rgba(255, 0, 60, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-cyan);
+        }
+
+        /* ===========================================
+           METRICS GRID
+           =========================================== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .metric-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .metric-value {
+            font-family: var(--font-mono);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-shadow: 2px 2px 0px var(--accent-magenta);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value.up {
+            color: var(--accent-cyan);
+            text-shadow: none;
+        }
+
+        .metric-label {
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+        }
+
+        .airline-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .airline-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+        }
+
+        .airline-list li span:last-child {
+            font-family: var(--font-mono);
+            color: var(--accent-cyan);
+        }
+
+        /* ===========================================
+           ANIMATIONS (Scroll triggered)
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.5s;
+        }
+
+        /* Chart container */
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-vertical {
+                display: none;
+            }
+
+            .slide {
+                padding: 2rem 1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="nav-vertical" id="dotNav">
+        <div class="nav-dot active" data-target="slide1"></div>
+        <div class="nav-dot" data-target="slide2"></div>
+        <div class="nav-dot" data-target="slide3"></div>
+        <div class="nav-dot" data-target="slide4"></div>
+        <div class="nav-dot" data-target="slide5"></div>
+    </div>
+
+    <!-- Slide 1: THE TITLE (Hook) -->
+    <section class="slide" id="slide1">
+        <div class="content-wrapper" style="text-align: center;">
+            <div class="sys-code reveal">[ SYS.REPORT.INIT_2025 ]</div>
+            <h1 class="reveal delay-1">
+                Aviation Capacity<br>
+                <span class="title-accent">YoY Growth</span> Analysis
+            </h1>
+            <p class="reveal delay-2">星宇狂飆 22%，短程航線爆發。<br>2024-2025 台灣客運量數據戰略解碼。</p>
+        </div>
+    </section>
+
+    <!-- Slide 2: THE CONTEXT (Top Airlines Volume) -->
+    <section class="slide" id="slide2">
+        <div class="content-wrapper">
+            <h2 class="reveal">The Heavyweights</h2>
+            <p class="reveal delay-1">長榮與華航依然是運量巨頭，但星宇以 498 萬人次強勢逼近。</p>
+
+            <div class="glass-card reveal delay-2">
+                <div class="chart-container">
+                    <canvas id="volChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: THE DISCOVERY (Top Growers) -->
+    <section class="slide" id="slide3">
+        <div class="content-wrapper">
+            <div class="sys-code reveal">[ QUERY.GROWTH_RATE ]</div>
+            <h2 class="reveal">The Disruptors</h2>
+            <p class="reveal delay-1">若只看「增量」，星宇與國泰貢獻了最大的絕對人流增長。星宇單年暴增 91.2 萬人次。</p>
+
+            <div class="metrics-grid">
+                <div class="glass-card reveal delay-2">
+                    <span class="metric-label">Top 1 絕對增長</span>
+                    <span class="metric-value">+912K</span>
+                    <h3 style="color:white; margin-bottom: 10px;">星宇航空 (STARLUX)</h3>
+                    <div style="width: 100%; background: #333; height: 4px; border-radius: 2px;">
+                        <div style="width: 22.42%; background: var(--accent-cyan); height: 100%;"></div>
+                    </div>
+                    <span
+                        style="float: right; font-family: monospace; color: var(--text-secondary); margin-top: 5px;">+22.42%</span>
+                </div>
+
+                <div class="glass-card reveal delay-3">
+                    <span class="metric-label">Top 2 絕對增長</span>
+                    <span class="metric-value">+483K</span>
+                    <h3 style="color:white; margin-bottom: 10px;">國泰航空 (Cathay)</h3>
+                    <div style="width: 100%; background: #333; height: 4px; border-radius: 2px;">
+                        <div style="width: 18.55%; background: var(--accent-magenta); height: 100%;"></div>
+                    </div>
+                    <span
+                        style="float: right; font-family: monospace; color: var(--text-secondary); margin-top: 5px;">+18.55%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: THE DEEP DIVE (Routes) -->
+    <section class="slide" id="slide4">
+        <div class="content-wrapper">
+            <h2 class="reveal">Strategic Routes</h2>
+            <p class="reveal delay-1">增長動能來自哪裡？桃園出發的「赴日」與「赴港」航線呈現主導趨勢，西雅圖則為長程黑馬。</p>
+
+            <div class="glass-card reveal delay-2">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; margin-right: 20px;">
+                        <h3 style="color: var(--accent-yellow); margin-bottom: 1rem;">TPE 前五大高成長航線</h3>
+                        <ul class="airline-list">
+                            <li><span>🇹🇼桃園 ➔ 🇭🇰香港</span> <span>+511,578 (11.6%)</span></li>
+                            <li><span>🇹🇼桃園 ➔ 🇺🇸西雅圖</span> <span style="color:var(--accent-magenta);">+323,316
+                                    (73.3%)</span></li>
+                            <li><span>🇹🇼桃園 ➔ 🇯🇵沖繩</span> <span>+306,464 (24.2%)</span></li>
+                            <li><span>🇹🇼桃園 ➔ 🇰🇷釜山</span> <span>+252,080 (27.2%)</span></li>
+                            <li><span>🇹🇼桃園 ➔ 🇨🇳上海</span> <span>+237,752 (18.1%)</span></li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">KHH & RMQ 特殊增長</h3>
+                        <ul class="airline-list">
+                            <li><span>[高] 高雄 ➔ 🇯🇵沖繩</span> <span style="color:var(--accent-magenta);">+96,426
+                                    (65.9%)</span></li>
+                            <li><span>[中] 台中 ➔ 🇯🇵沖繩</span> <span style="color:var(--accent-magenta);">+121,227
+                                    (2000%)</span></li>
+                            <li><span>[中] 台中 ➔ 🇰🇷首爾</span> <span>+289,765 (New)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: THE RECOMMENDATION -->
+    <section class="slide" id="slide5">
+        <div class="content-wrapper" style="text-align: center;">
+            <div class="sys-code reveal">[ EXEC.RECOMMENDATION ]</div>
+            <h2 class="reveal delay-1">The Next Move</h2>
+
+            <div class="metrics-grid">
+                <div class="glass-card reveal delay-2" style="text-align: left;">
+                    <h3
+                        style="font-size: 1.5rem; margin-bottom: 1rem; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                        1. 佈局東北亞二線</h3>
+                    <p style="font-size: 1rem;">沖繩與釜山已成為北中南三大機場的共同成長引擎。應持續關注航班密度與票價競爭。</p>
+                </div>
+                <div class="glass-card reveal delay-3" style="text-align: left;">
+                    <h3
+                        style="font-size: 1.5rem; margin-bottom: 1rem; border-left: 3px solid var(--accent-magenta); padding-left: 10px;">
+                        2. 關注西雅圖效應</h3>
+                    <p style="font-size: 1rem;">作為少數入榜的高成長長程線，西雅圖的 73% 增幅顯示北美轉機/直飛市場需求未飽和。</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-3" style="margin-top: 3rem;">
+                <button onclick="window.scrollTo(0,0)"
+                    style="background: transparent; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 10px 30px; font-family: var(--font-mono); cursor: pointer; text-transform: uppercase;">Restart
+                    Sequence</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           Handles Intersection Observer for animations
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.dots = document.querySelectorAll('.nav-dot');
+                this.initObserver();
+                this.initNav();
+                this.initCharts();
+            }
+
+            initObserver() {
+                const options = {
+                    root: null,
+                    rootMargin: '-10% 0px -10% 0px',
+                    threshold: 0.3
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            this.updateNav(entry.target.id);
+                        }
+                    });
+                }, options);
+
+                this.slides.forEach(slide => {
+                    observer.observe(slide);
+                });
+            }
+
+            initNav() {
+                this.dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const targetId = e.target.getAttribute('data-target');
+                        const targetSlide = document.getElementById(targetId);
+                        targetSlide.scrollIntoView({ behavior: 'smooth' });
+                    });
+                });
+            }
+
+            updateNav(slideId) {
+                this.dots.forEach(dot => {
+                    if (dot.getAttribute('data-target') === slideId) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            initCharts() {
+                Chart.defaults.color = '#8892B0';
+                Chart.defaults.font.family = "'General Sans', sans-serif";
+
+                const ctx = document.getElementById('volChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['長榮', '中華', '星宇', '國泰', '台灣虎航'],
+                        datasets: [
+                            {
+                                label: '2024 客運量',
+                                data: [13275276, 11288178, 4070315, 2606570, 2871052],
+                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                borderColor: 'rgba(255, 255, 255, 0.2)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: '2025 客運量',
+                                data: [13508146, 11590726, 4983042, 3090216, 3101158],
+                                backgroundColor: '#00F0FF',
+                                borderColor: '#00F0FF',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        animation: {
+                            duration: 2000,
+                            easing: 'easeOutQuart'
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.05)'
+                                },
+                                ticks: {
+                                    callback: function (value) {
+                                        return value / 1000000 + 'M';
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: { color: '#FFF' }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new SlidePresentation();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+# CNY Prediction Files (不部署)
+cny_2026_prediction.md
+cny_prediction_result.json
+cny_prediction_result_v2.json
+analyze_cny_prediction.js
+cny_charts.html
+analyze_load_factor.js
+analysis_output.txt
+analysis_output_japan.txt
+analysis_debug.txt
+create_social_charts.py
+
+# Analysis/Processing Scripts (不需要部署到前端)
+analysis_result.json
+analysis_result_v2.json
+analysis_result_v3.json
+convert_csv_to_json.py
+generate_realistic_data.py
+process_data.py
+process_real_data.py
+process_xls_files.js
+process_xls_to_json.js
+
+# Inspection/Testing Scripts
+inspect_*.js
+check_cities.js
+list_destinations.js
+list_japan_destinations.js
+verify_*.js
+test_*.js
+
+# Development Files
+node_modules
+.DS_Store
+*.zip
+extracted/
+
+# Reports (不需要部署)
+verification_report.md
+japan_flight_analysis_2025.md
+README.md

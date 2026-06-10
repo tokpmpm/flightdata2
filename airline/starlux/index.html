@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星宇航空載客率與航班數據分析儀表板</title>
+    <meta name="description" content="星宇航空載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 11,029,296 人，平均載客率 83.2%。">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9747455231872729"
+        crossorigin="anonymous"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCJEFVJ5JX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DCJEFVJ5JX');
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css?v=20260610-v2">
+
+    <link rel="canonical" href="https://flightdata2.meshthings.com/airline/starlux/">
+    <meta property="og:title" content="星宇航空載客率與航班數據分析儀表板">
+    <meta property="og:description" content="星宇航空載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 11,029,296 人，平均載客率 83.2%。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flightdata2.meshthings.com/airline/starlux/">
+    <meta property="og:image" content="https://flightdata2.meshthings.com/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "星宇航空載客率與航班數據分析儀表板",
+  "description": "星宇航空載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 11,029,296 人，平均載客率 83.2%。",
+  "url": "https://flightdata2.meshthings.com/airline/starlux/",
+  "about": {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "星宇航空航空載客率數據庫",
+    "description": "包含星宇航空起降班次、座位數及載客人數的月度統計數據。",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "temporalCoverage": "2024-01-01/2026-04-01",
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Taiwan"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "民航局"
+    },
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "https://flightdata2.meshthings.com/data/flight_data_airline-starlux.csv"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://flightdata2.meshthings.com/data/flight_data_airline-starlux.json"
+      }
+    ],
+    "potentialAction": {
+      "@type": "DownloadAction",
+      "name": "下載星宇航空航空載客率數據庫 CSV",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://flightdata2.meshthings.com/data/flight_data_airline-starlux.csv",
+        "encodingType": "text/csv",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      }
+    }
+  }
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "星宇航空的平均載客率（座位利用率）是多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "根據統計期間（2024年1月至2026年4月）的真實數據，星宇航空累計起降班次達 55,767 班，總載客人數達 11,029,296 人次，平均座位載客率為 83.2%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "星宇航空在統計期間載客率最高的是哪一個月？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "星宇航空的最旺月份落於 2026年3月，該月全體航空公司平均座位利用率高達 90.2%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "星宇航空主要的熱門目的地是哪裡？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "統計期間最熱門的目的地為 東京成田，佔該統計總運量的 11.5%，累計旅客人次達 1,271,801 人，該目的地平均載客率為 87.9%。"
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://flightdata2.meshthings.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "星宇航空",
+      "item": "https://flightdata2.meshthings.com/airline/starlux/"
+    }
+  ]
+}</script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">✈️</span>
+                    <h1 class="logo-text">台灣航空載客率數據分析</h1>
+                    <p class="subtitle">Interactive Passenger Load Factor Dashboard</p>
+                </div>
+                
+                <nav class="header-nav" aria-label="主要導航">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">🏠 首頁</a></li>
+                        <li><a href="/about/" class="nav-link">📖 關於本站</a></li>
+                        <li class="nav-dropdown">
+                            <button class="nav-dropbtn">🛫 主要機場 ▾</button>
+                            <div class="dropdown-content">
+                                <a href="/airport/tpe/">桃園國際機場 (TPE)</a>
+                                <a href="/airport/khh/">高雄國際機場 (KHH)</a>
+                                <a href="/airport/tsa/">台北松山機場 (TSA)</a>
+                                <a href="/airport/rmq/">台中清泉崗機場 (RMQ)</a>
+                            </div>
+                        </li>
+                        <li class="nav-dropdown">
+                            <button class="nav-dropbtn">✈️ 主要航空 ▾</button>
+                            <div class="dropdown-content">
+                                <a href="/airline/cal/">中華航空 (CAL)</a>
+                                <a href="/airline/eva/">長榮航空 (EVA)</a>
+                                <a href="/airline/starlux/">星宇航空 (STARLUX)</a>
+                                <a href="/airline/tiger/">台灣虎航 (TIGER)</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- KPI Summary Cards -->
+            <div class="kpi-row" id="kpi-summary">
+
+        <div class="kpi-card" id="kpi-passengers">
+            <div class="kpi-title"><span class="kpi-icon">📊</span>總載客數</div>
+            <div class="kpi-value" id="kpi-passengers-value">11,029,296</div>
+            <div class="kpi-sub">統計期間載客總人數</div>
+        </div>
+        <div class="kpi-card" id="kpi-flights">
+            <div class="kpi-title"><span class="kpi-icon">🛫</span>總航班數</div>
+            <div class="kpi-value" id="kpi-flights-value">55,767</div>
+            <div class="kpi-sub">統計期間起降總班次</div>
+        </div>
+        <div class="kpi-card" id="kpi-load-factor">
+            <div class="kpi-title"><span class="kpi-icon">📈</span>平均載客率</div>
+            <div class="kpi-value" id="kpi-load-factor-value">83.2%</div>
+            <div class="kpi-sub">乘客數 / 總座位數</div>
+        </div>
+        <div class="kpi-card" id="kpi-peak-month">
+            <div class="kpi-title"><span class="kpi-icon">🔝</span>最旺月份</div>
+            <div class="kpi-value" id="kpi-peak-month-value">
+    <span class="peak-month-text">26年3月</span> <span class="peak-month-val">90.2%</span>
+            </div>
+            <div class="kpi-sub">最高載客率月份及數值</div>
+        </div>
+    
+</div>
+</div>
+</header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+
+            <div class="breadcrumb" style="margin-bottom: var(--space-4); font-size: 0.875rem; color: var(--color-text-secondary);">
+                <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
+                <span style="color: var(--color-text-primary); font-weight: 500;">星宇航空</span>
+            </div>
+            <!-- Filters Section -->
+            <section class="filters-section">
+                <div class="filters-card">
+                    <h2 class="section-title">
+                        <span class="icon">🔍</span>
+                        數據篩選
+                    </h2>
+
+                    <div class="filters-grid">
+                        <!-- Airport Filter -->
+                        <div class="filter-group">
+                            <label for="airport-select" class="filter-label">
+                                <span class="label-icon">🛫</span>
+                                台灣機場
+                            </label>
+                            <select id="airport-select" class="filter-select" aria-label="選擇台灣機場">
+                                <option value="">載入中...</option>
+                            </select>
+                        </div>
+
+                        <!-- Destination Filter -->
+                        <div class="filter-group">
+                            <label for="destination-select" class="filter-label">
+                                <span class="label-icon">🌏</span>
+                                目的地航點
+                            </label>
+                            <select id="destination-select" class="filter-select" aria-label="選擇目的地航點">
+                                <option value="">請先選擇機場</option>
+                            </select>
+                        </div>
+
+                        <!-- Date Range Selection -->
+                        <div class="filter-group date-range-group">
+                            <label class="filter-label">
+                                <span class="label-icon">📅</span>
+                                統計期間
+                            </label>
+                            <div class="date-inputs">
+                                <div class="date-input-group">
+                                    <select id="start-year" class="filter-select date-select"></select>
+                                    <span class="date-separator">年</span>
+                                    <select id="start-month" class="filter-select date-select"></select>
+                                    <span class="date-separator">月</span>
+                                </div>
+                                <span class="range-separator">至</span>
+                                <div class="date-input-group">
+                                    <select id="end-year" class="filter-select date-select"></select>
+                                    <span class="date-separator">年</span>
+                                    <select id="end-month" class="filter-select date-select"></select>
+                                    <span class="date-separator">月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button id="apply-filters" class="btn btn-primary">
+                            <span class="btn-icon">🔄</span>
+                            更新數據
+                        </button>
+                        <button id="reset-filters" class="btn btn-secondary">
+                            <span class="btn-icon">↩️</span>
+                            重置篩選
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Insights Section -->
+            <section class="insights-section" id="insights-section">
+                <div class="insights-grid">
+                    <!-- Smart Insights & Top Routes -->
+                    <div class="insights-main-card">
+                        <h2 class="section-title">
+                            <span class="icon">📝</span>
+                            數據智慧洞察與分析
+                        </h2>
+                        <div class="insights-content">
+                            <!-- key-findings for SEO & AIEO -->
+                            <section class="insights-text-panel" id="key-findings" aria-labelledby="kf-title">
+                                <h3 class="sr-only" id="kf-title">關鍵發現與智慧洞察</h3>
+                                <ul class="insights-list" id="insights-list">
+
+                                    <li id="insight-item-0" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">🏢</span> 
+                                        <span itemprop="name" style="display:none;">主要起降與運量佔比</span>
+                                        <span class="insight-text" itemprop="text"><strong>桃園國際機場</strong> 為統計範圍內最繁忙的起降機場，貢獻了 <strong>92.5%</strong> 的旅客量（共 10,197,646 人次）。</span>
+                                    </li>
+
+                                    <li id="insight-item-1" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">🏆</span> 
+                                        <span itemprop="name" style="display:none;">表現最佳航空公司</span>
+                                        <span class="insight-text" itemprop="text">表現最佳的航空公司為 <strong>星宇</strong>，在執飛 55767 班次中平均載客率高達 <strong>83.2%</strong>。</span>
+                                    </li>
+
+                                    <li id="insight-item-2" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">🔥</span> 
+                                        <span itemprop="name" style="display:none;">載客率巔峰期</span>
+                                        <span class="insight-text" itemprop="text">統計期間內的載客率巔峰期落於 <strong>2026年3月</strong>，全體平均座位利用率衝上 <strong>90.2%</strong>（暑假或年節效應）。</span>
+                                    </li>
+
+                                    <li id="insight-item-3" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">📍</span> 
+                                        <span itemprop="name" style="display:none;">首要航點統計</span>
+                                        <span class="insight-text" itemprop="text">首要航點為 <strong>東京成田</strong>，單一航點即佔去該篩選總運量的 <strong>11.5%</strong>，平均載客率達 87.9%。</span>
+                                    </li>
+
+                                    <li id="insight-item-4" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">📊</span> 
+                                        <span itemprop="name" style="display:none;">同期對比 (YoY) 成長率</span>
+                                        <span class="insight-text" itemprop="text"><strong>同期對比 (YoY)</strong>：2026 年 1至4 月 載客量相比 2025 年同期呈現 <strong>+22.8%</strong> 的增減變化。</span>
+                                    </li>
+</ul>
+                            </section>
+                            <hr class="insights-divider">
+                            <div class="top-routes-panel">
+                                <h3 class="panel-subtitle">🛫 前 10 大熱門航點排行榜 (佔載客量)</h3>
+                                <div class="top-routes-list" id="top-routes-list">
+
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">1. 東京成田</span>
+                            <span class="route-stats">
+                                <strong>1,271,801</strong> 人 
+                                <span class="lf-badge">載客率 87.9%</span>
+                                <span class="pct-badge">佔 11.5%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 100%" title="旅客量: 1,271,801 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">2. 大阪</span>
+                            <span class="route-stats">
+                                <strong>911,395</strong> 人 
+                                <span class="lf-badge">載客率 88.8%</span>
+                                <span class="pct-badge">佔 8.3%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 71.66176154917318%" title="旅客量: 911,395 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">3. 澳門</span>
+                            <span class="route-stats">
+                                <strong>771,508</strong> 人 
+                                <span class="lf-badge">載客率 81.3%</span>
+                                <span class="pct-badge">佔 7.0%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 60.66263511351225%" title="旅客量: 771,508 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">4. 曼谷蘇凡納布</span>
+                            <span class="route-stats">
+                                <strong>736,354</strong> 人 
+                                <span class="lf-badge">載客率 89.7%</span>
+                                <span class="pct-badge">佔 6.7%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 57.89852343251813%" title="旅客量: 736,354 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">5. 胡志明市</span>
+                            <span class="route-stats">
+                                <strong>538,330</strong> 人 
+                                <span class="lf-badge">載客率 77.7%</span>
+                                <span class="pct-badge">佔 4.9%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 42.32816297518244%" title="旅客量: 538,330 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">6. 沖繩</span>
+                            <span class="route-stats">
+                                <strong>536,019</strong> 人 
+                                <span class="lf-badge">載客率 91.1%</span>
+                                <span class="pct-badge">佔 4.9%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 42.146452157216416%" title="旅客量: 536,019 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">7. 洛杉磯</span>
+                            <span class="route-stats">
+                                <strong>474,650</strong> 人 
+                                <span class="lf-badge">載客率 77.4%</span>
+                                <span class="pct-badge">佔 4.3%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 37.321090327810715%" title="旅客量: 474,650 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">8. 香港</span>
+                            <span class="route-stats">
+                                <strong>452,431</strong> 人 
+                                <span class="lf-badge">載客率 69.9%</span>
+                                <span class="pct-badge">佔 4.1%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 35.57404027831399%" title="旅客量: 452,431 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">9. 札幌</span>
+                            <span class="route-stats">
+                                <strong>450,572</strong> 人 
+                                <span class="lf-badge">載客率 91.0%</span>
+                                <span class="pct-badge">佔 4.1%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 35.42786961167667%" title="旅客量: 450,572 人"></div>
+                        </div>
+                    </div>
+                
+                    <div class="route-item">
+                        <div class="route-info">
+                            <span class="route-name">10. 仙台</span>
+                            <span class="route-stats">
+                                <strong>392,541</strong> 人 
+                                <span class="lf-badge">載客率 89.4%</span>
+                                <span class="pct-badge">佔 3.6%</span>
+                            </span>
+                        </div>
+                        <div class="route-bar-wrapper">
+                            <div class="route-bar" style="width: 30.864970227260397%" title="旅客量: 392,541 人"></div>
+                        </div>
+                    </div>
+                
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Load Factor Heatmap & Data Quality Indicator -->
+                    <div class="insights-side-card">
+                        <h2 class="section-title">
+                            <span class="icon">📅</span>
+                            座位利用率年度月份熱力圖
+                        </h2>
+                        <div class="heatmap-panel">
+                            <div class="heatmap-legend">
+                                <span class="legend-title">載客率：</span>
+                                <div class="legend-items">
+                                    <span class="legend-item"><span class="legend-box" style="background-color: var(--color-heatmap-0, #fcf8f2)"></span>&lt;50%</span>
+                                    <span class="legend-item"><span class="legend-box" style="background-color: var(--color-heatmap-1, #f5e6d3)"></span>50-70%</span>
+                                    <span class="legend-item"><span class="legend-box" style="background-color: var(--color-heatmap-2, #e8c4a0)"></span>70-85%</span>
+                                    <span class="legend-item"><span class="legend-box" style="background-color: var(--color-heatmap-3, #c58654)"></span>85-90%</span>
+                                    <span class="legend-item"><span class="legend-box" style="background-color: var(--color-heatmap-4, #945326)"></span>&gt;90%</span>
+                                </div>
+                            </div>
+                            <div class="heatmap-container-wrapper">
+                                <div class="heatmap-container" id="heatmap-container">
+
+            <table class="heatmap-table">
+                <thead>
+                    <tr>
+                        <th>年份</th>
+                        <th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th>
+                        <th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr><td class="heatmap-year-cell">2026</td><td class="heatmap-cell lf-level-2" title="2026年1月: 載客率 85.0%">85.0%</td><td class="heatmap-cell lf-level-3" title="2026年2月: 載客率 89.3%">89.3%</td><td class="heatmap-cell lf-level-4" title="2026年3月: 載客率 90.2%">90.2%</td><td class="heatmap-cell lf-level-3" title="2026年4月: 載客率 85.2%">85.2%</td><td class="heatmap-cell lf-empty" title="2026年5月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年6月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年7月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年8月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年9月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年10月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年11月: 無數據">-</td><td class="heatmap-cell lf-empty" title="2026年12月: 無數據">-</td></tr><tr><td class="heatmap-year-cell">2025</td><td class="heatmap-cell lf-level-3" title="2025年1月: 載客率 85.4%">85.4%</td><td class="heatmap-cell lf-level-3" title="2025年2月: 載客率 85.7%">85.7%</td><td class="heatmap-cell lf-level-2" title="2025年3月: 載客率 81.9%">81.9%</td><td class="heatmap-cell lf-level-2" title="2025年4月: 載客率 80.5%">80.5%</td><td class="heatmap-cell lf-level-2" title="2025年5月: 載客率 75.9%">75.9%</td><td class="heatmap-cell lf-level-2" title="2025年6月: 載客率 80.5%">80.5%</td><td class="heatmap-cell lf-level-2" title="2025年7月: 載客率 82.6%">82.6%</td><td class="heatmap-cell lf-level-2" title="2025年8月: 載客率 83.9%">83.9%</td><td class="heatmap-cell lf-level-2" title="2025年9月: 載客率 73.3%">73.3%</td><td class="heatmap-cell lf-level-2" title="2025年10月: 載客率 81.0%">81.0%</td><td class="heatmap-cell lf-level-2" title="2025年11月: 載客率 82.7%">82.7%</td><td class="heatmap-cell lf-level-3" title="2025年12月: 載客率 85.8%">85.8%</td></tr><tr><td class="heatmap-year-cell">2024</td><td class="heatmap-cell lf-level-2" title="2024年1月: 載客率 81.9%">81.9%</td><td class="heatmap-cell lf-level-3" title="2024年2月: 載客率 87.7%">87.7%</td><td class="heatmap-cell lf-level-3" title="2024年3月: 載客率 86.6%">86.6%</td><td class="heatmap-cell lf-level-2" title="2024年4月: 載客率 81.6%">81.6%</td><td class="heatmap-cell lf-level-2" title="2024年5月: 載客率 77.1%">77.1%</td><td class="heatmap-cell lf-level-3" title="2024年6月: 載客率 87.7%">87.7%</td><td class="heatmap-cell lf-level-3" title="2024年7月: 載客率 87.3%">87.3%</td><td class="heatmap-cell lf-level-3" title="2024年8月: 載客率 87.6%">87.6%</td><td class="heatmap-cell lf-level-2" title="2024年9月: 載客率 76.8%">76.8%</td><td class="heatmap-cell lf-level-2" title="2024年10月: 載客率 78.5%">78.5%</td><td class="heatmap-cell lf-level-2" title="2024年11月: 載客率 82.6%">82.6%</td><td class="heatmap-cell lf-level-3" title="2024年12月: 載客率 85.8%">85.8%</td></tr>
+                </tbody>
+            </table>
+        
+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <!-- Load Factor Trend Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">📈</span>
+                        各航空公司載客率趨勢
+                    </h2>
+                    <div class="chart-container" role="img" aria-label="各航空公司載客率趨勢折線圖">
+                        <canvas id="load-factor-chart" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+
+                <!-- Stacked Passengers Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">📊</span>
+                        每月總載客人數（堆疊）
+                    </h2>
+                    <div class="chart-container" role="img" aria-label="每月總載客人數堆疊長條圖">
+                        <canvas id="stacked-passengers-chart" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+
+                <!-- YoY Comparison Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">📉</span>
+                        每月總載客人數（YoY 對比）
+                    </h2>
+                    <div class="chart-container" role="img" aria-label="年度同期對比長條圖">
+                        <canvas id="yoy-comparison-chart" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+
+                <!-- Airline Share Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-title">
+                        <span class="icon">🍩</span>
+                        航空公司旅客與航班市佔率
+                    </h2>
+                    <div class="chart-tabs">
+                        <button class="chart-tab active" id="share-by-passengers">按旅客數</button>
+                        <button class="chart-tab" id="share-by-flights">按航班數</button>
+                    </div>
+                    <div class="chart-container" role="img" aria-label="航空公司市佔率圓餅圖">
+                        <canvas id="airline-share-chart" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Table Section -->
+            <section class="table-section">
+                <div class="table-card">
+                    <h2 class="section-title">
+                        <span class="icon">📋</span>
+                        航空公司詳細月度數據
+                    </h2>
+
+                    <!-- Airline Tabs -->
+                    <div class="tabs" id="airline-tabs">
+                        <button class="tab active" data-airline="all">全部</button>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="table-wrapper">
+                        <div class="table-wrapper-inner">
+                            <table class="data-table" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>年月</th>
+                                        <th>航空公司</th>
+                                        <th>航班數</th>
+                                        <th>總座位數</th>
+                                        <th>載客人數</th>
+                                        <th>載客率 (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body" data-prerendered="true">
+
+            <tr data-label="年月">
+                <td data-label="年月">2026-04</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,426</td>
+                <td data-label="總座位數">599,760</td>
+                <td data-label="載客人數">511,165</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        85.23%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2026-03</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,381</td>
+                <td data-label="總座位數">576,158</td>
+                <td data-label="載客人數">519,461</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        90.16%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2026-02</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,175</td>
+                <td data-label="總座位數">529,870</td>
+                <td data-label="載客人數">472,956</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        89.26%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2026-01</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,308</td>
+                <td data-label="總座位數">555,750</td>
+                <td data-label="載客人數">472,357</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        84.99%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-12</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,229</td>
+                <td data-label="總座位數">538,218</td>
+                <td data-label="載客人數">461,649</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        85.77%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-11</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,086</td>
+                <td data-label="總座位數">501,973</td>
+                <td data-label="載客人數">415,004</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        82.67%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-10</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,207</td>
+                <td data-label="總座位數">526,432</td>
+                <td data-label="載客人數">426,568</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        81.03%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-09</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,066</td>
+                <td data-label="總座位數">507,128</td>
+                <td data-label="載客人數">371,557</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        73.27%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-08</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,206</td>
+                <td data-label="總座位數">539,658</td>
+                <td data-label="載客人數">452,547</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        83.86%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-07</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,167</td>
+                <td data-label="總座位數">528,166</td>
+                <td data-label="載客人數">436,452</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        82.64%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-06</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,101</td>
+                <td data-label="總座位數">511,654</td>
+                <td data-label="載客人數">412,131</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        80.55%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-05</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,152</td>
+                <td data-label="總座位數">523,354</td>
+                <td data-label="載客人數">397,420</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        75.94%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-04</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,057</td>
+                <td data-label="總座位數">498,766</td>
+                <td data-label="載客人數">401,683</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        80.54%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-03</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,074</td>
+                <td data-label="總座位數">496,318</td>
+                <td data-label="載客人數">406,593</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        81.92%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-02</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,873</td>
+                <td data-label="總座位數">448,260</td>
+                <td data-label="載客人數">384,246</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        85.72%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2025-01</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">2,052</td>
+                <td data-label="總座位數">488,450</td>
+                <td data-label="載客人數">417,192</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        85.41%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-12</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,955</td>
+                <td data-label="總座位數">458,122</td>
+                <td data-label="載客人數">392,934</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        85.77%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-11</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,789</td>
+                <td data-label="總座位數">422,667</td>
+                <td data-label="載客人數">349,127</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        82.60%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-10</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,976</td>
+                <td data-label="總座位數">466,295</td>
+                <td data-label="載客人數">366,005</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        78.49%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-09</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,902</td>
+                <td data-label="總座位數">447,806</td>
+                <td data-label="載客人數">343,740</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        76.76%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-08</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,940</td>
+                <td data-label="總座位數">449,041</td>
+                <td data-label="載客人數">393,451</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        87.62%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-07</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,842</td>
+                <td data-label="總座位數">426,239</td>
+                <td data-label="載客人數">372,095</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        87.30%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-06</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,683</td>
+                <td data-label="總座位數">384,522</td>
+                <td data-label="載客人數">337,102</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        87.67%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-05</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,752</td>
+                <td data-label="總座位數">400,618</td>
+                <td data-label="載客人數">308,807</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        77.08%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-04</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,622</td>
+                <td data-label="總座位數">370,747</td>
+                <td data-label="載客人數">302,705</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        81.65%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-03</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,628</td>
+                <td data-label="總座位數">364,691</td>
+                <td data-label="載客人數">315,907</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        86.62%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-02</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,544</td>
+                <td data-label="總座位數">343,962</td>
+                <td data-label="載客人數">301,608</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #16a34a, #15803d)">
+                        87.69%
+                    </span>
+                </td>
+            </tr>
+        
+
+            <tr data-label="年月">
+                <td data-label="年月">2024-01</td>
+                <td data-label="航空公司">星宇</td>
+                <td data-label="航班數">1,574</td>
+                <td data-label="總座位數">350,346</td>
+                <td data-label="載客人數">286,834</td>
+                <td data-label="載客率">
+                    <span class="load-factor-badge" style="background: linear-gradient(135deg, #2563eb, #1d4ed8)">
+                        81.87%
+                    </span>
+                </td>
+            </tr>
+        
+</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section for Datasets (AIEO & E-E-A-T) -->
+            <section class="download-section" id="download-section" style="margin-top: var(--space-6);">
+                <div class="download-card">
+                    <h2 class="section-title" style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+                        <span class="icon">📥</span>開放航空載客率數據集下載
+                    </h2>
+                    <p class="download-desc" style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+                        本站提供機器可讀格式之數據集（民航局 2024 年至今之月度統計），歡迎下載、進行二次學術研究或 AI 分析引用。
+                    </p>
+                    <div class="download-buttons" id="download-links" style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+                        <a href="/data/flight_data_airline-starlux.csv" download class="btn btn-secondary download-btn" id="download-csv-link">
+                            <span class="btn-icon">📊</span>下載 CSV 數據集
+                        </a>
+                        <a href="/data/flight_data_airline-starlux.json" download class="btn btn-secondary download-btn" id="download-json-link">
+                            <span class="btn-icon">{ }</span>下載 JSON 數據集
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Quality Indicator for E-E-A-T & AEO -->
+            <aside class="data-quality-card" aria-labelledby="dq-title">
+                <h3 class="panel-subtitle" id="dq-title" style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+                    <span>📊</span>資料品質與更新指標
+                </h3>
+                <div class="data-quality-content" id="data-quality-info">
+                    <dl class="dq-list">
+                        <div class="dq-item">
+                            <dt>資料完整度</dt>
+                            <dd id="dq-completeness">100% (2024-01 至最新)</dd>
+                        </div>
+                        <div class="dq-item">
+                            <dt>數據更新時間</dt>
+                            <dd id="dq-update-time"><time datetime="2026-04-01">2026年4月</time></dd>
+                        </div>
+                        <div class="dq-item">
+                            <dt>資料來源與公式</dt>
+                            <dd>民航局開放資料 / 實際旅客數 ÷ 供給座位數</dd>
+                        </div>
+                    </dl>
+                    <div class="dq-footer">
+                        <a href="/about/" class="dq-link">查看方法論與驗證流程 →</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Developer Info Card for E-E-A-T & AIEO -->
+            <aside class="developer-info-card" aria-labelledby="dev-title">
+                <h3 class="panel-subtitle" id="dev-title" style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+                    <span>👨‍💻</span>關於開發者 (About Developer)
+                </h3>
+                <div class="developer-info-content">
+                    <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-3); text-align: justify;">
+                        本網站由獨立軟體工程師與資料分析師 <strong>外勞芭</strong> 獨立開發與維護。本站之設立旨在利用現代化網頁視覺化技術（如 Chart.js 與預渲染技術），將生硬的民航局開放資料轉化為直觀的互動式圖表，幫助大眾、學術研究者及航空愛好者更輕鬆地解讀台灣航空市場的復甦與變化。
+                    </p>
+                    <div class="dev-links">
+                        <a href="https://ai.meshthings.com/" target="_blank" rel="noopener" class="dev-link">
+                            <span>🔗</span> 官方網站：外勞芭 AI 招喚工坊
+                        </a>
+                        <a href="https://github.com/tokpmpm/" target="_blank" rel="noopener" class="dev-link">
+                            <span>🐙</span> GitHub 專案庫與個人檔案：tokpmpm
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer-text">© <span id="footer-year">2026</span> 台灣航空載客率數據分析 by <a href="https://ai.meshthings.com/" target="_blank"
+                    rel="noopener">外勞芭</a> |
+                數據來源：民航局</p>
+            <p class="footer-subtext">Interactive Dashboard · Built with Chart.js</p>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script src="/data/flight_data_new.js?v=20260610-v2"></script>
+    <script src="/js/insights.js?v=20260610-v2"></script>
+    <script src="/js/app.js?v=20260610-v2"></script>
+    <script src="/js/charts.js?v=20260610-v2"></script>
+    <script src="/js/table.js?v=20260610-v2"></script>
+    
+    <button id="share-filters" class="btn-float-share" title="分享數據與洞察">
+        <span class="btn-icon">🔗</span>
+        分享數據與洞察
+    </button>
+
+    <div class="share-toast" id="share-toast"></div>
+</body>
+
+</html>

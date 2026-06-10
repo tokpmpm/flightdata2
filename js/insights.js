@@ -584,9 +584,25 @@ function generateStaticInsightsHTML(data) {
         insightsHtml = '<li>⚠️ 目前篩選條件下沒有足夠的數據產生洞察。</li>';
     } else {
         insightsHtml = data.textInsights
-            .map(ins => `<li><span class="insight-icon">${ins.icon}</span> <span class="insight-text">${ins.text}</span></li>`)
-            .join('');
+            .map((ins, index) => {
+                let name = '智慧洞察';
+                if (ins.icon === '🏆') name = '表現最佳航空公司';
+                else if (ins.icon === '🔥') name = '載客率巔峰期';
+                else if (ins.icon === '🛫' || ins.icon === '🌏' || ins.icon === '✈️' || ins.icon === '🏢') name = '主要起降與運量佔比';
+                else if (ins.icon === '📍') name = '首要航點統計';
+                else if (ins.icon === '📊') name = '同期對比 (YoY) 成長率';
+                else if (ins.icon === '⏳') name = '航線淡旺季分析';
+
+                return `
+                                    <li id="insight-item-${index}" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">${ins.icon}</span> 
+                                        <span itemprop="name" style="display:none;">${name}</span>
+                                        <span class="insight-text" itemprop="text">${ins.text}</span>
+                                    </li>`;
+            })
+            .join('\n');
     }
+
 
     // 3. Top Routes HTML
     let routesHtml = '';

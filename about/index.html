@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於本站、數據來源與方法論 | 台灣航空載客率數據分析</title>
+    <meta name="description" content="關於台灣航空載客率儀表板：介紹民航局數據來源、載客率計算方法論、數據驗證流程與獨立開發者背景，建立專業信賴感。">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS (relative path) -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="canonical" href="https://flightdata2.meshthings.com/about/">
+
+    <!-- JSON-LD for E-E-A-T -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "關於本站、數據來源與方法論",
+      "description": "說明台灣航空載客率數據分析之數據來源、計算公式、數據品質檢測與開發者背景。",
+      "url": "https://flightdata2.meshthings.com/about/",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "外勞芭 (MeshThings)",
+        "jobTitle": "Independent Developer & Data Analyst",
+        "url": "https://github.com/tokpmpm/",
+        "sameAs": [
+          "https://ai.meshthings.com/"
+        ]
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://flightdata2.meshthings.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "關於本站與方法論",
+          "item": "https://flightdata2.meshthings.com/about/"
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">✈️</span>
+                    <h1 class="logo-text">台灣航空載客率數據分析</h1>
+                    <p class="subtitle">About & Methodology</p>
+                </div>
+                
+                <nav class="header-nav" aria-label="主要導航">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">🏠 首頁</a></li>
+                        <li><a href="/about/" class="nav-link">📖 關於本站</a></li>
+                        <li class="nav-dropdown">
+                            <button class="nav-dropbtn">🛫 主要機場 ▾</button>
+                            <div class="dropdown-content">
+                                <a href="/airport/tpe/">桃園國際機場 (TPE)</a>
+                                <a href="/airport/khh/">高雄國際機場 (KHH)</a>
+                                <a href="/airport/tsa/">台北松山機場 (TSA)</a>
+                                <a href="/airport/rmq/">台中清泉崗機場 (RMQ)</a>
+                            </div>
+                        </li>
+                        <li class="nav-dropdown">
+                            <button class="nav-dropbtn">✈️ 主要航空 ▾</button>
+                            <div class="dropdown-content">
+                                <a href="/airline/cal/">中華航空 (CAL)</a>
+                                <a href="/airline/eva/">長榮航空 (EVA)</a>
+                                <a href="/airline/starlux/">星宇航空 (STARLUX)</a>
+                                <a href="/airline/tiger/">台灣虎航 (TIGER)</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumb" style="margin-bottom: var(--space-6); font-size: 0.875rem; color: var(--color-text-secondary);">
+                <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
+                <span style="color: var(--color-text-primary); font-weight: 500;">關於本站與方法論</span>
+            </div>
+
+            <!-- Content Card -->
+            <article class="table-card" style="margin-bottom: var(--space-8);">
+                <h2 class="section-title" style="font-size: 1.5rem; border-bottom: 2px solid var(--color-border); padding-bottom: var(--space-3); margin-bottom: var(--space-6);">
+                    <span class="icon">📖</span> 關於本站與數據計算方法論
+                </h2>
+
+                <section style="margin-bottom: var(--space-6);">
+                    <h3 style="color: var(--color-primary); font-size: 1.15rem; margin-bottom: var(--space-2);">1. 數據來源 (Data Source)</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-3); text-align: justify;">
+                        本網站所展示之所有航班、座位及載客數統計，均源自<b>中華民國交通部民用航空局 (Civil Aeronautics Administration, CAA)</b> 發布之「各機場起降架次、供給座位數及載客人數統計」月度資料（民航局開放資料項目）。
+                    </p>
+                    <p style="color: var(--color-text-secondary); text-align: justify;">
+                        數據範疇涵蓋 2024 年 1 月至今，包括桃園國際機場 (TPE)、台北松山機場 (TSA)、高雄國際機場 (KHH)、台中清泉崗機場 (RMQ)、台南機場 (TNN) 與花蓮機場 (HUN) 的起降紀錄。
+                    </p>
+                </section>
+
+                <section style="margin-bottom: var(--space-6);">
+                    <h3 style="color: var(--color-primary); font-size: 1.15rem; margin-bottom: var(--space-2);">2. 計算方法論 (Methodology)</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-2);">
+                        本站採用之載客率（座位利用率）公式定義如下：
+                    </p>
+                    <div style="background: var(--color-bg-surface); padding: var(--space-4); border-radius: var(--radius-md); font-family: monospace; font-size: 1.05rem; text-align: center; margin-bottom: var(--space-3); border: 1px dashed var(--color-border-bright);">
+                        載客率 (%) = ( 實際載客人數 / 供給總座位數 ) × 100
+                    </div>
+                    <p style="color: var(--color-text-secondary); text-align: justify;">
+                        各分頁及篩選結果中的載客率，均是透過總載客人數與總座位數重新加總計算之「加權平均載客率」，而非將各航線之載客率進行算術平均，以確保數據的精確性。
+                    </p>
+                </section>
+
+                <section style="margin-bottom: var(--space-6);">
+                    <h3 style="color: var(--color-primary); font-size: 1.15rem; margin-bottom: var(--space-2);">3. 數據完整度與限制 (Data Completeness & Limitations)</h3>
+                    <ul style="color: var(--color-text-secondary); padding-left: var(--space-5); margin-bottom: var(--space-3); line-height: 1.8;">
+                        <li><b>排除範圍</b>：本統計僅包含固定航線之民航定期班次，不含包機、軍用航空、通用航空及私人專機之數據。</li>
+                        <li><b>數據延遲</b>：民航局開放資料通常於每月月中或月底更新前一月份數據，本站於民航局資料發布後 3 天內自動進行預渲染更新。</li>
+                        <li><b>已知限制</b>：所有數據均以民航局發布之開放資料為依歸。若民航局資料後續有修正，本站將於下次編譯建置時同步更新。</li>
+                    </ul>
+                </section>
+
+                <section style="margin-bottom: var(--space-6);">
+                    <h3 style="color: var(--color-primary); font-size: 1.15rem; margin-bottom: var(--space-2);">4. 數據品質交叉驗證 (Data Validation)</h3>
+                    <p style="color: var(--color-text-secondary); text-align: justify; margin-bottom: var(--space-3);">
+                        為確保數據呈現百分之百正確，本站建置有自動化回歸與交叉驗證測試。在每次資料庫更新時，系統會比對：
+                    </p>
+                    <ul style="color: var(--color-text-secondary); padding-left: var(--space-5); line-height: 1.8;">
+                        <li>分機場數據之總和是否與全台總和完全一致。</li>
+                        <li>YoY 同期對比趨勢與年度累計旅客數是否符合民航局原始 PDF/Excel 核算值。</li>
+                        <li>自動檢測是否存在無效的負數值或座位數為零但旅客數大於零之異常。</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 style="color: var(--color-primary); font-size: 1.15rem; margin-bottom: var(--space-2);">5. 關於開發者 (About Developer - E-E-A-T)</h3>
+                    <p style="color: var(--color-text-secondary); text-align: justify; margin-bottom: var(--space-3);">
+                        本網站由獨立軟體工程師與資料分析師 外勞芭 獨立開發與維護。本站之設立旨在利用現代化網頁視覺化技術（如 Chart.js 與預渲染技術），將生硬的民航局開放資料轉化為直觀的互動式圖表，幫助大眾、學術研究者及航空愛好者更輕鬆地解讀台灣航空市場的復甦與變化。
+                    </p>
+                    <p style="color: var(--color-text-secondary);">
+                        如對數據有任何疑問或合作提案，歡迎聯繫：
+                        <br>
+                        • 官方網站：<a href="https://ai.meshthings.com/" target="_blank" rel="noopener" style="color: var(--color-primary); text-decoration: none;">外勞芭 AI 招喚工坊</a>
+                        <br>
+                        • GitHub 專案庫與個人檔案：<a href="https://github.com/tokpmpm/" target="_blank" rel="noopener" style="color: var(--color-primary); text-decoration: none;">github.com/tokpmpm/</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer-text">© <span id="footer-year">2026</span> 台灣航空載客率數據分析 by <a href="https://ai.meshthings.com/" target="_blank"
+                    rel="noopener">外勞芭</a> | 數據來源：民航局</p>
+            <p class="footer-subtext">Interactive Dashboard · Built with Chart.js</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

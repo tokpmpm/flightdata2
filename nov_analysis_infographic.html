@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.11 日本航線 | 深度分析結論</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --card-win: rgba(16, 185, 129, 0.1);
+            --card-rise: rgba(59, 130, 246, 0.1);
+            --card-warning: rgba(245, 158, 11, 0.1);
+            --border-win: #10b981;
+            --border-rise: #3b82f6;
+            --border-warning: #f59e0b;
+            --text-main: #f3f4f6;
+            --text-dim: #9ca3af;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #10b981, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .conclusion-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .conclusion-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .conclusion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+
+        .card-win::before {
+            background: var(--border-win);
+        }
+
+        .card-rise::before {
+            background: var(--border-rise);
+        }
+
+        .card-warning::before {
+            background: var(--border-warning);
+        }
+
+        .type-tag {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .tag-win {
+            background: var(--border-win);
+            color: #000;
+        }
+
+        .tag-rise {
+            background: var(--border-rise);
+            color: #fff;
+        }
+
+        .tag-warning {
+            background: var(--border-warning);
+            color: #000;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+        }
+
+        .dest-list {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dest-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 20px;
+            border-radius: 16px;
+        }
+
+        .dest-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .dest-val {
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 60px;
+            color: #4b5563;
+            font-size: 0.8rem;
+        }
+
+        .market-summary {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-radius: 40px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .market-summary h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .summary-flex {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .summary-val {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .summary-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .data-table-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 20px;
+        }
+
+        .data-table-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            color: var(--text-dim);
+            font-weight: 500;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>💡 2025.11 日本航線分析結論</h1>
+            <p>賞楓旺季市場分群與供需洞察</p>
+        </header>
+
+        <section class="market-summary">
+            <h2>📈 市場總體現狀</h2>
+            <div class="summary-flex">
+                <div class="summary-item">
+                    <span class="summary-val">1.44M</span>
+                    <span class="summary-label">總載客人次</span>
+                </div>
+                <div class="summary-item" style="color: #ef4444;">
+                    <span class="summary-val">-1.1%</span>
+                    <span class="summary-label">載客率變動 (YoY)</span>
+                </div>
+                <div class="summary-item" style="color: #10b981;">
+                    <span class="summary-val">+6.1%</span>
+                    <span class="summary-label">人氣成長 (YoY)</span>
+                </div>
+            </div>
+            <p
+                style="margin-top: 30px; color: var(--text-dim); max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                市場呈現「量增效降」趨勢。雖然出國人數持續增長，但航空供給機位數增加速度更快，導致競爭加劇，效率微幅被稀釋。
+            </p>
+        </section>
+
+        <div class="insight-grid">
+            <!-- Efficiency Kings -->
+            <div class="conclusion-card card-win">
+                <span class="type-tag tag-win">High Value</span>
+                <h3 class="card-title">🌟 效率與人氣雙冠王</h3>
+                <p class="card-desc">市場定位極其穩固，無論規模大小，均能維持 90% 以上的極致效率。</p>
+                <div class="dest-list">
+                    <div class="dest-item">
+                        <span class="dest-name">松山-東京羽田</span>
+                        <span class="dest-val">96.6%</span>
+                    </div>
+                    <div class="dest-item">
+                        <span class="dest-name">福岡 (FUK)</span>
+                        <span class="dest-val">94.0%</span>
+                    </div>
+                    <div class="dest-item">
+                        <span class="dest-name">桃園-仙台</span>
+                        <span class="dest-val">92.4%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Risers -->
+            <div class="conclusion-card card-rise">
+                <span class="type-tag tag-rise">Hot Growth</span>
+                <h3 class="card-title">🚀 爆發成長新星</h3>
+                <p class="card-desc">載客率在 11 月出現顯著躍躍升，反映出強勁的季節性需求反彈。</p>
+                <div class="dest-list">
+                    <div class="dest-item">
+                        <span class="dest-name">桃園-高松</span>
+                        <span class="dest-val">+4.1%↑</span>
+                    </div>
+                    <div class="dest-item">
+                        <span class="dest-name">桃園-沖繩</span>
+                        <span class="dest-val">+8.0%↑</span>
+                    </div>
+                    <div class="dest-item">
+                        <span class="dest-name">桃園-熊本</span>
+                        <span class="dest-val">+5.0%↑</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supply Warning -->
+            <div class="conclusion-card card-warning">
+                <span class="type-tag tag-warning">Watchlist</span>
+                <h3 class="card-title">⚠️ 供給陷阱警訊</h3>
+                <p class="card-desc">人次雖有成長，但因供給過度擴張，導致載客效率（空位數）不如預期。</p>
+                <div class="dest-list">
+                    <div class="dest-item">
+                        <span class="dest-name">佐賀 (Saga)</span>
+                        <span class="dest-val">73.7%</span>
+                    </div>
+                    <div class="dest-item" style="opacity: 0.8;">
+                        <span class="dest-name">宮崎 (Miyazaki)</span>
+                        <span class="dest-val">76.1%</span>
+                    </div>
+                    <div class="dest-item" style="opacity: 0.8;">
+                        <span class="dest-name">桃園-札幌</span>
+                        <span class="dest-val">80.0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="data-table-section">
+            <h2>📊 2025年11月 完整數據明細 (出發機場-目的地)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>航線 (出發-到達)</th>
+                            <th>載客率 (2025/11)</th>
+                            <th>載客人次</th>
+                            <th>趨勢 / 註記</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>桃園-東京成田</strong></td>
+                            <td>90.0%</td>
+                            <td>294,103</td>
+                            <td>規模最大 (YoY -1.0%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>桃園-大阪</strong></td>
+                            <td>84.2%</td>
+                            <td>246,843</td>
+                            <td>競爭激烈 (YoY -0.4%)</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: var(--border-win);"><strong>松山-東京羽田</strong></span></td>
+                            <td><span style="color: var(--border-win);"><strong>96.6%</strong></span></td>
+                            <td>128,439</td>
+                            <td><strong>全台效率王</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>桃園-沖繩</strong></td>
+                            <td>86.6%</td>
+                            <td>125,138</td>
+                            <td>人次成長 21.6%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>桃園-福岡</strong></td>
+                            <td>94.0%</td>
+                            <td>107,057</td>
+                            <td>九州賞楓主力</td>
+                        </tr>
+                        <tr>
+                            <td><strong>桃園-札幌</strong></td>
+                            <td>80.0%</td>
+                            <td>93,140</td>
+                            <td>效率下滑 (YoY -5.2%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>桃園-名古屋</strong></td>
+                            <td>86.9%</td>
+                            <td>80,819</td>
+                            <td>穩健成長</td>
+                        </tr>
+                        <tr>
+                            <td><strong>高雄-東京成田</strong></td>
+                            <td>85.9%</td>
+                            <td>53,756</td>
+                            <td>YoY -6.6%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>高雄-大阪</strong></td>
+                            <td>81.3%</td>
+                            <td>48,606</td>
+                            <td>YoY -6.9%</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: var(--border-warning);"><strong>桃園-佐賀</strong></span></td>
+                            <td><span style="color: var(--border-warning);">73.7%</span></td>
+                            <td>3,450</td>
+                            <td><strong>供給陷阱 (YoY -18.6%)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="footer-note">
+            Data Source: 114年11月 民用航空統計資料 | Visual by Antigravity Flight Engine
+        </div>
+    </div>
+
+</body>
+
+</html>

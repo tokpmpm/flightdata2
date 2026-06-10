@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.11 日本航線 | 區域出發大比拼</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card-base: rgba(17, 24, 39, 0.8);
+            --accent-purple: #a855f7;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: radial-gradient(circle at top, #1e1b4b 0%, #0b0f19 100%);
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title-section h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-section p {
+            color: #94a3b8;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-base);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chart-wrap {
+            height: 320px;
+            position: relative;
+        }
+
+        .summary-box {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            margin-bottom: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-val {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-purple);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title-section">
+            <h1>🏘️ 區域出發大比拼：北中南戰力分析</h1>
+            <p>November 2025 Regional Flight Analytics</p>
+        </div>
+
+        <div class="summary-box">
+            <div class="stat-item">
+                <span class="stat-val">1.12 M</span>
+                <span class="stat-label">桃園總人次</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val">96.6%</span>
+                <span class="stat-label">松山載客效率</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val">15.8 萬</span>
+                <span class="stat-label">高雄實力展現</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val">87.9%</span>
+                <span class="stat-label">台中成田效率</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Regional Efficiency Ranking -->
+            <div class="card">
+                <h2>📈 各地平均載客效率 (LF%)</h2>
+                <div class="chart-wrap">
+                    <canvas id="chartLF"></canvas>
+                </div>
+            </div>
+
+            <!-- Volume Donut -->
+            <div class="card">
+                <h2>🍕 市場佔有率 (依出發地)</h2>
+                <div class="chart-wrap">
+                    <canvas id="chartShare"></canvas>
+                </div>
+            </div>
+
+            <!-- Specific Path Comparison -->
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2>⚡ 北高對比：同目的地載客率差異</h2>
+                <div class="chart-wrap" style="height: 350px;">
+                    <canvas id="chartPath"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center; color:#475569; margin-top:50px; font-size:0.75rem;">
+            Source: 2025.11 Civil Aviation Statistics | Design by Antigravity
+        </div>
+    </div>
+
+    <script>
+        Chart.register(ChartDataLabels);
+
+        // Chart 1: Regional LF
+        const ctxLF = document.getElementById('chartLF').getContext('2d');
+        new Chart(ctxLF, {
+            type: 'bar',
+            data: {
+                labels: ['松山 TSA', '台中 RMQ', '桃園 TPE', '高雄 KHH'],
+                datasets: [{
+                    data: [96.6, 86.4, 87.2, 85.3],
+                    backgroundColor: ['#a855f7', '#3b82f6', '#3b82f6', '#3b82f6'],
+                    borderRadius: 12
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: '900', size: 14 },
+                        formatter: (v) => v + '%',
+                        anchor: 'center'
+                    }
+                },
+                scales: {
+                    y: { min: 80, max: 100, display: false },
+                    x: { ticks: { color: '#94a3b8' }, grid: { display: false } }
+                }
+            }
+        });
+
+        // Chart 2: Share Donut
+        const ctxShare = document.getElementById('chartShare').getContext('2d');
+        new Chart(ctxShare, {
+            type: 'doughnut',
+            data: {
+                labels: ['桃園 (TPE)', '松山 (TSA)', '高雄 (KHH)', '台中 (RMQ)'],
+                datasets: [{
+                    data: [1124, 128, 158, 35],
+                    backgroundColor: ['#3b82f6', '#a855f7', '#f97316', '#22c55e'],
+                    borderWidth: 0,
+                    hoverOffset: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 12 } } },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => { sum += data; });
+                            let percentage = (value * 100 / sum).toFixed(1) + "%";
+                            return percentage;
+                        },
+                        color: '#fff',
+                        font: { weight: 'bold' }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Path Comparison
+        const ctxPath = document.getElementById('chartPath').getContext('2d');
+        new Chart(ctxPath, {
+            type: 'bar',
+            data: {
+                labels: ['東京成田', '大阪關西', '福岡', '沖繩'],
+                datasets: [
+                    {
+                        label: '桃園出發 (TPE)',
+                        data: [89.2, 83.3, 93.9, 85.9],
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8
+                    },
+                    {
+                        label: '高雄出發 (KHH)',
+                        data: [91.9, 86.1, 94.7, 86.0],
+                        backgroundColor: '#f97316',
+                        borderRadius: 8
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: '#94a3b8' } },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: '#94a3b8',
+                        font: { size: 10, weight: 'bold' },
+                        formatter: (v) => v + '%'
+                    }
+                },
+                scales: {
+                    y: { min: 70, max: 105, display: false },
+                    x: { ticks: { color: '#94a3b8' } }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

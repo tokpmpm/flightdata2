@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.11 日本航線 | 機場戰力紅黑榜</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --win: #22c55e;
+            --lose: #ef4444;
+            --tpe: #3b82f6;
+            --khh: #f97316;
+            --tsa: #a855f7;
+            --rmq: #10b981;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            font-weight: 900;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .badge-tpe {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--tpe);
+        }
+
+        .badge-khh {
+            background: rgba(249, 115, 22, 0.2);
+            color: var(--khh);
+        }
+
+        .badge-mix {
+            background: rgba(168, 85, 247, 0.2);
+            color: var(--tsa);
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .list-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rank {
+            width: 24px;
+            font-weight: 900;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .dest {
+            flex-grow: 1;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .lf-val {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .lf-val.high {
+            color: var(--win);
+        }
+
+        .lf-val.low {
+            color: var(--lose);
+        }
+
+        .lf-val.mid {
+            color: var(--tpe);
+        }
+
+        .yoy {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .tag-growth {
+            color: var(--win);
+        }
+
+        .tag-drop {
+            color: var(--lose);
+        }
+
+        /* Full Span layout for small grids */
+        .full-span {
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>📊 11月載客效率紅黑榜</h1>
+        <p class="subtitle">各機場出發 • 航線戰力總盤點</p>
+    </div>
+
+    <div class="grid">
+        <!-- TPE TOP 5 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge badge-tpe">TPE 桃園</span>
+                    🏆 效率 Top 5
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-dim);">人氣二線城市領跑</div>
+            </div>
+            <div id="tpe-top-list">
+                <!-- JS injected -->
+            </div>
+        </div>
+
+        <!-- TPE BOTTOM 5 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge badge-tpe">TPE 桃園</span>
+                    ⚠️ 觀察名單 Bottom 5
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-dim);">供給過剩警訊</div>
+            </div>
+            <div id="tpe-bot-list">
+                <!-- JS injected -->
+            </div>
+        </div>
+
+        <!-- KHH Analysis -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge badge-khh">KHH 高雄</span>
+                    🔥 南部戰力榜
+                </div>
+            </div>
+            <div id="khh-list">
+                <!-- JS injected -->
+            </div>
+        </div>
+
+        <!-- TSA & RMQ -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="badge badge-mix">TSA / RMQ</span>
+                    💎 松山 & 台中
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-dim);">特色航點崛起</div>
+            </div>
+            <div id="other-list">
+                <!-- JS injected -->
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; color: var(--text-dim); font-size: 0.9rem;">
+        Data Source: 2025.11 Civil Aviation Statistics | YoY 比較基準：2024.11
+    </div>
+
+    <script>
+        const renderItem = (rank, dest, lf, lfDiff, paxYoY, isBottom = false) => {
+            const lfClass = parseFloat(lf) >= 90 ? 'high' : (isBottom ? 'low' : 'mid');
+            const lfSign = parseFloat(lfDiff) >= 0 ? '+' : '';
+            const paxSign = parseFloat(paxYoY) >= 0 ? '+' : '';
+            const lfColor = parseFloat(lfDiff) >= 0 ? 'var(--win)' : 'var(--lose)';
+
+            // Format YoY text
+            let yoyText = `Efficiency ${lfSign}${lfDiff}`;
+            if (paxYoY === 'New') yoyText += ` • Vol New`;
+            else yoyText += ` • Vol ${paxSign}${paxYoY}`;
+
+            return `
+                <div class="list-item">
+                    <div class="rank">#${rank}</div>
+                    <div class="dest">${dest}</div>
+                    <div class="stats">
+                        <div class="lf-val ${lfClass}">${lf}</div>
+                        <div class="yoy" style="color: ${lfColor}">${yoyText}</div>
+                    </div>
+                </div>
+            `;
+        };
+
+        // TPE TOP 5 Data
+        const tpeTop = [
+            { d: '福岡', v: '94.0%', diff: '+4.0%', vol: '+16.4%' },
+            { d: '高知', v: '93.3%', diff: '-1.1%', vol: '-1.2%' },
+            { d: '仙台', v: '92.4%', diff: '-1.6%', vol: '-0.3%' },
+            { d: '高松', v: '92.3%', diff: '+4.1%', vol: '+45.5%' },
+            { d: '函館', v: '92.1%', diff: '+2.1%', vol: '+8.3%' }
+        ];
+        document.getElementById('tpe-top-list').innerHTML = tpeTop.map((x, i) => renderItem(i + 1, x.d, x.v, x.diff, x.vol)).join('');
+
+        // TPE BOT 5 Data
+        const tpeBot = [
+            { d: '佐賀', v: '73.7%', diff: '-18.6%', vol: '+22.2%' },
+            { d: '宮崎', v: '76.1%', diff: '+16.9%', vol: '+928.6%' },
+            { d: '神戶', v: '76.9%', diff: '+76.9%', vol: 'New' },
+            { d: '札幌', v: '80.0%', diff: '-5.2%', vol: '+24.8%' },
+            { d: '米子', v: '80.5%', diff: '+80.5%', vol: 'New' }
+        ];
+        document.getElementById('tpe-bot-list').innerHTML = tpeBot.map((x, i) => renderItem(5 - i, x.d, x.v, x.diff, x.vol, true)).join('');
+
+        // KHH Data (Top 3 + Bot 2 for balance)
+        const khhData = [
+            { d: '福岡 (Top1)', v: '94.4%', diff: '-2.3%', vol: '+28.1%' },
+            { d: '名古屋 (Top2)', v: '92.6%', diff: '+12.0%', vol: '-50.3%' },
+            { d: '岡山 (Top3)', v: '90.1%', diff: '-3.5%', vol: '-15.3%' },
+            { d: '大阪 (Bot1)', v: '81.3%', diff: '-6.9%', vol: '+26.7%' },
+            { d: '沖繩 (Bot2)', v: '85.2%', diff: '-4.1%', vol: '+62.5%' }
+        ];
+        document.getElementById('khh-list').innerHTML = khhData.map((x, i) => renderItem(i + 1, x.d, x.v, x.diff, x.vol, i >= 3)).join('');
+
+        // TSA & RMQ
+        const otherData = [
+            { d: '松山 - 羽田', v: '96.6%', diff: '+0.6%', vol: '+0.2%' },
+            { d: '台中 - 神戶', v: '93.2%', diff: '+93.2%', vol: 'New' },
+            { d: '台中 - 高松', v: '89.2%', diff: '-5.6%', vol: '+52.0%' },
+            { d: '台中 - 名古屋', v: '86.1%', diff: '+86.1%', vol: 'New' },
+            { d: '台中 - 沖繩', v: '80.8%', diff: '+80.8%', vol: 'New' }
+        ];
+        document.getElementById('other-list').innerHTML = otherData.map((x, i) => renderItem(i + 1, x.d, x.v, x.diff, x.vol, false)).join('');
+
+    </script>
+</body>
+
+</html>

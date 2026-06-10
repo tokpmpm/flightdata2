@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>桃園國際機場(TPE)航空載客率數據分析儀表板</title>
-    <meta name="description" content="桃園國際機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 110,275,911 人。">
+    <meta name="description" content="桃園國際機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 110,275,911 人，平均載客率 80.7%。">
 
     <!-- Favicon -->
     <link rel="icon"
@@ -35,11 +35,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css?v=20260610-v2">
 
     <link rel="canonical" href="https://flightdata2.meshthings.com/airport/tpe/">
     <meta property="og:title" content="桃園國際機場(TPE)航空載客率數據分析儀表板">
-    <meta property="og:description" content="桃園國際機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 110,275,911 人。">
+    <meta property="og:description" content="桃園國際機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 110,275,911 人，平均載客率 80.7%。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://flightdata2.meshthings.com/airport/tpe/">
     <meta property="og:image" content="https://flightdata2.meshthings.com/og-card.png">
@@ -48,12 +48,13 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "桃園國際機場(TPE)航空載客率數據分析儀表板",
-  "description": "桃園國際機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 110,275,911 人。",
+  "description": "桃園國際機場載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 110,275,911 人，平均載客率 80.7%。",
   "url": "https://flightdata2.meshthings.com/airport/tpe/",
   "about": {
+    "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "桃園國際機場航空載客率數據庫",
-    "description": "包含 桃園國際機場 起降班次、座位數及載客人數的月度統計數據",
+    "description": "包含桃園國際機場起降班次、座位數及載客人數的月度統計數據。",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "temporalCoverage": "2024-01-01/2026-04-01",
     "spatialCoverage": {
@@ -63,8 +64,81 @@
     "publisher": {
       "@type": "Organization",
       "name": "民航局"
+    },
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "https://flightdata2.meshthings.com/data/flight_data_airport-tpe.csv"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://flightdata2.meshthings.com/data/flight_data_airport-tpe.json"
+      }
+    ],
+    "potentialAction": {
+      "@type": "DownloadAction",
+      "name": "下載桃園國際機場航空載客率數據庫 CSV",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://flightdata2.meshthings.com/data/flight_data_airport-tpe.csv",
+        "encodingType": "text/csv",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      }
     }
   }
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "桃園國際機場的平均載客率（座位利用率）是多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "根據統計期間（2024年1月至2026年4月）的真實數據，桃園國際機場累計起降班次達 532,837 班，總載客人數達 110,275,911 人次，平均座位載客率為 80.7%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "桃園國際機場在統計期間載客率最高的是哪一個月？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "桃園國際機場的最旺月份落於 2026年3月，該月全體航空公司平均座位利用率高達 88.1%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "桃園國際機場主要的熱門目的地是哪裡？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "統計期間最熱門的目的地為 香港，佔該統計總運量的 10.0%，累計旅客人次達 10,975,834 人，該目的地平均載客率為 69.9%。"
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://flightdata2.meshthings.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "桃園國際機場",
+      "item": "https://flightdata2.meshthings.com/airport/tpe/"
+    }
+  ]
 }</script>
 </head>
 
@@ -76,8 +150,33 @@
                 <div class="logo">
                     <span class="logo-icon" aria-hidden="true">✈️</span>
                     <h1 class="logo-text">台灣航空載客率數據分析</h1>
+                    <p class="subtitle">Interactive Passenger Load Factor Dashboard</p>
                 </div>
-                <p class="subtitle">Interactive Passenger Load Factor Dashboard</p>
+                
+                <nav class="header-nav" aria-label="主要導航">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">🏠 首頁</a></li>
+                        <li><a href="/about/" class="nav-link">📖 關於本站</a></li>
+                        <li class="nav-dropdown">
+                            <button class="nav-dropbtn">🛫 主要機場 ▾</button>
+                            <div class="dropdown-content">
+                                <a href="/airport/tpe/">桃園國際機場 (TPE)</a>
+                                <a href="/airport/khh/">高雄國際機場 (KHH)</a>
+                                <a href="/airport/tsa/">台北松山機場 (TSA)</a>
+                                <a href="/airport/rmq/">台中清泉崗機場 (RMQ)</a>
+                            </div>
+                        </li>
+                        <li class="nav-dropdown">
+                            <button class="nav-dropbtn">✈️ 主要航空 ▾</button>
+                            <div class="dropdown-content">
+                                <a href="/airline/cal/">中華航空 (CAL)</a>
+                                <a href="/airline/eva/">長榮航空 (EVA)</a>
+                                <a href="/airline/starlux/">星宇航空 (STARLUX)</a>
+                                <a href="/airline/tiger/">台灣虎航 (TIGER)</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <!-- KPI Summary Cards -->
@@ -197,11 +296,42 @@
                             數據智慧洞察與分析
                         </h2>
                         <div class="insights-content">
-                            <div class="insights-text-panel">
+                            <!-- key-findings for SEO & AIEO -->
+                            <section class="insights-text-panel" id="key-findings" aria-labelledby="kf-title">
+                                <h3 class="sr-only" id="kf-title">關鍵發現與智慧洞察</h3>
                                 <ul class="insights-list" id="insights-list">
-<li><span class="insight-icon">🛫</span> <span class="insight-text">在選定統計期間內，<strong>桃園國際機場</strong> 的出入境旅客人次達 110,275,911 人，佔全台總運量的 <strong>82.7%</strong>。</span></li><li><span class="insight-icon">🏆</span> <span class="insight-text">表現最佳的航空公司為 <strong>星悅</strong>，在執飛 42 班次中平均載客率高達 <strong>97.3%</strong>。</span></li><li><span class="insight-icon">🔥</span> <span class="insight-text">統計期間內的載客率巔峰期落於 <strong>2026年3月</strong>，全體平均座位利用率衝上 <strong>88.1%</strong>（暑假或年節效應）。</span></li><li><span class="insight-icon">📍</span> <span class="insight-text">首要航點為 <strong>香港</strong>，單一航點即佔去該篩選總運量的 <strong>10.0%</strong>，平均載客率達 69.9%。</span></li><li><span class="insight-icon">📊</span> <span class="insight-text"><strong>同期對比 (YoY)</strong>：2026 年 1至4 月 載客量相比 2025 年同期呈現 <strong>+11.5%</strong> 的增減變化。</span></li>
+
+                                    <li id="insight-item-0" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">🛫</span> 
+                                        <span itemprop="name" style="display:none;">主要起降與運量佔比</span>
+                                        <span class="insight-text" itemprop="text">在選定統計期間內，<strong>桃園國際機場</strong> 的出入境旅客人次達 110,275,911 人，佔全台總運量的 <strong>82.7%</strong>。</span>
+                                    </li>
+
+                                    <li id="insight-item-1" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">🏆</span> 
+                                        <span itemprop="name" style="display:none;">表現最佳航空公司</span>
+                                        <span class="insight-text" itemprop="text">表現最佳的航空公司為 <strong>星悅</strong>，在執飛 42 班次中平均載客率高達 <strong>97.3%</strong>。</span>
+                                    </li>
+
+                                    <li id="insight-item-2" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">🔥</span> 
+                                        <span itemprop="name" style="display:none;">載客率巔峰期</span>
+                                        <span class="insight-text" itemprop="text">統計期間內的載客率巔峰期落於 <strong>2026年3月</strong>，全體平均座位利用率衝上 <strong>88.1%</strong>（暑假或年節效應）。</span>
+                                    </li>
+
+                                    <li id="insight-item-3" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">📍</span> 
+                                        <span itemprop="name" style="display:none;">首要航點統計</span>
+                                        <span class="insight-text" itemprop="text">首要航點為 <strong>香港</strong>，單一航點即佔去該篩選總運量的 <strong>10.0%</strong>，平均載客率達 69.9%。</span>
+                                    </li>
+
+                                    <li id="insight-item-4" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
+                                        <span class="insight-icon">📊</span> 
+                                        <span itemprop="name" style="display:none;">同期對比 (YoY) 成長率</span>
+                                        <span class="insight-text" itemprop="text"><strong>同期對比 (YoY)</strong>：2026 年 1至4 月 載客量相比 2025 年同期呈現 <strong>+11.5%</strong> 的增減變化。</span>
+                                    </li>
 </ul>
-                            </div>
+                            </section>
                             <hr class="insights-divider">
                             <div class="top-routes-panel">
                                 <h3 class="panel-subtitle">🛫 前 10 大熱門航點排行榜 (佔載客量)</h3>
@@ -353,7 +483,7 @@
                         </div>
                     </div>
                     
-                    <!-- Load Factor Heatmap -->
+                    <!-- Load Factor Heatmap & Data Quality Indicator -->
                     <div class="insights-side-card">
                         <h2 class="section-title">
                             <span class="icon">📅</span>
@@ -390,9 +520,11 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
+
 
             <!-- Charts Section -->
             <section class="charts-section">
@@ -22235,8 +22367,75 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Download Section for Datasets (AIEO & E-E-A-T) -->
+            <section class="download-section" id="download-section" style="margin-top: var(--space-6);">
+                <div class="download-card">
+                    <h2 class="section-title" style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+                        <span class="icon">📥</span>開放航空載客率數據集下載
+                    </h2>
+                    <p class="download-desc" style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+                        本站提供機器可讀格式之數據集（民航局 2024 年至今之月度統計），歡迎下載、進行二次學術研究或 AI 分析引用。
+                    </p>
+                    <div class="download-buttons" id="download-links" style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+                        <a href="/data/flight_data_airport-tpe.csv" download class="btn btn-secondary download-btn" id="download-csv-link">
+                            <span class="btn-icon">📊</span>下載 CSV 數據集
+                        </a>
+                        <a href="/data/flight_data_airport-tpe.json" download class="btn btn-secondary download-btn" id="download-json-link">
+                            <span class="btn-icon">{ }</span>下載 JSON 數據集
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Quality Indicator for E-E-A-T & AEO -->
+            <aside class="data-quality-card" aria-labelledby="dq-title">
+                <h3 class="panel-subtitle" id="dq-title" style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+                    <span>📊</span>資料品質與更新指標
+                </h3>
+                <div class="data-quality-content" id="data-quality-info">
+                    <dl class="dq-list">
+                        <div class="dq-item">
+                            <dt>資料完整度</dt>
+                            <dd id="dq-completeness">100% (2024-01 至最新)</dd>
+                        </div>
+                        <div class="dq-item">
+                            <dt>數據更新時間</dt>
+                            <dd id="dq-update-time"><time datetime="2026-04-01">2026年4月</time></dd>
+                        </div>
+                        <div class="dq-item">
+                            <dt>資料來源與公式</dt>
+                            <dd>民航局開放資料 / 實際旅客數 ÷ 供給座位數</dd>
+                        </div>
+                    </dl>
+                    <div class="dq-footer">
+                        <a href="/about/" class="dq-link">查看方法論與驗證流程 →</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Developer Info Card for E-E-A-T & AIEO -->
+            <aside class="developer-info-card" aria-labelledby="dev-title">
+                <h3 class="panel-subtitle" id="dev-title" style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+                    <span>👨‍💻</span>關於開發者 (About Developer)
+                </h3>
+                <div class="developer-info-content">
+                    <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-3); text-align: justify;">
+                        本網站由獨立軟體工程師與資料分析師 <strong>外勞芭</strong> 獨立開發與維護。本站之設立旨在利用現代化網頁視覺化技術（如 Chart.js 與預渲染技術），將生硬的民航局開放資料轉化為直觀的互動式圖表，幫助大眾、學術研究者及航空愛好者更輕鬆地解讀台灣航空市場的復甦與變化。
+                    </p>
+                    <div class="dev-links">
+                        <a href="https://ai.meshthings.com/" target="_blank" rel="noopener" class="dev-link">
+                            <span>🔗</span> 官方網站：外勞芭 AI 招喚工坊
+                        </a>
+                        <a href="https://github.com/tokpmpm/" target="_blank" rel="noopener" class="dev-link">
+                            <span>🐙</span> GitHub 專案庫與個人檔案：tokpmpm
+                        </a>
+                    </div>
+                </div>
+            </aside>
         </div>
     </main>
+
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
@@ -22249,11 +22448,11 @@
     </footer>
 
     <!-- Custom Scripts -->
-    <script src="data/flight_data_new.js?v=202604"></script>
-    <script src="js/insights.js?v=8"></script>
-    <script src="js/app.js?v=8"></script>
-    <script src="js/charts.js?v=8"></script>
-    <script src="js/table.js?v=8"></script>
+    <script src="/data/flight_data_new.js?v=20260610-v2"></script>
+    <script src="/js/insights.js?v=20260610-v2"></script>
+    <script src="/js/app.js?v=20260610-v2"></script>
+    <script src="/js/charts.js?v=20260610-v2"></script>
+    <script src="/js/table.js?v=20260610-v2"></script>
     
     <button id="share-filters" class="btn-float-share" title="分享數據與洞察">
         <span class="btn-icon">🔗</span>

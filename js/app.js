@@ -19,7 +19,15 @@ const AppState = {
     },
     selectedAirport: '',
     selectedDestination: '',
+    selectedAirline: '',
     charts: {}
+};
+
+const airlineFullNames = {
+    '中華': '中華航空',
+    '長榮': '長榮航空',
+    '星宇': '星宇航空',
+    '台灣虎航': '台灣虎航'
 };
 
 /**
@@ -388,6 +396,11 @@ function applyFilters() {
             return false;
         }
 
+        // Airline filter
+        if (AppState.selectedAirline && record.airline !== AppState.selectedAirline) {
+            return false;
+        }
+
         // Date range filter
         const current = record.year * 100 + record.month;
         if (current < start || current > end) {
@@ -405,6 +418,19 @@ function applyFilters() {
  */
 function updateDashboard(skipTable = false, showAnimation = false) {
     applyFilters();
+
+    // Update logo text dynamically if on subpages
+    const logoText = document.querySelector('.logo-text');
+    if (logoText) {
+        if (AppState.selectedAirline) {
+            const fullName = airlineFullNames[AppState.selectedAirline] || AppState.selectedAirline;
+            logoText.textContent = `${fullName}載客率與航班數據分析`;
+        } else if (AppState.selectedAirport) {
+            logoText.textContent = `${AppState.selectedAirport}載客率與航班數據分析`;
+        } else {
+            logoText.textContent = '台灣航空載客率數據分析';
+        }
+    }
 
     // Update insights
     if (window.calculateInsightsData) {
@@ -889,8 +915,9 @@ function syncStateToURL() {
     // Only set airport if on index.html (not airport subpages)
     const path = window.location.pathname.toLowerCase();
     const isAirportSubpage = path.includes('/airport/');
+    const isAirlineSubpage = path.includes('/airline/');
     
-    if (!isAirportSubpage && AppState.selectedAirport) {
+    if (!isAirportSubpage && !isAirlineSubpage && AppState.selectedAirport) {
         const code = AIRPORT_CODES[AppState.selectedAirport];
         urlParams.set('airport', code || AppState.selectedAirport);
     }
@@ -928,10 +955,29 @@ function applyStateFromURL() {
         'hun': '花蓮機場'
     };
     for (const code in airportCodes) {
-        if (path.includes('/airport/' + code + '/')) {
+        if (path.includes('/airport/' + code + '/') || path.endsWith('/airport/' + code) || path.includes('/airport/' + code + '?')) {
             airportFromPath = airportCodes[code];
             break;
         }
+    }
+    
+    // 1b. Resolve airline from pathname (prerender pages like /airline/cal/)
+    let airlineFromPath = '';
+    const airlineSlugCodes = {
+        'cal': '中華',
+        'eva': '長榮',
+        'starlux': '星宇',
+        'tiger': '台灣虎航'
+    };
+    for (const code in airlineSlugCodes) {
+        if (path.includes('/airline/' + code + '/') || path.endsWith('/airline/' + code) || path.includes('/airline/' + code + '?')) {
+            airlineFromPath = airlineSlugCodes[code];
+            break;
+        }
+    }
+    
+    if (airlineFromPath) {
+        AppState.selectedAirline = airlineFromPath;
     }
     
     const urlParams = new URLSearchParams(window.location.search);
