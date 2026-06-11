@@ -14,5 +14,8 @@
   "type": "commonjs",
   "dependencies": {
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^22.0.0"
   }
 }

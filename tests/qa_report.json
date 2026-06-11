@@ -1,0 +1,122 @@
+{
+  "timestamp": "2026-06-11T01:40:34.673Z",
+  "results": [
+    {
+      "id": 1,
+      "name": "viewport_overflow_desktop",
+      "status": "PASS",
+      "details": "scrollWidth: 1280, clientWidth: 1280, overflow: 0px (tolerance: 1px)"
+    },
+    {
+      "id": 6,
+      "name": "toc_anchor_scroll_desktop",
+      "status": "PASS",
+      "details": "Q5 element top coordinate: 88.390625px, Header height: 79.0625px (expected: 74.0625 ~ 164.0625px)"
+    },
+    {
+      "id": 2,
+      "name": "h1_uniqueness_and_hierarchy",
+      "status": "PASS",
+      "details": "H1 Count: 1, First Heading Tag: H1, Logo Tag: DIV"
+    },
+    {
+      "id": 3,
+      "name": "toc_typo_check",
+      "status": "PASS",
+      "details": "No \"is哪\" typos found in page text."
+    },
+    {
+      "id": 8,
+      "name": "json_ld_article_headline",
+      "status": "PASS",
+      "details": "Headline in JSON-LD Article: \"台灣航空市場累計統計與載客率分析\""
+    },
+    {
+      "id": 9,
+      "name": "json_ld_dataset_temporal_coverage",
+      "status": "PASS",
+      "details": "temporalCoverage in JSON-LD Dataset: \"2024-01/2026-04\""
+    },
+    {
+      "id": 10,
+      "name": "json_ld_faq_periods",
+      "status": "PASS",
+      "details": "JSON-LD FAQ items correctly include expected period statements."
+    },
+    {
+      "id": 11,
+      "name": "json_ld_forbidden_strings",
+      "status": "PASS",
+      "details": "No forbidden strings (\"出境最熱門\" / \"is哪\") found in JSON-LD FAQ."
+    },
+    {
+      "id": 12,
+      "name": "source_date_check",
+      "status": "PASS",
+      "details": "Page body contains \"115年4月\"."
+    },
+    {
+      "id": 1,
+      "name": "viewport_overflow_mobile",
+      "status": "PASS",
+      "details": "scrollWidth: 390, clientWidth: 390, overflow: 0px (tolerance: 1px)"
+    },
+    {
+      "id": 4,
+      "name": "tap_target_sizes_mobile",
+      "status": "PASS",
+      "details": "All 12 targets verified >= 44px."
+    },
+    {
+      "id": 5,
+      "name": "toc_anchor_scroll_mobile",
+      "status": "PASS",
+      "details": "Q5 element top coordinate after clicking anchor: 13.8125px (expected: 0 ~ 100px)"
+    },
+    {
+      "id": 7,
+      "name": "console_health",
+      "status": "PASS",
+      "details": "Errors: 0 ([]), Warnings: 0 ([])"
+    },
+    {
+      "id": 13,
+      "name": "raw_data_file_exists",
+      "status": "PASS",
+      "details": "File 'extracted/115年4月.xls' size: 521728 bytes"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "desktop_above_the_fold",
+      "path": "/Users/pmpmpm/Antigravity/passenger_capacity/tests/screenshots/desktop_above_the_fold.png",
+      "viewport": "1280x720"
+    },
+    {
+      "name": "desktop_q5_q10",
+      "path": "/Users/pmpmpm/Antigravity/passenger_capacity/tests/screenshots/desktop_q5_q10.png",
+      "viewport": "1280x720"
+    },
+    {
+      "name": "mobile_above_the_fold",
+      "path": "/Users/pmpmpm/Antigravity/passenger_capacity/tests/screenshots/mobile_above_the_fold.png",
+      "overflowPx": 0,
+      "viewport": "390x844"
+    },
+    {
+      "name": "mobile_toc_area",
+      "path": "/Users/pmpmpm/Antigravity/passenger_capacity/tests/screenshots/mobile_toc_area.png",
+      "viewport": "390x844"
+    },
+    {
+      "name": "mobile_charts_tables",
+      "path": "/Users/pmpmpm/Antigravity/passenger_capacity/tests/screenshots/mobile_charts_tables.png",
+      "viewport": "390x844"
+    }
+  ],
+  "summary": {
+    "total": 14,
+    "pass": 14,
+    "fail": 0
+  }
+}

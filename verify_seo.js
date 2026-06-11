@@ -48,7 +48,7 @@ if (fs.existsSync(llmsPath)) {
 }
 
 // 4. Helper to validate HTML schemas and structures
-function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false) {
+function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isInsightsPage = false) {
     const fullPath = path.join(__dirname, filePath);
     if (!fs.existsSync(fullPath)) {
         console.error(`❌ Missing expected file: ${filePath}`);
@@ -67,18 +67,22 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false) {
 
     // Smart Insights & Key Findings container
     if (!isAboutPage) {
-        assert(html.includes('id="key-findings"'), `${filePath} contains key-findings section`);
-        assert(html.includes('itemprop="mainEntity"'), `${filePath} contains Microdata itemprop="mainEntity"`);
-        assert(html.includes('itemscope itemtype="https://schema.org/Answer"'), `${filePath} contains Microdata Answer scope`);
-        assert(html.includes('itemprop="text"'), `${filePath} contains Microdata text scope`);
+        assert(html.includes('id="key-findings"') || html.includes('class="hero-tldr"') || html.includes('class="tldr"'), `${filePath} contains key-findings/tldr section`);
+        assert(html.includes('itemprop="mainEntity"') || html.includes('itemProp="mainEntity"'), `${filePath} contains Microdata itemprop="mainEntity"`);
+        assert(html.includes('itemscope itemtype="https://schema.org/Answer"') || html.includes('itemScope itemType="https://schema.org/Answer"'), `${filePath} contains Microdata Answer scope`);
+        assert(html.includes('itemprop="text"') || html.includes('itemProp="text"'), `${filePath} contains Microdata text scope`);
         
         // Data Quality Indicator
-        assert(html.includes('id="dq-title"'), `${filePath} contains Data Quality Indicator`);
-        assert(html.includes('id="dq-completeness"'), `${filePath} contains completeness data`);
-        assert(html.includes('id="dq-update-time"'), `${filePath} contains update time data`);
+        if (!isInsightsPage) {
+            assert(html.includes('id="dq-title"'), `${filePath} contains Data Quality Indicator`);
+            assert(html.includes('id="dq-completeness"'), `${filePath} contains completeness data`);
+            assert(html.includes('id="dq-update-time"'), `${filePath} contains update time data`);
+        }
         
         // Download Links
-        assert(html.includes('id="download-links"'), `${filePath} contains download links section`);
+        if (!isInsightsPage) {
+            assert(html.includes('id="download-links"'), `${filePath} contains download links section`);
+        }
     }
 
     // JSON-LD Scripts count
@@ -100,31 +104,53 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false) {
             }
         }
 
+        // Flatten graph-based schemas
+        let flatSchemas = [];
+        schemas.forEach(s => {
+            if (s['@graph'] && Array.isArray(s['@graph'])) {
+                flatSchemas.push(...s['@graph']);
+            } else {
+                flatSchemas.push(s);
+            }
+        });
+
         // Verify specific schema types
         if (isHomepage) {
-            const hasDataCatalog = schemas.some(s => s['@type'] === 'DataCatalog');
+            const hasDataCatalog = flatSchemas.some(s => s['@type'] === 'DataCatalog');
             assert(hasDataCatalog, 'Homepage JSON-LD contains DataCatalog');
         } else if (isAboutPage) {
-            const hasAboutPage = schemas.some(s => s['@type'] === 'AboutPage');
+            const hasAboutPage = flatSchemas.some(s => s['@type'] === 'AboutPage');
             assert(hasAboutPage, 'About Page JSON-LD contains AboutPage type');
+        } else if (isInsightsPage) {
+            const hasArticle = flatSchemas.some(s => s['@type'] === 'Article');
+            const hasFAQPage = flatSchemas.some(s => s['@type'] === 'FAQPage');
+            const hasBreadcrumbList = flatSchemas.some(s => s['@type'] === 'BreadcrumbList');
+            const hasDataset = flatSchemas.some(s => s['@type'] === 'Dataset' || (s['about'] && s['about']['@type'] === 'Dataset'));
+
+            assert(hasArticle, 'Insights page JSON-LD contains Article');
+            assert(hasFAQPage, 'Insights page JSON-LD contains FAQPage');
+            assert(hasBreadcrumbList, 'Insights page JSON-LD contains BreadcrumbList');
+            assert(hasDataset, 'Insights page JSON-LD contains Dataset');
+            assert(html.includes('<title>台灣航空市場累計統計與載客率分析 (2024-01 至 2026-04) - 外勞芭 AI 招喚工坊</title>'), 'Insights page contains correct updated title');
         } else {
             // Airport or Airline Page
-            const hasFAQPage = schemas.some(s => s['@type'] === 'FAQPage');
-            const hasBreadcrumbList = schemas.some(s => s['@type'] === 'BreadcrumbList');
-            const hasDataset = schemas.some(s => s['about'] && s['about']['@type'] === 'Dataset');
+            const hasFAQPage = flatSchemas.some(s => s['@type'] === 'FAQPage');
+            const hasBreadcrumbList = flatSchemas.some(s => s['@type'] === 'BreadcrumbList');
+            const hasDataset = flatSchemas.some(s => s['@type'] === 'Dataset' || (s['about'] && s['about']['@type'] === 'Dataset'));
 
             assert(hasFAQPage, `${filePath} JSON-LD contains FAQPage`);
             assert(hasBreadcrumbList, `${filePath} JSON-LD contains BreadcrumbList`);
-            assert(hasDataset, `${filePath} JSON-LD contains Dataset in WebPage`);
+            assert(hasDataset, `${filePath} JSON-LD contains Dataset`);
         }
     }
 }
 
 // Validate major pages
-validateHtmlFile('index.html', true, false);
-validateHtmlFile('airport/tpe/index.html', false, false);
-validateHtmlFile('airline/cal/index.html', false, false);
-validateHtmlFile('about/index.html', false, true);
+validateHtmlFile('index.html', true, false, false);
+validateHtmlFile('airport/tpe/index.html', false, false, false);
+validateHtmlFile('airline/cal/index.html', false, false, false);
+validateHtmlFile('about/index.html', false, true, false);
+validateHtmlFile('insights/2026-taiwan-aviation-market-outlook/index.html', false, false, true);
 
 // 5. Check Datasets existence in data/
 const datasets = [

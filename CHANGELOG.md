@@ -1,5 +1,78 @@
 # CHANGELOG
 
+## [2026-06-11] 體驗與效能優化：修正台灣航空市場洞察頁面之 Mobile 破版、首屏體感、標題與術語精準度等 8 大 Findings，並建立 Browser QA 自動化測試
+
+### 問題現狀
+本站之 insights 報告頁面（台灣航空市場洞察）在代碼審查與網頁驗證中被發現 8 項重要缺陷：
+1. **Mobile 破版與水平捲動**：390px 寬度的手機視角下會產生寬度 420px 的水平捲動，主因為目錄項文字過長且禁止折行。
+2. **Mobile 首屏體感欠佳**：手機版頂部導航欄（Header）被強制貼頂（sticky），重複佔高且首屏過大，影響行動端閱讀節奏。
+3. **觸控目標偏小**：行動版頂部 nav 與目錄連結高度僅約 34px，低於無障礙設計規範之 44px 觸控大小要求。
+4. **TOC typo**：目錄中殘留 `is哪一座` 與 `is哪一個` 錯字。
+5. **統計期間標題與數據不一致**：原 H1 標題及 JSON-LD 等標示「2026 台灣航空市場」，與實際累計至 2026-04 數據產生誤導，且各區段 Q&A 未能區分累計與趨勢期間。
+6. **術語「出境」與實際雙向運量不符**：熱門航點數據事實上為出入境雙向旅客量，但多處誤植為「出境最熱門航點」。
+7. **更新日期不夠明確**：頁面更新標示「更新：2026-06-10」未指明民航局原始檔案來源版本。
+8. **Heading 結構混亂**：logo 錯誤使用了 `<h2>` 代替一般的語意區塊，且排在真正的 `h1` 前，破壞 SEO 結構。
+
+### 根本原因 (Root Cause)
+1. `.toc-item a` 原本使用 `white-space: nowrap` 及 `text-overflow: ellipsis`，且未對目錄容器限制 `max-width: 100%`。
+2. CSS 樣式中對 `.header` 宣告了全域 `position: sticky !important`，未在行動版 media query 中做 static 覆蓋。
+3. 導覽列與目錄連結未定義 `min-height: 44px` 與 `display: flex; align-items: center;`。
+4. 目錄編寫過程中的手動拼寫錯誤。
+5. 原標題與期間資訊未拆分累計期間（Q3/Q4/Q5/Q8）、年度數據（Q2）、趨勢期間（Q1/Q6/Q7/Q9）的規則。
+6. 沿用單向出境概念，未將「雙向旅客量」之統計特徵對齊。
+7. 未能將頁面更新日期與站內實體資料集 `extracted/115年4月.xls` 建立 provenance 追溯。
+8. Logo 外層使用了標題標籤 `<h2>`。
+
+### 修正方案
+1. **TOC 樣式優化**：為 `.toc-box`、`.toc-item` 增加 `max-width: 100%; box-sizing: border-box;`。TOC 連結改為 `white-space: normal; overflow-wrap: anywhere; word-break: break-word; line-height: 1.4;`。
+2. **行動版 Header & Hero 樣式修正**：在 `@media (max-width: 768px)` 中覆蓋 `.header` 為 `position: static !important`；縮小行動版 `.header` 與 `.hero` 的 padding，以及將 `h1` 改為 `1.5rem`。
+3. **增加觸控尺寸**：行動版 media query 中為 `.nav-link` 與 `.toc-item a` 設定 `min-height: 44px; display: flex; align-items: center;`。
+4. **修正錯字**：清除 TOC 與 HTML 各處殘留的 `is哪` 錯字。
+5. **期間標題與數據精準對齊**：
+   - 變更 H1 為 `台灣航空市場累計統計與載客率分析`。
+   - 新增 `period-badge` 標示 `統計期間：2024-01 至 2026-04；2026 年資料截至 4 月`。
+   - 更新 Title 為 `台灣航空市場累計統計與載客率分析 (2024-01 至 2026-04) - 外勞芭 AI 招喚工坊`。
+   - 逐一校對 Q1 至 Q10 段落與 JSON-LD FAQ，按照期間拆分規則標記。
+6. **對齊「雙向旅客量」術語**：把「出境最熱門航點」替換為「國際及兩岸航線熱門航點（雙向旅客量）」，並修改圖表 Y 軸標題。
+7. **落實數據追溯**：頁面 meta、footer 均標記「最新數據：民航局115年4月」。
+8. **調整 Logo 標籤**：logo `<h2>` 改為 `<div>`，並維持 premium 視覺質感。
+9. **自動化驗證機制**：
+   - 建立 `/tests/verify_browser_qa.js` 自動化 headless 測試腳本，涵蓋 13 項斷言（水平溢出、H1 唯一性、TOC typo、44px 觸控面積、桌面與行動版錨點滾動對齊、console 乾淨度、JSON-LD 數據及 forbidden strings、來源數據追溯、xls 實體檔案）。
+   - 調整 `verify_seo.js`，加入新版 Title 預期斷言。
+
+### 驗證結果
+- ✅ **靜態預渲染 & SEO 驗證**：`npm run build` (prerender.js + verify_seo.js) 綠燈通過，60+ 項 SEO 與 JSON-LD Article/FAQPage 語意結構全數無誤（✅ ALL PASS）。
+- ✅ **Headless Browser 14 項斷言全數 PASS** (測試報告輸出於 `/tests/qa_report.json`)：
+  - **水平溢出**：桌面與行動版溢出均為 `0px`（✅ PASS）。
+  - **H1 唯一性**：H1 Count 為 1，首個標題為 H1，Logo 變更為 DIV（✅ PASS）。
+  - **錯字檢測**：頁面文字與 JSON-LD graph 均無 "is哪" 殘留（✅ PASS）。
+  - **觸控目標大小**：12 個行動版連結高度全數 `>= 44px`（✅ PASS）。
+  - **行動版錨點滾動**：點擊目錄 `#q5` 後，元素 top 為 `13.81px` (在 0 ~ 100px 之間，無 header 遮蔽)（✅ PASS）。
+  - **桌面版錨點滾動**：點擊目錄 `#q5` 後，元素 top 為 `88.39px` (落在 sticky header 底部，在 74.06 ~ 164.06px 之間，無遮蔽)（✅ PASS）。
+  - **Console 健康度**：0 Errors, 0 Warnings（✅ PASS）。
+  - **JSON-LD 欄位及期間規則**：Article headline 與 temporalCoverage 一致，FAQ 問答完全對齊期間，且無 forbidden strings (如出境最熱門)（✅ PASS）。
+  - **實體原始檔**：`extracted/115年4月.xls` 存在且大小為 `521,728 bytes`（✅ PASS）。
+- ✅ **產生 5 張驗證截圖** (存放於 `/tests/screenshots/`)：包含桌面/行動首屏、TOC、與 Q5 圖表表格（✅ PASS）。
+
+## [2026-06-10] UI 與流程規範優化：修復 Q6 表格行動版標題缺失，並將雙端網頁驗證強制流程寫入專案 Rules
+
+### 問題現狀
+1. **行動版表格缺少標題**：在行動版（Mobile RWD）下，Q6 表格（四大航空公司載客率比較）的欄位標題完全消失，導致資訊呈現空白且不易閱讀。
+2. **缺乏雙端手動驗證規程**：專案缺少一項強制性 Rule，要求在代碼交付前，必須在本地伺服器（Desktop / Mobile RWD）雙重視角下進行手動排版與樣式驗證。
+
+### 根本原因 (Root Cause)
+1. Q6 表格的 `<td>` 元素上漏掉了 `data-label` 屬性。在行動版 CSS 中，系統會隱藏 `thead`，並利用 `td::before { content: attr(data-label); }` 來顯示行內標題。沒有該屬性即導致欄位標題顯示為空。
+2. 先前的部署與驗證 SOP 只強調了 `verify_seo.js` 自動化測試與 Vercel 生產部署，沒有將「本地雙端手動驗證」定義為一項交付前的強制性門檻。
+
+### 修正方案
+1. **補全行動版 data-label**：在 `insights/2026-taiwan-aviation-market-outlook/index.html` 的 Q6 表格中，為所有 `<td>` 標籤添加對應的行動版標題屬性（例如 `data-label="航空公司"`、`data-label="航班數"` 等）。
+2. **將手動雙端驗證納入 SOP Rule**：編輯專案 `README.md`，在「專案部署與驗證 SOP」中新增「本地雙端網頁驗證（強制規範）」步驟，要求每次修改代碼後、交付部署前，必須手動使用瀏覽器驗證桌面與行動裝置的排版、字體重疊與數據完整性。
+
+### 驗證結果
+- ✅ **語意標籤完整**：Q6 載客率比較表格的 24 個 `<td>` 元素皆已補上正確的 `data-label` 屬性。
+- ✅ **SOP 規則就位**：在 `README.md` 中順利明文化「本地雙端網頁驗證」強制要求，提升專案交付品質與紀律。
+- ✅ **SEO 自動化測試通過**：執行 `npm run build`，所有 60+ 項 SEO/AIEO 驗證斷言全數通過（✅ ALL PASS）。
+
 ## [2026-06-10] SEO 優化：修改首頁 Page Title 以提升搜尋引擎（SEO/AIEO）品牌與航線識別度
 
 ### 問題現狀

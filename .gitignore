@@ -11,3 +11,5 @@ cny_prediction_result*.json
 dist/
 build/
 .vscode/
+
+tests/screenshots/
