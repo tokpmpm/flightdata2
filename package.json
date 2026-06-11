@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "quota": "npx antigravity-usage",
-    "build": "node prerender.js && node verify_seo.js"
+    "build": "node prerender.js && node verify_seo.js",
+    "ship": "node prerender.js && node verify_seo.js && node tests/verify_browser_qa.js && vercel --prod"
   },
   "keywords": [],
   "author": "",

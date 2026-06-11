@@ -1,5 +1,28 @@
 # CHANGELOG
 
+
+## [2026-06-11] 工程自動化與防呆機制：建置 Git pre-push Hook，強制執行 Prerender、SEO 驗證、Browser E2E 測試與 Vercel 生產部署，防止忘記部署
+
+### 問題現狀
+1. **部署遺忘風險**：即便在開發規範中多次加入 deployment 規則，AI 或是開發人員仍有可能在 `git push` 後忘記執行 `npx vercel --prod` 實體部署，造成遠端生產環境與 GitHub 代碼庫不一致。
+2. **無 CI 連動機制**：此專案未配置 GitHub Actions 自動觸發 Vercel 生產部署，完全仰賴開發端本機 CLI 進行 `--prod` 部署，缺乏硬性關卡防護。
+
+### 根本原因 (Root Cause)
+1. 人為的 SOP (即便寫在 README.md 中) 屬於軟性約束，缺乏系統層級的硬性強制（Hard Constraint）防呆機制。
+2. `git commit` 與 `git push` 雖然已藉由 Rule #7 建立關連，但 Vercel 部署被單獨排在 Git 工作流之外，沒有與 push 行為做物理上的鏈結。
+
+### 修正方案
+1. **建立 Git `pre-push` 自動化防呆 Hook**：在 `.git/hooks/pre-push` 中撰寫 Shell 腳本。當執行 `git push` 且目標為 `main` 分支時，自動按順序觸發：
+   - `npm run build` (prerender + SEO 驗證)
+   - `node tests/verify_browser_qa.js` (Headless 瀏覽器 17 大 QA 斷言)
+   - `npx vercel --prod --yes` (Vercel 生產部署)
+2. **硬性阻斷機制**：上述任何一個驗證或部署步驟若失敗（離開碼不為 0），Hook 將自動終止 `git push` 行程，確保「只有部署成功的代碼才能被推送到 main 分支」。
+3. **優化部署 SOP 說明**：同步更新 `README.md` 中關於部署與驗證的段落，全面改為引導使用此自動化 Hook 及 `npm run ship` 機制，宣導「以工具代替記憶」的工程標準。
+
+### 驗證結果
+- ✅ **Hook 腳本成功建立並賦予執行權限** (`chmod +x .git/hooks/pre-push`)。
+- ✅ **README.md 內容更新**：修正了部署章節，清楚說明如何透過 `git push` 或 `npm run ship` 自動完成完整流程，從系統機制徹底根絕忘記部署的痛點。
+
 ## [2026-06-11] 數據交互與圖表升級 (由 Codex 協助整合)：新增三大視覺化圖表，優化資料庫說明 claims 並精準對齊 2026 1-4 月期間，更新 17 大自動化測試
 
 ### 問題現狀
