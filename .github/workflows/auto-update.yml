@@ -2,15 +2,35 @@ name: Auto Update Flight Data
 
 on:
   schedule:
-    # UTC 04:00 (Taipei Time 12:00) from the 25th to the 31st of every month, Monday to Friday
-    - cron: '0 4 25-31 * 1-5'
+    # UTC 04:00 (Taipei Time 12:00) from the 25th to the 31st of every month
+    - cron: '0 4 25-31 * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
+  check-weekday:
+    runs-on: ubuntu-latest
+    outputs:
+      is_weekday: ${{ steps.check.outputs.is_weekday }}
+    steps:
+      - name: Check if today is a weekday
+        id: check
+        run: |
+          day_of_week=$(date +%u)
+          if [ $day_of_week -le 5 ]; then
+            echo "is_weekday=true" >> $GITHUB_OUTPUT
+            echo "Today is a weekday (Day $day_of_week)."
+          else
+            echo "is_weekday=false" >> $GITHUB_OUTPUT
+            echo "Today is a weekend (Day $day_of_week)."
+          fi
+
   update-data:
+    needs: check-weekday
+    if: needs.check-weekday.outputs.is_weekday == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
@@ -60,11 +80,31 @@ jobs:
         if: steps.check-changes.outputs.has_changes == 'true'
         run: npm run build
 
-      - name: Commit and push changes
+      - name: Create Pull Request with update for review
         if: steps.check-changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add extracted/ data/ index.html airport/ sitemap.xml robots.txt
-          git commit -m "feat(data): auto update flight data [skip ci]"
-          git push
+          
+          # Create and switch to preview branch
+          git checkout -b data-update-preview
+          
+          # Only commit raw data, processed JSON data, and the market outlook report
+          git add extracted/ data/ insights/2026-taiwan-aviation-market-outlook/index.html
+          git commit -m "feat(data): auto update flight data and market outlook report"
+          
+          # Force push to the preview branch
+          git push origin data-update-preview --force
+          
+          # Create a Pull Request (using GitHub CLI) if it doesn't already exist
+          gh pr create \
+            --title "📊 航空市場載客率數據與分析報告自動更新審查" \
+            --body "### 報告自動更新完成
+            爬蟲已成功抓取最新月份數據並重新渲染分析報告。
+            
+            **請至下方 Vercel Bot 產出的 Preview URL 進行網頁樣式與數據審查。**
+            審查無誤後，請直接 Merge 此 Pull Request。這將會把數據合併入 \`main\` 分支並發布至正式生產環境。" \
+            --head data-update-preview \
+            --base main || echo "PR already exists."

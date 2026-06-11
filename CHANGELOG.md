@@ -1,6 +1,27 @@
 # CHANGELOG
 
 
+## [2026-06-11] 工作流優化：修復定時爬蟲 OR 觸發陷阱，並改為 PR 預覽審查模式，避免自動部署未審查數據
+
+### 問題現狀
+1. **排程非預期觸發**：爬蟲在 6/9 與 6/10（均為週二、週三）被非預期觸發，主要因為 Cron 設定為 `0 4 25-31 * 1-5`。在標準 Cron 中，這會被解析為聯集（25-31 號 OR 週一至週五），導致每個工作日都觸發。
+2. **缺乏審查機制**：舊流程在爬取新數據後，直接將其 commit 至 `main` 分支並更新首頁與機場專頁，未給予開發者或管理員人工審查的空間，容易帶來數據發布風險。
+
+### 根本原因 (Root Cause)
+1. Cron 排程規範中，日期（DOM）與星期（DOW）同時指定時，關係為邏輯 `OR`。
+2. 缺乏對預覽環境的整合，沒有透過 PR 機制隔離數據更新與正式發布。
+
+### 修正方案
+1. **Cron 解除聯集陷阱**：將表達式改為 `0 4 25-31 * *`，並在工作流開頭加入 `check-weekday` 工作（利用 `date +%u` 判斷是否小於等於 5），以 `AND` 邏輯確保「只在 25-31 號之中的工作日執行」。
+2. **改為 PR 預覽審查機制**：
+   - 移除直接 push 到 `main` 的步驟。
+   - 爬取新數據並重新渲染後，僅 `git add` 原始 Excel、轉換後的 JSON 資料、以及 [insights/2026-taiwan-aviation-market-outlook/index.html](file:///Users/pmpmpm/Antigravity/passenger_capacity/insights/2026-taiwan-aviation-market-outlook/index.html)。
+   - 將變更 commit 至新分支 `data-update-preview`，並強制推送。
+   - 呼叫 `gh pr create` 自動建立 Pull Request，讓 Vercel 自動為該 PR 產生 **Preview URL** 並留言通知。
+
+### 驗證結果
+- ✅ **YAML 語意正確**：成功編寫 `.github/workflows/auto-update.yml`，且 `jobs` 間之依賴與 outputs 定義無誤。
+
 ## [2026-06-11] 工程自動化與防呆機制：建置 Git pre-push Hook，強制執行 Prerender、SEO 驗證、Browser E2E 測試與 Vercel 生產部署，防止忘記部署
 
 ### 問題現狀
