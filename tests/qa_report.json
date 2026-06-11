@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T01:40:34.673Z",
+  "timestamp": "2026-06-11T06:50:12.356Z",
   "results": [
     {
       "id": 1,
@@ -11,7 +11,7 @@
       "id": 6,
       "name": "toc_anchor_scroll_desktop",
       "status": "PASS",
-      "details": "Q5 element top coordinate: 88.390625px, Header height: 79.0625px (expected: 74.0625 ~ 164.0625px)"
+      "details": "Q5 element top coordinate: 94.9375px, Header height: 79.0625px (expected: 74.0625 ~ 164.0625px)"
     },
     {
       "id": 2,
@@ -26,16 +26,22 @@
       "details": "No \"is哪\" typos found in page text."
     },
     {
+      "id": 14,
+      "name": "question_section_structure",
+      "status": "PASS",
+      "details": "Q1-Q11 appear once, Q6 is unique, and route-rank table has 10 rows."
+    },
+    {
       "id": 8,
       "name": "json_ld_article_headline",
       "status": "PASS",
-      "details": "Headline in JSON-LD Article: \"台灣航空市場累計統計與載客率分析\""
+      "details": "Headline in JSON-LD Article: \"2026 年 1-4 月台灣航空市場洞察與載客率分析\""
     },
     {
       "id": 9,
       "name": "json_ld_dataset_temporal_coverage",
       "status": "PASS",
-      "details": "temporalCoverage in JSON-LD Dataset: \"2024-01/2026-04\""
+      "details": "temporalCoverage in JSON-LD Dataset: \"2026-01/2026-04\""
     },
     {
       "id": 10,
@@ -47,13 +53,25 @@
       "id": 11,
       "name": "json_ld_forbidden_strings",
       "status": "PASS",
-      "details": "No forbidden strings (\"出境最熱門\" / \"is哪\") found in JSON-LD FAQ."
+      "details": "No forbidden strings found in JSON-LD FAQ."
+    },
+    {
+      "id": 15,
+      "name": "json_ld_dates_and_titles",
+      "status": "PASS",
+      "details": "JSON-LD Article dates, 2026 1-4 period, and breadcrumb title match the revised page."
     },
     {
       "id": 12,
-      "name": "source_date_check",
+      "name": "source_scope_check",
       "status": "PASS",
-      "details": "Page body contains \"115年4月\"."
+      "details": "Page body uses requested source wording and 2026-01 to 2026-04 scope without extra source caveats."
+    },
+    {
+      "id": 16,
+      "name": "q11_source_scope_baseline",
+      "status": "PASS",
+      "details": "Q11 states source, 2026 1-4 scope, and 2025 YoY baseline without fixed SLA or 100% completeness claims."
     },
     {
       "id": 1,
@@ -65,13 +83,13 @@
       "id": 4,
       "name": "tap_target_sizes_mobile",
       "status": "PASS",
-      "details": "All 12 targets verified >= 44px."
+      "details": "All 13 targets verified >= 44px."
     },
     {
       "id": 5,
       "name": "toc_anchor_scroll_mobile",
       "status": "PASS",
-      "details": "Q5 element top coordinate after clicking anchor: 13.8125px (expected: 0 ~ 100px)"
+      "details": "Q5 element top coordinate after clicking anchor: 16.140625px (expected: 0 ~ 100px)"
     },
     {
       "id": 7,
@@ -115,8 +133,8 @@
     }
   ],
   "summary": {
-    "total": 14,
-    "pass": 14,
+    "total": 17,
+    "pass": 17,
     "fail": 0
   }
 }

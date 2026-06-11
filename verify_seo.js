@@ -126,12 +126,41 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             const hasFAQPage = flatSchemas.some(s => s['@type'] === 'FAQPage');
             const hasBreadcrumbList = flatSchemas.some(s => s['@type'] === 'BreadcrumbList');
             const hasDataset = flatSchemas.some(s => s['@type'] === 'Dataset' || (s['about'] && s['about']['@type'] === 'Dataset'));
+            const article = flatSchemas.find(s => s['@type'] === 'Article');
+            const faqPage = flatSchemas.find(s => s['@type'] === 'FAQPage');
+            const breadcrumbList = flatSchemas.find(s => s['@type'] === 'BreadcrumbList');
 
             assert(hasArticle, 'Insights page JSON-LD contains Article');
             assert(hasFAQPage, 'Insights page JSON-LD contains FAQPage');
             assert(hasBreadcrumbList, 'Insights page JSON-LD contains BreadcrumbList');
             assert(hasDataset, 'Insights page JSON-LD contains Dataset');
-            assert(html.includes('<title>台灣航空市場累計統計與載客率分析 (2024-01 至 2026-04) - 外勞芭 AI 招喚工坊</title>'), 'Insights page contains correct updated title');
+            assert(html.includes('<title>2026 年 1-4 月台灣航空市場洞察與載客率分析 - 外勞芭 AI 招喚工坊</title>'), 'Insights page contains correct updated title');
+            assert(article && article.dateModified === '2026-06-11', 'Insights page Article dateModified is 2026-06-11');
+            assert(article && article.description.includes('2026 年 1-4 月') && article.description.includes('2025 年同期'), 'Insights page Article description labels 2026 1-4 period and YoY baseline');
+            assert(!html.includes('2024-01 至 2026-04') && !html.includes('2024-01/2026-04'), 'Insights page has no stale cumulative-period scope');
+            assert(!html.includes('AI Overview'), 'Insights page has no AI Overview label');
+            assert(breadcrumbList && breadcrumbList.itemListElement[2] && breadcrumbList.itemListElement[2].name === '2026 年 1-4 月台灣航空市場洞察與載客率分析', 'Insights breadcrumb uses revised report title');
+
+            const sectionIds = Array.from(html.matchAll(/<section id="(q\d+)"/g)).map(match => match[1]);
+            const expectedSectionIds = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11'];
+            const uniqueSectionIds = new Set(sectionIds);
+            assert(JSON.stringify(sectionIds) === JSON.stringify(expectedSectionIds), 'Insights page has exactly Q1-Q11 sections in order');
+            assert(uniqueSectionIds.size === sectionIds.length, 'Insights page has no duplicate question section IDs');
+            assert((html.match(/<section id="q6"/g) || []).length === 1, 'Insights page has exactly one Q6 section');
+
+            const routeTableMatch = html.match(/<table class="data-table" id="route-rank-table">([\s\S]*?)<\/table>/);
+            const routeRows = routeTableMatch ? (routeTableMatch[1].match(/<tr>/g) || []).length - 1 : 0;
+            assert(routeRows === 10, 'Insights page route ranking table has 10 body rows');
+            assert(routeTableMatch && !routeTableMatch[1].includes('id="q6"'), 'Insights page Q6 section is not nested inside route table');
+
+            const dataset = article && article.about && article.about['@type'] === 'Dataset' ? article.about : null;
+            const q11Answer = faqPage && faqPage.mainEntity && faqPage.mainEntity[10] && faqPage.mainEntity[10].acceptedAnswer.text;
+            assert(dataset && dataset.temporalCoverage === '2026-01/2026-04', 'Insights Dataset temporalCoverage is 2026-01/2026-04');
+            assert(html.includes('資料來源：交通部民用航空局'), 'Insights page names the requested data source');
+            assert(!html.includes('民航統計月報') && !html.includes('115 年 4 月') && !html.includes('115年4月') && !html.includes('官方開放資料列表頁'), 'Insights page does not expose extra source caveats or raw monthly-file wording');
+            assert(!html.includes('；站內整合原始檔') && !html.includes('extracted/115年4月.xls'), 'Insights page does not expose local raw-file paths in reader-facing metadata');
+            assert(q11Answer && q11Answer.includes('2026-01 至 2026-04') && q11Answer.includes('2025 年同期'), 'Insights Q11 states period and comparison baseline');
+            assert(!html.includes('3-5 工作天') && !html.includes('完整度 100%') && !html.includes('資料庫完整度達 100%'), 'Insights page avoids fixed update SLA and 100% completeness claims');
         } else {
             // Airport or Airline Page
             const hasFAQPage = flatSchemas.some(s => s['@type'] === 'FAQPage');

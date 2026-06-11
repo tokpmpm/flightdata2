@@ -233,6 +233,39 @@ async function runTests() {
                     details: !hasTldTypo ? 'No "is哪" typos found in page text.' : 'Found "is哪" typo in page text.'
                 });
 
+                // Assertion 14: Q section structure must be valid and Q6 must not be duplicated
+                const sectionStructure = await page.evaluate(() => {
+                    const sectionIds = Array.from(document.querySelectorAll('section[id^="q"]')).map(section => section.id);
+                    const duplicateIds = sectionIds.filter((id, index) => sectionIds.indexOf(id) !== index);
+                    const routeRows = document.querySelectorAll('#route-rank-table tbody tr').length;
+                    const q6InsideRouteTable = Boolean(document.querySelector('#route-rank-table #q6'));
+
+                    return {
+                        sectionIds,
+                        duplicateIds,
+                        q6Count: sectionIds.filter(id => id === 'q6').length,
+                        routeRows,
+                        q6InsideRouteTable
+                    };
+                });
+
+                const expectedSectionIds = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11'];
+                const structurePassed =
+                    JSON.stringify(sectionStructure.sectionIds) === JSON.stringify(expectedSectionIds) &&
+                    sectionStructure.duplicateIds.length === 0 &&
+                    sectionStructure.q6Count === 1 &&
+                    sectionStructure.routeRows === 10 &&
+                    !sectionStructure.q6InsideRouteTable;
+
+                results.push({
+                    id: 14,
+                    name: 'question_section_structure',
+                    status: structurePassed ? 'PASS' : 'FAIL',
+                    details: structurePassed
+                        ? 'Q1-Q11 appear once, Q6 is unique, and route-rank table has 10 rows.'
+                        : `sectionIds=${sectionStructure.sectionIds.join(',')}; duplicateIds=${sectionStructure.duplicateIds.join(',')}; q6Count=${sectionStructure.q6Count}; routeRows=${sectionStructure.routeRows}; q6InsideRouteTable=${sectionStructure.q6InsideRouteTable}`
+                });
+
                 // Assertion 8-11: JSON-LD validation
                 const jsonLds = await page.evaluate(() => {
                     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
@@ -244,12 +277,14 @@ async function runTests() {
                 let articleNode = null;
                 let faqNode = null;
                 let datasetNode = null;
+                let breadcrumbNode = null;
                 
                 jsonLds.forEach(s => {
                     if (s && s['@graph']) {
                         s['@graph'].forEach(node => {
                             if (node['@type'] === 'Article') articleNode = node;
                             if (node['@type'] === 'FAQPage') faqNode = node;
+                            if (node['@type'] === 'BreadcrumbList') breadcrumbNode = node;
                             if (node['@type'] === 'Dataset' || (node['about'] && node['about']['@type'] === 'Dataset')) {
                                 datasetNode = node['@type'] === 'Dataset' ? node : node['about'];
                             }
@@ -258,7 +293,7 @@ async function runTests() {
                 });
 
                 // 8. JSON-LD Article headline
-                const expectedHeadline = "台灣航空市場累計統計與載客率分析";
+                const expectedHeadline = "2026 年 1-4 月台灣航空市場洞察與載客率分析";
                 const headlinePassed = articleNode && articleNode.headline === expectedHeadline;
                 results.push({
                     id: 8,
@@ -270,7 +305,7 @@ async function runTests() {
                 });
 
                 // 9. JSON-LD Dataset temporalCoverage
-                const coveragePassed = datasetNode && datasetNode.temporalCoverage === '2024-01/2026-04';
+                const coveragePassed = datasetNode && datasetNode.temporalCoverage === '2026-01/2026-04';
                 results.push({
                     id: 9,
                     name: 'json_ld_dataset_temporal_coverage',
@@ -281,9 +316,8 @@ async function runTests() {
                 });
 
                 // 10. JSON-LD FAQ Period Correctness
-                // Q3, Q4, Q5, Q8 -> 2024-01 至 2026-04 累計
-                // Q1, Q6, Q7, Q9 -> 2026 年 1-4 月
-                // Q2 -> 2025 全年
+                // All FAQ items should be scoped to 2026 年 1-4 月.
+                // YoY comparison items may additionally mention 2025 年同期.
                 let faqPeriodsPassed = true;
                 const faqErrors = [];
                 
@@ -307,14 +341,16 @@ async function runTests() {
                     };
 
                     checkPeriod(0, '2026 年 1-4 月'); // Q1
-                    checkPeriod(1, '2025'); // Q2
-                    checkPeriod(2, '2024-01 至 2026-04 累計'); // Q3
-                    checkPeriod(3, '2024-01 至 2026-04 累計'); // Q4
-                    checkPeriod(4, '2024-01 至 2026-04 累計'); // Q5
+                    checkPeriod(1, '2026 年 1-4 月'); // Q2
+                    checkPeriod(2, '2026 年 1-4 月'); // Q3
+                    checkPeriod(3, '2026 年 1-4 月'); // Q4
+                    checkPeriod(4, '2026 年 1-4 月'); // Q5
                     checkPeriod(5, '2026 年 1-4 月'); // Q6
                     checkPeriod(6, '2026 年 1-4 月'); // Q7
-                    checkPeriod(7, '2024-01 至 2026-04 累計'); // Q8
+                    checkPeriod(7, '2026 年 1-4 月'); // Q8
                     checkPeriod(8, '2026 年 1-4 月'); // Q9
+                    checkPeriod(9, '前 10 大熱門航點'); // Q10
+                    checkPeriod(10, '2026-01 至 2026-04'); // Q11
                 } else {
                     faqPeriodsPassed = false;
                     faqErrors.push("FAQPage node missing or empty");
@@ -330,11 +366,18 @@ async function runTests() {
                 });
 
                 // 11. JSON-LD Forbidden Strings
-                // No "出境最熱門航點", no "is哪"
+                // No stale phrases or typos.
                 let forbiddenPassed = true;
                 if (faqNode) {
                     const faqStr = JSON.stringify(faqNode);
-                    if (faqStr.includes('出境最熱門') || faqStr.includes('is哪')) {
+                    if (
+                        faqStr.includes('出境最熱門') ||
+                        faqStr.includes('is哪') ||
+                        faqStr.includes('2024-01 至 2026-04') ||
+                        faqStr.includes('2025 全年') ||
+                        faqStr.includes('AI Overview') ||
+                        faqStr.includes('民航統計月報')
+                    ) {
                         forbiddenPassed = false;
                     }
                 }
@@ -343,19 +386,69 @@ async function runTests() {
                     name: 'json_ld_forbidden_strings',
                     status: forbiddenPassed ? 'PASS' : 'FAIL',
                     details: forbiddenPassed 
-                        ? 'No forbidden strings ("出境最熱門" / "is哪") found in JSON-LD FAQ.' 
+                        ? 'No forbidden strings found in JSON-LD FAQ.'
                         : 'Forbidden strings found in JSON-LD FAQ.'
                 });
 
+                // Assertion 15: JSON-LD dates and breadcrumb title must match the revised page
+                const jsonLdDateTitlePassed =
+                    articleNode &&
+                    articleNode.datePublished === '2026-06-11' &&
+                    articleNode.dateModified === '2026-06-11' &&
+                    articleNode.description.includes('2026 年 1-4 月') &&
+                    articleNode.description.includes('2025 年同期') &&
+                    !articleNode.description.includes('2024-01 至 2026-04') &&
+                    breadcrumbNode &&
+                    breadcrumbNode.itemListElement[2] &&
+                    breadcrumbNode.itemListElement[2].name === expectedHeadline;
+
+                results.push({
+                    id: 15,
+                    name: 'json_ld_dates_and_titles',
+                    status: jsonLdDateTitlePassed ? 'PASS' : 'FAIL',
+                    details: jsonLdDateTitlePassed
+                        ? 'JSON-LD Article dates, 2026 1-4 period, and breadcrumb title match the revised page.'
+                        : `Article datePublished=${articleNode ? articleNode.datePublished : 'missing'}, dateModified=${articleNode ? articleNode.dateModified : 'missing'}, breadcrumb=${breadcrumbNode && breadcrumbNode.itemListElement[2] ? breadcrumbNode.itemListElement[2].name : 'missing'}`
+                });
+
                 // 12. Data source check in page text
-                const hasCaaDate = htmlTextContent.includes('115年4月');
+                const hasRequestedSource = htmlTextContent.includes('資料來源：交通部民用航空局');
+                const has2026Scope = htmlTextContent.includes('統計期間：2026-01 至 2026-04');
+                const hidesExtraSourceWording =
+                    !htmlTextContent.includes('民航統計月報') &&
+                    !htmlTextContent.includes('115 年 4 月') &&
+                    !htmlTextContent.includes('官方開放資料列表頁') &&
+                    !htmlTextContent.includes('；站內整合原始檔') &&
+                    !htmlTextContent.includes('extracted/115年4月.xls');
                 results.push({
                     id: 12,
-                    name: 'source_date_check',
-                    status: hasCaaDate ? 'PASS' : 'FAIL',
-                    details: hasCaaDate 
-                        ? 'Page body contains "115年4月".' 
-                        : 'Page body does not contain "115年4月".'
+                    name: 'source_scope_check',
+                    status: hasRequestedSource && has2026Scope && hidesExtraSourceWording ? 'PASS' : 'FAIL',
+                    details: hasRequestedSource && has2026Scope && hidesExtraSourceWording
+                        ? 'Page body uses requested source wording and 2026-01 to 2026-04 scope without extra source caveats.'
+                        : `hasRequestedSource=${hasRequestedSource}; has2026Scope=${has2026Scope}; hidesExtraSourceWording=${hidesExtraSourceWording}`
+                });
+
+                // Assertion 16: Q11 must avoid overconfident completeness/update SLA claims
+                const q11Text = await page.evaluate(() => {
+                    const q11 = document.getElementById('q11');
+                    return q11 ? q11.innerText : '';
+                });
+                const conservativeQ11Passed =
+                    q11Text.includes('資料來源：交通部民用航空局') &&
+                    q11Text.includes('2026-01 至 2026-04') &&
+                    q11Text.includes('2025 年同期') &&
+                    !q11Text.includes('3-5 工作天') &&
+                    !q11Text.includes('完整度 100%') &&
+                    !q11Text.includes('資料庫完整度達 100%');
+
+                results.push({
+                    id: 16,
+                    name: 'q11_source_scope_baseline',
+                    status: conservativeQ11Passed ? 'PASS' : 'FAIL',
+                    details: conservativeQ11Passed
+                        ? 'Q11 states source, 2026 1-4 scope, and 2025 YoY baseline without fixed SLA or 100% completeness claims.'
+                        : `Q11 text missing source/scope/baseline or still contains an overconfident claim: ${q11Text.slice(0, 240)}`
                 });
             }
 
