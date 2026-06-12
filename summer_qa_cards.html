@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 暑假飛日本避擠挑戰 | 社群圖文問答卡片</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f8fafc;
+            --bg-warm: #f1f5f9;
+            --cyan-primary: #0891b2;
+            --cyan-bg: #ecfeff;
+            --rose-primary: #db2777;
+            --rose-bg: #fff1f2;
+            --gold-primary: #d97706;
+            --gold-bg: #fef3c7;
+            --card-bg: #ffffff;
+            --border-light: #e2e8f0;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --shadow-premium: 0 30px 60px -15px rgba(15, 23, 42, 0.08), 0 10px 20px -5px rgba(15, 23, 42, 0.03);
+            --shadow-inset: inset 0 2px 4px rgba(15, 23, 42, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-warm) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            text-align: center;
+            line-height: 1.35;
+        }
+
+        header h1 span.accent {
+            background: linear-gradient(to right, #0ea5e9, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 8px;
+            display: inline-block;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            width: 100%;
+            max-width: 1100px;
+            justify-content: center;
+        }
+
+        .column-challenge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Responsive card footprint - no hardcoded height/width */
+        .instagram-card {
+            width: 100%;
+            max-width: 500px;
+            min-height: 500px;
+            height: auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 32px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .instagram-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag-badge {
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .card-cyan .tag-badge {
+            background: var(--cyan-bg);
+            color: var(--cyan-primary);
+        }
+
+        .card-rose .tag-badge {
+            background: var(--rose-bg);
+            color: var(--rose-primary);
+        }
+
+        .brand-watermark {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: lowercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .brand-watermark::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .card-cyan .brand-watermark::after {
+            background: var(--cyan-primary);
+        }
+
+        .card-rose .brand-watermark::after {
+            background: var(--rose-primary);
+        }
+
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            line-height: 1.5;
+            margin-bottom: 22px;
+            letter-spacing: -0.5px;
+            color: var(--text-dark);
+        }
+
+        /* Options list */
+        .options-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .option-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .option-item:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        .option-item.selected {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+        }
+
+        /* Option State Styles */
+        .option-item.correct {
+            background: #f0fdf4 !important;
+            border-color: #bbf7d0 !important;
+            color: #15803d !important;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.08);
+        }
+        
+        .option-item.correct .option-letter {
+            background: #22c55e !important;
+            color: #ffffff !important;
+            border-color: #22c55e !important;
+        }
+
+        .option-item.incorrect {
+            background: #fef2f2 !important;
+            border-color: #fecaca !important;
+            color: #991b1b !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.04);
+        }
+        
+        .option-item.incorrect .option-letter {
+            background: #ef4444 !important;
+            color: #ffffff !important;
+            border-color: #ef4444 !important;
+        }
+
+        .option-item.disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .option-letter {
+            background: var(--text-dark);
+            color: #ffffff;
+            border-color: var(--text-dark);
+        }
+
+        /* Answer Card Reveal Styles */
+        .answer-card {
+            opacity: 0;
+            transform: translateY(20px);
+            height: 0; /* Override the default 500px height when collapsed */
+            max-height: 0;
+            overflow: hidden;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-color: transparent;
+            padding: 0 40px; /* Collapse padding when hidden */
+        }
+
+        .answer-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            height: auto; /* Allow auto height growth to accommodate all content */
+            min-height: 500px; /* Keep standard size footprint if content is small */
+            max-height: 950px; /* Safe upper limit for animation */
+            pointer-events: auto;
+            border-color: var(--border-light);
+            padding: 40px;
+        }
+
+        /* Reveal state charts */
+        .chart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .chart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .chart-label {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            width: 85px;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            height: 24px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            margin: 0 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-inset);
+        }
+
+        .chart-bar {
+            height: 100%;
+            border-radius: 9px;
+            width: 0%; /* Dynamic animation */
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-cyan .chart-bar {
+            background: linear-gradient(90deg, #22d3ee, var(--cyan-primary));
+        }
+
+        .card-rose .chart-bar {
+            background: linear-gradient(90deg, #f43f5e, var(--rose-primary));
+        }
+
+        .chart-bar.winner {
+            background: linear-gradient(90deg, #fbbf24, var(--gold-primary)) !important;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.2);
+        }
+
+        .chart-value {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            width: 55px;
+            text-align: right;
+        }
+
+        .chart-value.winner {
+            color: var(--gold-primary);
+            font-size: 1rem;
+        }
+
+        .reveal-footer-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #475569;
+            margin-top: 15px;
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 16px;
+            border-left: 4px solid var(--gold-primary);
+            border-top: 1px solid rgba(15, 23, 42, 0.02);
+            border-right: 1px solid rgba(15, 23, 42, 0.02);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.02);
+        }
+
+        /* Premium CTA Box Inside Answer Card */
+        .card-cta-box {
+            margin-top: 18px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.02);
+            text-align: left;
+        }
+        
+        .card-cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        
+        .card-cyan .card-cta-box::before {
+            background: linear-gradient(to bottom, #06b6d4, #0891b2);
+        }
+        
+        .card-rose .card-cta-box::before {
+            background: linear-gradient(to bottom, #ec4899, #db2777);
+        }
+        
+        .card-cta-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+        
+        .cta-heading {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .cta-desc {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        
+        .card-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-decoration: none;
+            gap: 6px;
+            transition: all 0.2s ease;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle Shimmer Animation for CTA Button */
+        .card-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-25deg);
+            transition: none;
+        }
+
+        .card-cta-btn:hover::after {
+            left: 150%;
+            transition: all 0.85s ease-in-out;
+        }
+        
+        .card-cyan .card-cta-btn {
+            color: var(--cyan-primary);
+        }
+        
+        .card-rose .card-cta-btn {
+            color: var(--rose-primary);
+        }
+        
+        .card-cyan .card-cta-btn:hover {
+            background: var(--cyan-bg);
+            border-color: #a5f3fc;
+            transform: translateX(2px);
+        }
+        
+        .card-rose .card-cta-btn:hover {
+            background: var(--rose-bg);
+            border-color: #fecdd3;
+            transform: translateX(2px);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+            font-weight: 500;
+        }
+
+        .card-footer .source {
+            font-weight: 600;
+        }
+
+        /* Global conversion bottom banner */
+        .global-cta-banner {
+            width: 100%;
+            max-width: 1040px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 32px;
+            padding: 50px 40px;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: var(--shadow-premium), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .global-cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0ea5e9, #a855f7, #ec4899);
+        }
+
+        .global-cta-banner:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 50px 100px -20px rgba(15, 23, 42, 0.12);
+            border-color: rgba(203, 213, 225, 0.8);
+        }
+
+        .global-cta-banner h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .global-cta-banner p {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 18px 44px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px -10px rgba(15, 23, 42, 0.4);
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        }
+
+        .cta-button span {
+            margin-left: 8px;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .cta-button:hover span {
+            transform: translateX(4px);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 14px;
+            }
+
+            header {
+                margin-bottom: 30px;
+            }
+
+            header h1 {
+                font-size: 1.65rem;
+                line-height: 1.4;
+            }
+
+            header p {
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
+            }
+
+            .cards-container {
+                gap: 30px;
+            }
+
+            .instagram-card {
+                padding: 30px 20px;
+                border-radius: 24px;
+                min-height: auto;
+            }
+
+            .quiz-title {
+                font-size: 1.15rem;
+                line-height: 1.45;
+                margin-bottom: 18px;
+            }
+
+            .options-list {
+                grid-template-columns: 1fr; /* Stack options vertically on mobile */
+                gap: 10px;
+            }
+
+            .option-item {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .answer-card.revealed {
+                padding: 30px 20px;
+            }
+
+            .chart-label {
+                width: 75px;
+                font-size: 0.85rem;
+            }
+
+            .chart-bar-wrapper {
+                margin: 0 10px;
+                height: 20px;
+            }
+
+            .chart-value {
+                width: 45px;
+                font-size: 0.85rem;
+            }
+
+            .reveal-footer-text {
+                font-size: 0.8rem;
+                padding: 10px 12px;
+                margin-top: 12px;
+            }
+
+            .card-cta-box {
+                padding: 16px;
+                margin-top: 14px;
+                border-radius: 16px;
+            }
+
+            .cta-heading {
+                font-size: 0.85rem;
+            }
+
+            .cta-desc {
+                font-size: 0.78rem;
+                margin-bottom: 10px;
+            }
+
+            .card-cta-btn {
+                padding: 8px 14px;
+                font-size: 0.78rem;
+                border-radius: 10px;
+            }
+
+            .card-footer {
+                padding-top: 15px;
+            }
+
+            .global-cta-banner {
+                padding: 32px 20px;
+                border-radius: 24px;
+                margin-top: 40px;
+            }
+
+            .global-cta-banner h2 {
+                font-size: 1.35rem;
+                margin-bottom: 10px;
+            }
+
+            .global-cta-banner p {
+                font-size: 0.88rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+                width: 100%; /* Full width button on mobile for better accessibility */
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>✈️ 暑假飛日本避擠挑戰 <span class="accent">・</span> 數據對決</h1>
+        <p>2025 Summer Vacation Japan Flight Q&A</p>
+    </header>
+
+    <div class="cards-container">
+
+        <!-- COLUMN 1: TAOYUAN (TPE) -->
+        <div class="column-challenge">
+            
+            <!-- QUESTION CARD -->
+            <div class="instagram-card card-cyan" id="card-tpe">
+                <div class="card-header">
+                    <span class="tag-badge">桃園出發大挑戰</span>
+                    <span class="brand-watermark">flight insights</span>
+                </div>
+                <div class="card-body">
+                    <div class="quiz-title">
+                        想撿暑假日本便宜機票，可以看「載客率」<br><br>
+                        根據 2025 年 7–8 月數據，桃園出發這四條線，有一條明顯比較不滿，你覺得是哪一條？
+                    </div>
+                    <div class="options-list">
+                        <div class="option-item" onclick="selectOption('tpe', 'A', this)">
+                            <span class="option-letter">A</span> 熊本
+                        </div>
+                        <div class="option-item" onclick="selectOption('tpe', 'B', this)">
+                            <span class="option-letter">B</span> 福岡
+                        </div>
+                        <div class="option-item" onclick="selectOption('tpe', 'C', this)">
+                            <span class="option-letter">C</span> 名古屋
+                        </div>
+                        <div class="option-item" onclick="selectOption('tpe', 'D', this)">
+                            <span class="option-letter">D</span> 函館
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="source">資料來源：交通部民用航空局</span>
+                    <span class="action-hint">👉 點擊選項看答案</span>
+                </div>
+            </div>
+
+            <!-- ANSWER CARD -->
+            <div class="instagram-card card-cyan answer-card" id="answer-tpe">
+                <div class="card-header">
+                    <span class="tag-badge" style="background: var(--gold-bg); color: var(--gold-primary);">解答揭密</span>
+                    <span class="brand-watermark">flight insights</span>
+                </div>
+                <div class="card-body">
+                    <div class="quiz-title" style="margin-bottom: 12px; font-size: 1.45rem;">
+                        正確答案：<span style="color: var(--gold-primary);">C) 名古屋</span> ✈️ (2025年7-8月數據)
+                    </div>
+                    
+                    <div class="chart-list">
+                        <!-- Nagoya (Winner) -->
+                        <div class="chart-item">
+                            <span class="chart-label">名古屋 (空)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar winner" data-width="78.18%"></div>
+                            </div>
+                            <span class="chart-value winner">78.18%</span>
+                        </div>
+                        <!-- Kumamoto -->
+                        <div class="chart-item">
+                            <span class="chart-label">熊本 (暢)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" data-width="79.79%"></div>
+                            </div>
+                            <span class="chart-value">79.79%</span>
+                        </div>
+                        <!-- Fukuoka -->
+                        <div class="chart-item">
+                            <span class="chart-label">福岡 (熱)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" data-width="86.22%"></div>
+                            </div>
+                            <span class="chart-value">86.22%</span>
+                        </div>
+                        <!-- Hakodate -->
+                        <div class="chart-item">
+                            <span class="chart-label">函館 (擠)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" data-width="93.39%"></div>
+                            </div>
+                            <span class="chart-value">93.39%</span>
+                        </div>
+                    </div>
+
+                    <div class="reveal-footer-text">
+                        💡 <strong>數據分析</strong>：雖然名古屋是日本主要樞紐之一，但在 <strong>2025 年 7-8 月</strong> 統計下，平均載客率僅 78.18%。相較之下，航班數較少的 <strong>函館</strong> 載客率則高達 <strong>93.39%</strong>。
+                    </div>
+
+                    <div class="card-cta-box">
+                        <p class="cta-heading">📈 2026 最新追蹤：名古屋與大阪今年還能撿便宜嗎？</p>
+                        <p class="cta-desc">2025 暑假名古屋載客率僅 78.18%。但最新 2026 年 1-4 月報告顯示，東京/大阪載客率已強勢突破 90.7%！大阪又變擠了？想知道 2026 還有哪些高運量但載客率跌破 80% 的「座位淨土」？四大航司誰最空？</p>
+                        <a href="https://flightdata2.meshthings.com/insights/2026-taiwan-aviation-market-outlook/" target="_blank" class="card-cta-btn">
+                            查閱「2026 台灣航空市場展望」最新大數據 ➔
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="source">資料來源：交通部民用航空局</span>
+                    <span style="font-weight: 600;">外勞芭航空數據洞察</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUMN 2: KAOHSIUNG (KHH) -->
+        <div class="column-challenge">
+            
+            <!-- QUESTION CARD -->
+            <div class="instagram-card card-rose" id="card-khh">
+                <div class="card-header">
+                    <span class="tag-badge">高雄出發大挑戰</span>
+                    <span class="brand-watermark">flight insights</span>
+                </div>
+                <div class="card-body">
+                    <div class="quiz-title">
+                        想避開暑假出國人潮，可以看「載客率」<br><br>
+                        根據 2025 年 7–8 月數據，高雄出發這四條熱門線，有一條空位反而最多，你覺得是哪一條？
+                    </div>
+                    <div class="options-list">
+                        <div class="option-item" onclick="selectOption('khh', 'A', this)">
+                            <span class="option-letter">A</span> 大阪
+                        </div>
+                        <div class="option-item" onclick="selectOption('khh', 'B', this)">
+                            <span class="option-letter">B</span> 福岡
+                        </div>
+                        <div class="option-item" onclick="selectOption('khh', 'C', this)">
+                            <span class="option-letter">C</span> 名古屋
+                        </div>
+                        <div class="option-item" onclick="selectOption('khh', 'D', this)">
+                            <span class="option-letter">D</span> 札幌
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="source">資料來源：交通部民用航空局</span>
+                    <span class="action-hint">👉 點擊選項看答案</span>
+                </div>
+            </div>
+
+            <!-- ANSWER CARD -->
+            <div class="instagram-card card-rose answer-card" id="answer-khh">
+                <div class="card-header">
+                    <span class="tag-badge" style="background: var(--gold-bg); color: var(--gold-primary);">解答揭密</span>
+                    <span class="brand-watermark">flight insights</span>
+                </div>
+                <div class="card-body">
+                    <div class="quiz-title" style="margin-bottom: 12px; font-size: 1.45rem;">
+                        正確答案：<span style="color: var(--gold-primary);">A) 大阪</span> ✈️ (2025年7-8月數據)
+                    </div>
+                    
+                    <div class="chart-list">
+                        <!-- Osaka (Winner) -->
+                        <div class="chart-item">
+                            <span class="chart-label">大阪 (空)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar winner" data-width="79.04%"></div>
+                            </div>
+                            <span class="chart-value winner">79.04%</span>
+                        </div>
+                        <!-- Fukuoka -->
+                        <div class="chart-item">
+                            <span class="chart-label">福岡 (暢)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" data-width="82.19%"></div>
+                            </div>
+                            <span class="chart-value">82.19%</span>
+                        </div>
+                        <!-- Sapporo -->
+                        <div class="chart-item">
+                            <span class="chart-label">札幌 (擠)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" data-width="91.14%"></div>
+                            </div>
+                            <span class="chart-value">91.14%</span>
+                        </div>
+                        <!-- Nagoya -->
+                        <div class="chart-item">
+                            <span class="chart-label">名古屋 (爆)</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" data-width="92.62%"></div>
+                            </div>
+                            <span class="chart-value">92.62%</span>
+                        </div>
+                    </div>
+
+                    <div class="reveal-footer-text">
+                        💡 <strong>數據分析</strong>：雖然大阪關西是極其熱門的旅遊目的地，但因航空公司在暑期顯著增班，在 <strong>2025 年 7-8 月</strong> 統計下，載客率稀釋至 <strong>79.04%</strong>，低於航班數較少的名古屋。
+                    </div>
+
+                    <div class="card-cta-box">
+                        <p class="cta-heading">✈️ 2026 現狀解密：大阪航班供給過剩的紅利還在嗎？</p>
+                        <p class="cta-desc">2025 暑假高雄大阪因為大量增班，載客率稀釋至 79.04%，這是旅客撿便宜的利多。但在 2026 年最新統計中，市場平均載客率已回升至 85.4%！2026 年四大國籍航司中誰的座位最搶手（虎航以 91.98% 奪冠）？誰又最不易擠？</p>
+                        <a href="https://flightdata2.meshthings.com/insights/2026-taiwan-aviation-market-outlook/" target="_blank" class="card-cta-btn">
+                            查閱「2026 台灣航空市場展望」最新大數據 ➔
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="source">資料來源：交通部民用航空局</span>
+                    <span style="font-weight: 600;">外勞芭航空數據洞察</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- GLOBAL CONVERSION CTA BANNER -->
+    <div class="global-cta-banner">
+        <h2>📊 數據選對航點，出國輕鬆躺平</h2>
+        <p>我們整理了民航局最新出入境與載客率大數據，為你揭密航空市場的真實供需現狀。想了解更多航線分析、市佔比與未來趨勢預測嗎？歡迎點擊下方查看我們的完整大數據分析報告！</p>
+        <a href="https://flightdata2.meshthings.com/insights/2026-taiwan-aviation-market-outlook/" target="_blank" class="cta-button">
+            🚀 觀看「2026 台灣航空市場洞察」完整報告 <span>➔</span>
+        </a>
+    </div>
+
+    <script>
+        function selectOption(airport, optionLetter, element) {
+            // Remove previous selections in the same list
+            const parentCard = element.closest('.instagram-card');
+            
+            // If already answered, do nothing
+            if (parentCard.classList.contains('answered')) return;
+            parentCard.classList.add('answered');
+
+            // Correct answers definition
+            const correctAnswers = {
+                tpe: 'C', // 名古屋
+                khh: 'A'  // 大阪
+            };
+
+            const isCorrect = (optionLetter === correctAnswers[airport]);
+
+            // Disable all options and style them
+            parentCard.querySelectorAll('.option-item').forEach(item => {
+                item.classList.add('disabled');
+                
+                // Extract letter of this option item
+                const letter = item.querySelector('.option-letter').textContent.trim();
+                
+                if (letter === optionLetter) {
+                    // This is the clicked one
+                    if (isCorrect) {
+                        item.classList.add('correct');
+                    } else {
+                        item.classList.add('incorrect');
+                    }
+                }
+                
+                // If user guessed wrong, highlight the correct option as well
+                if (letter === correctAnswers[airport] && !isCorrect) {
+                    item.classList.add('correct');
+                }
+            });
+
+            // Find and reveal answer card
+            const answerCard = document.getElementById(`answer-${airport}`);
+            if (answerCard) {
+                answerCard.classList.add('revealed');
+
+                // Trigger bar width transitions after display
+                setTimeout(() => {
+                    answerCard.querySelectorAll('.chart-bar').forEach(bar => {
+                        const targetWidth = bar.getAttribute('data-width');
+                        bar.style.width = targetWidth;
+                    });
+                }, 100);
+
+                // Smoothly scroll to the answer card (aligning center)
+                setTimeout(() => {
+                    answerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 150);
+            }
+        }
+    </script>
+</body>
+
+</html>
