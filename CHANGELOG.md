@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## [2026-06-13] SEO優化：改善 Google 搜尋結果標題與摘要品質
+
+### 問題現狀
+Google 搜尋「航線載客率」時，首頁搜尋結果顯示的標題過長且語意不夠聚焦，摘要也容易抓到資料表欄位與數值片段，呈現「月份、總載客人數、從...飛往...」這類不適合搜尋結果閱讀的內容。
+
+### 根本原因 (Root Cause)
+1. 首頁 `<title>` 與主要 H1 尚未對齊使用者搜尋意圖，容易被 Google 改寫或截斷。
+2. `meta description` 雖有數據，但較像資料說明，缺少清楚的查詢型摘要。
+3. 頁面中大量預渲染資料表內容比摘要更密集，Google 可能直接抓表格欄位作為 snippet。
+
+### 修正方案
+1. **重寫儀表板頁 SEO 文案產生器**：在 `prerender.js` 中統一產生首頁、機場頁、航空公司頁的短標題、H1、meta description、OG/Twitter 摘要與可見搜尋摘要。
+2. **避免資料表污染搜尋摘要**：在資料表區塊加入 `data-nosnippet`，降低 Google 抓取表格欄位作為搜尋摘要的機率。
+3. **補強結構化資料與 snippet 控制**：新增 WebSite JSON-LD、`og:site_name`、`og:locale`、Twitter title/description，以及 `max-snippet` robots meta。
+4. **加入自動化 SEO 防呆**：擴充 `verify_seo.js`，檢查首頁新標題、可見搜尋摘要、`data-nosnippet` 與 WebSite schema。
+5. **移除不精確的搜尋摘要宣告**：首頁搜尋摘要不再宣稱固定資料期間與來源，避免 Google 顯示錯誤資訊。
+
+### 驗證結果
+- ✅ **全站預渲染與 SEO 驗證通過**：執行 `npm run build`，`prerender.js` 與 `verify_seo.js` 全數通過。
+- ✅ **首頁搜尋顯示來源已更新**：產出的首頁 title 改為「台灣航空載客率查詢｜航班數據分析」，description 改為不宣稱固定期間與來源的查詢型摘要。
+
 
 ## [2026-06-12] 體驗優化：修復行動端 (Mobile) 標題換行錯亂與響應式佈局溢出問題
 

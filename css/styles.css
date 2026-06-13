@@ -243,6 +243,27 @@ body {
     padding: var(--space-8) 0 var(--space-12);
 }
 
+.search-summary {
+    margin: 0 0 var(--space-6);
+    padding: 0 0 0 var(--space-5);
+    border-left: 4px solid var(--color-primary);
+    max-width: 920px;
+}
+
+.search-summary h2 {
+    color: var(--color-text-primary);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: var(--space-2);
+}
+
+.search-summary p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
 .filters-section,
 .charts-section,
 .table-section {
@@ -850,6 +871,18 @@ body {
 
     .logo-icon {
         font-size: 2rem;
+    }
+
+    .search-summary {
+        padding-left: var(--space-4);
+    }
+
+    .search-summary h2 {
+        font-size: 1.15rem;
+    }
+
+    .search-summary p {
+        font-size: 0.94rem;
     }
 
     .subtitle {

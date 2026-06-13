@@ -65,6 +65,12 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
     assert(html.includes('<title>'), `${filePath} contains title tag`);
     assert(html.includes('<meta name="description"'), `${filePath} contains meta description tag`);
 
+    if (!isAboutPage && !isInsightsPage) {
+        assert(html.includes('<meta name="robots" content="index,follow,max-snippet:180,max-image-preview:large">'), `${filePath} contains snippet control robots meta`);
+        assert(html.includes('class="search-summary"'), `${filePath} contains visible search summary`);
+        assert(html.includes('data-nosnippet'), `${filePath} excludes data table from search snippets`);
+    }
+
     // Smart Insights & Key Findings container
     if (!isAboutPage) {
         assert(html.includes('id="key-findings"') || html.includes('class="hero-tldr"') || html.includes('class="tldr"'), `${filePath} contains key-findings/tldr section`);
@@ -117,7 +123,13 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
         // Verify specific schema types
         if (isHomepage) {
             const hasDataCatalog = flatSchemas.some(s => s['@type'] === 'DataCatalog');
+            const hasWebSite = flatSchemas.some(s => s['@type'] === 'WebSite');
             assert(hasDataCatalog, 'Homepage JSON-LD contains DataCatalog');
+            assert(hasWebSite, 'Homepage JSON-LD contains WebSite');
+            assert(html.includes('<title>台灣航空載客率查詢｜航班數據分析</title>'), 'Homepage contains concise search title');
+            assert(html.includes('查詢台灣主要機場與航空公司的月度載客率'), 'Homepage contains human-readable meta description');
+            assert(!html.includes('資料期間 2024年1月至2026年4月，來源為交通部民用航空局'), 'Homepage does not expose incorrect period/source claim');
+            assert(!html.includes('台灣主要航線- 航空公司載客數據儀表板'), 'Homepage no longer uses the old search title');
         } else if (isAboutPage) {
             const hasAboutPage = flatSchemas.some(s => s['@type'] === 'AboutPage');
             assert(hasAboutPage, 'About Page JSON-LD contains AboutPage type');

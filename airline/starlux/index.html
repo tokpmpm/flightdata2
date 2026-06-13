@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星宇航空載客率與航班數據分析儀表板</title>
-    <meta name="description" content="星宇航空載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 11,029,296 人，平均載客率 83.2%。">
+    <title>星宇航空載客率查詢｜航線與座位利用率分析</title>
+    <meta name="description" content="查詢星宇航空月度載客率、執飛航線、座位數與旅客量趨勢，支援比較熱門目的地與座位利用率變化。">
 
     <!-- Favicon -->
     <link rel="icon"
@@ -38,18 +38,29 @@
     <link rel="stylesheet" href="/css/styles.css?v=20260610-v2">
 
     <link rel="canonical" href="https://flightdata2.meshthings.com/airline/starlux/">
-    <meta property="og:title" content="星宇航空載客率與航班數據分析儀表板">
-    <meta property="og:description" content="星宇航空載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 11,029,296 人，平均載客率 83.2%。">
+    <meta name="robots" content="index,follow,max-snippet:180,max-image-preview:large">
+    <meta property="og:title" content="星宇航空載客率查詢｜航線與座位利用率分析">
+    <meta property="og:description" content="查詢星宇航空月度載客率、執飛航線、座位數與旅客量趨勢，支援比較熱門目的地與座位利用率變化。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://flightdata2.meshthings.com/airline/starlux/">
     <meta property="og:image" content="https://flightdata2.meshthings.com/og-card.png">
+    <meta property="og:site_name" content="台灣航空載客率查詢">
+    <meta property="og:locale" content="zh_TW">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="星宇航空載客率查詢｜航線與座位利用率分析">
+    <meta name="twitter:description" content="查詢星宇航空月度載客率、執飛航線、座位數與旅客量趨勢，支援比較熱門目的地與座位利用率變化。">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "星宇航空載客率與航班數據分析儀表板",
-  "description": "星宇航空載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 11,029,296 人，平均載客率 83.2%。",
+  "name": "星宇航空載客率查詢｜航線與座位利用率分析",
+  "description": "查詢星宇航空月度載客率、執飛航線、座位數與旅客量趨勢，支援比較熱門目的地與座位利用率變化。",
   "url": "https://flightdata2.meshthings.com/airline/starlux/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "台灣航空載客率查詢",
+    "alternateName": "MeshThings FlightData",
+    "url": "https://flightdata2.meshthings.com"
+  },
   "about": {
     "@context": "https://schema.org",
     "@type": "Dataset",
@@ -149,7 +160,7 @@
             <div class="header-content">
                 <div class="logo">
                     <span class="logo-icon" aria-hidden="true">✈️</span>
-                    <h1 class="logo-text">台灣航空載客率數據分析</h1>
+                    <h1 class="logo-text">星宇航空載客率查詢</h1>
                     <p class="subtitle">Interactive Passenger Load Factor Dashboard</p>
                 </div>
                 
@@ -217,6 +228,11 @@
                 <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
                 <span style="color: var(--color-text-primary); font-weight: 500;">星宇航空</span>
             </div>
+            <section class="search-summary" id="search-summary" aria-labelledby="search-summary-title">
+                <h2 id="search-summary-title">星宇航空航線載客率摘要</h2>
+                <p>星宇航空頁面提供執飛航線、月度載客率、座位供給、旅客量趨勢與熱門目的地分析，可用來觀察航線需求與座位利用率變化。</p>
+            </section>
+
             <!-- Filters Section -->
             <section class="filters-section">
                 <div class="filters-card">
@@ -578,7 +594,7 @@
             </section>
 
             <!-- Data Table Section -->
-            <section class="table-section">
+            <section class="table-section" data-nosnippet>
                 <div class="table-card">
                     <h2 class="section-title">
                         <span class="icon">📋</span>

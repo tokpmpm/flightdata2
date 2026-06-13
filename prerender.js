@@ -37,6 +37,38 @@ const airlineFullNames = {
 const DEFAULT_START_YEAR = 2024;
 const DEFAULT_START_MONTH = 1;
 
+function buildPageSeo(targetAirport, targetAirline, insightsData, latestYear, latestMonth) {
+    if (targetAirport) {
+        const code = airportCodes[targetAirport].toUpperCase();
+        return {
+            title: `${targetAirport}載客率查詢｜${code} 航班數據分析`,
+            heading: `${targetAirport}載客率查詢`,
+            description: `查詢${targetAirport}月度載客率、航班數、座位數與熱門航線排名，支援依航空公司與目的地查看座位利用率變化。`,
+            summaryTitle: `${targetAirport}航班載客率摘要`,
+            summaryText: `${targetAirport}頁面提供月度載客率、航班數、座位供給、實際旅客量與熱門航線分析，可用來比較各航空公司與目的地航線的座位利用率變化。`
+        };
+    }
+
+    if (targetAirline) {
+        const fullName = airlineFullNames[targetAirline] || targetAirline;
+        return {
+            title: `${fullName}載客率查詢｜航線與座位利用率分析`,
+            heading: `${fullName}載客率查詢`,
+            description: `查詢${fullName}月度載客率、執飛航線、座位數與旅客量趨勢，支援比較熱門目的地與座位利用率變化。`,
+            summaryTitle: `${fullName}航線載客率摘要`,
+            summaryText: `${fullName}頁面提供執飛航線、月度載客率、座位供給、旅客量趨勢與熱門目的地分析，可用來觀察航線需求與座位利用率變化。`
+        };
+    }
+
+    return {
+        title: '台灣航空載客率查詢｜航班數據分析',
+        heading: '台灣航空載客率查詢',
+        description: '查詢台灣主要機場與航空公司的月度載客率、航班數、座位數與熱門航線排名，支援依機場、航點與航空公司快速比較。',
+        summaryTitle: '台灣航空載客率與熱門航線摘要',
+        summaryText: '本頁提供台灣主要機場與航空公司的載客率、航班數、座位供給、旅客量與熱門航線分析，可用來比較不同機場、航點與航空公司的座位利用率變化。'
+    };
+}
+
 /**
  * Helper to aggregate load factor colors
  */
@@ -256,6 +288,12 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             "name": pageTitle,
             "description": pageDesc,
             "url": canonicalUrl,
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "台灣航空載客率查詢",
+                "alternateName": "MeshThings FlightData",
+                "url": SITE_URL
+            },
             "about": datasetSchema
         },
         faqSchema
@@ -267,6 +305,18 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
     
     // 4. DataCatalog (Only on Homepage)
     if (!targetAirport && !targetAirline) {
+        schemas.push({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "台灣航空載客率查詢",
+            "alternateName": [
+                "MeshThings FlightData",
+                "台灣航空載客率數據分析"
+            ],
+            "url": SITE_URL,
+            "inLanguage": "zh-TW"
+        });
+
         const dataCatalog = {
             "@context": "https://schema.org",
             "@type": "DataCatalog",
@@ -394,14 +444,13 @@ function build() {
         const tableHtml = renderStaticTable(filteredRecords);
 
         // Page variables
-        let pageTitle = '台灣主要航線- 航空公司載客數據儀表板 - 外勞芭 AI 招喚工坊';
-        let pageDesc = `台灣航空載客率數據分析，提供起降航班數、總座位數、載客人數統計。累計總旅客人次達 ${insightsData.kpis.totalPassengers.toLocaleString()} 人，平均載客率 ${insightsData.kpis.avgLoadFactor.toFixed(1)}%。`;
+        const seo = buildPageSeo(targetAirport, targetAirline, insightsData, latestYear, latestMonth);
+        let pageTitle = seo.title;
+        let pageDesc = seo.description;
+        let pageHeading = seo.heading;
         let breadcrumbHtml = '';
 
         if (targetAirport) {
-            pageTitle = `${targetAirport}(${airportCodes[targetAirport].toUpperCase()})航空載客率數據分析儀表板`;
-            pageDesc = `${targetAirport}載客率與航班數據分析，包含熱門目的地排行榜、座位利用率年度熱力圖與航空公司市佔率。統計期間累計旅客人次達 ${insightsData.kpis.totalPassengers.toLocaleString()} 人，平均載客率 ${insightsData.kpis.avgLoadFactor.toFixed(1)}%。`;
-            
             breadcrumbHtml = `
             <div class="breadcrumb" style="margin-bottom: var(--space-4); font-size: 0.875rem; color: var(--color-text-secondary);">
                 <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
@@ -409,9 +458,6 @@ function build() {
             </div>`;
         } else if (targetAirline) {
             const fullName = airlineFullNames[targetAirline] || targetAirline;
-            pageTitle = `${fullName}載客率與航班數據分析儀表板`;
-            pageDesc = `${fullName}載客率與航班數據分析，包含執飛航線排名、座位利用率年度熱力圖與載客趨勢分析。統計期間累計旅客人次達 ${insightsData.kpis.totalPassengers.toLocaleString()} 人，平均載客率 ${insightsData.kpis.avgLoadFactor.toFixed(1)}%。`;
-            
             breadcrumbHtml = `
             <div class="breadcrumb" style="margin-bottom: var(--space-4); font-size: 0.875rem; color: var(--color-text-secondary);">
                 <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
@@ -424,17 +470,23 @@ function build() {
         // Inject page metadata
         html = html.replace(/<title>.*?<\/title>/, `<title>${pageTitle}</title>`);
         html = html.replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${pageDesc}">`);
+        html = html.replace(/<h1 class="logo-text">.*?<\/h1>/, `<h1 class="logo-text">${pageHeading}</h1>`);
 
         // Inject Canonical URL & OG Meta Tags
         const canonicalUrl = `${SITE_URL}${relativeUrlPath}`;
         const ogTags = `
     <link rel="canonical" href="${canonicalUrl}">
+    <meta name="robots" content="index,follow,max-snippet:180,max-image-preview:large">
     <meta property="og:title" content="${pageTitle}">
     <meta property="og:description" content="${pageDesc}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${canonicalUrl}">
     <meta property="og:image" content="${SITE_URL}/og-card.png">
-    <meta name="twitter:card" content="summary_large_image">`;
+    <meta property="og:site_name" content="台灣航空載客率查詢">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${pageTitle}">
+    <meta name="twitter:description" content="${pageDesc}">`;
         html = html.replace('</head>', `${ogTags}\n</head>`);
 
         // Inject dynamic JSON-LD schemas
@@ -448,6 +500,15 @@ function build() {
                 `$1\n${breadcrumbHtml}`
             );
         }
+
+        // Replace human-readable search summary before data-heavy sections.
+        html = html.replace(
+            /(<section class="search-summary" id="search-summary" aria-labelledby="search-summary-title">)[\s\S]*?(<\/section>)/,
+            `$1
+                <h2 id="search-summary-title">${seo.summaryTitle}</h2>
+                <p>${seo.summaryText}</p>
+            $2`
+        );
 
         // Replace KPIs
         html = html.replace(
