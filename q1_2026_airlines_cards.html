@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Q1 台灣本土四大航空公司載客率大挑戰 | 社群圖卡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Include html2canvas for card exporting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --bg-light: #f8fafc;
+            --bg-warm: #f1f5f9;
+            --primary-dark: #0f172a;
+            --primary-muted: #475569;
+            --border-light: #cbd5e1;
+            
+            /* Theme Colors for Airlines */
+            --eva-green: #0093d8;
+            --china-blue: #5b21b6;
+            --starlux-gold: #b45309;
+            --tiger-orange: #ea580c;
+            
+            --gold-primary: #d97706;
+            --gold-bg: #fef3c7;
+            
+            --shadow-premium: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            --shadow-inset: inset 0 2px 4px rgba(15, 23, 42, 0.03);
+            
+            /* Premium Sunset Gradient for Card Border (representing day-to-night flight sky) */
+            --card-gradient-border: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #ea580c 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-warm) 100%);
+            color: var(--primary-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.35;
+        }
+
+        header h1 span.accent {
+            background: var(--card-gradient-border);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 8px;
+            display: inline-block;
+        }
+
+        header p {
+            color: var(--primary-muted);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Container holding cards */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Horizontal row for large screens, wrap on smaller */
+        .cards-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 550px;
+            flex-shrink: 0;
+        }
+
+        /* 1:1 Square Card Specs with rounded Sunset Gradient Border */
+        .instagram-card {
+            width: 550px;
+            height: 550px;
+            background: var(--card-gradient-border); /* Gradient Border */
+            border-radius: 30px;
+            padding: 10px; /* Border Width */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        .instagram-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 35px 70px -15px rgba(15, 23, 42, 0.15);
+        }
+
+        /* Inner container that holds the content */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            background-image: 
+                radial-gradient(at 100% 0%, rgba(226, 232, 240, 0.25) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(241, 245, 249, 0.15) 0px, transparent 50%);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        .tag-badge {
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: #f1f5f9;
+            color: var(--primary-dark);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Instagram style slide indicator (1/2, 2/2) */
+        .slide-indicator {
+            background: rgba(15, 23, 42, 0.07);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            line-height: 1.55;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            color: var(--primary-dark);
+        }
+
+        .quiz-title strong {
+            color: #ea580c;
+            background: #fff7ed;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+
+        /* Options list */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option-item {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .option-item:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+
+        .option-item.correct {
+            background: #f0fdf4 !important;
+            border-color: #86efac !important;
+            color: #166534 !important;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.08);
+        }
+        
+        .option-item.correct .option-letter {
+            background: #22c55e !important;
+            color: #ffffff !important;
+            border-color: #22c55e !important;
+        }
+
+        .option-item.incorrect {
+            background: #fef2f2 !important;
+            border-color: #fca5a5 !important;
+            color: #991b1b !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.04);
+        }
+        
+        .option-item.incorrect .option-letter {
+            background: #ef4444 !important;
+            color: #ffffff !important;
+            border-color: #ef4444 !important;
+        }
+
+        .option-item.disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--primary-muted);
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        /* Answer Card Reveal Styles */
+        .answer-card {
+            opacity: 0;
+            transform: translateY(20px);
+            height: 0;
+            max-height: 0;
+            overflow: hidden;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0; /* Clear padding when hidden */
+        }
+
+        .answer-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            height: 550px;
+            max-height: 550px;
+            pointer-events: auto;
+            padding: 10px; /* Keep outer padding for border */
+        }
+
+        .chart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .chart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .chart-label {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            width: 90px;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            height: 20px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            margin: 0 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-inset);
+        }
+
+        .chart-bar {
+            height: 100%;
+            border-radius: 7px;
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chart-bar.winner-highest {
+            background: linear-gradient(90deg, #f97316, #ea580c); /* Tiger orange */
+        }
+        
+        .chart-bar.winner-lowest {
+            background: linear-gradient(90deg, #38bdf8, #0284c7); /* Ocean blue */
+        }
+
+        .chart-bar.normal {
+            background: linear-gradient(90deg, #94a3b8, #64748b); /* Slate */
+        }
+
+        /* Average line overlay */
+        .chart-bar-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 87.33%; /* Average: 87.33% */
+            width: 2px;
+            height: 100%;
+            background: #ef4444;
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        .chart-value {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary-muted);
+            width: 55px;
+            text-align: right;
+        }
+
+        .chart-value.winner-highest {
+            color: #ea580c;
+        }
+
+        .chart-value.winner-lowest {
+            color: #0284c7;
+        }
+
+        .reveal-footer-text {
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: #334155;
+            background: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border-left: 4px solid var(--tiger-orange);
+            border-top: 1px solid rgba(15, 23, 42, 0.02);
+            border-right: 1px solid rgba(15, 23, 42, 0.02);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.02);
+            margin-bottom: 12px;
+        }
+
+        .card-cta-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        
+        .cta-heading {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+        }
+        
+        .cta-desc {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: var(--primary-muted);
+            margin-bottom: 8px;
+        }
+        
+        .card-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            gap: 4px;
+            color: #ea580c;
+            transition: all 0.2s ease;
+        }
+
+        .card-cta-btn:hover {
+            color: #c2410c;
+            transform: translateX(2px);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--primary-muted);
+            border-top: 1.5px solid #f1f5f9;
+            padding-top: 12px;
+            font-weight: 600;
+        }
+
+        .card-footer .source {
+            font-weight: 700;
+        }
+
+        /* Export/Interactive Buttons */
+        .btn-action {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.2);
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #334155;
+            border: 1.5px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        /* Global conversion bottom banner */
+        .global-cta-banner {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 32px;
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: var(--shadow-premium), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .global-cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-gradient-border);
+        }
+
+        .global-cta-banner h2 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+        }
+
+        .global-cta-banner p {
+            color: var(--primary-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-bottom: 24px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 16px 36px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 15px 30px -10px rgba(15, 23, 42, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.35);
+        }
+
+        .cta-button span {
+            margin-left: 6px;
+            transition: transform 0.2s ease;
+        }
+        
+        .cta-button:hover span {
+            transform: translateX(4px);
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 600px) {
+            body {
+                padding: 24px 10px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+
+            .card-wrapper {
+                width: 100%;
+                max-width: 360px;
+                flex-shrink: 1;
+            }
+
+            .instagram-card {
+                width: 100vw;
+                max-width: 360px;
+                height: 360px;
+                max-height: 360px;
+                min-height: 360px;
+                padding: 6px; /* slightly smaller border padding on mobile */
+                border-radius: 18px;
+                flex-shrink: 1;
+            }
+
+            .card-inner {
+                border-radius: 14px;
+                padding: 16px;
+            }
+
+            .answer-card.revealed {
+                height: 360px;
+                max-height: 360px;
+                padding: 6px;
+            }
+
+            .quiz-title {
+                font-size: 0.95rem;
+                line-height: 1.45;
+                margin-bottom: 10px;
+            }
+
+            .option-item {
+                padding: 8px 12px;
+                font-size: 0.78rem;
+                border-radius: 10px;
+                gap: 8px;
+            }
+
+            .option-letter {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+
+            .chart-list {
+                gap: 6px;
+                margin-bottom: 8px;
+            }
+
+            .chart-label {
+                width: 70px;
+                font-size: 0.72rem;
+            }
+
+            .chart-bar-wrapper {
+                height: 14px;
+                margin: 0 6px;
+            }
+
+            .chart-value {
+                width: 45px;
+                font-size: 0.75rem;
+            }
+
+            .reveal-footer-text {
+                font-size: 0.68rem;
+                padding: 6px 10px;
+                margin-bottom: 6px;
+                line-height: 1.35;
+            }
+
+            .card-cta-box {
+                padding: 8px 10px;
+            }
+
+            .cta-heading {
+                font-size: 0.72rem;
+            }
+
+            .cta-desc {
+                font-size: 0.64rem;
+                line-height: 1.3;
+                margin-bottom: 4px;
+            }
+
+            .card-cta-btn {
+                font-size: 0.64rem;
+            }
+
+            .card-footer {
+                font-size: 0.64rem;
+                padding-top: 8px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 360px;
+                gap: 10px;
+            }
+
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 18px;
+                font-size: 0.88rem;
+            }
+
+            .global-cta-banner {
+                padding: 24px 16px;
+                border-radius: 20px;
+            }
+
+            .global-cta-banner h2 {
+                font-size: 1.25rem;
+            }
+
+            .global-cta-banner p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .cta-button {
+                width: 100%;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✈️ 2026 Q1 四大航司 <span class="accent">・</span> 載客率大挑戰</h1>
+        <p>2026 Q1 Taiwan Four Major Airlines Load Factor Challenge</p>
+    </header>
+
+    <div class="cards-container">
+        
+        <div class="cards-row">
+            <!-- COLUMN 1: QUESTION CARD -->
+            <div class="card-wrapper">
+                <div class="instagram-card" id="card-q1">
+                    <div class="card-inner">
+                        <div class="card-header">
+                            <span class="tag-badge">航空數據隨堂考</span>
+                            <span class="slide-indicator">Slide 1 / 2</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="quiz-title">
+                                根據 2026 年 1–3 月民航局統計，在本土<strong>「四大航空公司」</strong>（長榮、華航、星宇、虎航）中，<strong>平均載客率最高（最擠）</strong>與<strong>載客率最低（最空）</strong>的分別是哪兩家？
+                            </div>
+                            <div class="options-grid">
+                                <div class="option-item" onclick="selectOption('A', this)">
+                                    <span class="option-letter">A</span> 最高：台灣虎航 / 最低：長榮航空
+                                </div>
+                                <div class="option-item" onclick="selectOption('B', this)">
+                                    <span class="option-letter">B</span> 最高：星宇航空 / 最低：中華航空
+                                </div>
+                                <div class="option-item" onclick="selectOption('C', this)">
+                                    <span class="option-letter">C</span> 最高：台灣虎航 / 最低：中華航空
+                                </div>
+                                <div class="option-item" onclick="selectOption('D', this)">
+                                    <span class="option-letter">D</span> 最高：星宇航空 / 最低：長榮航空
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="source">資料來源：交通部民用航空局</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-action" onclick="downloadCard('card-q1', '2026_q1_question_card')">
+                        📥 下載問題圖卡 (FB 專用 1:1)
+                    </button>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: ANSWER CARD -->
+            <div class="card-wrapper">
+                <div class="instagram-card answer-card" id="answer-q1">
+                    <div class="card-inner">
+                        <div class="card-header">
+                            <span class="tag-badge" style="background: var(--gold-bg); color: var(--gold-primary);">解答揭密</span>
+                            <span class="slide-indicator">Slide 2 / 2</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="quiz-title" style="margin-bottom: 12px; font-size: 1.15rem;">
+                                正確答案：<span style="color: #ea580c; font-weight: 900;">A) 最高：台灣虎航 / 最低：長榮航空</span>
+                            </div>
+                            
+                            <div class="chart-list">
+                                <!-- Tiger -->
+                                <div class="chart-item">
+                                    <span class="chart-label">台灣虎航 (最擠)</span>
+                                    <div class="chart-bar-wrapper">
+                                        <div class="chart-bar winner-highest" data-width="92.86%"></div>
+                                    </div>
+                                    <span class="chart-value winner-highest">92.86%</span>
+                                </div>
+                                <!-- Starlux -->
+                                <div class="chart-item">
+                                    <span class="chart-label">星宇航空</span>
+                                    <div class="chart-bar-wrapper">
+                                        <div class="chart-bar normal" data-width="88.15%"></div>
+                                    </div>
+                                    <span class="chart-value">88.15%</span>
+                                </div>
+                                <!-- China Airlines -->
+                                <div class="chart-item">
+                                    <span class="chart-label">中華航空</span>
+                                    <div class="chart-bar-wrapper">
+                                        <div class="chart-bar normal" data-width="86.98%"></div>
+                                    </div>
+                                    <span class="chart-value">86.98%</span>
+                                </div>
+                                <!-- EVA Air -->
+                                <div class="chart-item">
+                                    <span class="chart-label">長榮航空 (最寬)</span>
+                                    <div class="chart-bar-wrapper">
+                                        <div class="chart-bar winner-lowest" data-width="86.09%"></div>
+                                    </div>
+                                    <span class="chart-value winner-lowest">86.09%</span>
+                                </div>
+                            </div>
+
+                            <div class="reveal-footer-text">
+                                💡 <strong>數據分析</strong>：虎航以全 A320 窄體客機與高佔比日本航點，高達 <strong>92.86%</strong> 奪冠！長榮則因配備大量寬體機（如 787/777），單班運能龐大，載客率稀釋至 <strong>86.09%</strong> 最舒適！(紅色虛線為四大航司平均載客率：<strong>87.33%</strong>)
+                            </div>
+
+                            <div class="card-cta-box" style="text-align: center; padding: 10px 12px;">
+                                <a href="/insights/2026-taiwan-aviation-market-outlook/" target="_blank" class="card-cta-btn" style="font-size: 0.8rem; justify-content: center; width: 100%;">
+                                    📈 點擊貼文連結，閱讀「2026 台灣航空市場展望」完整報告 ➔
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="source">資料來源：交通部民用航空局</span>
+                            <span style="font-weight: 700;">外勞芭航空數據洞察</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-action" id="btn-download-answer" onclick="downloadCard('answer-q1', '2026_q1_answer_card')" style="display: none;">
+                        📥 下載解答圖卡 (FB 專用 1:1)
+                    </button>
+                    <button class="btn-action btn-secondary" id="btn-preview-answer" onclick="previewAnswer()">
+                        👁️ 預覽解答卡片
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GLOBAL CONVERSION CTA BANNER -->
+    <div class="global-cta-banner">
+        <h2>📊 數據選對航點，出國輕鬆躺平</h2>
+        <p>我們整理了民航局最新出入境與載客率大數據，為你揭密航空市場的真實供需現狀。想了解更多航線分析、市佔比與未來趨勢預測嗎？歡迎點擊下方查看我們的完整大數據分析報告！</p>
+        <a href="/insights/2026-taiwan-aviation-market-outlook/" target="_blank" class="cta-button">
+            🚀 觀看「2026 台灣航空市場洞察」完整報告 <span>➔</span>
+        </a>
+    </div>
+
+    <script>
+        function selectOption(optionLetter, element) {
+            const parentCard = document.getElementById('card-q1');
+            
+            // If already answered, do nothing
+            if (parentCard.classList.contains('answered')) return;
+            parentCard.classList.add('answered');
+
+            const correctOption = 'A';
+            const isCorrect = (optionLetter === correctOption);
+
+            // Disable all options and style them
+            parentCard.querySelectorAll('.option-item').forEach(item => {
+                item.classList.add('disabled');
+                
+                const letter = item.querySelector('.option-letter').textContent.trim();
+                
+                if (letter === optionLetter) {
+                    if (isCorrect) {
+                        item.classList.add('correct');
+                    } else {
+                        item.classList.add('incorrect');
+                    }
+                }
+                
+                if (letter === correctOption && !isCorrect) {
+                    item.classList.add('correct');
+                }
+            });
+
+            // Reveal answer card
+            revealAnswer();
+        }
+
+        function revealAnswer() {
+            const answerCard = document.getElementById('answer-q1');
+            answerCard.classList.add('revealed');
+            
+            // Show the download button for answer card
+            document.getElementById('btn-download-answer').style.display = 'inline-flex';
+            document.getElementById('btn-preview-answer').style.display = 'none';
+
+            // Trigger bar width transitions after display
+            setTimeout(() => {
+                answerCard.querySelectorAll('.chart-bar').forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-width');
+                    bar.style.width = targetWidth;
+                });
+            }, 100);
+
+            // Smoothly scroll to the answer card (aligning center)
+            setTimeout(() => {
+                answerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 150);
+        }
+
+        function previewAnswer() {
+            // Force reveal for screenshot or manual inspection without selecting
+            revealAnswer();
+        }
+
+        function downloadCard(cardId, filename) {
+            const cardElement = document.getElementById(cardId);
+            
+            // Temporary styles to ensure it exports as a perfect 1:1 square image
+            const originalWidth = cardElement.style.width;
+            const originalHeight = cardElement.style.height;
+            const originalTransform = cardElement.style.transform;
+            
+            // Set exact dimensions for export
+            cardElement.style.width = '550px';
+            cardElement.style.height = '550px';
+            cardElement.style.transform = 'none';
+
+            // In case it's the answer card and not yet revealed, we force it to show nicely
+            const isAnswerCard = cardElement.classList.contains('answer-card');
+            let tempRevealed = false;
+            if (isAnswerCard && !cardElement.classList.contains('revealed')) {
+                cardElement.classList.add('revealed');
+                tempRevealed = true;
+                
+                // Set bar widths immediately for capture
+                cardElement.querySelectorAll('.chart-bar').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }
+
+            // Options for html2canvas to ensure highest quality
+            const options = {
+                scale: 3, // High scale for retina/print quality (3x resolution)
+                useCORS: true,
+                backgroundColor: null, // Transparent background to respect border-radius gradient border
+                logging: false,
+                width: 550,
+                height: 550
+            };
+
+            html2canvas(cardElement, options).then(canvas => {
+                // Restore original styles
+                cardElement.style.width = originalWidth;
+                cardElement.style.height = originalHeight;
+                cardElement.style.transform = originalTransform;
+                if (tempRevealed) {
+                    cardElement.classList.remove('revealed');
+                }
+
+                // Trigger file download
+                const link = document.createElement('a');
+                link.download = `${filename}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                console.error("Failed to generate image:", err);
+                alert("生成圖卡失敗，請再試一次。");
+                // Restore styles in case of error
+                cardElement.style.width = originalWidth;
+                cardElement.style.height = originalHeight;
+                cardElement.style.transform = originalTransform;
+                if (tempRevealed) {
+                    cardElement.classList.remove('revealed');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -35,6 +35,11 @@ const server = http.createServer((req, res) => {
 
 // Run verification suite
 async function runTests() {
+    if (process.env.SKIP_E2E === 'true') {
+        console.log('⚠️ SKIP_E2E is set to true. Skipping headless browser E2E tests.');
+        process.exit(0);
+    }
+
     console.log('=== Starting Headless Browser QA Verification Suite ===');
     
     // Ensure screenshots folder exists

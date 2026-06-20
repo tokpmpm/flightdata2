@@ -183,6 +183,28 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             assert(hasBreadcrumbList, `${filePath} JSON-LD contains BreadcrumbList`);
             assert(hasDataset, `${filePath} JSON-LD contains Dataset`);
         }
+
+        // Dataset description 長度與 creator 欄位檢查
+        const datasets = flatSchemas.filter(s => s['@type'] === 'Dataset' || (s['about'] && s['about']['@type'] === 'Dataset'));
+        datasets.forEach(s => {
+            const ds = s['@type'] === 'Dataset' ? s : s['about'];
+            assert(ds.description && ds.description.length >= 50,
+                `${filePath} Dataset "${ds.name}" description >= 50 chars (got ${ds.description?.length || 0})`);
+            assert(ds.creator && ds.creator.name === '交通部民用航空局', `${filePath} Dataset "${ds.name}" has creator "交通部民用航空局"`);
+        });
+
+        // DataCatalog 巢狀 Dataset 完整性
+        if (isHomepage) {
+            const catalog = flatSchemas.find(s => s['@type'] === 'DataCatalog');
+            assert(catalog && Array.isArray(catalog.dataset), 'Homepage has DataCatalog with datasets');
+            if (catalog && catalog.dataset) {
+                catalog.dataset.forEach(ds => {
+                    assert(ds.description && ds.description.length >= 50, `DataCatalog nested Dataset "${ds.name}" description >= 50 chars (got ${ds.description?.length || 0})`);
+                    assert(ds.license === 'https://creativecommons.org/licenses/by/4.0/', `DataCatalog nested Dataset "${ds.name}" has correct license`);
+                    assert(ds.temporalCoverage, `DataCatalog nested Dataset "${ds.name}" has temporalCoverage`);
+                });
+            }
+        }
     }
 }
 

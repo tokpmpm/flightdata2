@@ -147,17 +147,17 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
     
     // 1. Dataset mapping
     let datasetName = '全台主要機場航空載客率數據庫';
-    let datasetDesc = '包含台灣各主要機場起降班次、座位數及載客人數的月度統計數據。';
+    let datasetDesc = '本數據集提供台灣主要機場的航空載客率統計數據，內容包含月度起降航班數、總座位數、實際載客人數與平均載客率。數據適合航空產業趨勢分析、學術研究及數據視覺化使用。';
     let fileCode = 'all';
     
     if (targetAirport) {
         datasetName = `${targetAirport}航空載客率數據庫`;
-        datasetDesc = `包含${targetAirport}起降班次、座位數及載客人數的月度統計數據。`;
+        datasetDesc = `本數據集提供${targetAirport}的航空載客率統計數據，內容包含月度起降航班數、總座位數、實際載客人數與平均載客率。數據適合航空產業趨勢分析、學術研究及數據視覺化使用。`;
         fileCode = `airport-${airportCodes[targetAirport]}`;
     } else if (targetAirline) {
         const fullName = airlineFullNames[targetAirline] || targetAirline;
         datasetName = `${fullName}航空載客率數據庫`;
-        datasetDesc = `包含${fullName}起降班次、座位數及載客人數的月度統計數據。`;
+        datasetDesc = `本數據集提供${fullName}的航空載客率統計數據，內容包含該航空公司在台灣各航線的月度起降航班數、總座位數與實際載客人數。數據適合航空產業趨勢分析使用。`;
         fileCode = `airline-${airlineSlugCodes[targetAirline]}`;
     }
     
@@ -177,8 +177,17 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
         },
         "publisher": {
             "@type": "Organization",
-            "name": "民航局"
+            "name": "交通部民用航空局",
+            "url": "https://www.caa.gov.tw/"
         },
+        "creator": {
+            "@type": "Organization",
+            "name": "交通部民用航空局",
+            "url": "https://www.caa.gov.tw/"
+        },
+        "variableMeasured": ["載客率", "航班數", "總座位數", "載客人數"],
+        "keywords": ["台灣航空", "載客率", "航班數據", "機場統計"],
+        "isAccessibleForFree": true,
         "distribution": [
             {
                 "@type": "DataDownload",
@@ -330,6 +339,9 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             dataCatalog.dataset.push({
                 "@type": "Dataset",
                 "name": `${ap}航空載客率數據庫`,
+                "description": `本數據集提供${ap}的航空載客率統計數據，內容包含月度起降航班數、總座位數、實際載客人數與平均載客率，資料來源為交通部民用航空局。`,
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "temporalCoverage": `${startYM}-01/${latestYM}-01`,
                 "url": `${SITE_URL}/airport/${airportCodes[ap]}/`
             });
         }
@@ -339,6 +351,9 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             dataCatalog.dataset.push({
                 "@type": "Dataset",
                 "name": `${fullName}航空載客率數據庫`,
+                "description": `本數據集提供${fullName}的航空載客率統計數據，內容包含該航空公司在台灣各航線的月度起降航班數、總座位數與實際載客人數，資料來源為交通部民用航空局。`,
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "temporalCoverage": `${startYM}-01/${latestYM}-01`,
                 "url": `${SITE_URL}/airline/${airlineSlugCodes[al]}/`
             });
         }
