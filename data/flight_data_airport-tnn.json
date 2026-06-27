@@ -1,5 +1,29 @@
 [
   {
+    "year": 2025,
+    "month": 12,
+    "yearMonth": "2025-12",
+    "airport": "臺南機場",
+    "destination": "沖繩",
+    "airline": "台灣虎航",
+    "flights": 4,
+    "totalSeats": 720,
+    "passengers": 706,
+    "loadFactor": 98.05555555555556
+  },
+  {
+    "year": 2026,
+    "month": 1,
+    "yearMonth": "2026-01",
+    "airport": "臺南機場",
+    "destination": "沖繩",
+    "airline": "台灣虎航",
+    "flights": 18,
+    "totalSeats": 3240,
+    "passengers": 3223,
+    "loadFactor": 99.47530864197532
+  },
+  {
     "year": 2026,
     "month": 2,
     "yearMonth": "2026-02",
@@ -37,6 +61,42 @@
   },
   {
     "year": 2026,
+    "month": 5,
+    "yearMonth": "2026-05",
+    "airport": "臺南機場",
+    "destination": "沖繩",
+    "airline": "台灣虎航",
+    "flights": 18,
+    "totalSeats": 3240,
+    "passengers": 3243,
+    "loadFactor": 100.0925925925926
+  },
+  {
+    "year": 2025,
+    "month": 12,
+    "yearMonth": "2025-12",
+    "airport": "臺南機場",
+    "destination": "熊本",
+    "airline": "台灣虎航",
+    "flights": 6,
+    "totalSeats": 1080,
+    "passengers": 764,
+    "loadFactor": 70.74074074074073
+  },
+  {
+    "year": 2026,
+    "month": 1,
+    "yearMonth": "2026-01",
+    "airport": "臺南機場",
+    "destination": "熊本",
+    "airline": "台灣虎航",
+    "flights": 18,
+    "totalSeats": 3240,
+    "passengers": 2144,
+    "loadFactor": 66.17283950617285
+  },
+  {
+    "year": 2026,
     "month": 2,
     "yearMonth": "2026-02",
     "airport": "臺南機場",
@@ -70,5 +130,17 @@
     "totalSeats": 2880,
     "passengers": 2128,
     "loadFactor": 73.88888888888889
+  },
+  {
+    "year": 2026,
+    "month": 5,
+    "yearMonth": "2026-05",
+    "airport": "臺南機場",
+    "destination": "熊本",
+    "airline": "台灣虎航",
+    "flights": 18,
+    "totalSeats": 3240,
+    "passengers": 2701,
+    "loadFactor": 83.36419753086419
   }
 ]

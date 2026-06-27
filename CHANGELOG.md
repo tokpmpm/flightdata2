@@ -1,5 +1,65 @@
 # CHANGELOG
 
+## [2026-06-27] 資料修正：補入臺南機場遺漏資料，XLS → JSON 轉換差異歸零
+
+### 問題現狀
+透過 XLS 原始檔與 `flight_data_all.json` 的逐月比對驗算，發現 2025-12 少 10 班次（-1,800 席、-1,470 旅客）、2026-01 少 36 班次（-6,480 席、-5,367 旅客），全期共漏掉 46 班次。
+
+### 根本原因 (Root Cause)
+`process_data.js` 的 `TAB_MAPPING` 只定義了 Sheet `36-1` 到 `36-5`（桃園、高雄、松山、臺中、花蓮），漏掉了 `36-6`（臺南機場）。因此所有含 Sheet `36-6` 的月份，臺南機場的航班在轉換時全部被丟棄。
+
+### 修正方案
+1. `process_data.js` 第 291 行加入 `"36-6": "臺南機場"`
+2. 重跑 `node process_data.js` 重建 `data/flight_data_new.js`
+3. 重跑 `node prerender.js` 重建 `data/flight_data_all.json`（及各分機場/航司 CSV/JSON）
+
+### 驗證結果
+重跑 `node scripts/verify_xls_vs_json.js`，2025-12 與 2026-01 差異均降至 `+0.00%`，全期 29 個月零異常。
+
+---
+
+## [2026-06-27] 數據修正：Insights 頁全面校正為 1-5 月正確數值，並凍結 Insights 頁更新
+
+### 問題現狀
+驗算發現 `insights/2026-taiwan-aviation-market-outlook/index.html` 中大量數字仍是舊的 1-4 月值（未被 `update_report.js` 正確更新），包含：KPI 卡片旅客量（21,616,419 → 應為 26,805,812）、Q3 增量前5名排名錯誤、Q4/Q5/Q6 所有旅客量偏低、Q9 機場數字等。
+
+### 根本原因 (Root Cause)
+`update_report.js` 的正則匹配以「舊版確切數字字串」作為目標，但 5 月資料加入後 HTML 中的數字已更新一次（1-4月值），使原本的正則從此找不到舊值（因為目標已不同）。導致 Q3 表格、Q4、Q5 表格、Q6 表格等全部停在 1-4 月的錯誤值。
+
+### 修正方案
+1. **一次性修正腳本** (`scripts/fix_insights_html.js`)：以 1-5 月資料庫直接計算值，全面替換所有 Q1-Q11 中的舊數字，含 meta/OG/JSON-LD 描述、KPI 卡片、各 Q 的 TLDR 文字、表格數值、chart JS data 陣列。
+2. **凍結 Insights 頁**：重寫 `update_report.js`，移除所有對 Insights 頁的處理。往後 `update_report.js` 只更新首頁 (`index.html`)、主要機場頁 (`airports/`)、主要航空頁 (`airlines/`)。
+
+### 驗證結果
+- 舊數字掃描：0 個殘留（grep 確認）
+- 新數字全部到位：26,805,812 / 84.6% / 279.4萬 / 2,793,740 / 25,106班 / 91.42% 等均已正確
+
+---
+
+## [2026-06-27] 修復：導航下拉選單 hover 體驗 & Q2 折線圖遺漏 5 月數據
+
+### 問題現狀
+1. 「主要機場」與「主要航空」導航下拉選單在 hover 時選項會很快消失，難以點擊。
+2. Q2 載客率趨勢折線圖（yoy-trend-chart）x 軸已標示「5月」但 2025/2026 兩組 data 陣列仍只有 4 個值，導致 5 月沒有數據點。
+
+### 根本原因 (Root Cause)
+1. **下拉選單 CSS 設計缺陷**：使用 `display: none/block` 切換且 `.dropdown-content` 有 `margin-top` 間隙，滑鼠從觸發按鈕移到選單時經過空白區域觸發 `mouseleave`，導致選單瞬間關閉。
+2. **圖表正則匹配過於僵硬**：`update_report.js` 中替換 chart data 的正則使用硬編碼值（如 `88.0`），而 HTML 中實際值為 `88`（無小數點），導致正則不匹配、data 陣列未被更新。labels 雖已被擴展為 5 個月，但數據陣列仍為原始的 4 個值。
+
+### 修正方案
+1. **CSS 下拉選單改為 visibility/opacity 過渡**：
+   - 使用 `visibility: hidden; opacity: 0; pointer-events: none` 取代 `display: none`，搭配 `transition: opacity 0.18s ease, visibility 0.18s ease` 平滑過渡。
+   - 移除 `margin-top` 間隙，改用 `top: 100%; padding-top` 確保選單緊貼觸發按鈕。
+   - 新增 `.nav-dropdown::after` 偽元素作為透明橋接區域（invisible bridge），防止滑鼠滑過間隙時觸發 mouseleave。
+2. **圖表正則改為彈性匹配**：
+   - labels 正則改為 `/(labels:\s*)\[(?:"[^"]*"(?:,\s*"[^"]*")*)\],/g`，匹配任意月份標籤陣列。
+   - data 正則改為 `/(label:\s*'2026 年載客率 \(%\)',\s*data:\s*)\[[^\]]*\],/g`，匹配任意數值陣列（不再限定特定數值），確保腳本可冪等執行。
+
+### 驗證結果
+- `npm run build` SEO 驗證全部通過
+- `node tests/verify_browser_qa.js` 瀏覽器 E2E 測試 17/17 PASS
+- 折線圖確認包含 5 個月數據點：2026 [82.3, 86.4, 88, 84.9, 81.5]、2025 [80.1, 80.9, 79, 80.8, 77.1]
+
 ## [2026-06-20] SEO優化：修復與優化 GSC Dataset 結構化資料
 
 ### 問題現狀

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-13T11:09:32.695Z",
+  "timestamp": "2026-06-27T02:54:51.705Z",
   "results": [
     {
       "id": 1,
@@ -35,13 +35,13 @@
       "id": 8,
       "name": "json_ld_article_headline",
       "status": "PASS",
-      "details": "Headline in JSON-LD Article: \"2026 年 1-4 月台灣航空市場洞察與載客率分析\""
+      "details": "Headline in JSON-LD Article: \"2026 年 1-5 月台灣航空市場洞察與載客率分析\""
     },
     {
       "id": 9,
       "name": "json_ld_dataset_temporal_coverage",
       "status": "PASS",
-      "details": "temporalCoverage in JSON-LD Dataset: \"2026-01/2026-04\""
+      "details": "temporalCoverage in JSON-LD Dataset: \"2026-01/2026-05\""
     },
     {
       "id": 10,
@@ -59,19 +59,19 @@
       "id": 15,
       "name": "json_ld_dates_and_titles",
       "status": "PASS",
-      "details": "JSON-LD Article dates, 2026 1-4 period, and breadcrumb title match the revised page."
+      "details": "JSON-LD Article dates, 2026 1-5 period, and breadcrumb title match the revised page."
     },
     {
       "id": 12,
       "name": "source_scope_check",
       "status": "PASS",
-      "details": "Page body uses requested source wording and 2026-01 to 2026-04 scope without extra source caveats."
+      "details": "Page body uses requested source wording and 2026-01 to 2026-05 scope without extra source caveats."
     },
     {
       "id": 16,
       "name": "q11_source_scope_baseline",
       "status": "PASS",
-      "details": "Q11 states source, 2026 1-4 scope, and 2025 YoY baseline without fixed SLA or 100% completeness claims."
+      "details": "Q11 states source, 2026 1-5 scope, and 2025 YoY baseline without fixed SLA or 100% completeness claims."
     },
     {
       "id": 1,
@@ -101,7 +101,7 @@
       "id": 13,
       "name": "raw_data_file_exists",
       "status": "PASS",
-      "details": "File 'extracted/115年4月.xls' size: 521728 bytes"
+      "details": "File 'extracted/115年5月.xls' size: 524288 bytes"
     }
   ],
   "screenshots": [
