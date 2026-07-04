@@ -1887,3 +1887,32 @@ body {
 .dev-link:hover {
     color: var(--color-primary-light);
 }
+
+/* ── 最後更新時間徽章 (E-E-A-T) ── */
+.update-badge-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: fit-content;
+}
+.update-badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}

@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## [2026-07-04] 第一期網頁優化與 SEO 提升：新鮮度 Badge、時效性 Title/Meta 與獨立 Dataset Schema
+
+### 問題現狀
+網站缺乏 Dataset 結構化資料、Title 與 Meta Description 缺乏時效性資訊、Footer 年份不一致（首頁寫 2025、子頁面寫 2026），且缺乏 E-E-A-T 新鮮度訊號，不利於搜尋引擎爬蟲（如 Google Dataset Search）收錄以及使用者的點擊率 (CTR)。
+
+### 根本原因 (Root Cause)
+1. `generateJsonLd` 原本將 `Dataset` 結構化資料嵌套於 `WebPage.about` 屬性中，非獨立的 JSON-LD 物件，不易被 Dataset crawler 直接索引。
+2. `buildPageSeo` 所配置的 Title 及 Description 均為靜態字串，未帶入最新數據年月資訊。
+3. Footer 年份原先在模板為手動維護的靜態字串，且 Header 部分缺乏明確顯示「數據最新更新年月」的 UI 徽章。
+
+### 修正方案
+1. **結構化資料優化**：修改 `prerender.js` 裡的 `generateJsonLd` 方法，將 `datasetSchema` 提升為 JSON-LD schemas 陣列的最外層，使其輸出成獨立的 `<script type="application/ld+json">`。
+2. **Title & Meta Description 時效性**：修改 `prerender.js` 中的 `buildPageSeo`，將動態傳入的 `latestYear` 與 `latestMonth` 格式化，注入到所有頁面的 Title 與 Description 中（例如首頁的 `2026年最新航班數據分析 (更新至5月)`）。
+3. **最後更新 Badge & Footer 統一**：
+   - 修改 `template.html` 在 Header Logo 區塊內新增 `.update-badge-container` 結構。
+   - 在 `css/styles.css` 結尾處追加相關徽章的 CSS，包含綠色動態呼吸點點 (`.update-badge-dot`)。
+   - 修改 `prerender.js` 的 `build` 流程，在編譯時將 `<span id="header-update-time">` 替換為最新年月，並把 `footer-year` 統一替換為當前年份 (2026)。
+4. 執行 `node prerender.js` 重新生成所有靜態頁面。
+
+### 驗證結果
+- **測試驗證**：建立並執行臨時驗證腳本 `verify_seo_first_phase.js`，結果顯示：
+  1. 首頁與子頁面皆成功注入獨立的 `Dataset` schema。
+  2. 頁面 Title 與 Meta Description 均帶有 `2026` 且更新至 `5月` 的時效性字串。
+  3. Header 的最後更新時間 Badge 存在且正確填寫了 `2026年05月`。
+  4. Footer 年份皆統一為 `2026`。
+- **清潔**：驗證通過後，已刪除工作區內的臨時測試腳本，保持工作區整潔。
+
+---
+
 ## [2026-07-03] GA4 Measurement ID 替換：flightdata2 獨立 Property 上線
 
 ### 問題現狀

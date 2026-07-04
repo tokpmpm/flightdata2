@@ -38,34 +38,37 @@ const DEFAULT_START_YEAR = 2024;
 const DEFAULT_START_MONTH = 1;
 
 function buildPageSeo(targetAirport, targetAirline, insightsData, latestYear, latestMonth) {
+    const formattedMonth = String(latestMonth).padStart(2, '0');
+    const timeLabel = `${latestYear}年${formattedMonth}月`;
+
     if (targetAirport) {
         const code = airportCodes[targetAirport].toUpperCase();
         return {
-            title: `${targetAirport}載客率查詢｜${code} 航班數據分析`,
+            title: `${targetAirport}載客率查詢｜${latestYear}年最新數據 (更新至${latestMonth}月)｜${code} 航班分析`,
             heading: `${targetAirport}載客率查詢`,
-            description: `查詢${targetAirport}月度載客率、航班數、座位數與熱門航線排名，支援依航空公司與目的地查看座位利用率變化。`,
-            summaryTitle: `${targetAirport}航班載客率摘要`,
-            summaryText: `${targetAirport}頁面提供月度載客率、航班數、座位供給、實際旅客量與熱門航線分析，可用來比較各航空公司與目的地航線的座位利用率變化。`
+            description: `【${latestYear}最新數據】查詢${targetAirport}月度載客率、航班數、座位數與熱門航線排名，數據更新至${timeLabel}。支援依航空公司與目的地分析座位利用率。`,
+            summaryTitle: `${targetAirport}航班載客率摘要 (${timeLabel}更新)`,
+            summaryText: `${targetAirport}頁面提供月度載客率、航班數、座位供給、實際旅客量與熱門航線分析，已更新至${timeLabel}最新民航局開放資料。`
         };
     }
 
     if (targetAirline) {
         const fullName = airlineFullNames[targetAirline] || targetAirline;
         return {
-            title: `${fullName}載客率查詢｜航線與座位利用率分析`,
+            title: `${fullName}載客率查詢｜${latestYear}年最新數據 (更新至${latestMonth}月)｜航班載客率分析`,
             heading: `${fullName}載客率查詢`,
-            description: `查詢${fullName}月度載客率、執飛航線、座位數與旅客量趨勢，支援比較熱門目的地與座位利用率變化。`,
-            summaryTitle: `${fullName}航線載客率摘要`,
-            summaryText: `${fullName}頁面提供執飛航線、月度載客率、座位供給、旅客量趨勢與熱門目的地分析，可用來觀察航線需求與座位利用率變化。`
+            description: `【${latestYear}最新數據】查詢${fullName}月度載客率、執飛航線、座位數與旅客量趨勢，數據更新至${timeLabel}。支援熱門目的地與座位利用率比較。`,
+            summaryTitle: `${fullName}航線載客率摘要 (${timeLabel}更新)`,
+            summaryText: `${fullName}頁面提供執飛航線、月度載客率、座位供給、旅客量趨勢與熱門目的地分析，已更新至${timeLabel}最新數據。`
         };
     }
 
     return {
-        title: '台灣航空載客率查詢｜航班數據分析',
+        title: `台灣航空載客率查詢｜${latestYear}年最新航班數據分析 (更新至${latestMonth}月)`,
         heading: '台灣航空載客率查詢',
-        description: '查詢台灣主要機場與航空公司的月度載客率、航班數、座位數與熱門航線排名，支援依機場、航點與航空公司快速比較。',
-        summaryTitle: '台灣航空載客率與熱門航線摘要',
-        summaryText: '本頁提供台灣主要機場與航空公司的載客率、航班數、座位供給、旅客量與熱門航線分析，可用來比較不同機場、航點與航空公司的座位利用率變化。'
+        description: `【${latestYear}最新數據】查詢台灣主要機場與航空公司的月度載客率、航班數、座位數與熱門航線排名，數據更新至${timeLabel}，適合航空趨勢分析。`,
+        summaryTitle: `台灣航空載客率與熱門航線摘要 (${timeLabel}更新)`,
+        summaryText: `本頁提供台灣主要機場與航空公司的載客率、航班數、座位供給、旅客量與熱門航線分析，已更新至${timeLabel}最新數據，支援快速比較座位利用率。`
     };
 }
 
@@ -291,6 +294,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
     }
 
     const schemas = [
+        datasetSchema,
         {
             "@context": "https://schema.org",
             "@type": "WebPage",
@@ -302,8 +306,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
                 "name": "台灣航空載客率查詢",
                 "alternateName": "MeshThings FlightData",
                 "url": SITE_URL
-            },
-            "about": datasetSchema
+            }
         },
         faqSchema
     ];
@@ -574,6 +577,12 @@ function build() {
         // Update data quality details
         const latestDateStr = `${latestYear}-${String(latestMonth).padStart(2, '0')}-01`;
         html = html.replace(/<dd id="dq-update-time">[\s\S]*?<\/dd>/, `<dd id="dq-update-time"><time datetime="${latestDateStr}">${latestYear}年${latestMonth}月</time></dd>`);
+
+        // Update header update time badge (E-E-A-T)
+        html = html.replace(/<span id="header-update-time">.*?<\/span>/, `<span id="header-update-time">${latestYear}年${String(latestMonth).padStart(2, '0')}月</span>`);
+
+        // Uniform footer year
+        html = html.replace(/<span id="footer-year">.*?<\/span>/g, `<span id="footer-year">${new Date().getFullYear()}</span>`);
 
         // Save output file
         const dir = path.dirname(outputFilePath);

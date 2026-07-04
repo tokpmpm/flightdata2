@@ -126,7 +126,7 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             const hasWebSite = flatSchemas.some(s => s['@type'] === 'WebSite');
             assert(hasDataCatalog, 'Homepage JSON-LD contains DataCatalog');
             assert(hasWebSite, 'Homepage JSON-LD contains WebSite');
-            assert(html.includes('<title>台灣航空載客率查詢｜航班數據分析</title>'), 'Homepage contains concise search title');
+            assert(html.includes('台灣航空載客率查詢') && html.includes('最新航班數據分析'), 'Homepage contains concise search title');
             assert(html.includes('查詢台灣主要機場與航空公司的月度載客率'), 'Homepage contains human-readable meta description');
             assert(!html.includes('資料期間 2024年1月至2026年4月，來源為交通部民用航空局'), 'Homepage does not expose incorrect period/source claim');
             assert(!html.includes('台灣主要航線- 航空公司載客數據儀表板'), 'Homepage no longer uses the old search title');
