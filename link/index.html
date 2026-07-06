@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯盟網自訂導購連結生成器 v2.0</title>
+  <!-- 載入現代化字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 設計系統與變數 */
+    :root {
+      --bg-dark: #090a0f;
+      --bg-card: rgba(18, 20, 29, 0.65);
+      --bg-card-hover: rgba(26, 29, 43, 0.8);
+      --primary: #8b5cf6;
+      --primary-glow: rgba(139, 92, 246, 0.3);
+      --secondary: #3b82f6;
+      --secondary-glow: rgba(59, 130, 246, 0.3);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.3);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(139, 92, 246, 0.5);
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
+      background-attachment: fixed;
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* 頂部裝飾與 Header */
+    header {
+      max-width: 1200px;
+      margin: 0 auto 2rem auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .title-area h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-area p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .badge-status {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 8px var(--accent); }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    /* 主配置佈局 */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1.8fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 968px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 卡片通用樣式 (Glassmorphism) */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-fast);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff;
+      border-left: 4px solid var(--primary);
+      padding-left: 0.6rem;
+    }
+
+    /* 表單元件 */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group.row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .input-container {
+      position: relative;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 12px var(--primary-glow);
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .input-icon-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .input-icon-btn:hover {
+      color: var(--text-main);
+    }
+
+    /* 搜尋與選擇器 */
+    .brand-search-box {
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-list-wrapper {
+      max-height: 180px;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.35rem;
+    }
+
+    /* 隱藏原生卷軸，使用好看的樣式 */
+    .brand-list-wrapper::-webkit-scrollbar,
+    textarea::-webkit-scrollbar,
+    .results-table-container::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .brand-list-wrapper::-webkit-scrollbar-thumb,
+    textarea::-webkit-scrollbar-thumb,
+    .results-table-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+    .brand-list-wrapper::-webkit-scrollbar-track,
+    textarea::-webkit-scrollbar-track,
+    .results-table-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .brand-item {
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-fast);
+      margin-bottom: 2px;
+    }
+
+    .brand-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+
+    .brand-item.active {
+      background: linear-gradient(90deg, rgba(139, 92, 246, 0.25), rgba(59, 130, 246, 0.15));
+      border-left: 3px solid var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .brand-id {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .brand-item.active .brand-id {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* 折疊面版 */
+    .collapse-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition-fast);
+    }
+    .collapse-header:hover {
+      color: var(--text-main);
+    }
+    .collapse-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .collapse-content.open {
+      max-height: 500px;
+    }
+
+    /* 按鈕樣式 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      border: 1px solid transparent;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* 處理中動畫 */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* 結果區與表格 */
+    .results-area {
+      grid-column: 1 / -1;
+    }
+
+    .results-header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-small {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      width: auto;
+    }
+
+    .results-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .url-cell {
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    .deeplink-cell {
+      max-width: 350px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #a78bfa;
+      font-family: monospace;
+      font-weight: 500;
+    }
+
+    .copy-inline-btn {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #c084fc;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-family: inherit;
+      transition: var(--transition-fast);
+    }
+
+    .copy-inline-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .empty-state {
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .empty-icon {
+      font-size: 2rem;
+      opacity: 0.5;
+    }
+
+    /* 浮動通知 (Toast) */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background: rgba(18, 20, 29, 0.9);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .toast.success {
+      border-left: 4px solid var(--accent);
+    }
+    
+    .toast.error {
+      border-left: 4px solid #ef4444;
+    }
+
+    @keyframes slideUp {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* 歷史紀錄區 */
+    .history-section {
+      grid-column: 1 / -1;
+      margin-top: 1rem;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.50rem;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .history-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.6rem 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .history-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .history-tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+
+    .history-url {
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-actions {
+      display: flex;
+      gap: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-area">
+      <div class="logo-icon">🚀</div>
+      <div class="title-area">
+        <h1>自訂商品導購推廣連結生成器</h1>
+        <p>Affiliates.One Deep Link Engine v2.0</p>
+      </div>
+    </div>
+    <div class="badge-status">
+      <div class="badge-dot"></div>
+      API Proxy 聯網狀態正常
+    </div>
+  </header>
+
+  <main>
+    <!-- 左側參數配置面板 -->
+    <section class="glass-card">
+      <h2 class="card-title">⚙️ 參數設定</h2>
+      
+      <!-- API Key -->
+      <div class="form-group">
+        <label for="api-key-input">API 金鑰 (API Key)</label>
+        <div class="input-container">
+          <input type="password" id="api-key-input" placeholder="請輸入您的 API 金鑰">
+          <button type="button" class="input-icon-btn" id="toggle-api-key" title="顯示/隱藏金鑰">👁️</button>
+        </div>
+      </div>
+
+      <!-- 品牌選擇搜尋 -->
+      <div class="form-group">
+        <label>選擇品牌 / 電商 (自動帶入 Offer ID)</label>
+        <input type="text" id="brand-search" class="brand-search-box" placeholder="🔍 搜尋品牌名稱，如: 酷澎, 雄獅...">
+        <div class="brand-list-wrapper" id="brand-list">
+          <!-- JS 動態插入 -->
+        </div>
+      </div>
+
+      <!-- Offer ID 手動輸入/確認 -->
+      <div class="form-group">
+        <label for="offer-id-input">品牌電商編號 (Offer ID)</label>
+        <input type="text" id="offer-id-input" placeholder="請輸入或選擇品牌" readonly style="opacity: 0.8; background: rgba(0,0,0,0.4)">
+      </div>
+
+      <!-- 進階追蹤參數 (折疊式) -->
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <div class="collapse-header" id="collapse-btn">
+          <span>🎯 進階追蹤參數 (選填)</span>
+          <span id="collapse-arrow">▼</span>
+        </div>
+        <div class="collapse-content" id="collapse-panel">
+          <div style="padding-top: 0.75rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <div>
+              <label for="aff-uniq-id-input">主追蹤碼 (aff_uniq_id)</label>
+              <input type="text" id="aff-uniq-id-input" placeholder="例如: mytracking">
+            </div>
+            <div class="form-group row">
+              <div>
+                <label for="subid-1-input">Sub ID 1</label>
+                <input type="text" id="subid-1-input" placeholder="例如: fb_post">
+              </div>
+              <div>
+                <label for="subid-2-input">Sub ID 2</label>
+                <input type="text" id="subid-2-input" placeholder="例如: article_1">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div>
+                <label for="subid-3-input">Sub ID 3</label>
+                <input type="text" id="subid-3-input">
+              </div>
+              <div>
+                <label for="subid-4-input">Sub ID 4</label>
+                <input type="text" id="subid-4-input">
+              </div>
+            </div>
+            <div>
+              <label for="subid-5-input">Sub ID 5</label>
+              <input type="text" id="subid-5-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右側目標網址與操作面板 -->
+    <section class="glass-card">
+      <h2 class="card-title">🔗 目標網址輸入 (批次生成，上限 50 組)</h2>
+      
+      <div class="form-group" style="height: calc(100% - 95px); display: flex; flex-direction: column;">
+        <label for="urls-input" style="display: flex; justify-content: space-between;">
+          <span>輸入商品原址 (一行一個目標網址)</span>
+          <span id="url-counter" style="font-weight: 600;">0 / 50</span>
+        </label>
+        <textarea id="urls-input" placeholder="貼上您想推廣的特定商品網址，例如：&#10;https://www.coupang.com.tw/products/123456&#10;https://www.coupang.com.tw/products/789012" style="flex-grow: 1; min-height: 250px; resize: none; font-family: monospace; font-size: 0.85rem; line-height: 1.6;"></textarea>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <button class="btn btn-primary" id="generate-btn">
+          <span class="spinner" id="btn-spinner"></span>
+          <span id="btn-text">⚡ 批次生成自訂推廣連結</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 下方結果展示區 -->
+    <section class="glass-card results-area" id="results-section">
+      <div class="results-header-actions">
+        <h2 class="card-title" style="margin-bottom: 0;">📊 生成結果</h2>
+        <div class="action-group" id="results-actions" style="display: none;">
+          <button class="btn btn-secondary btn-small" id="copy-markdown-btn">📋 複製 Markdown 格式</button>
+          <button class="btn btn-secondary btn-small" id="copy-all-btn">📋 複製所有連結</button>
+          <button class="btn btn-secondary btn-small" id="clear-results-btn" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2);">🧹 清空結果</button>
+        </div>
+      </div>
+
+      <div class="results-table-container">
+        <table id="results-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">索引</th>
+              <th>目標商品原網址</th>
+              <th>推廣連結 (Deeplink URL)</th>
+              <th style="width: 100px; text-align: center;">操作</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+            <!-- 預設空狀態 -->
+            <tr id="empty-row">
+              <td colspan="4">
+                <div class="empty-state">
+                  <span class="empty-icon">🔌</span>
+                  <strong>尚未生成任何連結</strong>
+                  <span>請在上方輸入金鑰、選擇品牌與填寫目標網址後點擊生成。</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 本地歷史紀錄區 -->
+    <section class="glass-card history-section">
+      <h2 class="card-title">📜 本地最近生成紀錄</h2>
+      <div class="history-list" id="history-container">
+        <!-- 歷史紀錄項目 -->
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script>
+    // 內建的 32 個品牌/電商資料
+    const BRANDS = [
+      { id: "6434", name: "Coupang 酷澎 臺灣", category: "宅配美食, 居家家電, 電子商城" },
+      { id: "6660", name: "CapCut", category: "雲端工具, APP 軟體" },
+      { id: "6538", name: "Acer Store 臺灣", category: "電腦週邊" },
+      { id: "2950", name: "AirAsia Travel", category: "旅遊度假, 機票住宿" },
+      { id: "2154", name: "Yahoo 購物中心 臺灣", category: "電子商城" },
+      { id: "4505", name: "ANKER 臺灣", category: "3C電子產品" },
+      { id: "5968", name: "Agoda 訂房網 大中華區", category: "機票住宿, 旅遊訂房" },
+      { id: "1736", name: "Weider 威德 臺灣", category: "保健食品｜益生菌" },
+      { id: "1365", name: "悠活原力 YohoPower 臺灣", category: "保健食品" },
+      { id: "5689", name: "旅天下 臺灣", category: "旅遊度假, 機票住宿" },
+      { id: "2684", name: "東南旅遊 臺灣", category: "旅遊度假, 機票住宿" },
+      { id: "5376", name: "Lion Travel 雄獅旅遊 臺灣", category: "機票住宿, 旅遊度假" },
+      { id: "3423", name: "Marriott Homes & Villas 萬豪國際", category: "旅遊度假, 住宿" },
+      { id: "1610", name: "Lenovo 聯想電腦 臺灣", category: "電腦購物網站" },
+      { id: "3805", name: "FunNow", category: "即時預訂餐廳, 住宿, 門票" },
+      { id: "2653", name: "funcare 船井生醫購物網", category: "保健食品, 美容保養" },
+      { id: "1727", name: "Travelocity 旅遊網", category: "旅遊度假, 機票住宿" },
+      { id: "2906", name: "Hahow 好學校", category: "線上課程平台" },
+      { id: "1082", name: "GoDaddy 域名註冊", category: "雲端工具, 網域" },
+      { id: "2226", name: "Trip.com", category: "機票住宿, 旅遊度假" },
+      { id: "2366", name: "Rakuten 樂天旅遊 (分潤獎金)", category: "旅遊度假, 機票住宿" },
+      { id: "1796", name: "Hotels.com 亞洲 (分潤獎金)", category: "旅遊度假, 機票住宿" },
+      { id: "2533", name: "AeroBile 翔翼通訊", category: "SIM卡, Wi-Fi機" },
+      { id: "2525", name: "Uber Eats 優食 臺灣", category: "美食外送" },
+      { id: "1313", name: "trivago 飯店搜尋引擎 亞太地區", category: "旅遊訂房" },
+      { id: "1418", name: "Best Buy 百思買", category: "3C家電購物網站" },
+      { id: "1481", name: "CheapOAir 便宜機票", category: "機票訂購網站" },
+      { id: "2148", name: "Agoda 訂房網 東南亞", category: "機票住宿, 旅遊訂房" },
+      { id: "2169", name: "Booking.com 繽客 (亞太地區)", category: "機票住宿, 旅遊訂房" },
+      { id: "1809", name: "KKday 旅遊體驗平台", category: "自由行, 旅遊周邊, 票券" },
+      { id: "2494", name: "IHG 洲際酒店集團", category: "預訂假期住宿" },
+      { id: "2328", name: "KLOOK 客路", category: "旅遊活動, 門票, 訂房" }
+    ];
+
+    // 預設與狀態管理
+    const DEFAULT_API_KEY = "ce215512ced21900a92d00f2e7a0e9f1";
+    let activeOfferId = "";
+    let activeBrandName = "";
+    let generatedLinks = [];
+
+    // DOM 元素獲取
+    const apiKeyInput = document.getElementById('api-key-input');
+    const toggleApiKeyBtn = document.getElementById('toggle-api-key');
+    const brandSearchInput = document.getElementById('brand-search');
+    const brandListContainer = document.getElementById('brand-list');
+    const offerIdInput = document.getElementById('offer-id-input');
+    const collapseBtn = document.getElementById('collapse-btn');
+    const collapsePanel = document.getElementById('collapse-panel');
+    const collapseArrow = document.getElementById('collapse-arrow');
+    const urlsInput = document.getElementById('urls-input');
+    const urlCounter = document.getElementById('url-counter');
+    const generateBtn = document.getElementById('generate-btn');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const btnText = document.getElementById('btn-text');
+    const resultsBody = document.getElementById('results-body');
+    const resultsActions = document.getElementById('results-actions');
+    const copyAllBtn = document.getElementById('copy-all-btn');
+    const copyMarkdownBtn = document.getElementById('copy-markdown-btn');
+    const clearResultsBtn = document.getElementById('clear-results-btn');
+    const historyContainer = document.getElementById('history-container');
+
+    // 初始化設定
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. 初始化 API Key
+      const savedApiKey = localStorage.getItem('affiliate_api_key');
+      apiKeyInput.value = savedApiKey || DEFAULT_API_KEY;
+
+      // 2. 載入並渲染品牌列表
+      renderBrands(BRANDS);
+
+      // 3. 綁定品牌搜尋過濾
+      brandSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const filtered = BRANDS.filter(b => 
+          b.name.toLowerCase().includes(query) || 
+          b.id.includes(query) ||
+          b.category.toLowerCase().includes(query)
+        );
+        renderBrands(filtered);
+      });
+
+      // 4. 監聽 API Key 修改存入 localStorage
+      apiKeyInput.addEventListener('change', (e) => {
+        localStorage.setItem('affiliate_api_key', e.target.value.trim());
+        showToast('API 金鑰已更新並存於本地', 'success');
+      });
+
+      // 5. API Key 顯示/隱藏切換
+      toggleApiKeyBtn.addEventListener('click', () => {
+        if (apiKeyInput.type === 'password') {
+          apiKeyInput.type = 'text';
+          toggleApiKeyBtn.textContent = '🔒';
+        } else {
+          apiKeyInput.type = 'password';
+          toggleApiKeyBtn.textContent = '👁️';
+        }
+      });
+
+      // 6. 折疊面板切換
+      collapseBtn.addEventListener('click', () => {
+        collapsePanel.classList.toggle('open');
+        collapseArrow.textContent = collapsePanel.classList.contains('open') ? '▲' : '▼';
+      });
+
+      // 7. 監聽目標網址字數與行數
+      urlsInput.addEventListener('input', updateUrlCount);
+
+      // 8. 生成按鈕綁定
+      generateBtn.addEventListener('click', generateDeepLinks);
+
+      // 9. 結果操作按鈕綁定
+      copyAllBtn.addEventListener('click', copyAllLinks);
+      copyMarkdownBtn.addEventListener('click', copyLinksAsMarkdown);
+      clearResultsBtn.addEventListener('click', clearResults);
+
+      // 10. 載入歷史紀錄
+      renderHistory();
+    });
+
+    // 渲染品牌列表
+    function renderBrands(brandsList) {
+      brandListContainer.innerHTML = '';
+      if (brandsList.length === 0) {
+        brandListContainer.innerHTML = '<div style="padding: 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">找不到匹配的品牌</div>';
+        return;
+      }
+
+      brandsList.forEach(brand => {
+        const item = document.createElement('div');
+        item.className = 'brand-item';
+        if (brand.id === activeOfferId) {
+          item.classList.add('active');
+        }
+
+        item.innerHTML = `
+          <span>${brand.name}</span>
+          <span class="brand-id">${brand.id}</span>
+        `;
+
+        item.addEventListener('click', () => {
+          // 清除舊的 active
+          document.querySelectorAll('.brand-item').forEach(el => el.classList.remove('active'));
+          item.classList.add('active');
+          
+          activeOfferId = brand.id;
+          activeBrandName = brand.name;
+          offerIdInput.value = `${brand.name} (${brand.id})`;
+          showToast(`已選擇品牌：${brand.name}`, 'success');
+        });
+
+        brandListContainer.appendChild(item);
+      });
+    }
+
+    // 更新 URL 行數計算
+    function updateUrlCount() {
+      const urls = getUrlsArray();
+      urlCounter.textContent = `${urls.length} / 50`;
+      if (urls.length > 50) {
+        urlCounter.style.color = '#ef4444';
+      } else {
+        urlCounter.style.color = 'var(--text-main)';
+      }
+    }
+
+    // 取得乾淨的網址陣列
+    function getUrlsArray() {
+      return urlsInput.value
+        .split('\n')
+        .map(u => u.trim())
+        .filter(u => u.length > 0 && u.startsWith('http'));
+    }
+
+    // 發送請求並生成深連結
+    async function generateDeepLinks() {
+      const apiKey = apiKeyInput.value.trim();
+      const urls = getUrlsArray();
+
+      if (!apiKey) {
+        showToast('請輸入 API 金鑰', 'error');
+        return;
+      }
+      if (!activeOfferId) {
+        showToast('請選擇一個品牌電商 (Offer ID)', 'error');
+        return;
+      }
+      if (urls.length === 0) {
+        showToast('請在右側貼上至少一個有效的目標商品網址 (必須以 http/https 開頭)', 'error');
+        return;
+      }
+      if (urls.length > 50) {
+        showToast('單次請求上限為 50 組連結，請減少輸入行數', 'error');
+        return;
+      }
+
+      // 進階參數
+      const aff_uniq_id = document.getElementById('aff-uniq-id-input').value.trim();
+      const subid_1 = document.getElementById('subid-1-input').value.trim();
+      const subid_2 = document.getElementById('subid-2-input').value.trim();
+      const subid_3 = document.getElementById('subid-3-input').value.trim();
+      const subid_4 = document.getElementById('subid-4-input').value.trim();
+      const subid_5 = document.getElementById('subid-5-input').value.trim();
+
+      // UI 轉為 Loading 狀態
+      setLoading(true);
+
+      // 構建請求 JSON
+      const requestData = urls.map(target_url => {
+        const item = { target_url };
+        if (aff_uniq_id) item.aff_uniq_id = aff_uniq_id;
+        if (subid_1) item.subid_1 = subid_1;
+        if (subid_2) item.subid_2 = subid_2;
+        if (subid_3) item.subid_3 = subid_3;
+        if (subid_4) item.subid_4 = subid_4;
+        if (subid_5) item.subid_5 = subid_5;
+        return item;
+      });
+
+      try {
+        // 發送到 Vercel Serverless Function Proxy
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            api_key: apiKey,
+            offer_id: activeOfferId,
+            data: requestData
+          })
+        });
+
+        const resJson = await response.json();
+
+        if (!response.ok) {
+          throw new Error(resJson.error || resJson.message || `請求失敗，狀態碼 ${response.status}`);
+        }
+
+        if (resJson.data && Array.isArray(resJson.data)) {
+          // 成功取得資料
+          generatedLinks = resJson.data.map(item => {
+            // 由於 API 會返還與請求相同索引的物件，我們將原始網址對照回來
+            const origUrl = urls[item.index] || '未知原始網址';
+            return {
+              index: item.index,
+              original_url: origUrl,
+              deeplink_url: item.deeplink_url
+            };
+          });
+
+          renderResults(generatedLinks);
+          saveToHistory(activeBrandName || activeOfferId, generatedLinks);
+          showToast(`成功生成 ${generatedLinks.length} 筆導購推廣連結！`, 'success');
+        } else {
+          throw new Error('API 回應格式異常，找不到 data 陣列。');
+        }
+
+      } catch (err) {
+        console.error(err);
+        showToast(err.message || '生成失敗，請確認 API Key 與網路連線。', 'error');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    // 設定 Loading 狀態
+    function setLoading(isLoading) {
+      if (isLoading) {
+        generateBtn.disabled = true;
+        btnSpinner.style.display = 'inline-block';
+        btnText.textContent = '正在呼叫 API 處理中...';
+      } else {
+        generateBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnText.textContent = '⚡ 批次生成自訂推廣連結';
+      }
+    }
+
+    // 渲染生成結果
+    function renderResults(links) {
+      resultsBody.innerHTML = '';
+      if (links.length === 0) {
+        resultsBody.innerHTML = `
+          <tr id="empty-row">
+            <td colspan="4">
+              <div class="empty-state">
+                <span class="empty-icon">🔌</span>
+                <strong>尚未生成任何連結</strong>
+                <span>請在上方輸入金鑰、選擇品牌與填寫目標網址後點擊生成。</span>
+              </div>
+            </td>
+          </tr>
+        `;
+        resultsActions.style.display = 'none';
+        return;
+      }
+
+      links.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td style="font-family: monospace; font-weight: bold; text-align: center; color: var(--text-muted);">${item.index + 1}</td>
+          <td class="url-cell" title="${item.original_url}">${item.original_url}</td>
+          <td class="deeplink-cell" title="${item.deeplink_url}">${item.deeplink_url}</td>
+          <td style="text-align: center;">
+            <button class="copy-inline-btn" onclick="copyToClipboard('${item.deeplink_url}')">📋 複製</button>
+          </td>
+        `;
+        resultsBody.appendChild(row);
+      });
+
+      resultsActions.style.display = 'flex';
+    }
+
+    // 清空結果
+    function clearResults() {
+      generatedLinks = [];
+      renderResults([]);
+      showToast('結果已清空', 'success');
+    }
+
+    // 一鍵複製所有推廣連結
+    function copyAllLinks() {
+      if (generatedLinks.length === 0) return;
+      const text = generatedLinks.map(item => item.deeplink_url).join('\n');
+      copyToClipboard(text, '所有推廣網址複製成功！');
+    }
+
+    // 一鍵複製為 Markdown 格式
+    function copyLinksAsMarkdown() {
+      if (generatedLinks.length === 0) return;
+      const text = generatedLinks.map((item, idx) => `[推廣商品 ${idx + 1}](${item.deeplink_url})`).join('\n');
+      copyToClipboard(text, 'Markdown 格式複製成功！');
+    }
+
+    // 複製到剪貼簿通用函數
+    function copyToClipboard(text, successMessage = '複製成功！') {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage, 'success');
+      }).catch(err => {
+        console.error('複製失敗:', err);
+        showToast('複製失敗，請手動選取複製', 'error');
+      });
+    }
+
+    // 儲存至本地歷史紀錄
+    function saveToHistory(brandName, links) {
+      try {
+        const history = JSON.parse(localStorage.getItem('affiliate_history') || '[]');
+        
+        // 封裝一筆歷史紀錄
+        const newRecord = {
+          timestamp: Date.now(),
+          brand: brandName,
+          count: links.length,
+          links: links
+        };
+
+        // 將最新紀錄塞在最前面，最多留 15 筆
+        history.unshift(newRecord);
+        if (history.length > 15) {
+          history.pop();
+        }
+
+        localStorage.setItem('affiliate_history', JSON.stringify(history));
+        renderHistory();
+      } catch (err) {
+        console.error('儲存歷史紀錄出錯', err);
+      }
+    }
+
+    // 渲染歷史紀錄
+    function renderHistory() {
+      try {
+        const history = JSON.parse(localStorage.getItem('affiliate_history') || '[]');
+        historyContainer.innerHTML = '';
+
+        if (history.length === 0) {
+          historyContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; padding: 1rem;">暫無歷史生成紀錄</div>';
+          return;
+        }
+
+        history.forEach((record, index) => {
+          const timeStr = new Date(record.timestamp).toLocaleString('zh-TW', { hour12: false });
+          const item = document.createElement('div');
+          item.className = 'history-item';
+          
+          // 取得第一條網址作為縮圖顯示
+          const sampleUrl = record.links[0]?.original_url || '';
+
+          item.innerHTML = `
+            <div class="history-info">
+              <span class="history-tag">${record.brand}</span>
+              <span style="font-family: monospace; color: var(--text-muted);">${timeStr}</span>
+              <span style="color: var(--accent); font-weight: bold;">(共 ${record.count} 筆)</span>
+              <span class="history-url" title="${sampleUrl}">${sampleUrl ? '樣品: ' + sampleUrl : ''}</span>
+            </div>
+            <div class="history-actions">
+              <button class="copy-inline-btn" style="background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); color: #93c5fd;" onclick="loadHistoryToResults(${index})">📂 載入結果</button>
+              <button class="copy-inline-btn" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #fca5a5;" onclick="deleteHistoryItem(${index})">🗑️ 刪除</button>
+            </div>
+          `;
+          historyContainer.appendChild(item);
+        });
+      } catch (err) {
+        console.error('渲染歷史紀錄出錯', err);
+      }
+    }
+
+    // 從歷史載入回主表格
+    window.loadHistoryToResults = function(index) {
+      try {
+        const history = JSON.parse(localStorage.getItem('affiliate_history') || '[]');
+        const record = history[index];
+        if (record && record.links) {
+          generatedLinks = record.links;
+          renderResults(generatedLinks);
+          showToast(`已從歷史載入 ${record.brand} 的 ${record.count} 筆連結`, 'success');
+          
+          // 自動滾動到結果區
+          document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+        }
+      } catch (err) {
+        showToast('載入歷史失敗', 'error');
+      }
+    }
+
+    // 刪除單個歷史紀錄
+    window.deleteHistoryItem = function(index) {
+      try {
+        const history = JSON.parse(localStorage.getItem('affiliate_history') || '[]');
+        history.splice(index, 1);
+        localStorage.setItem('affiliate_history', JSON.stringify(history));
+        renderHistory();
+        showToast('歷史紀錄已刪除', 'success');
+      } catch (err) {
+        showToast('刪除歷史失敗', 'error');
+      }
+    }
+
+    // 顯示吐司通知
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <span>${type === 'success' ? '✅' : '❌'}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      // 3秒後自動移除
+      setTimeout(() => {
+        toast.style.animation = 'slideUp 0.3s reverse forwards';
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

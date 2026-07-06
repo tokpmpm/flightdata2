@@ -1,5 +1,46 @@
 # CHANGELOG
 
+## [2026-07-06] 新增自訂商品導購推廣連結生成器與 API 代理服務
+
+### 問題現狀
+使用者需要一頁可以方便透過 API 批次申請聯盟網（Affiliates.One）自訂商品推廣連結的工具，且要求該頁面不列入部落格分類、隱藏起來，並能透過簡單的 `meshthings.com/link` 網址單獨訪問。然而，由於瀏覽器的 CORS（跨來源資源共用）安全限制，前端直接呼叫外部聯盟網 API 會被阻擋。
+
+### 根本原因 (Root Cause)
+1. 聯盟網 API 伺服器未對所有前端網域開放 CORS 回應標頭，瀏覽器出於安全考慮阻擋了此類請求。
+2. 專案中缺乏專屬控制面板 UI 來簡化 `api_key`、`offer_id` 及多個目標 URL 的填寫與批次生成工作。
+
+### 修正方案
+1. **建立 API 代理服務 (CORS Proxy)**：新增 Vercel Serverless Function [api/generate.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/api/generate.js)，負責在伺服器端轉發 POST 請求至聯盟網 API (`api.pub.affiliates.one`) 並回傳 JSON 資料，解決瀏覽器端 CORS 限制。
+2. **建立專屬導購面板**：在專案中新建 [link/index.html](file:///Users/pmpmpm/Antigravity/passenger_capacity/link/index.html) 網頁。採用暗黑科技感（Glassmorphism）的高質感視覺設計，內建 32 個常見品牌（Coupang、CapCut、Klook、KKday 等）的 `offer_id` 下拉式搜尋過濾器。支援一次貼上最多 50 行 URL 批次生成、主/副追蹤參數設定、Markdown 與純文字一鍵複製，並在瀏覽器本地的 `localStorage` 中自動儲存 API Key 與歷史生成紀錄。
+3. **路徑配置**：網頁檔案置於 `link/index.html`，當 Vercel 部署完成後，即可直接透過 `meshthings.com/link` 進行訪問。本頁面不會列入部落格 sitemap.xml 或前台任何分類選單中，具備高隱密性。
+
+### 驗證結果
+- 建立本地 API 測試腳本 [tests/test_api_proxy.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/tests/test_api_proxy.js)。
+- 在網路旁路模式下執行測試，以使用者 API 金鑰對 Klook (Offer ID: 2328) 商品網址進行請求。結果順利取得 HTTP 200 成功回應，並成功生成 `deeplink_url` 推廣網址，證實 API 代理與認證功能均完全正常。
+
+---
+
+## [2026-07-04] 日韓航空運力與載客率數據分析與社群洞察報告
+
+### 數據背景與分析需求
+使用者提出需要以 2026 年 5 月及之前的台日、台韓航班數據進行深入研究，並提煉出適合社群分享與粉絲互動的有趣數據洞察。
+
+### 分析方法
+1. 撰寫臨時數據分析腳本 `scratch_trends.js` 及 `scratch_social_insights.js`，對日韓各航點的 YoY 增長、月度季節性波動、航司市佔率以及各出發機場之表現進行全面交叉統計。
+2. 將分析結果轉化為利於社群傳播之洞察，並設計社群貼文互動文案草稿。
+
+### 產出內容
+- 於專案根目錄新增 [japan_korea_insights_report.md](file:///Users/pmpmpm/Antigravity/passenger_capacity/japan_korea_insights_report.md) 報告。
+- 報告包含：出發地大對決（松山與高雄的高載客率）、福岡福岡 97% 載客率之王、熊本 51% 暴力成長、以及下地島與清州的社恐避難指南。
+- 附帶 3 篇 Copy-ready 的社群貼文範本。
+
+### 驗證結果
+- 執行數據腳本，成功從 `data/flight_data_all.json` 提取統計結果。
+- 驗證日韓 2026 1-5 月數據之完整性，確認符合 2026 年 5 月最新數據標準。
+- 數據文件寫入完成，臨時分析腳本已保留於 `scratch_` 相關目錄。
+
+---
+
 ## [2026-07-04] 第一期網頁優化與 SEO 提升：新鮮度 Badge、時效性 Title/Meta 與獨立 Dataset Schema
 
 ### 問題現狀
