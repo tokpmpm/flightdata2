@@ -12,7 +12,7 @@
 ### 修正方案
 1. **建立 API 代理服務 (CORS Proxy)**：新增 Vercel Serverless Function [api/generate.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/api/generate.js)，負責在伺服器端轉發 POST 請求至聯盟網 API (`api.pub.affiliates.one`) 並回傳 JSON 資料，解決瀏覽器端 CORS 限制。
 2. **建立專屬導購面板**：在專案中新建 [link/index.html](file:///Users/pmpmpm/Antigravity/passenger_capacity/link/index.html) 網頁。採用暗黑科技感（Glassmorphism）的高質感視覺設計，內建 32 個常見品牌（Coupang、CapCut、Klook、KKday 等）的 `offer_id` 下拉式搜尋過濾器。支援一次貼上最多 50 行 URL 批次生成、主/副追蹤參數設定、Markdown 與純文字一鍵複製，並在瀏覽器本地的 `localStorage` 中自動儲存 API Key 與歷史生成紀錄。
-3. **路徑配置**：網頁檔案置於 `link/index.html`，當 Vercel 部署完成後，即可直接透過 `meshthings.com/link` 進行訪問。本頁面不會列入部落格 sitemap.xml 或前台任何分類選單中，具備高隱密性。
+3. **路徑配置與路由修正**：網頁置於 `link/index.html`。在 `vercel.json` 中配置 `"cleanUrls": true` 與 `rewrites` 路由重寫規則，將 `/link` 精準重寫至 `/link/index.html`，解決 404 存取問題。本頁面不會列入部落格 sitemap.xml 或前台任何分類選單中，具備高隱密性。
 
 ### 驗證結果
 - 建立本地 API 測試腳本 [tests/test_api_proxy.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/tests/test_api_proxy.js)。
