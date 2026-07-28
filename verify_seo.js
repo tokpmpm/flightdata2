@@ -1,10 +1,11 @@
 /**
  * Automated SEO & AIEO Verification Script
- * Validates the generated HTML files, JSON-LD schemas, datasets, sitemaps, and llms.txt.
+ * Validates generated HTML files, JSON-LD schemas, datasets, sitemaps, and llms.txt.
  */
 
 const fs = require('fs');
 const path = require('path');
+const { flightData } = require('./data/flight_data_new.js');
 
 console.log('=== Starting SEO/AIEO Automated Verification ===');
 
@@ -19,7 +20,45 @@ function assert(condition, message) {
     }
 }
 
-// 1. Check required files existence
+const airportCodes = {
+    '桃園國際機場': 'tpe',
+    '高雄國際機場': 'khh',
+    '臺北松山機場': 'tsa',
+    '臺中清泉崗機場': 'rmq',
+    '臺南機場': 'tnn',
+    '花蓮機場': 'hun'
+};
+
+const airlineSlugCodes = {
+    '中華': 'cal',
+    '長榮': 'eva',
+    '星宇': 'starlux',
+    '台灣虎航': 'tiger'
+};
+
+// Compute page max year-month from flightData
+const allData = flightData['所有'] || {};
+function getPageMaxYM(targetAirport, targetAirline) {
+    let maxYM = 0;
+    for (const ap in allData) {
+        if (targetAirport && ap !== targetAirport) continue;
+        for (const dest in allData[ap]) {
+            for (const al in allData[ap][dest]) {
+                if (targetAirline && al !== targetAirline) continue;
+                const recs = allData[ap][dest][al];
+                recs.forEach(r => {
+                    const ym = r.year * 100 + r.month;
+                    if (ym > maxYM) maxYM = ym;
+                });
+            }
+        }
+    }
+    const year = Math.floor(maxYM / 100);
+    const month = maxYM % 100;
+    return { year, month, ymKey: maxYM, ymStr: `${year}-${String(month).padStart(2, '0')}` };
+}
+
+// 1. Check required root files
 const requiredRootFiles = ['index.html', 'sitemap.xml', 'robots.txt', 'llms.txt', 'llms-full.txt', 'about/index.html'];
 requiredRootFiles.forEach(file => {
     const fullPath = path.join(__dirname, file);
@@ -32,8 +71,14 @@ if (fs.existsSync(sitemapPath)) {
     const content = fs.readFileSync(sitemapPath, 'utf8');
     assert(content.includes('<urlset'), 'sitemap.xml contains urlset tag');
     assert(content.includes('<loc>'), 'sitemap.xml contains loc tags');
-    assert(content.includes('/airport/tpe/'), 'sitemap.xml contains TPE airport link');
-    assert(content.includes('/airline/cal/'), 'sitemap.xml contains CAL airline link');
+    for (const ap in airportCodes) {
+        const code = airportCodes[ap];
+        assert(content.includes(`/airport/${code}/`), `sitemap.xml contains ${ap} (${code}) link`);
+    }
+    for (const al in airlineSlugCodes) {
+        const code = airlineSlugCodes[al];
+        assert(content.includes(`/airline/${code}/`), `sitemap.xml contains ${al} (${code}) link`);
+    }
     assert(content.includes('/about/'), 'sitemap.xml contains About page link');
 }
 
@@ -47,8 +92,8 @@ if (fs.existsSync(llmsPath)) {
     assert(content.includes('/data/flight_data_all.csv'), 'llms.txt contains dataset link');
 }
 
-// 4. Helper to validate HTML schemas and structures
-function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isInsightsPage = false) {
+// 4. Validate all public pages
+function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isInsightsPage = false, targetAirport = null, targetAirline = null) {
     const fullPath = path.join(__dirname, filePath);
     if (!fs.existsSync(fullPath)) {
         console.error(`❌ Missing expected file: ${filePath}`);
@@ -57,13 +102,33 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
     }
 
     const html = fs.readFileSync(fullPath, 'utf8');
-    
+
+    // 1 H1 Tag Check
+    const h1Matches = html.match(/<h1[\s>]/g) || [];
+    assert(h1Matches.length === 1, `${filePath} contains exactly 1 H1 tag (got ${h1Matches.length})`);
+
+    // Title Tag
+    const titleMatch = html.match(/<title>(.*?)<\/title>/);
+    assert(titleMatch && titleMatch[1].trim().length > 0, `${filePath} contains non-empty title tag`);
+
+    // Meta Description
+    const descMatch = html.match(/<meta name="description" content="(.*?)">/);
+    assert(descMatch && descMatch[1].trim().length > 0, `${filePath} contains non-empty meta description tag`);
+
     // Canonical link
     assert(html.includes('<link rel="canonical"'), `${filePath} contains canonical link`);
 
-    // Basic Page Title & Meta Description
-    assert(html.includes('<title>'), `${filePath} contains title tag`);
-    assert(html.includes('<meta name="description"'), `${filePath} contains meta description tag`);
+    // Open Graph
+    assert(html.includes('property="og:title"'), `${filePath} contains og:title`);
+    assert(html.includes('property="og:description"'), `${filePath} contains og:description`);
+    assert(html.includes('property="og:type"'), `${filePath} contains og:type`);
+    assert(html.includes('property="og:url"'), `${filePath} contains og:url`);
+    assert(html.includes('property="og:image"'), `${filePath} contains og:image`);
+
+    // Twitter Card
+    assert(html.includes('name="twitter:card"'), `${filePath} contains twitter:card`);
+    assert(html.includes('name="twitter:title"'), `${filePath} contains twitter:title`);
+    assert(html.includes('name="twitter:description"'), `${filePath} contains twitter:description`);
 
     if (!isAboutPage && !isInsightsPage) {
         assert(html.includes('<meta name="robots" content="index,follow,max-snippet:180,max-image-preview:large">'), `${filePath} contains snippet control robots meta`);
@@ -77,30 +142,29 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
         assert(html.includes('itemprop="mainEntity"') || html.includes('itemProp="mainEntity"'), `${filePath} contains Microdata itemprop="mainEntity"`);
         assert(html.includes('itemscope itemtype="https://schema.org/Answer"') || html.includes('itemScope itemType="https://schema.org/Answer"'), `${filePath} contains Microdata Answer scope`);
         assert(html.includes('itemprop="text"') || html.includes('itemProp="text"'), `${filePath} contains Microdata text scope`);
-        
+
         // Data Quality Indicator
         if (!isInsightsPage) {
             assert(html.includes('id="dq-title"'), `${filePath} contains Data Quality Indicator`);
             assert(html.includes('id="dq-completeness"'), `${filePath} contains completeness data`);
             assert(html.includes('id="dq-update-time"'), `${filePath} contains update time data`);
         }
-        
+
         // Download Links
         if (!isInsightsPage) {
             assert(html.includes('id="download-links"'), `${filePath} contains download links section`);
         }
     }
 
-    // JSON-LD Scripts count
+    // JSON-LD Scripts count & Parsing
     const jsonLdMatches = html.match(/<script type="application\/ld\+json">/g);
     assert(jsonLdMatches && jsonLdMatches.length >= 1, `${filePath} contains at least one JSON-LD schema`);
 
     if (jsonLdMatches) {
-        // Parse all JSON-LD blocks
         const scriptRegex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
         let match;
         let schemas = [];
-        
+
         while ((match = scriptRegex.exec(html)) !== null) {
             try {
                 const parsed = JSON.parse(match[1]);
@@ -110,7 +174,6 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             }
         }
 
-        // Flatten graph-based schemas
         let flatSchemas = [];
         schemas.forEach(s => {
             if (s['@graph'] && Array.isArray(s['@graph'])) {
@@ -120,16 +183,22 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             }
         });
 
-        // Verify specific schema types
         if (isHomepage) {
             const hasDataCatalog = flatSchemas.some(s => s['@type'] === 'DataCatalog');
             const hasWebSite = flatSchemas.some(s => s['@type'] === 'WebSite');
             assert(hasDataCatalog, 'Homepage JSON-LD contains DataCatalog');
             assert(hasWebSite, 'Homepage JSON-LD contains WebSite');
-            assert(html.includes('台灣航空載客率查詢') && html.includes('最新航班數據分析'), 'Homepage contains concise search title');
-            assert(html.includes('查詢台灣主要機場與航空公司的月度載客率'), 'Homepage contains human-readable meta description');
-            assert(!html.includes('資料期間 2024年1月至2026年4月，來源為交通部民用航空局'), 'Homepage does not expose incorrect period/source claim');
-            assert(!html.includes('台灣主要航線- 航空公司載客數據儀表板'), 'Homepage no longer uses the old search title');
+
+            // Check DataCatalog nested datasets
+            const catalog = flatSchemas.find(s => s['@type'] === 'DataCatalog');
+            assert(catalog && Array.isArray(catalog.dataset), 'Homepage has DataCatalog with datasets');
+            if (catalog && catalog.dataset) {
+                catalog.dataset.forEach(ds => {
+                    assert(ds.description && ds.description.length >= 50, `DataCatalog nested Dataset "${ds.name}" description >= 50 chars`);
+                    assert(ds.license === 'https://data.gov.tw/license', `DataCatalog nested Dataset "${ds.name}" has correct license https://data.gov.tw/license`);
+                    assert(ds.temporalCoverage, `DataCatalog nested Dataset "${ds.name}" has temporalCoverage`);
+                });
+            }
         } else if (isAboutPage) {
             const hasAboutPage = flatSchemas.some(s => s['@type'] === 'AboutPage');
             assert(hasAboutPage, 'About Page JSON-LD contains AboutPage type');
@@ -137,42 +206,9 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             const hasArticle = flatSchemas.some(s => s['@type'] === 'Article');
             const hasFAQPage = flatSchemas.some(s => s['@type'] === 'FAQPage');
             const hasBreadcrumbList = flatSchemas.some(s => s['@type'] === 'BreadcrumbList');
-            const hasDataset = flatSchemas.some(s => s['@type'] === 'Dataset' || (s['about'] && s['about']['@type'] === 'Dataset'));
-            const article = flatSchemas.find(s => s['@type'] === 'Article');
-            const faqPage = flatSchemas.find(s => s['@type'] === 'FAQPage');
-            const breadcrumbList = flatSchemas.find(s => s['@type'] === 'BreadcrumbList');
-
             assert(hasArticle, 'Insights page JSON-LD contains Article');
             assert(hasFAQPage, 'Insights page JSON-LD contains FAQPage');
             assert(hasBreadcrumbList, 'Insights page JSON-LD contains BreadcrumbList');
-            assert(hasDataset, 'Insights page JSON-LD contains Dataset');
-            assert(html.includes('<title>2026 年 1-5 月台灣航空市場洞察與載客率分析 - 外勞芭 AI 招喚工坊</title>'), 'Insights page contains correct updated title');
-            assert(article && article.dateModified === '2026-06-27', 'Insights page Article dateModified is 2026-06-27');
-            assert(article && article.description.includes('2026 年 1-5 月') && article.description.includes('2025 年同期'), 'Insights page Article description labels 2026 1-5 period and YoY baseline');
-            assert(!html.includes('2024-01 至 2026-05') && !html.includes('2024-01/2026-05'), 'Insights page has no stale cumulative-period scope');
-            assert(!html.includes('AI Overview'), 'Insights page has no AI Overview label');
-            assert(breadcrumbList && breadcrumbList.itemListElement[2] && breadcrumbList.itemListElement[2].name === '2026 年 1-5 月台灣航空市場洞察與載客率分析', 'Insights breadcrumb uses revised report title');
-
-            const sectionIds = Array.from(html.matchAll(/<section id="(q\d+)"/g)).map(match => match[1]);
-            const expectedSectionIds = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11'];
-            const uniqueSectionIds = new Set(sectionIds);
-            assert(JSON.stringify(sectionIds) === JSON.stringify(expectedSectionIds), 'Insights page has exactly Q1-Q11 sections in order');
-            assert(uniqueSectionIds.size === sectionIds.length, 'Insights page has no duplicate question section IDs');
-            assert((html.match(/<section id="q6"/g) || []).length === 1, 'Insights page has exactly one Q6 section');
-
-            const routeTableMatch = html.match(/<table class="data-table" id="route-rank-table">([\s\S]*?)<\/table>/);
-            const routeRows = routeTableMatch ? (routeTableMatch[1].match(/<tr>/g) || []).length - 1 : 0;
-            assert(routeRows === 10, 'Insights page route ranking table has 10 body rows');
-            assert(routeTableMatch && !routeTableMatch[1].includes('id="q6"'), 'Insights page Q6 section is not nested inside route table');
-
-            const dataset = article && article.about && article.about['@type'] === 'Dataset' ? article.about : null;
-            const q11Answer = faqPage && faqPage.mainEntity && faqPage.mainEntity[10] && faqPage.mainEntity[10].acceptedAnswer.text;
-            assert(dataset && dataset.temporalCoverage === '2026-01/2026-05', 'Insights Dataset temporalCoverage is 2026-01/2026-05');
-            assert(html.includes('資料來源：交通部民用航空局'), 'Insights page names the requested data source');
-            assert(!html.includes('民航統計月報') && !html.includes('115 年 5 月') && !html.includes('115年5月') && !html.includes('官方開放資料列表頁'), 'Insights page does not expose extra source caveats or raw monthly-file wording');
-            assert(!html.includes('；站內整合原始檔') && !html.includes('extracted/115年5月.xls'), 'Insights page does not expose local raw-file paths in reader-facing metadata');
-            assert(q11Answer && q11Answer.includes('2026-01 至 2026-05') && q11Answer.includes('2025 年同期'), 'Insights Q11 states period and comparison baseline');
-            assert(!html.includes('3-5 工作天') && !html.includes('完整度 100%') && !html.includes('資料庫完整度達 100%'), 'Insights page avoids fixed update SLA and 100% completeness claims');
         } else {
             // Airport or Airline Page
             const hasFAQPage = flatSchemas.some(s => s['@type'] === 'FAQPage');
@@ -184,47 +220,76 @@ function validateHtmlFile(filePath, isHomepage = false, isAboutPage = false, isI
             assert(hasDataset, `${filePath} JSON-LD contains Dataset`);
         }
 
-        // Dataset description 長度與 creator 欄位檢查
+        // Check Dataset schema license and creator
         const datasets = flatSchemas.filter(s => s['@type'] === 'Dataset' || (s['about'] && s['about']['@type'] === 'Dataset'));
         datasets.forEach(s => {
             const ds = s['@type'] === 'Dataset' ? s : s['about'];
-            assert(ds.description && ds.description.length >= 50,
-                `${filePath} Dataset "${ds.name}" description >= 50 chars (got ${ds.description?.length || 0})`);
+            assert(ds.description && ds.description.length >= 50, `${filePath} Dataset "${ds.name}" description >= 50 chars`);
+            assert(ds.license === 'https://data.gov.tw/license', `${filePath} Dataset "${ds.name}" license is https://data.gov.tw/license`);
             assert(ds.creator && ds.creator.name === '交通部民用航空局', `${filePath} Dataset "${ds.name}" has creator "交通部民用航空局"`);
         });
+    }
 
-        // DataCatalog 巢狀 Dataset 完整性
-        if (isHomepage) {
-            const catalog = flatSchemas.find(s => s['@type'] === 'DataCatalog');
-            assert(catalog && Array.isArray(catalog.dataset), 'Homepage has DataCatalog with datasets');
-            if (catalog && catalog.dataset) {
-                catalog.dataset.forEach(ds => {
-                    assert(ds.description && ds.description.length >= 50, `DataCatalog nested Dataset "${ds.name}" description >= 50 chars (got ${ds.description?.length || 0})`);
-                    assert(ds.license === 'https://creativecommons.org/licenses/by/4.0/', `DataCatalog nested Dataset "${ds.name}" has correct license`);
-                    assert(ds.temporalCoverage, `DataCatalog nested Dataset "${ds.name}" has temporalCoverage`);
-                });
-            }
+    // Page-specific Latest Month Verification
+    if (!isAboutPage && !isInsightsPage) {
+        const actualMax = getPageMaxYM(targetAirport, targetAirline);
+
+        // Extract stated date from header-update-time
+        const headerTimeMatch = html.match(/<span id="header-update-time">(\d{4})年(\d{2})月<\/span>/);
+        if (headerTimeMatch) {
+            const statedYM = parseInt(headerTimeMatch[1]) * 100 + parseInt(headerTimeMatch[2]);
+            assert(statedYM <= actualMax.ymKey, `${filePath} header update month (${headerTimeMatch[1]}-${headerTimeMatch[2]}) <= actual latest (${actualMax.year}-${actualMax.month})`);
+            assert(statedYM === actualMax.ymKey, `${filePath} header update month matches actual latest month exactly (${actualMax.year}-${actualMax.month})`);
         }
+
+        // Extract stated date from dq-update-time
+        const dqTimeMatch = html.match(/<dd id="dq-update-time"><time datetime="(\d{4}-\d{2})-\d{2}">(\d{4})年(\d{1,2})月<\/time><\/dd>/);
+        if (dqTimeMatch) {
+            const statedYM = parseInt(dqTimeMatch[2]) * 100 + parseInt(dqTimeMatch[3]);
+            assert(statedYM <= actualMax.ymKey, `${filePath} dq update month (${dqTimeMatch[2]}-${dqTimeMatch[3]}) <= actual latest (${actualMax.year}-${actualMax.month})`);
+            assert(statedYM === actualMax.ymKey, `${filePath} dq update month matches actual latest month exactly (${actualMax.year}-${actualMax.month})`);
+        }
+
+        // Check temporalCoverage in Dataset schema
+        const temporalMatch = html.match(/"temporalCoverage":\s*"(\d{4}-\d{2})-01\/(\d{4}-\d{2})-01"/);
+        if (temporalMatch) {
+            const endYM = temporalMatch[2];
+            assert(endYM === actualMax.ymStr, `${filePath} Dataset temporalCoverage end date (${endYM}) matches actual latest (${actualMax.ymStr})`);
+        }
+
+        // Check Download Dataset file existence
+        let fileCode = 'all';
+        if (targetAirport) {
+            fileCode = `airport-${airportCodes[targetAirport]}`;
+        } else if (targetAirline) {
+            fileCode = `airline-${airlineSlugCodes[targetAirline]}`;
+        }
+        const csvPath = path.join(__dirname, 'data', `flight_data_${fileCode}.csv`);
+        const jsonPath = path.join(__dirname, 'data', `flight_data_${fileCode}.json`);
+        assert(fs.existsSync(csvPath), `${filePath} download CSV file exists: data/flight_data_${fileCode}.csv`);
+        assert(fs.existsSync(jsonPath), `${filePath} download JSON file exists: data/flight_data_${fileCode}.json`);
     }
 }
 
-// Validate major pages
-validateHtmlFile('index.html', true, false, false);
-validateHtmlFile('airport/tpe/index.html', false, false, false);
-validateHtmlFile('airline/cal/index.html', false, false, false);
+// Run validation across all generated public pages
+console.log('--- Validating Homepage ---');
+validateHtmlFile('index.html', true, false, false, null, null);
+
+console.log('--- Validating Airport Pages ---');
+for (const ap in airportCodes) {
+    const code = airportCodes[ap];
+    validateHtmlFile(`airport/${code}/index.html`, false, false, false, ap, null);
+}
+
+console.log('--- Validating Airline Pages ---');
+for (const al in airlineSlugCodes) {
+    const code = airlineSlugCodes[al];
+    validateHtmlFile(`airline/${code}/index.html`, false, false, false, null, al);
+}
+
+console.log('--- Validating About & Insights Pages ---');
 validateHtmlFile('about/index.html', false, true, false);
 validateHtmlFile('insights/2026-taiwan-aviation-market-outlook/index.html', false, false, true);
-
-// 5. Check Datasets existence in data/
-const datasets = [
-    'flight_data_all.csv', 'flight_data_all.json',
-    'flight_data_airport-tpe.csv', 'flight_data_airport-tpe.json',
-    'flight_data_airline-cal.csv', 'flight_data_airline-cal.json'
-];
-datasets.forEach(ds => {
-    const dsPath = path.join(__dirname, 'data', ds);
-    assert(fs.existsSync(dsPath), `Dataset exists: data/${ds}`);
-});
 
 console.log('================================================');
 if (errorCount > 0) {

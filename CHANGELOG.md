@@ -1,5 +1,73 @@
 # CHANGELOG
 
+## [2026-07-28] 資料更新：新增 2026 年 6 月（民國 115 年 6 月）載客率數據
+
+### 問題現狀
+flightdata2.meshthings.com 數據最後更新至 2026 年 5 月（115 年 5 月），CAA 民航局已於 2026/07/27 發佈 115 年 6 月最新載客率統計。
+
+### 根本原因 (Root Cause)
+CAA 民航局每月約 25-27 日發佈上月統計資料，需手動下載並整合至網站數據中。
+
+### 修正方案
+1. **下載新檔**：從 CAA 官網 (`FileAtt.ashx?lang=1&id=41127`) 下載 `115年6月.xls`（528 KB）至 `extracted/` 目錄。
+2. **資料處理**：執行 `node process_data.js` 重新解析全部 54 個 XLS 檔案，產出更新後的 `data/flight_data_new.js`。
+3. **靜態頁面重建**：執行 `npm run build`（prerender + SEO 驗證），重新生成所有靜態 HTML 頁面及 CSV/JSON 下載檔案。
+
+### 驗證結果
+- ✅ 2026 年 6 月新增 **373 筆航線紀錄**（vs 5 月 375 筆，合理範圍）
+- ✅ 涵蓋 **5 座機場**（桃園、高雄、松山、臺中、臺南）、**102 個航點**、**59 家航空公司**
+- ✅ `npm run build` 全部 SEO/AIEO 驗證項目通過
+- ✅ 本地伺服器 `http://localhost:3033` 可正常瀏覽
+
+---
+
+## [2026-07-25] GA4 客製化行為追蹤事件 (search, no_search_results, filter_reset, share) 實作與 22 項自動化測試套件
+
+### 問題現狀
+原本網站僅依賴 GA4 預設之 page_view 與 file_download，缺乏對使用者實質互動行為（包含篩選套用、無結果查詢、篩選重置與分享連結）的追蹤，無法精確衡量使用者在儀表板上的操作與分享行為。
+
+### 根本原因 (Root Cause)
+1. 系統未建立獨立封裝的 GA4 追蹤模組，直接呼叫 `gtag` 缺乏型別檢查與防護（例如 `undefined`/`null`/`NaN`/DOM 元素混入事件參數導致 GA4 報錯）。
+2. `#apply-filters` 與 `#reset-filters` 原本僅進行前端資料渲染與圖表更新，未觸發自訂 GA4 事件。
+3. `#share-filters` 在支援 `navigator.share` / `navigator.clipboard` / `document.execCommand` 備援流程時，缺乏成功的 GA4 追蹤觸發與使用者取消 (`AbortError`) 防護機制。
+
+### 修正方案
+1. **建立 `sanitizeGA4Parameters` 與 `trackGA4` 核心模組**：在 [js/app.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/js/app.js) 中實作安全清理與防護，自動過濾 `undefined`、`null`、`NaN`、`Infinity`、`Array`、`Object`、DOM 元素與 Function，並確保不對傳入的原始物件進行直接突變 (No direct mutation)。全系統參數強制轉換為 snake_case。
+2. **實作行為追蹤事件**：
+   - `search` / `no_search_results`：在 `#apply-filters` 觸發時計算當前機場、目的地與起訖年月，發送 `search` 事件。若過濾後 `result_count === 0`，同步額外送出 `no_search_results` 事件。
+   - `filter_reset`：在 `#reset-filters` 點擊時，先擷取清空前的 `previous_airport` / `previous_destination` 等舊值，再清空下拉選單並發送事件。
+   - `share`：在 `handleShare` 成功時，依據實際使用的備援管道送出 `method` (`web_share` 或 `clipboard`) 與 `item_id`。對於使用者手動取消 Web Share 的 `AbortError`，完整捕捉並防護（不發送事件、不觸發複製備援）。
+3. **自動化測試套件**：建立獨立無外掛依賴的測試套件 [tests/verify_ga4_events.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/tests/verify_ga4_events.js)，包含 T00 到 T21 共 22 個測試案例（覆蓋初始載入、參數清理、預設/單一/無結果搜尋、圖表渲染不重複、分享情境備援與取消、gtag 缺失 Warning 提示、手動 file_download 檢查、GA4 唯一性 Audit、Cache Version 一致性、無測試殘留、Desktop/Mobile 流程及資料安全）。
+
+### 驗證結果
+- `npm run build` 順利完成並重新產生預渲染頁面與數據集。
+- `node tests/verify_ga4_events.js` 自動化測試套件全數 **22/22 (100%) PASS** 通過！
+- `node tests/verify_browser_qa.js` 既有 E2E 測試 **17/17 (100%) PASS** 通過，零功能回歸。
+- `git diff --check` 通過，無格式與空格錯誤。
+
+## [2026-07-06] 重構導購連結生成器 UI/UX + 修復本地 API 404 問題
+
+### 問題現狀
+1. 頁面 RWD 在手機上版面跑版，textarea 高度使用 `calc()` 導致手機螢幕塌陷。
+2. API Key 欄位顯示於 UI 且可被使用者修改，存在資安疑慮。
+3. 本地測試使用 `npx serve` 靜態伺服器，無法執行 Vercel Serverless Function (`/api/generate`)，導致每次生成都回傳 404 error。
+
+### 根本原因 (Root Cause)
+- `npx serve` 為純靜態伺服器，不支援 API Routes，需使用 `vercel dev` 才能在本地模擬 Serverless Functions。
+- 原始 CSS 使用固定高度與 `grid-template-columns` 未正確處理手機斷點。
+- API Key 明文顯示於 `<input type="password">` 欄位，使用者可直接修改。
+
+### 修正方案
+1. **隱藏 API Key**：移除 UI 中所有 API Key 輸入元素，改為 JavaScript 常數 `const API_KEY = '...'` 硬編碼，使用者無法從介面看見或修改。
+2. **全面重寫 RWD**：改採 mobile-first 設計，手機為垂直三步驟卡片流程；桌面（≥900px）自動切換為 Grid 雙欄佈局，結果區全寬。
+3. **結果改為卡片式**：捨棄桌面表格，改用獨立卡片，每張含原始網址、推廣連結、複製按鈕，複製後顯示「✓ 已複製」狀態反饋。
+4. **直接 push + vercel --prod 部署**取代本地測試，確保 API Proxy 可正常運作。
+
+### 驗證結果
+- GitHub commit `b20c391` 推送成功
+- Vercel Production 部署成功，aliased 至 `flightdata2.meshthings.com`
+- 生成連結功能於 `https://flightdata2.meshthings.com/link` 正常運作
+
 ## [2026-07-06] 新增自訂商品導購推廣連結生成器與 API 代理服務
 
 ### 問題現狀

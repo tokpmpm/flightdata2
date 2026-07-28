@@ -473,7 +473,7 @@ function renderInsightsUI(data) {
                             <div class="route-info">
                                 <span class="route-name">${idx + 1}. ${r.name}</span>
                                 <span class="route-stats">
-                                    <strong>${r.passengers.toLocaleString()}</strong> 人 
+                                    <strong>${r.passengers.toLocaleString()}</strong> 人
                                     <span class="lf-badge">載客率 ${r.avgLF.toFixed(1)}%</span>
                                     <span class="pct-badge">佔 ${r.pct.toFixed(1)}%</span>
                                 </span>
@@ -595,14 +595,13 @@ function generateStaticInsightsHTML(data) {
 
                 return `
                                     <li id="insight-item-${index}" itemprop="mainEntity" itemscope itemtype="https://schema.org/Answer">
-                                        <span class="insight-icon">${ins.icon}</span> 
+                                        <span class="insight-icon">${ins.icon}</span>
                                         <span itemprop="name" style="display:none;">${name}</span>
                                         <span class="insight-text" itemprop="text">${ins.text}</span>
                                     </li>`;
             })
             .join('\n');
     }
-
 
     // 3. Top Routes HTML
     let routesHtml = '';
@@ -618,7 +617,7 @@ function generateStaticInsightsHTML(data) {
                         <div class="route-info">
                             <span class="route-name">${idx + 1}. ${r.name}</span>
                             <span class="route-stats">
-                                <strong>${r.passengers.toLocaleString()}</strong> 人 
+                                <strong>${r.passengers.toLocaleString()}</strong> 人
                                 <span class="lf-badge">載客率 ${r.avgLF.toFixed(1)}%</span>
                                 <span class="pct-badge">佔 ${r.pct.toFixed(1)}%</span>
                             </span>

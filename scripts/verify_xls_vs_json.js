@@ -38,9 +38,9 @@ function readXlsMonthly() {
         const year     = YEAR_MAP[rocYear];
         if (!year) return;
 
-        // 只處理 2024-01 ~ 2026-05
+        // 只處理 2024-01 ~ 2026-06
         const key = year * 100 + month;
-        if (key < 202401 || key > 202605) return;
+        if (key < 202401 || key > 202606) return;
 
         const ym = `${year}-${String(month).padStart(2,'0')}`;
 
@@ -88,7 +88,7 @@ function readJsonMonthly() {
     const results = {};
     raw.forEach(r => {
         const key = r.year * 100 + r.month;
-        if (key < 202401 || key > 202605) return;
+        if (key < 202401 || key > 202606) return;
 
         const ym = `${r.year}-${String(r.month).padStart(2,'0')}`;
         if (!results[ym]) results[ym] = { flights: 0, seats: 0, passengers: 0 };
@@ -101,17 +101,20 @@ function readJsonMonthly() {
 }
 
 // ─── 主程式 ──────────────────────────────────────────────────────────────────
-console.log('╔══════════════════════════════════════════════════════════════════════╗');
-console.log('  原始 XLS vs flight_data_all.json  逐月比對驗算');
-console.log('  範圍：2024-01 ～ 2026-05');
-console.log('╚══════════════════════════════════════════════════════════════════════╝\n');
-
 const xlsData  = readXlsMonthly();
 const jsonData = readJsonMonthly();
 
 const months = Array.from(
     new Set([...Object.keys(xlsData), ...Object.keys(jsonData)])
 ).sort();
+
+const minYM = months.length > 0 ? months[0] : '2024-01';
+const maxYM = months.length > 0 ? months[months.length - 1] : '2026-06';
+
+console.log('╔══════════════════════════════════════════════════════════════════════╗');
+console.log('  原始 XLS vs flight_data_all.json  逐月比對驗算');
+console.log(`  範圍：${minYM} ～ ${maxYM}`);
+console.log('╚══════════════════════════════════════════════════════════════════════╝\n');
 
 // ─── 逐月比對 ─────────────────────────────────────────────────────────────────
 console.log('─────────────────────────────────────────────────────────────────────────────────────────────────────');
@@ -173,7 +176,7 @@ console.log('──────────────────────�
 const totalXlsLF  = totalXlsSeats  ? (totalXlsPax  / totalXlsSeats  * 100) : 0;
 const totalJsonLF = totalJsonSeats ? (totalJsonPax / totalJsonSeats * 100) : 0;
 
-console.log('\n═══════════════ 全期總計（2024-01 ～ 2026-05）═══════════════');
+console.log(`\n═══════════════ 全期總計（${minYM} ～ ${maxYM}）═══════════════`);
 console.log(`  飛行架次： XLS=${totalXlsFlights.toLocaleString()}  JSON=${totalJsonFlights.toLocaleString()}  差異=${(totalJsonFlights-totalXlsFlights).toLocaleString()}`);
 console.log(`  座位總數： XLS=${totalXlsSeats.toLocaleString()}  JSON=${totalJsonSeats.toLocaleString()}  差異=${(totalJsonSeats-totalXlsSeats).toLocaleString()}`);
 console.log(`  載客人數： XLS=${totalXlsPax.toLocaleString()}  JSON=${totalJsonPax.toLocaleString()}  差異=${(totalJsonPax-totalXlsPax).toLocaleString()}`);

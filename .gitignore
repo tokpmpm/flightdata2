@@ -13,3 +13,4 @@ build/
 .vscode/
 
 tests/screenshots/
+tests/ga4_qa_report.json

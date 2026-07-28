@@ -124,8 +124,7 @@ function renderStaticTable(filteredData) {
             : '0.00';
         const lfColor = getLoadFactorColor(loadFactor);
 
-        return `
-            <tr data-label="年月">
+        return `<tr data-label="年月">
                 <td data-label="年月">${row.yearMonth}</td>
                 <td data-label="航空公司">${row.airline}</td>
                 <td data-label="航班數">${row.flights.toLocaleString()}</td>
@@ -136,23 +135,22 @@ function renderStaticTable(filteredData) {
                         ${loadFactor}%
                     </span>
                 </td>
-            </tr>
-        `;
+            </tr>`;
     }).join('\n');
 }
 
 /**
  * Generate rich JSON-LD structure schemas (Dataset, FAQPage, BreadcrumbList, DataCatalog)
  */
-function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, latestYear, latestMonth) {
+function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, latestYear, latestMonth, allRecords = []) {
     const latestYM = `${latestYear}-${String(latestMonth).padStart(2, '0')}`;
     const startYM = `${DEFAULT_START_YEAR}-${String(DEFAULT_START_MONTH).padStart(2, '0')}`;
-    
+
     // 1. Dataset mapping
     let datasetName = '全台主要機場航空載客率數據庫';
     let datasetDesc = '本數據集提供台灣主要機場的航空載客率統計數據，內容包含月度起降航班數、總座位數、實際載客人數與平均載客率。數據適合航空產業趨勢分析、學術研究及數據視覺化使用。';
     let fileCode = 'all';
-    
+
     if (targetAirport) {
         datasetName = `${targetAirport}航空載客率數據庫`;
         datasetDesc = `本數據集提供${targetAirport}的航空載客率統計數據，內容包含月度起降航班數、總座位數、實際載客人數與平均載客率。數據適合航空產業趨勢分析、學術研究及數據視覺化使用。`;
@@ -163,16 +161,17 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
         datasetDesc = `本數據集提供${fullName}的航空載客率統計數據，內容包含該航空公司在台灣各航線的月度起降航班數、總座位數與實際載客人數。數據適合航空產業趨勢分析使用。`;
         fileCode = `airline-${airlineSlugCodes[targetAirline]}`;
     }
-    
+
     const csvUrl = `${SITE_URL}/data/flight_data_${fileCode}.csv`;
     const jsonUrl = `${SITE_URL}/data/flight_data_${fileCode}.json`;
-    
+
     const datasetSchema = {
         "@context": "https://schema.org",
         "@type": "Dataset",
         "name": datasetName,
         "description": datasetDesc,
-        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "license": "https://data.gov.tw/license",
+        "isBasedOn": "https://data.gov.tw/dataset/47492",
         "temporalCoverage": `${startYM}-01/${latestYM}-01`,
         "spatialCoverage": {
             "@type": "Place",
@@ -181,7 +180,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
         "publisher": {
             "@type": "Organization",
             "name": "交通部民用航空局",
-            "url": "https://www.caa.gov.tw/"
+            "url": "https://data.gov.tw/dataset/47492"
         },
         "creator": {
             "@type": "Organization",
@@ -204,7 +203,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             }
         ]
     };
-    
+
     // Add potential action for Download
     datasetSchema.potentialAction = {
         "@type": "DownloadAction",
@@ -216,7 +215,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
         }
     };
-    
+
     // 2. Breadcrumbs
     const breadcrumbList = {
         "@context": "https://schema.org",
@@ -230,7 +229,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             }
         ]
     };
-    
+
     if (targetAirport) {
         breadcrumbList.itemListElement.push({
             "@type": "ListItem",
@@ -247,11 +246,11 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             "item": canonicalUrl
         });
     }
-    
+
     // 3. Dynamic FAQ Page based on real insights
     const kpis = insightsData.kpis;
     const fullNameSubject = targetAirport || (targetAirline ? airlineFullNames[targetAirline] : null) || "台灣主要機場";
-    
+
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -266,7 +265,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             }
         ]
     };
-    
+
     if (kpis.peakMonth !== '-') {
         const parts = kpis.peakMonth.split('-');
         const monthMap = { '01': '1', '02': '2', '03': '3', '04': '4', '05': '5', '06': '6', '07': '7', '08': '8', '09': '9', '10': '10', '11': '11', '12': '12' };
@@ -280,7 +279,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             }
         });
     }
-    
+
     if (insightsData.topRoutes && insightsData.topRoutes.length > 0) {
         const topRoute = insightsData.topRoutes[0];
         faqSchema.mainEntity.push({
@@ -314,7 +313,7 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
     if (breadcrumbList.itemListElement.length > 1) {
         schemas.push(breadcrumbList);
     }
-    
+
     // 4. DataCatalog (Only on Homepage)
     if (!targetAirport && !targetAirline) {
         schemas.push({
@@ -333,34 +332,42 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
             "@context": "https://schema.org",
             "@type": "DataCatalog",
             "name": "MeshThings 台灣航班數據目錄",
-            "description": "包含台灣主要機場（桃園、松山、台中、高雄、台南）與主要航空公司（中華、長榮、星宇、虎航）的月度載客率開放數據目錄。",
+            "description": "包含台灣主要機場（桃園、松山、台中、高雄、台南、花蓮）與主要航空公司（中華、長榮、星宇、虎航）的月度載客率開放數據目錄。",
             "url": SITE_URL,
             "dataset": []
         };
-        
+
         for (const ap in airportCodes) {
+            const apRecs = allRecords.filter(r => r.airport === ap).sort((a, b) => b.yearMonth.localeCompare(a.yearMonth));
+            const apLatest = apRecs.length > 0 ? apRecs[0] : { year: latestYear, month: latestMonth };
+            const apLatestYM = `${apLatest.year}-${String(apLatest.month).padStart(2, '0')}`;
             dataCatalog.dataset.push({
                 "@type": "Dataset",
                 "name": `${ap}航空載客率數據庫`,
                 "description": `本數據集提供${ap}的航空載客率統計數據，內容包含月度起降航班數、總座位數、實際載客人數與平均載客率，資料來源為交通部民用航空局。`,
-                "license": "https://creativecommons.org/licenses/by/4.0/",
-                "temporalCoverage": `${startYM}-01/${latestYM}-01`,
+                "license": "https://data.gov.tw/license",
+                "isBasedOn": "https://data.gov.tw/dataset/47492",
+                "temporalCoverage": `${startYM}-01/${apLatestYM}-01`,
                 "url": `${SITE_URL}/airport/${airportCodes[ap]}/`
             });
         }
-        
+
         for (const al in airlineSlugCodes) {
+            const alRecs = allRecords.filter(r => r.airline === al).sort((a, b) => b.yearMonth.localeCompare(a.yearMonth));
+            const alLatest = alRecs.length > 0 ? alRecs[0] : { year: latestYear, month: latestMonth };
+            const alLatestYM = `${alLatest.year}-${String(alLatest.month).padStart(2, '0')}`;
             const fullName = airlineFullNames[al];
             dataCatalog.dataset.push({
                 "@type": "Dataset",
                 "name": `${fullName}航空載客率數據庫`,
                 "description": `本數據集提供${fullName}的航空載客率統計數據，內容包含該航空公司在台灣各航線的月度起降航班數、總座位數與實際載客人數，資料來源為交通部民用航空局。`,
-                "license": "https://creativecommons.org/licenses/by/4.0/",
-                "temporalCoverage": `${startYM}-01/${latestYM}-01`,
+                "license": "https://data.gov.tw/license",
+                "isBasedOn": "https://data.gov.tw/dataset/47492",
+                "temporalCoverage": `${startYM}-01/${alLatestYM}-01`,
                 "url": `${SITE_URL}/airline/${airlineSlugCodes[al]}/`
             });
         }
-        
+
         schemas.push(dataCatalog);
     }
 
@@ -428,33 +435,34 @@ function build() {
     // Find date range boundaries
     const sortedRecords = [...allRecords].sort((a, b) => b.yearMonth.localeCompare(a.yearMonth));
     const latestRecord = sortedRecords[0];
-    const latestYear = latestRecord.year;
-    const latestMonth = latestRecord.month;
+    const globalLatestYear = latestRecord.year;
+    const globalLatestMonth = latestRecord.month;
 
     console.log(`Global date range for pre-rendering: 2024-01 to ${latestRecord.yearMonth}`);
 
     // Define function to generate page
     function generatePage(targetAirport, targetAirline, outputFilePath, relativeUrlPath) {
-        let filteredRecords = allRecords;
-        
-        // Filter by date range (2024-01 to latest)
+        let targetRecords = allRecords;
+        if (targetAirport) {
+            targetRecords = allRecords.filter(r => r.airport === targetAirport);
+        } else if (targetAirline) {
+            targetRecords = allRecords.filter(r => r.airline === targetAirline);
+        }
+
+        // Determine page-specific latest year and month
+        const sortedTarget = [...targetRecords].sort((a, b) => b.yearMonth.localeCompare(a.yearMonth));
+        const pageLatestRecord = sortedTarget.length > 0 ? sortedTarget[0] : latestRecord;
+        const pageLatestYear = pageLatestRecord.year;
+        const pageLatestMonth = pageLatestRecord.month;
+
+        // Filter by date range (2024-01 to page's latest month)
         const startVal = DEFAULT_START_YEAR * 100 + DEFAULT_START_MONTH;
-        const endVal = latestYear * 100 + latestMonth;
-        
-        filteredRecords = filteredRecords.filter(r => {
+        const endVal = pageLatestYear * 100 + pageLatestMonth;
+
+        const filteredRecords = targetRecords.filter(r => {
             const currentVal = r.year * 100 + r.month;
             return currentVal >= startVal && currentVal <= endVal;
         });
-
-        // Filter by airport if specified
-        if (targetAirport) {
-            filteredRecords = filteredRecords.filter(r => r.airport === targetAirport);
-        }
-
-        // Filter by airline if specified
-        if (targetAirline) {
-            filteredRecords = filteredRecords.filter(r => r.airline === targetAirline);
-        }
 
         // Calculate insights & get static HTML
         const insightsData = calculateInsightsData(filteredRecords, allRecords);
@@ -462,7 +470,7 @@ function build() {
         const tableHtml = renderStaticTable(filteredRecords);
 
         // Page variables
-        const seo = buildPageSeo(targetAirport, targetAirline, insightsData, latestYear, latestMonth);
+        const seo = buildPageSeo(targetAirport, targetAirline, insightsData, pageLatestYear, pageLatestMonth);
         let pageTitle = seo.title;
         let pageDesc = seo.description;
         let pageHeading = seo.heading;
@@ -471,14 +479,14 @@ function build() {
         if (targetAirport) {
             breadcrumbHtml = `
             <div class="breadcrumb" style="margin-bottom: var(--space-4); font-size: 0.875rem; color: var(--color-text-secondary);">
-                <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
+                <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt;
                 <span style="color: var(--color-text-primary); font-weight: 500;">${targetAirport}</span>
             </div>`;
         } else if (targetAirline) {
             const fullName = airlineFullNames[targetAirline] || targetAirline;
             breadcrumbHtml = `
             <div class="breadcrumb" style="margin-bottom: var(--space-4); font-size: 0.875rem; color: var(--color-text-secondary);">
-                <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt; 
+                <a href="/" style="color: var(--color-primary); text-decoration: none;">首頁</a> &gt;
                 <span style="color: var(--color-text-primary); font-weight: 500;">${fullName}</span>
             </div>`;
         }
@@ -508,7 +516,7 @@ function build() {
         html = html.replace('</head>', `${ogTags}\n</head>`);
 
         // Inject dynamic JSON-LD schemas
-        const jsonLdHtml = generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, latestYear, latestMonth);
+        const jsonLdHtml = generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, pageLatestYear, pageLatestMonth, allRecords);
         html = html.replace('</head>', `${jsonLdHtml}\n</head>`);
 
         // Inject breadcrumbs if not homepage
@@ -575,11 +583,11 @@ function build() {
         html = html.replace('/data/flight_data.json', `/data/flight_data_${fileCode}.json`);
 
         // Update data quality details
-        const latestDateStr = `${latestYear}-${String(latestMonth).padStart(2, '0')}-01`;
-        html = html.replace(/<dd id="dq-update-time">[\s\S]*?<\/dd>/, `<dd id="dq-update-time"><time datetime="${latestDateStr}">${latestYear}年${latestMonth}月</time></dd>`);
+        const latestDateStr = `${pageLatestYear}-${String(pageLatestMonth).padStart(2, '0')}-01`;
+        html = html.replace(/<dd id="dq-update-time">[\s\S]*?<\/dd>/, `<dd id="dq-update-time"><time datetime="${latestDateStr}">${pageLatestYear}年${pageLatestMonth}月</time></dd>`);
 
         // Update header update time badge (E-E-A-T)
-        html = html.replace(/<span id="header-update-time">.*?<\/span>/, `<span id="header-update-time">${latestYear}年${String(latestMonth).padStart(2, '0')}月</span>`);
+        html = html.replace(/<span id="header-update-time">.*?<\/span>/, `<span id="header-update-time">${pageLatestYear}年${String(pageLatestMonth).padStart(2, '0')}月</span>`);
 
         // Uniform footer year
         html = html.replace(/<span id="footer-year">.*?<\/span>/g, `<span id="footer-year">${new Date().getFullYear()}</span>`);
@@ -590,7 +598,7 @@ function build() {
             fs.mkdirSync(dir, { recursive: true });
         }
         fs.writeFileSync(outputFilePath, html, 'utf8');
-        console.log(`Generated page: ${outputFilePath}`);
+        console.log(`Generated page: ${outputFilePath} (Latest Month: ${pageLatestYear}-${pageLatestMonth})`);
     }
 
     // 2. Generate HomePage

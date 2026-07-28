@@ -348,6 +348,18 @@
     "loadFactor": 73.71740958788898
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "河內",
+    "airline": "越南",
+    "flights": 86,
+    "totalSeats": 17458,
+    "passengers": 11978,
+    "loadFactor": 68.61037919578416
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -694,6 +706,18 @@
     "totalSeats": 8280,
     "passengers": 6455,
     "loadFactor": 77.95893719806763
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "河內",
+    "airline": "越捷",
+    "flights": 48,
+    "totalSeats": 11040,
+    "passengers": 7786,
+    "loadFactor": 70.52536231884058
   },
   {
     "year": 2024,
@@ -1044,6 +1068,18 @@
     "loadFactor": 78.72468527640942
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "胡志明市",
+    "airline": "越南",
+    "flights": 94,
+    "totalSeats": 19082,
+    "passengers": 15933,
+    "loadFactor": 83.49753694581281
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -1390,6 +1426,18 @@
     "totalSeats": 8740,
     "passengers": 6403,
     "loadFactor": 73.26086956521739
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "胡志明市",
+    "airline": "越捷",
+    "flights": 34,
+    "totalSeats": 7820,
+    "passengers": 6589,
+    "loadFactor": 84.25831202046035
   },
   {
     "year": 2024,
@@ -1740,6 +1788,18 @@
     "loadFactor": 71.43298730068777
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "香港",
+    "airline": "國泰",
+    "flights": 230,
+    "totalSeats": 75906,
+    "passengers": 56799,
+    "loadFactor": 74.82807683187099
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -2086,6 +2146,18 @@
     "totalSeats": 34276,
     "passengers": 23953,
     "loadFactor": 69.88271676975143
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "香港",
+    "airline": "香港快運",
+    "flights": 130,
+    "totalSeats": 28484,
+    "passengers": 21741,
+    "loadFactor": 76.32706080606656
   },
   {
     "year": 2024,
@@ -2436,6 +2508,18 @@
     "loadFactor": 67.50591016548462
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "香港",
+    "airline": "中華",
+    "flights": 94,
+    "totalSeats": 16920,
+    "passengers": 11880,
+    "loadFactor": 70.2127659574468
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -2748,6 +2832,18 @@
     "loadFactor": 68.59148550724638
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "香港",
+    "airline": "長榮",
+    "flights": 92,
+    "totalSeats": 16928,
+    "passengers": 11758,
+    "loadFactor": 69.45888468809073
+  },
+  {
     "year": 2025,
     "month": 11,
     "yearMonth": "2025-11",
@@ -2830,6 +2926,18 @@
     "totalSeats": 4108,
     "passengers": 2623,
     "loadFactor": 63.8510223953262
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "香港",
+    "airline": "華信",
+    "flights": 24,
+    "totalSeats": 3792,
+    "passengers": 2161,
+    "loadFactor": 56.98839662447257
   },
   {
     "year": 2024,
@@ -3180,6 +3288,18 @@
     "loadFactor": 62.70343580470163
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "馬尼拉",
+    "airline": "中華",
+    "flights": 26,
+    "totalSeats": 4108,
+    "passengers": 2762,
+    "loadFactor": 67.23466407010712
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -3528,6 +3648,18 @@
     "loadFactor": 72.25806451612902
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "馬尼拉",
+    "airline": "菲亞洲",
+    "flights": 60,
+    "totalSeats": 10800,
+    "passengers": 8044,
+    "loadFactor": 74.48148148148148
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -3790,6 +3922,18 @@
     "totalSeats": 10696,
     "passengers": 5609,
     "loadFactor": 52.4401645474944
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "馬尼拉",
+    "airline": "宿霧太平洋",
+    "flights": 28,
+    "totalSeats": 6496,
+    "passengers": 4353,
+    "loadFactor": 67.01046798029556
   },
   {
     "year": 2024,
@@ -4140,6 +4284,18 @@
     "loadFactor": 76.85897435897436
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "廈門",
+    "airline": "華信",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 3571,
+    "loadFactor": 76.3034188034188
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -4486,6 +4642,18 @@
     "totalSeats": 1840,
     "passengers": 1514,
     "loadFactor": 82.28260869565217
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "廈門",
+    "airline": "廈門",
+    "flights": 8,
+    "totalSeats": 1472,
+    "passengers": 1210,
+    "loadFactor": 82.20108695652173
   },
   {
     "year": 2024,
@@ -4836,6 +5004,18 @@
     "loadFactor": 88.89196983141082
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "大阪",
+    "airline": "長榮",
+    "flights": 94,
+    "totalSeats": 17296,
+    "passengers": 15384,
+    "loadFactor": 88.94542090656799
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -5182,6 +5362,18 @@
     "totalSeats": 11160,
     "passengers": 10215,
     "loadFactor": 91.53225806451613
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "大阪",
+    "airline": "台灣虎航",
+    "flights": 60,
+    "totalSeats": 10800,
+    "passengers": 9973,
+    "loadFactor": 92.34259259259258
   },
   {
     "year": 2024,
@@ -5532,6 +5724,18 @@
     "loadFactor": 90.04453759496988
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "大阪",
+    "airline": "中華",
+    "flights": 86,
+    "totalSeats": 14908,
+    "passengers": 12787,
+    "loadFactor": 85.7727394687416
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -5880,6 +6084,30 @@
     "loadFactor": 85.49126960639242
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "大阪",
+    "airline": "樂桃",
+    "flights": 60,
+    "totalSeats": 13080,
+    "passengers": 11340,
+    "loadFactor": 86.69724770642202
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "大阪",
+    "airline": "馬亞洲",
+    "flights": 32,
+    "totalSeats": 5952,
+    "passengers": 5385,
+    "loadFactor": 90.47379032258065
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -6226,6 +6454,18 @@
     "totalSeats": 11532,
     "passengers": 7664,
     "loadFactor": 66.45855012140132
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "吉隆坡",
+    "airline": "馬亞洲",
+    "flights": 60,
+    "totalSeats": 11136,
+    "passengers": 8064,
+    "loadFactor": 72.41379310344827
   },
   {
     "year": 2024,
@@ -6780,6 +7020,18 @@
     "loadFactor": 85.45918367346938
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "長榮",
+    "flights": 58,
+    "totalSeats": 18154,
+    "passengers": 13896,
+    "loadFactor": 76.54511402445742
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -7126,6 +7378,18 @@
     "totalSeats": 22320,
     "passengers": 18922,
     "loadFactor": 84.77598566308244
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "中華",
+    "flights": 120,
+    "totalSeats": 21600,
+    "passengers": 18407,
+    "loadFactor": 85.2175925925926
   },
   {
     "year": 2024,
@@ -7476,6 +7740,18 @@
     "loadFactor": 89.37275985663082
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "台灣虎航",
+    "flights": 60,
+    "totalSeats": 10800,
+    "passengers": 9829,
+    "loadFactor": 91.00925925925925
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -7764,6 +8040,18 @@
     "loadFactor": 83.64720652856246
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "泰亞洲",
+    "flights": 16,
+    "totalSeats": 2832,
+    "passengers": 1798,
+    "loadFactor": 63.48870056497176
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -7896,6 +8184,18 @@
     "loadFactor": 73.06645938593081
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "聯合",
+    "flights": 58,
+    "totalSeats": 9628,
+    "passengers": 7727,
+    "loadFactor": 80.25550477773162
+  },
+  {
     "year": 2025,
     "month": 12,
     "yearMonth": "2025-12",
@@ -7966,6 +8266,18 @@
     "totalSeats": 11160,
     "passengers": 9315,
     "loadFactor": 83.46774193548387
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "捷星日本",
+    "flights": 60,
+    "totalSeats": 10800,
+    "passengers": 8600,
+    "loadFactor": 79.62962962962963
   },
   {
     "year": 2024,
@@ -8314,6 +8626,18 @@
     "totalSeats": 4680,
     "passengers": 4455,
     "loadFactor": 95.1923076923077
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "名古屋",
+    "airline": "台灣虎航",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 4421,
+    "loadFactor": 94.46581196581197
   },
   {
     "year": 2024,
@@ -8868,6 +9192,18 @@
     "loadFactor": 85.77004219409282
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "曼谷蘇凡納布",
+    "airline": "中華",
+    "flights": 60,
+    "totalSeats": 9480,
+    "passengers": 7934,
+    "loadFactor": 83.69198312236287
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -9214,6 +9550,18 @@
     "totalSeats": 2400,
     "passengers": 1316,
     "loadFactor": 54.833333333333336
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "曼谷蘇凡納布",
+    "airline": "泰國",
+    "flights": 36,
+    "totalSeats": 6144,
+    "passengers": 3686,
+    "loadFactor": 59.993489583333336
   },
   {
     "year": 2024,
@@ -9564,6 +9912,18 @@
     "loadFactor": 94.90079365079364
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "福岡",
+    "airline": "台灣虎航",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 4483,
+    "loadFactor": 95.7905982905983
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -9912,6 +10272,18 @@
     "loadFactor": 94.36360448807855
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "福岡",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 10268,
+    "loadFactor": 93.0072463768116
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -10078,6 +10450,18 @@
     "totalSeats": 4196,
     "passengers": 3782,
     "loadFactor": 90.13346043851287
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "福岡",
+    "airline": "中華",
+    "flights": 26,
+    "totalSeats": 4108,
+    "passengers": 3684,
+    "loadFactor": 89.67867575462513
   },
   {
     "year": 2024,
@@ -10404,6 +10788,18 @@
     "loadFactor": 89.62121212121212
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "峴港",
+    "airline": "台灣虎航",
+    "flights": 42,
+    "totalSeats": 7560,
+    "passengers": 6578,
+    "loadFactor": 87.01058201058201
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -10666,6 +11062,18 @@
     "totalSeats": 230,
     "passengers": 102,
     "loadFactor": 44.34782608695652
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "峴港",
+    "airline": "越捷",
+    "flights": 12,
+    "totalSeats": 2760,
+    "passengers": 1639,
+    "loadFactor": 59.38405797101449
   },
   {
     "year": 2024,
@@ -11016,6 +11424,18 @@
     "loadFactor": 84.50805523590333
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "上海浦東",
+    "airline": "中華",
+    "flights": 44,
+    "totalSeats": 6996,
+    "passengers": 5862,
+    "loadFactor": 83.79073756432247
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -11362,6 +11782,18 @@
     "totalSeats": 10160,
     "passengers": 8426,
     "loadFactor": 82.93307086614173
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "上海浦東",
+    "airline": "長榮",
+    "flights": 44,
+    "totalSeats": 13772,
+    "passengers": 10504,
+    "loadFactor": 76.27069416206797
   },
   {
     "year": 2024,
@@ -11712,6 +12144,18 @@
     "loadFactor": 83.13161875945538
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "上海浦東",
+    "airline": "吉祥",
+    "flights": 24,
+    "totalSeats": 4528,
+    "passengers": 3941,
+    "loadFactor": 87.03621908127208
+  },
+  {
     "year": 2024,
     "month": 1,
     "yearMonth": "2024-01",
@@ -11794,6 +12238,18 @@
     "totalSeats": 5016,
     "passengers": 4516,
     "loadFactor": 90.03189792663477
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "上海浦東",
+    "airline": "春秋",
+    "flights": 24,
+    "totalSeats": 4302,
+    "passengers": 3879,
+    "loadFactor": 90.1673640167364
   },
   {
     "year": 2024,
@@ -12144,6 +12600,18 @@
     "loadFactor": 84.91763898421414
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾仁川",
+    "airline": "德威",
+    "flights": 61,
+    "totalSeats": 11468,
+    "passengers": 9682,
+    "loadFactor": 84.42622950819673
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -12492,6 +12960,18 @@
     "loadFactor": 81.96428571428571
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾仁川",
+    "airline": "中華",
+    "flights": 60,
+    "totalSeats": 10800,
+    "passengers": 8584,
+    "loadFactor": 79.48148148148148
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -12838,6 +13318,18 @@
     "totalSeats": 11408,
     "passengers": 9197,
     "loadFactor": 80.61886395511921
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾仁川",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 8787,
+    "loadFactor": 79.59239130434783
   },
   {
     "year": 2024,
@@ -13440,6 +13932,18 @@
     "loadFactor": 90.01543209876543
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾金浦",
+    "airline": "台灣虎航",
+    "flights": 34,
+    "totalSeats": 6120,
+    "passengers": 5650,
+    "loadFactor": 92.3202614379085
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -13728,6 +14232,18 @@
     "loadFactor": 87.81028368794325
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾金浦",
+    "airline": "德威",
+    "flights": 34,
+    "totalSeats": 6392,
+    "passengers": 5548,
+    "loadFactor": 86.79599499374217
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -13906,6 +14422,18 @@
     "totalSeats": 4914,
     "passengers": 4104,
     "loadFactor": 83.51648351648352
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾金浦",
+    "airline": "濟州",
+    "flights": 26,
+    "totalSeats": 4914,
+    "passengers": 4145,
+    "loadFactor": 84.35083435083435
   },
   {
     "year": 2024,
@@ -14256,6 +14784,18 @@
     "loadFactor": 86.61680911680911
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "釜山",
+    "airline": "釜山",
+    "flights": 60,
+    "totalSeats": 12736,
+    "passengers": 11454,
+    "loadFactor": 89.93404522613065
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -14413,6 +14953,18 @@
   },
   {
     "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "釜山",
+    "airline": "濟州",
+    "flights": 60,
+    "totalSeats": 11340,
+    "passengers": 10305,
+    "loadFactor": 90.87301587301587
+  },
+  {
+    "year": 2026,
     "month": 3,
     "yearMonth": "2026-03",
     "airport": "高雄國際機場",
@@ -14446,6 +14998,18 @@
     "totalSeats": 11656,
     "passengers": 8560,
     "loadFactor": 73.43857240905972
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "釜山",
+    "airline": "德威",
+    "flights": 59,
+    "totalSeats": 11092,
+    "passengers": 9119,
+    "loadFactor": 82.21240533717994
   },
   {
     "year": 2024,
@@ -14794,6 +15358,18 @@
     "totalSeats": 9128,
     "passengers": 7574,
     "loadFactor": 82.97546012269939
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "澳門",
+    "airline": "長榮",
+    "flights": 42,
+    "totalSeats": 9534,
+    "passengers": 7761,
+    "loadFactor": 81.4033983637508
   },
   {
     "year": 2024,
@@ -15468,6 +16044,18 @@
     "loadFactor": 79.98406918525262
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "澳門",
+    "airline": "澳門",
+    "flights": 169,
+    "totalSeats": 29066,
+    "passengers": 21797,
+    "loadFactor": 74.99139888529554
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -15814,6 +16402,18 @@
     "totalSeats": 4686,
     "passengers": 3226,
     "loadFactor": 68.8433632095604
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "南京",
+    "airline": "東方",
+    "flights": 24,
+    "totalSeats": 3858,
+    "passengers": 3055,
+    "loadFactor": 79.18610679108346
   },
   {
     "year": 2024,
@@ -16164,6 +16764,18 @@
     "loadFactor": 84.02173913043478
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "福州",
+    "airline": "廈門",
+    "flights": 8,
+    "totalSeats": 1472,
+    "passengers": 1220,
+    "loadFactor": 82.88043478260869
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -16510,6 +17122,18 @@
     "totalSeats": 3360,
     "passengers": 2736,
     "loadFactor": 81.42857142857143
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "武漢",
+    "airline": "東方",
+    "flights": 16,
+    "totalSeats": 2688,
+    "passengers": 2070,
+    "loadFactor": 77.00892857142857
   },
   {
     "year": 2024,
@@ -16860,6 +17484,18 @@
     "loadFactor": 76.51098901098901
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "武漢",
+    "airline": "南方",
+    "flights": 26,
+    "totalSeats": 4368,
+    "passengers": 3461,
+    "loadFactor": 79.23534798534799
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -17206,6 +17842,18 @@
     "totalSeats": 2844,
     "passengers": 2172,
     "loadFactor": 76.37130801687763
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "深圳",
+    "airline": "中華",
+    "flights": 16,
+    "totalSeats": 2528,
+    "passengers": 2086,
+    "loadFactor": 82.51582278481013
   },
   {
     "year": 2024,
@@ -17556,6 +18204,18 @@
     "loadFactor": 70.6669912366115
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "新加坡",
+    "airline": "中華",
+    "flights": 26,
+    "totalSeats": 4108,
+    "passengers": 3303,
+    "loadFactor": 80.40408958130477
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -17902,6 +18562,18 @@
     "totalSeats": 10112,
     "passengers": 8784,
     "loadFactor": 86.86708860759494
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "沖繩",
+    "airline": "中華",
+    "flights": 50,
+    "totalSeats": 7900,
+    "passengers": 6899,
+    "loadFactor": 87.32911392405063
   },
   {
     "year": 2024,
@@ -18252,6 +18924,18 @@
     "loadFactor": 97.81293952180027
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "沖繩",
+    "airline": "台灣虎航",
+    "flights": 74,
+    "totalSeats": 13320,
+    "passengers": 13171,
+    "loadFactor": 98.88138138138139
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -18454,6 +19138,18 @@
     "totalSeats": 7310,
     "passengers": 3935,
     "loadFactor": 53.83036935704515
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "沖繩",
+    "airline": "泰獅",
+    "flights": 24,
+    "totalSeats": 5160,
+    "passengers": 2934,
+    "loadFactor": 56.860465116279066
   },
   {
     "year": 2024,
@@ -18792,6 +19488,18 @@
     "loadFactor": 74.49780288763338
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "曼谷廊曼",
+    "airline": "泰亞洲",
+    "flights": 16,
+    "totalSeats": 2832,
+    "passengers": 1790,
+    "loadFactor": 63.206214689265536
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -18994,6 +19702,18 @@
     "totalSeats": 12900,
     "passengers": 4696,
     "loadFactor": 36.4031007751938
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "曼谷廊曼",
+    "airline": "泰獅",
+    "flights": 50,
+    "totalSeats": 10750,
+    "passengers": 4656,
+    "loadFactor": 43.311627906976746
   },
   {
     "year": 2024,
@@ -19476,6 +20196,18 @@
     "loadFactor": 82.67094017094017
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "岡山",
+    "airline": "台灣虎航",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 4209,
+    "loadFactor": 89.93589743589745
+  },
+  {
     "year": 2024,
     "month": 11,
     "yearMonth": "2024-11",
@@ -19728,6 +20460,18 @@
     "loadFactor": 81.21794871794872
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "仙台",
+    "airline": "台灣虎航",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 3962,
+    "loadFactor": 84.65811965811966
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -19932,6 +20676,18 @@
     "loadFactor": 90.04273504273505
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "札幌",
+    "airline": "台灣虎航",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 4395,
+    "loadFactor": 93.91025641025641
+  },
+  {
     "year": 2025,
     "month": 12,
     "yearMonth": "2025-12",
@@ -20002,6 +20758,18 @@
     "totalSeats": 5590,
     "passengers": 4048,
     "loadFactor": 72.41502683363149
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "札幌",
+    "airline": "泰獅",
+    "flights": 26,
+    "totalSeats": 5590,
+    "passengers": 3672,
+    "loadFactor": 65.68872987477639
   },
   {
     "year": 2025,
@@ -20352,6 +21120,18 @@
     "loadFactor": 89.05141843971631
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "濟州",
+    "airline": "德威",
+    "flights": 34,
+    "totalSeats": 6392,
+    "passengers": 5650,
+    "loadFactor": 88.39173967459324
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -20494,6 +21274,18 @@
     "totalSeats": 6300,
     "passengers": 5561,
     "loadFactor": 88.26984126984127
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "濟州",
+    "airline": "台灣虎航",
+    "flights": 34,
+    "totalSeats": 6120,
+    "passengers": 5907,
+    "loadFactor": 96.51960784313725
   },
   {
     "year": 2025,
@@ -20844,6 +21636,18 @@
     "loadFactor": 83.67062107466853
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "熊本",
+    "airline": "中華",
+    "flights": 34,
+    "totalSeats": 5416,
+    "passengers": 4233,
+    "loadFactor": 78.1573116691285
+  },
+  {
     "year": 2025,
     "month": 12,
     "yearMonth": "2025-12",
@@ -20914,6 +21718,18 @@
     "totalSeats": 3240,
     "passengers": 2858,
     "loadFactor": 88.20987654320987
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "熊本",
+    "airline": "台灣虎航",
+    "flights": 18,
+    "totalSeats": 3240,
+    "passengers": 2944,
+    "loadFactor": 90.8641975308642
   },
   {
     "year": 2025,
@@ -21082,5 +21898,17 @@
     "totalSeats": 1264,
     "passengers": 1231,
     "loadFactor": 97.38924050632912
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "重慶",
+    "airline": "中華",
+    "flights": 8,
+    "totalSeats": 1264,
+    "passengers": 1175,
+    "loadFactor": 92.95886075949366
   }
 ]

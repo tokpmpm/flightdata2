@@ -19,7 +19,7 @@ const raw = JSON.parse(fs.readFileSync('./data/flight_data_all.json', 'utf8'));
 const START_YEAR  = 2024;
 const START_MONTH = 1;
 const END_YEAR    = 2026;
-const END_MONTH   = 5;
+const END_MONTH   = 6;
 
 const START_KEY = START_YEAR * 100 + START_MONTH;  // 202401
 const END_KEY   = END_YEAR   * 100 + END_MONTH;    // 202605

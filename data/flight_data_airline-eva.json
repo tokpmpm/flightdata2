@@ -348,6 +348,18 @@
     "loadFactor": 86.33516796356045
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "大阪",
+    "airline": "長榮",
+    "flights": 180,
+    "totalSeats": 61270,
+    "passengers": 53978,
+    "loadFactor": 88.09858005549208
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -694,6 +706,18 @@
     "totalSeats": 43384,
     "passengers": 37417,
     "loadFactor": 86.2460815047022
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "首爾仁川",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 35828,
+    "passengers": 32191,
+    "loadFactor": 89.84872167020208
   },
   {
     "year": 2024,
@@ -1044,6 +1068,18 @@
     "loadFactor": 91.77556428767248
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "巴黎",
+    "airline": "長榮",
+    "flights": 61,
+    "totalSeats": 21533,
+    "passengers": 19286,
+    "loadFactor": 89.56485394510752
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -1390,6 +1426,18 @@
     "totalSeats": 9234,
     "passengers": 7216,
     "loadFactor": 78.1459822395495
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "布里斯本",
+    "airline": "長榮",
+    "flights": 31,
+    "totalSeats": 10602,
+    "passengers": 8373,
+    "loadFactor": 78.97566496887379
   },
   {
     "year": 2024,
@@ -1740,6 +1788,18 @@
     "loadFactor": 85.55133079847909
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "札幌",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 31560,
+    "passengers": 28845,
+    "loadFactor": 91.39733840304183
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -2086,6 +2146,18 @@
     "totalSeats": 20026,
     "passengers": 17102,
     "loadFactor": 85.39898132427844
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "吉隆坡",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 19380,
+    "passengers": 17370,
+    "loadFactor": 89.62848297213623
   },
   {
     "year": 2024,
@@ -2436,6 +2508,18 @@
     "loadFactor": 95.20972585488715
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "休士頓",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 19980,
+    "passengers": 19333,
+    "loadFactor": 96.76176176176176
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -2782,6 +2866,18 @@
     "totalSeats": 30096,
     "passengers": 26912,
     "loadFactor": 89.42052099946837
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "西雅圖",
+    "airline": "長榮",
+    "flights": 86,
+    "totalSeats": 29412,
+    "passengers": 26200,
+    "loadFactor": 89.07928736570108
   },
   {
     "year": 2024,
@@ -3132,6 +3228,18 @@
     "loadFactor": 81.82890020750801
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "東京成田",
+    "airline": "長榮",
+    "flights": 175,
+    "totalSeats": 59748,
+    "passengers": 52176,
+    "loadFactor": 87.32677244426593
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -3478,6 +3586,18 @@
     "totalSeats": 32014,
     "passengers": 28864,
     "loadFactor": 90.16055475729368
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "河內",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 30980,
+    "passengers": 26274,
+    "loadFactor": 84.80955455132343
   },
   {
     "year": 2024,
@@ -3828,6 +3948,18 @@
     "loadFactor": 92.2115664051148
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "芝加哥",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 19980,
+    "passengers": 18984,
+    "loadFactor": 95.01501501501501
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -4174,6 +4306,18 @@
     "totalSeats": 19158,
     "passengers": 11105,
     "loadFactor": 57.96534084977555
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "金邊",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 18606,
+    "passengers": 11703,
+    "loadFactor": 62.899064817800706
   },
   {
     "year": 2024,
@@ -4524,6 +4668,18 @@
     "loadFactor": 85.80314490445859
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "洛杉磯",
+    "airline": "長榮",
+    "flights": 180,
+    "totalSeats": 58590,
+    "passengers": 50673,
+    "loadFactor": 86.48745519713262
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -4870,6 +5026,18 @@
     "totalSeats": 61758,
     "passengers": 52177,
     "loadFactor": 84.48622040869199
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "胡志明市",
+    "airline": "長榮",
+    "flights": 180,
+    "totalSeats": 59640,
+    "passengers": 50223,
+    "loadFactor": 84.2102615694165
   },
   {
     "year": 2024,
@@ -5220,6 +5388,18 @@
     "loadFactor": 65.52051112093092
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "香港",
+    "airline": "長榮",
+    "flights": 380,
+    "totalSeats": 105160,
+    "passengers": 68699,
+    "loadFactor": 65.32807151007988
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -5566,6 +5746,18 @@
     "totalSeats": 20646,
     "passengers": 19439,
     "loadFactor": 94.15383125060545
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "紐約",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 19980,
+    "passengers": 18312,
+    "loadFactor": 91.65165165165166
   },
   {
     "year": 2024,
@@ -5916,6 +6108,18 @@
     "loadFactor": 84.54183543973714
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "馬尼拉",
+    "airline": "長榮",
+    "flights": 180,
+    "totalSeats": 55222,
+    "passengers": 47446,
+    "loadFactor": 85.91865560827206
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -6262,6 +6466,18 @@
     "totalSeats": 95877,
     "passengers": 72094,
     "loadFactor": 75.19425931140941
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "曼谷蘇凡納布",
+    "airline": "長榮",
+    "flights": 274,
+    "totalSeats": 93467,
+    "passengers": 64980,
+    "loadFactor": 69.52186333144319
   },
   {
     "year": 2024,
@@ -6612,6 +6828,18 @@
     "loadFactor": 92.64910652123463
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "雅加達",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 16680,
+    "passengers": 15974,
+    "loadFactor": 95.7673860911271
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -6958,6 +7186,18 @@
     "totalSeats": 40142,
     "passengers": 31940,
     "loadFactor": 79.56753524986298
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "新加坡",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 39720,
+    "passengers": 34359,
+    "loadFactor": 86.50302114803625
   },
   {
     "year": 2024,
@@ -7308,6 +7548,18 @@
     "loadFactor": 86.92771634835054
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "溫哥華",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 21180,
+    "passengers": 18738,
+    "loadFactor": 88.47025495750708
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -7654,6 +7906,18 @@
     "totalSeats": 32484,
     "passengers": 31310,
     "loadFactor": 96.38591306489349
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "福岡",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 32406,
+    "passengers": 31242,
+    "loadFactor": 96.408072579152
   },
   {
     "year": 2024,
@@ -8004,6 +8268,18 @@
     "loadFactor": 89.71164613661814
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "澳門",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 35530,
+    "passengers": 32447,
+    "loadFactor": 91.32282578103012
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -8350,6 +8626,18 @@
     "totalSeats": 59128,
     "passengers": 50277,
     "loadFactor": 85.03078067920444
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "舊金山",
+    "airline": "長榮",
+    "flights": 180,
+    "totalSeats": 57240,
+    "passengers": 51114,
+    "loadFactor": 89.29769392033543
   },
   {
     "year": 2024,
@@ -8700,6 +8988,18 @@
     "loadFactor": 92.79152312349932
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "峇里島",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 18540,
+    "passengers": 17821,
+    "loadFactor": 96.12189859762675
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -9046,6 +9346,18 @@
     "totalSeats": 19158,
     "passengers": 17279,
     "loadFactor": 90.19208685666563
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "宿霧",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 18540,
+    "passengers": 16289,
+    "loadFactor": 87.85868392664509
   },
   {
     "year": 2024,
@@ -9396,6 +9708,18 @@
     "loadFactor": 94.7584789311408
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "維也納",
+    "airline": "長榮",
+    "flights": 25,
+    "totalSeats": 6950,
+    "passengers": 6324,
+    "loadFactor": 90.99280575539568
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -9742,6 +10066,18 @@
     "totalSeats": 19158,
     "passengers": 17544,
     "loadFactor": 91.5753210147197
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "峴港",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 18606,
+    "passengers": 16869,
+    "loadFactor": 90.66430183811673
   },
   {
     "year": 2024,
@@ -10092,6 +10428,18 @@
     "loadFactor": 94.32308782782395
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "米蘭",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 16680,
+    "passengers": 15505,
+    "loadFactor": 92.95563549160671
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -10438,6 +10786,18 @@
     "totalSeats": 20646,
     "passengers": 18624,
     "loadFactor": 90.20633536762568
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "多倫多",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 19980,
+    "passengers": 18317,
+    "loadFactor": 91.67667667667668
   },
   {
     "year": 2024,
@@ -10788,6 +11148,18 @@
     "loadFactor": 82.53559667918927
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "上海浦東",
+    "airline": "長榮",
+    "flights": 128,
+    "totalSeats": 41470,
+    "passengers": 34651,
+    "loadFactor": 83.55678803954666
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -11134,6 +11506,18 @@
     "totalSeats": 19186,
     "passengers": 15455,
     "loadFactor": 80.55352861461482
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "北京",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 18540,
+    "passengers": 16423,
+    "loadFactor": 88.5814455231931
   },
   {
     "year": 2024,
@@ -11484,6 +11868,18 @@
     "loadFactor": 92.3374613003096
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "慕尼黑",
+    "airline": "長榮",
+    "flights": 34,
+    "totalSeats": 10982,
+    "passengers": 9948,
+    "loadFactor": 90.58459297031506
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -11578,6 +11974,18 @@
     "totalSeats": 11408,
     "passengers": 10590,
     "loadFactor": 92.82959326788219
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "釜山",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 10452,
+    "loadFactor": 94.67391304347827
   },
   {
     "year": 2024,
@@ -11928,6 +12336,18 @@
     "loadFactor": 94.19705469845722
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "清邁",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 10167,
+    "loadFactor": 92.09239130434783
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -12274,6 +12694,18 @@
     "totalSeats": 11408,
     "passengers": 9432,
     "loadFactor": 82.6788218793829
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "仙台",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 9460,
+    "loadFactor": 85.68840579710145
   },
   {
     "year": 2024,
@@ -12624,6 +13056,18 @@
     "loadFactor": 87.84624824684431
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "沖繩",
+    "airline": "長榮",
+    "flights": 112,
+    "totalSeats": 21224,
+    "passengers": 19276,
+    "loadFactor": 90.82171127026008
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -12970,6 +13414,18 @@
     "totalSeats": 14408,
     "passengers": 11863,
     "loadFactor": 82.33620210993892
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "小松",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 9693,
+    "loadFactor": 87.79891304347827
   },
   {
     "year": 2024,
@@ -13320,6 +13776,18 @@
     "loadFactor": 93.89924591537495
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "克拉克",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 18354,
+    "passengers": 16764,
+    "loadFactor": 91.3370382477934
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -13582,6 +14050,18 @@
     "totalSeats": 8464,
     "passengers": 6810,
     "loadFactor": 80.45841209829868
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "青森",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 8772,
+    "loadFactor": 79.45652173913044
   },
   {
     "year": 2025,
@@ -14004,6 +14484,18 @@
     "loadFactor": 81.01133025597986
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "杭州",
+    "airline": "長榮",
+    "flights": 24,
+    "totalSeats": 8208,
+    "passengers": 6558,
+    "loadFactor": 79.89766081871345
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -14350,6 +14842,18 @@
     "totalSeats": 5702,
     "passengers": 4666,
     "loadFactor": 81.83093651350404
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "成都天府",
+    "airline": "長榮",
+    "flights": 18,
+    "totalSeats": 5314,
+    "passengers": 4727,
+    "loadFactor": 88.95370718855852
   },
   {
     "year": 2024,
@@ -14700,6 +15204,18 @@
     "loadFactor": 89.7843228200371
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "廣州",
+    "airline": "長榮",
+    "flights": 26,
+    "totalSeats": 8496,
+    "passengers": 7476,
+    "loadFactor": 87.99435028248588
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -15024,6 +15540,18 @@
     "loadFactor": 83.6747491638796
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "松山",
+    "airline": "長榮",
+    "flights": 24,
+    "totalSeats": 4416,
+    "passengers": 3845,
+    "loadFactor": 87.0697463768116
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -15192,6 +15720,18 @@
     "loadFactor": 90.69816053511705
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "神戶",
+    "airline": "長榮",
+    "flights": 58,
+    "totalSeats": 10672,
+    "passengers": 9743,
+    "loadFactor": 91.29497751124438
+  },
+  {
     "year": 2025,
     "month": 10,
     "yearMonth": "2025-10",
@@ -15286,6 +15826,30 @@
     "totalSeats": 17236,
     "passengers": 14458,
     "loadFactor": 83.88257136226503
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "達拉斯",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 16680,
+    "passengers": 14673,
+    "loadFactor": 87.96762589928058
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "桃園國際機場",
+    "destination": "華盛頓杜勒斯",
+    "airline": "長榮",
+    "flights": 5,
+    "totalSeats": 1390,
+    "passengers": 1356,
+    "loadFactor": 97.55395683453237
   },
   {
     "year": 2024,
@@ -15598,6 +16162,18 @@
     "totalSeats": 17664,
     "passengers": 12116,
     "loadFactor": 68.59148550724638
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "香港",
+    "airline": "長榮",
+    "flights": 92,
+    "totalSeats": 16928,
+    "passengers": 11758,
+    "loadFactor": 69.45888468809073
   },
   {
     "year": 2024,
@@ -15948,6 +16524,18 @@
     "loadFactor": 88.89196983141082
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "大阪",
+    "airline": "長榮",
+    "flights": 94,
+    "totalSeats": 17296,
+    "passengers": 15384,
+    "loadFactor": 88.94542090656799
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -16294,6 +16882,18 @@
     "totalSeats": 14504,
     "passengers": 12395,
     "loadFactor": 85.45918367346938
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "東京成田",
+    "airline": "長榮",
+    "flights": 58,
+    "totalSeats": 18154,
+    "passengers": 13896,
+    "loadFactor": 76.54511402445742
   },
   {
     "year": 2024,
@@ -16644,6 +17244,18 @@
     "loadFactor": 94.36360448807855
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "福岡",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 10268,
+    "loadFactor": 93.0072463768116
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -16990,6 +17602,18 @@
     "totalSeats": 10160,
     "passengers": 8426,
     "loadFactor": 82.93307086614173
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "上海浦東",
+    "airline": "長榮",
+    "flights": 44,
+    "totalSeats": 13772,
+    "passengers": 10504,
+    "loadFactor": 76.27069416206797
   },
   {
     "year": 2024,
@@ -17340,6 +17964,18 @@
     "loadFactor": 80.61886395511921
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "首爾仁川",
+    "airline": "長榮",
+    "flights": 60,
+    "totalSeats": 11040,
+    "passengers": 8787,
+    "loadFactor": 79.59239130434783
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -17686,6 +18322,18 @@
     "totalSeats": 9128,
     "passengers": 7574,
     "loadFactor": 82.97546012269939
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "高雄國際機場",
+    "destination": "澳門",
+    "airline": "長榮",
+    "flights": 42,
+    "totalSeats": 9534,
+    "passengers": 7761,
+    "loadFactor": 81.4033983637508
   },
   {
     "year": 2024,
@@ -18036,6 +18684,18 @@
     "loadFactor": 90.89673913043478
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "臺北松山機場",
+    "destination": "首爾金浦",
+    "airline": "長榮",
+    "flights": 34,
+    "totalSeats": 6256,
+    "passengers": 5522,
+    "loadFactor": 88.26726342710998
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -18384,6 +19044,18 @@
     "loadFactor": 91.6383701188455
   },
   {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "臺北松山機場",
+    "destination": "東京羽田",
+    "airline": "長榮",
+    "flights": 116,
+    "totalSeats": 39672,
+    "passengers": 37596,
+    "loadFactor": 94.76709013914095
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -18730,5 +19402,17 @@
     "totalSeats": 18468,
     "passengers": 16250,
     "loadFactor": 87.99003682044618
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "臺北松山機場",
+    "destination": "上海虹橋",
+    "airline": "長榮",
+    "flights": 50,
+    "totalSeats": 17100,
+    "passengers": 15106,
+    "loadFactor": 88.3391812865497
   }
 ]

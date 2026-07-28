@@ -3,6 +3,59 @@
  * Handles data loading, filtering, and coordination between components
  */
 
+/**
+ * Safe GA4 event tracking helper
+ */
+function sanitizeGA4Parameters(params) {
+    const cleaned = {};
+    if (!params || typeof params !== 'object') return cleaned;
+    for (const key in params) {
+        if (!Object.prototype.hasOwnProperty.call(params, key)) continue;
+        const val = params[key];
+        if (typeof val === 'string' && val.length > 0) {
+            cleaned[key] = val;
+        } else if (typeof val === 'number' && Number.isFinite(val)) {
+            cleaned[key] = val;
+        } else if (typeof val === 'boolean') {
+            cleaned[key] = val;
+        }
+    }
+    return cleaned;
+}
+
+function trackGA4(eventName, parameters = {}) {
+    if (typeof eventName !== 'string' || !eventName.trim()) {
+        console.warn('GA4 warning: Invalid event name');
+        return;
+    }
+    const cleaned = sanitizeGA4Parameters(parameters);
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', eventName, cleaned);
+    } else {
+        console.warn('GA4 unavailable, skipping event tracking:', eventName);
+    }
+}
+
+function getFilterAnalyticsParameters() {
+    const airport = AppState.selectedAirport || 'all_airports';
+    const destination = AppState.selectedDestination || 'all_destinations';
+    const startPeriod = `${AppState.dateRange.startYear}-${String(AppState.dateRange.startMonth).padStart(2, '0')}`;
+    const endPeriod = `${AppState.dateRange.endYear}-${String(AppState.dateRange.endMonth).padStart(2, '0')}`;
+    const resultCount = (AppState.filteredData && Array.isArray(AppState.filteredData)) ? AppState.filteredData.length : 0;
+    let searchTerm = `${airport}|${destination}|${startPeriod}_${endPeriod}`;
+    if (searchTerm.length > 100) {
+        searchTerm = searchTerm.slice(0, 100);
+    }
+    return {
+        search_term: searchTerm,
+        airport: airport,
+        destination: destination,
+        start_period: startPeriod,
+        end_period: endPeriod,
+        result_count: resultCount
+    };
+}
+
 // Global state
 
 const AppState = {
@@ -329,11 +382,31 @@ function setupEventListeners() {
     // Apply filters button
     document.getElementById('apply-filters').addEventListener('click', () => {
         updateDashboard(false, true);
+        const params = getFilterAnalyticsParameters();
+        trackGA4('search', params);
+        if (params.result_count === 0) {
+            trackGA4('no_search_results', {
+                ...params,
+                result_count: 0
+            });
+        }
     });
 
     // Reset filters button
     document.getElementById('reset-filters').addEventListener('click', () => {
+        const previousAirport = AppState.selectedAirport || 'all_airports';
+        const previousDestination = AppState.selectedDestination || 'all_destinations';
+        const previousStartPeriod = `${AppState.dateRange.startYear}-${String(AppState.dateRange.startMonth).padStart(2, '0')}`;
+        const previousEndPeriod = `${AppState.dateRange.endYear}-${String(AppState.dateRange.endMonth).padStart(2, '0')}`;
+
         resetFilters();
+
+        trackGA4('filter_reset', {
+            previous_airport: previousAirport,
+            previous_destination: previousDestination,
+            previous_start_period: previousStartPeriod,
+            previous_end_period: previousEndPeriod
+        });
     });
 
     // Share filters button
@@ -1067,6 +1140,34 @@ function handleShare() {
         }
     };
 
+    let shareTracked = false;
+    const trackShareSuccess = (method) => {
+        if (shareTracked) return;
+        shareTracked = true;
+
+        const airport = AppState.selectedAirport || 'all_airports';
+        const destination = AppState.selectedDestination || 'all_destinations';
+        const startPeriod = `${AppState.dateRange.startYear}-${String(AppState.dateRange.startMonth).padStart(2, '0')}`;
+        const endPeriod = `${AppState.dateRange.endYear}-${String(AppState.dateRange.endMonth).padStart(2, '0')}`;
+
+        let itemId = `flight|${airport}|${destination}|${startPeriod}|${endPeriod}`;
+        if (itemId.length > 100) {
+            itemId = itemId.slice(0, 100);
+        }
+
+        trackGA4('share', {
+            method: method,
+            content_type: 'flight_data_dashboard',
+            item_id: itemId,
+            airport: airport,
+            destination: destination,
+            start_period: startPeriod,
+            end_period: endPeriod
+        });
+
+        showSuccessUI();
+    };
+
     // Use Web Share API if available and on HTTPS/mobile
     if (navigator.share) {
         navigator.share({
@@ -1074,15 +1175,17 @@ function handleShare() {
             text: textContent,
             url: shareUrl
         })
-        .then(showSuccessUI)
+        .then(() => {
+            trackShareSuccess('web_share');
+        })
         .catch((err) => {
             // If user cancels, do not throw error or fallback
-            if (err.name !== 'AbortError') {
-                copyToClipboard(textContent, showSuccessUI);
+            if (!err || err.name !== 'AbortError') {
+                copyToClipboard(textContent, () => trackShareSuccess('clipboard'));
             }
         });
     } else {
-        copyToClipboard(textContent, showSuccessUI);
+        copyToClipboard(textContent, () => trackShareSuccess('clipboard'));
     }
 }
 
