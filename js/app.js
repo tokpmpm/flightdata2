@@ -111,6 +111,9 @@ async function initApp() {
             footerYear.textContent = new Date().getFullYear();
         }
 
+        // Initialize AdSense slots safely
+        initAdSense();
+
         console.log('Application initialized successfully');
     } catch (error) {
         console.error('Error initializing app:', error);
@@ -1312,3 +1315,22 @@ function triggerInlineFlightAnimation() {
         }, 200);
     }, 900);
 }
+
+/**
+ * Safe Google AdSense slots initialization
+ */
+function initAdSense() {
+    const slots = document.querySelectorAll('ins.adsbygoogle:not([data-ad-initialized="true"])');
+    if (slots.length === 0) return;
+    
+    console.log(`Initializing ${slots.length} AdSense slot(s)...`);
+    slots.forEach(slot => {
+        slot.setAttribute('data-ad-initialized', 'true');
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+            console.warn('AdSense initialization skipped:', error);
+        }
+    });
+}
+

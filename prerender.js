@@ -10,6 +10,65 @@ const { calculateInsightsData, generateStaticInsightsHTML } = require('./js/insi
 
 const SITE_URL = 'https://flightdata2.meshthings.com';
 
+// Custom parsing of .env if it exists locally
+if (fs.existsSync(path.join(__dirname, '.env'))) {
+    const envFile = fs.readFileSync(path.join(__dirname, '.env'), 'utf8');
+    envFile.split(/\r?\n/).forEach(line => {
+        const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+        if (match) {
+            const key = match[1];
+            let value = match[2] || '';
+            if (value.length > 0 && value.charAt(0) === '"' && value.charAt(value.length - 1) === '"') {
+                value = value.substring(1, value.length - 1);
+            } else if (value.length > 0 && value.charAt(0) === "'" && value.charAt(value.length - 1) === "'") {
+                value = value.substring(1, value.length - 1);
+            }
+            process.env[key] = value.trim();
+        }
+    });
+}
+
+const ADSENSE_CLIENT = process.env.ADSENSE_CLIENT || 'ca-pub-9747455231872729';
+const ADSENSE_SLOT_INSIGHTS = process.env.ADSENSE_SLOT_INSIGHTS || 'REPLACE_WITH_INSIGHTS_SLOT_ID';
+const ADSENSE_SLOT_TABLE = process.env.ADSENSE_SLOT_TABLE || 'REPLACE_WITH_TABLE_SLOT_ID';
+
+function isValidAdSlot(slotId) {
+    if (!slotId) return false;
+    const str = String(slotId).trim();
+    if (str === '') return false;
+    if (str.includes('REPLACE_WITH')) return false;
+    return /^\d+$/.test(str);
+}
+
+function generateAdSlotHTML(position, client, slotId, isProd) {
+    const isValid = isValidAdSlot(slotId);
+    const positionAttr = position === 'insights' ? 'insights' : 'table';
+    const label = position === 'insights' ? '智慧洞察後方' : '詳細表格前';
+
+    if (isValid) {
+        return `<aside class="adsense-slot adsense-slot--inline" aria-label="廣告" data-ad-position="${positionAttr}">
+    <div class="adsense-label">廣告</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="${client}"
+         data-ad-slot="${slotId}"
+         data-ad-format="auto"
+         data-full-width-responsive="true">
+    </ins>
+</aside>`;
+    } else {
+        if (!isProd) {
+            return `<aside class="adsense-slot adsense-slot--inline adsense-slot--preview" aria-label="廣告位置預覽" data-ad-position="${positionAttr}" style="border: 1px dashed var(--color-border-bright); min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.03); margin: 28px auto; padding: 12px; border-radius: 16px; width: 100%;">
+    <div class="adsense-label">廣告預覽 (無效 Slot ID)</div>
+    <div style="font-size: 0.85rem; color: var(--color-text-secondary);">AdSense 廣告位置：${label}</div>
+</aside>`;
+        } else {
+            return `<!-- AdSense slot placeholder for ${positionAttr} (missing or invalid slot ID) -->`;
+        }
+    }
+}
+
+
 const airportCodes = {
     '桃園國際機場': 'tpe',
     '高雄國際機場': 'khh',
@@ -493,6 +552,13 @@ function build() {
 
         let html = templateHtml;
 
+        const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
+        const insightsAdHtml = generateAdSlotHTML('insights', ADSENSE_CLIENT, ADSENSE_SLOT_INSIGHTS, isProd);
+        const tableAdHtml = generateAdSlotHTML('table', ADSENSE_CLIENT, ADSENSE_SLOT_TABLE, isProd);
+
+        html = html.replace('<!-- ADSENSE_INSIGHTS_SLOT -->', insightsAdHtml);
+        html = html.replace('<!-- ADSENSE_TABLE_SLOT -->', tableAdHtml);
+
         // Inject page metadata
         html = html.replace(/<title>.*?<\/title>/, `<title>${pageTitle}</title>`);
         html = html.replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${pageDesc}">`);
@@ -639,6 +705,12 @@ function build() {
   </url>
   <url>
     <loc>${SITE_URL}/about/</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/privacy/</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -1916,3 +1916,49 @@ body {
     50% { opacity: 1; }
     100% { opacity: 0.4; }
 }
+
+/* ══════════════════════════════════
+   GOOGLE ADSENSE STYLING (WARM NEUTRAL INTEGRATION)
+   ══════════════════════════════════ */
+.adsense-slot {
+    width: 100%;
+    min-height: 100px;
+    margin: 28px auto;
+    padding: 12px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-bright);
+    box-sizing: border-box;
+}
+
+.adsense-slot--inline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.adsense-label {
+    margin-bottom: 8px;
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.adsense-slot .adsbygoogle {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .adsense-slot {
+        min-height: 90px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+}

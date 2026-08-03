@@ -4,11 +4,11 @@
   "description": "互動式數據分析儀表板，提供台灣航空載客率的完整視覺化分析。",
   "main": "inspect_xlsx.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node tests/verify_adsense.js",
     "test:ga4": "node tests/verify_ga4_events.js",
     "quota": "npx antigravity-usage",
-    "build": "node prerender.js && node verify_seo.js",
-    "ship": "node prerender.js && node verify_seo.js && node tests/verify_browser_qa.js && vercel --prod"
+    "build": "node prerender.js && node verify_seo.js && node tests/verify_adsense.js",
+    "ship": "node prerender.js && node verify_seo.js && node tests/verify_adsense.js && node tests/verify_browser_qa.js && vercel --prod"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## [2026-08-03] 廣告整合與隱私合規：新增 AdSense 廣告版位、防呆、防止重複初始化、ads.txt 及隱私權政策頁面
+
+### 問題現狀
+網站需要整合 Google AdSense 廣告投遞，但在前端有篩選、圖表重繪與表格分頁等頻繁 DOM 變更的互動儀表板上，若處理不當易造成版面累積位移 (CLS)、廣告重複初始化錯誤，甚至會破壞既有的 Dataset JSON-LD / FAQPage / data-nosnippet 等關鍵 SEO 與 AEO 結構。同時，網站也缺少合規的隱私權政策頁面及 ads.txt。
+
+### 根本原因 (Root Cause)
+AdSense 官方廣告 script 如果重複載入或重複 push 會在 console 拋出錯誤；若沒預留高度會造成 CLS；若放在 JSON-LD 或 itemprop="text" 等微數據結構內會導致 SEO 結構斷裂。
+
+### 修正方案
+1. **集中式 AdSense 設定與防呆**：在 `prerender.js` 中新增讀取 `.env` 變數與 `isValidAdSlot` 檢驗。若 ID 無效，開發環境顯示預覽框，生產環境則渲染空 placeholder，不輸出無效的 `<ins>` 標籤，防止拋出 console 錯誤。
+2. **範本調整與內容分隔 (不破壞 SEO)**：修改 `template.html`，將廣告 Slot 1 置於 `#key-findings` 結束與 `.top-routes-panel` 開始之間（取代原有的 insights-divider），Slot 2 置於 `.charts-section` 結束後與 `.table-section` 開始前。這兩個位置均在 SEO 結構（如 mainEntity、Answer 等）的外部，絕不破壞 schema 標記。
+3. **靜態預渲染更新**：更新 `prerender.js` 的 `generatePage` 流程，在 SSG 階段自動將 placeholder 替換成對應的廣告/預覽 DOM。
+4. **廣告防重初始化**：在 `js/app.js` 的 `initApp` 完成後執行 `initAdSense()`。透過 `data-ad-initialized="true"` 的 DOM 屬性標記來防重。不將其綁定在篩選、圖表或表格等任何可能重複觸發的事件上。
+5. **合規性與 SEO 補強**：
+   - 根目錄新增 `ads.txt`。
+   - 新增 `privacy/index.html` 合規隱私權政策頁面（無廣告，robots index/follow，正確 canonical 與 meta）。
+   - 在 `prerender.js` 的 sitemap 生成中手動注入 `/privacy/` 節點。
+   - 修改 `template.html`、`about/index.html` 及 `insights/.../index.html` 的 footer，加上隱私權連結。
+
+### 驗證結果
+- ✅ `npm run build` 通過（包括 `verify_seo.js`，無 H1、OG、JSON-LD 損壞，且 temporalCoverage 一致）。
+- ✅ 新增的自動化測試 `node tests/verify_adsense.js` 100% PASS。驗證：首頁、機場頁、航線頁最多兩個廣告，位置正確，About/Privacy 無廣告，無重複 script，ads.txt 內容正確，無效 ID 防呆成功，每個數據頁 footer 均包含隱私權連結。
+- ✅ `npm run test:ga4` 100% PASS。
+- ✅ `node tests/verify_browser_qa.js` 100% PASS（E2E 無 console error，無溢出溢寬）。
+- ✅ 於本機 (macOS) 使用 Puppeteer 視覺驗證，產生並儲存 6 張 RWD（桌機與手機）實體廣告預覽框與 ads.txt / 隱私權頁面的截圖至 artifacts 中。
+
+---
+
 ## [2026-07-28] 資料更新：新增 2026 年 6 月（民國 115 年 6 月）載客率數據
 
 ### 問題現狀
