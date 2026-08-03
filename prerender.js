@@ -51,7 +51,7 @@ function generateAdSlotHTML(position, client, slotId, isProd) {
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="${client}"
-         data-ad-slot="${slotId}"
+         data-ad-slot="${String(slotId).trim()}"
          data-ad-format="auto"
          data-full-width-responsive="true">
     </ins>
