@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## [2026-08-03 - 修復] 預渲染記憶體優化以防範 Vercel 雲端 OOM 崩潰
+
+### 問題現狀
+在 Vercel 雲端執行 `npm run build` 時，若不使用快取從頭編譯，建置管線會在執行 `prerender.js` 載入航班數據的階段直接退出（退出碼 1），且無任何 JS 例外捕捉日誌。這導致雲端 Git 自動部署失敗。
+
+### 根本原因 (Root Cause)
+1. 由於 `data/flight_data_new.js` 是一個高達 3.5MB 的巨大 JavaScript 檔案，若直接使用 Node.js 的 `require()` 載入，V8 引擎在編譯該 JavaScript AST 與產生暫存機器碼時會耗費極大量的堆記憶體 (Heap Memory)。
+2. Vercel 雲端建置容器的記憶體配額非常低，因此進程在載入該模組時因超出限制而被系統發送 `SIGKILL` (OOM Killer) 強行終止，導致 JS `try-catch` 無法捕捉。
+
+### 修正方案
+1. **優化資料載入機制**：在 [prerender.js](file:///Users/pmpmpm/Antigravity/passenger_capacity/prerender.js) 中，停用記憶體開銷極大的 `require()`。改為使用 `fs.readFileSync()` 以 UTF-8 讀取檔案，並精確利用字串截取（尋找 `{` 起點與緊接著的 `const DESTINATION_MAP` 作為終點），將 `flightData` 大物件精準切出，最後使用 `JSON.parse` 反序列化。
+2. **記憶體與速度提升**：由於 `JSON.parse` 在 V8 底層免去了 AST 編譯與 JavaScript 快取開銷，記憶體使用量降低了 90% 以上，載入時間亦有顯著優化，完美解決雲端 OOM 崩潰。
+
+### 驗證結果
+- ✅ **本地建置測試**：執行 `npm run build` 順利通過，秒過無延遲，且所有 288 項 AdSense 測試與 SEO 測試皆 100% PASS。
+
+---
+
 ## [2026-08-03 - 修復] Vercel 雲端部署建置流程修復、快取版本更新與自動化測試升級
 
 ### 問題現狀

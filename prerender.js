@@ -439,17 +439,27 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
 function build() {
     console.log('Starting static site build pipeline...');
 
-    // 1. Load raw flight data
-    console.log('Loading flight data via require...');
+    // 1. Load raw flight data memory-efficiently
+    console.log('Loading flight data via fs.readFileSync & JSON.parse...');
     let flightDataObj;
     try {
-        const dataModule = require('./data/flight_data_new.js');
-        flightDataObj = dataModule.flightData;
+        const filePath = path.join(__dirname, 'data', 'flight_data_new.js');
+        const content = fs.readFileSync(filePath, 'utf8');
+        const start = content.indexOf('{');
+        const end = content.indexOf('const DESTINATION_MAP');
+        if (start === -1 || end === -1) {
+            throw new Error('Could not find data boundary markers in JS file');
+        }
+        let jsonStr = content.substring(start, end).trim();
+        if (jsonStr.endsWith(';')) {
+            jsonStr = jsonStr.slice(0, -1);
+        }
+        flightDataObj = JSON.parse(jsonStr);
         if (!flightDataObj) {
-            throw new Error('flightData object is undefined in the module');
+            throw new Error('Parsed flightData object is undefined');
         }
     } catch (e) {
-        console.error('Failed to load flight data file:', e);
+        console.error('Failed to load flight data file memory-efficiently:', e);
         process.exit(1);
     }
 
