@@ -2,7 +2,7 @@
     "version": 2,
     "name": "taiwan-flight-load-factor",
     "installCommand": "npm install",
-    "buildCommand": "npm run build",
+    "buildCommand": "node prerender.js",
     "outputDirectory": ".",
     "cleanUrls": true,
     "rewrites": [
