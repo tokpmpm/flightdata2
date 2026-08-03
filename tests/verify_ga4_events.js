@@ -1035,7 +1035,7 @@ async function runGA4Tests() {
                 'airline/cal/index.html'
             ];
 
-            const expectedScriptTag = '/js/app.js?v=20260725-ga4';
+            const expectedScriptTag = '/js/app.js?v=20260803-adsense-2';
             let allVersionsMatch = true;
             const versionDetails = [];
 
@@ -1050,7 +1050,7 @@ async function runGA4Tests() {
 
             await recordResult(
                 'T18',
-                'Cache Version 與 Build 一致性 (?v=20260725-ga4)',
+                'Cache Version 與 Build 一致性 (?v=20260803-adsense-2)',
                 allVersionsMatch ? 'PASS' : 'FAIL',
                 `All generated pages contain ${expectedScriptTag}`,
                 JSON.stringify(versionDetails)
