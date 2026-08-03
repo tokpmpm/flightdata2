@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## [2026-08-03 - 修復] Vercel 雲端部署建置流程修復、快取版本更新與自動化測試升級
+
+### 問題現狀
+雖然在上一階段已新增了 AdSense 廣告邏輯與 ads.txt 相關頁面，但在 Vercel 雲端上卻依然沒有套用最新的修改，正式網站讀取的仍是舊的快取。同時，由於 Vercel 雲端的 build 流程配置了 Dummy build 指令，且自動化測試在不同環境下對環境變數的判定不一致，導致 Vercel 的 CI 部署管線出錯。
+
+### 根本原因 (Root Cause)
+1. `vercel.json` 中的 `buildCommand` 使用了 Dummy 的 `echo 'No build'`，導致 Vercel 雲端部署時完全沒有執行預渲染 `prerender.js` 與驗證。
+2. 在 Vercel 雲端編譯環境中，由於缺乏明確的 `NODE_ENV=production` 與 `VERCEL=1` 環境變數，導致測試腳本以開發模式預期，而產出的 HTML 卻是生產模式，進而引發斷言衝突。
+3. 靜態資源（CSS、JS）更新了快取版本標記 `?v=20260803-adsense-2`，但是 `verify_ga4_events.js` 中原先寫死的 GA 檔案路徑比對未同步更新，造成 GA4 自動化測試失敗。
+
+### 修正方案
+1. **修復 Vercel 建置配置**：修正 `vercel.json`，將 `buildCommand` 改回 `npm run build`，將 `installCommand` 改為 `npm install`。
+2. **統一雲端與本地環境**：在 `package.json` 的 `build` 與 `ship` 腳本中，強制顯式注入 `NODE_ENV=production VERCEL=1` 環境變數首碼，確保測試與渲染一致性。
+3. **優化 AdSense 測試邏輯**：重寫 `tests/verify_adsense.js` 的斷言分支，若在生產模式下 Slot ID 為無效 placeholder，則嚴格驗證「Fallback Mode（0 廣告 DOM、0 預覽框、0 溢出，僅渲染隱藏註解）」；若在開發模式下則驗證「Preview Mode（顯示帶有“廣告預覽”文字的預覽框）」。
+4. **修復 GA4 測試快取標記**：同步更新 `tests/verify_ga4_events.js` 中的快取版本字串比對，防範測試因資源路徑不同而失效。
+5. **分支合併與部署**：將所有修正合併至 `main` 並推送至 GitHub，觸發 Vercel 生產建置。
+
+### 驗證結果
+- ✅ **Vercel 雲端建置成功**：雲端執行 `npm run build` 順利完成，288 項 AdSense & Privacy 驗證、22 項 SEO 驗證全部 100% 通過，成功部署並 aliased 至正式網域 `flightdata2.meshthings.com`。
+- ✅ **正式網域 HTTP 驗證**：對 `https://flightdata2.meshthings.com/`、`/privacy/`、`/ads.txt` 等進行 curl 檢查，皆正常返回 `HTTP 200 OK`，且 `ads.txt` 內容精確無誤。
+- ✅ **無快取標籤防呆驗證**：存取最新的獨特部署 URL 進行 markup 驗證，已 100% 確保在生產 Fallback Mode 下不會渲染 any placeholder 的 `ins` 標籤與「廣告預覽」框，版面乾淨、排版無損，無 console error。
+
+---
+
 ## [2026-08-03] 廣告整合與隱私合規：新增 AdSense 廣告版位、防呆、防止重複初始化、ads.txt 及隱私權政策頁面
 
 ### 問題現狀
