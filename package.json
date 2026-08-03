@@ -7,8 +7,8 @@
     "test": "node tests/verify_adsense.js",
     "test:ga4": "node tests/verify_ga4_events.js",
     "quota": "npx antigravity-usage",
-    "build": "NODE_ENV=production VERCEL=1 node prerender.js && NODE_ENV=production VERCEL=1 node verify_seo.js && NODE_ENV=production VERCEL=1 node tests/verify_adsense.js",
-    "ship": "NODE_ENV=production VERCEL=1 node prerender.js && NODE_ENV=production VERCEL=1 node verify_seo.js && NODE_ENV=production VERCEL=1 node tests/verify_adsense.js && node tests/verify_browser_qa.js && vercel --prod"
+    "build": "node build.js",
+    "ship": "node build.js && node tests/verify_browser_qa.js && vercel --prod"
   },
   "keywords": [],
   "author": "",
