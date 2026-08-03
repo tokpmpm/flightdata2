@@ -21,6 +21,46 @@ function assert(condition, message) {
 const airportCodes = ['tpe', 'khh', 'tsa', 'rmq', 'tnn', 'hun'];
 const airlineCodes = ['cal', 'eva', 'starlux', 'tiger'];
 
+// Load environment variables locally
+if (fs.existsSync(path.join(__dirname, '..', '.env'))) {
+    const envFile = fs.readFileSync(path.join(__dirname, '..', '.env'), 'utf8');
+    envFile.split(/\r?\n/).forEach(line => {
+        const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+        if (match) {
+            const key = match[1];
+            let value = match[2] || '';
+            if (value.length > 0 && value.charAt(0) === '"' && value.charAt(value.length - 1) === '"') {
+                value = value.substring(1, value.length - 1);
+            } else if (value.length > 0 && value.charAt(0) === "'" && value.charAt(value.length - 1) === "'") {
+                value = value.substring(1, value.length - 1);
+            }
+            process.env[key] = value.trim();
+        }
+    });
+}
+
+const ADSENSE_SLOT_INSIGHTS = process.env.ADSENSE_SLOT_INSIGHTS || 'REPLACE_WITH_INSIGHTS_SLOT_ID';
+const ADSENSE_SLOT_TABLE = process.env.ADSENSE_SLOT_TABLE || 'REPLACE_WITH_TABLE_SLOT_ID';
+
+function isValidAdSlot(slotId) {
+    if (!slotId) return false;
+    const str = String(slotId).trim();
+    if (str === '') return false;
+    if (str.includes('REPLACE_WITH')) return false;
+    return /^\d+$/.test(str);
+}
+
+const isInsightsValid = isValidAdSlot(ADSENSE_SLOT_INSIGHTS);
+const isTableValid = isValidAdSlot(ADSENSE_SLOT_TABLE);
+const slotsAreValid = isInsightsValid && isTableValid;
+
+// detect environment like prerender.js
+const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
+
+console.log(`[Config Check] Insights Slot ID: "${ADSENSE_SLOT_INSIGHTS}" (Valid: ${isInsightsValid})`);
+console.log(`[Config Check] Table Slot ID: "${ADSENSE_SLOT_TABLE}" (Valid: ${isTableValid})`);
+console.log(`[Config Check] Environment isProd: ${isProd}`);
+
 // 1. Verify ads.txt existence and content
 const adsTxtPath = path.join(__dirname, '..', 'ads.txt');
 assert(fs.existsSync(adsTxtPath), 'ads.txt exists at root');
@@ -52,47 +92,115 @@ function validateDataPageAdSlot(filePath) {
 
     const html = fs.readFileSync(fullPath, 'utf8');
 
-    // Assertion A: Maximum 2 AdSense slots
-    const slotCount = (html.match(/class="adsense-slot/g) || []).length;
-    assert(slotCount <= 2, `${filePath} contains <= 2 adsense slots (got ${slotCount})`);
-
-    // Assertion B: Single AdSense script tag
+    // Assertion A: Single AdSense script tag
     const scriptCount = (html.match(/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js/g) || []).length;
-    assert(scriptCount <= 1, `${filePath} contains <= 1 AdSense script client tag (got ${scriptCount})`);
+    assert(scriptCount === 1, `${filePath} contains exactly 1 AdSense script client tag (got ${scriptCount})`);
 
-    // Assertion C: Slots are placed in natural dividers
-    // Position 1: After #key-findings and before .top-routes-panel
+    // Assertion B: Natural dividers check
     const hasPosition1 = html.includes('id="key-findings"') && html.includes('class="top-routes-panel"');
+    assert(hasPosition1, `${filePath} contains insights natural dividers`);
     if (hasPosition1) {
         const parts = html.split('id="key-findings"');
         const afterFindings = parts[1] || '';
         const beforeTopRoutes = afterFindings.split('class="top-routes-panel"')[0] || '';
-        assert(beforeTopRoutes.includes('data-ad-position="insights"'), `${filePath} has AdSense slot 1 between #key-findings and .top-routes-panel`);
+        // In prod without valid ID, it will be a comment, not an active element
+        if (slotsAreValid || !isProd) {
+            assert(beforeTopRoutes.includes('data-ad-position="insights"'), `${filePath} has AdSense slot 1 between #key-findings and .top-routes-panel`);
+        } else {
+            assert(beforeTopRoutes.includes('AdSense slot placeholder for insights'), `${filePath} has Insights ad placeholder comment`);
+        }
     }
 
-    // Position 2: After .charts-section and before .table-section
     const hasPosition2 = html.includes('class="charts-section"') && html.includes('class="table-section"');
+    assert(hasPosition2, `${filePath} contains table natural dividers`);
     if (hasPosition2) {
         const parts = html.split('class="charts-section"');
         const afterCharts = parts[1] || '';
         const beforeTable = afterCharts.split('class="table-section"')[0] || '';
-        assert(beforeTable.includes('data-ad-position="table"'), `${filePath} has AdSense slot 2 between .charts-section and .table-section`);
+        if (slotsAreValid || !isProd) {
+            assert(beforeTable.includes('data-ad-position="table"'), `${filePath} has AdSense slot 2 between .charts-section and .table-section`);
+        } else {
+            assert(beforeTable.includes('AdSense slot placeholder for table'), `${filePath} has Table ad placeholder comment`);
+        }
     }
 
-    // Assertion D: Ad slots do not leak inside main data structures (Answers, Canvas, Filters, etc.)
-    // Ad slot 1 must not be inside #insights-list
+    // Assertion C: Ad slots do not leak inside main data structures (Answers, Canvas, Filters, etc.)
     const insightsListParts = html.split('id="insights-list"');
     if (insightsListParts.length > 1) {
         const insideList = insightsListParts[1].split('</ul>')[0];
         assert(!insideList.includes('adsense-slot'), `${filePath}: Ad slot is NOT nested inside #insights-list`);
     }
 
-    // Assertion E: Footer contains privacy policy link
+    // Check chart elements to make sure adsense is not inside
+    const chartCardParts = html.split('class="chart-card"');
+    if (chartCardParts.length > 1) {
+        for (let i = 1; i < chartCardParts.length; i++) {
+            const insideChart = chartCardParts[i].split('</div>')[0];
+            assert(!insideChart.includes('adsense-slot'), `${filePath}: Ad slot is NOT nested inside chart-card [${i}]`);
+        }
+    }
+
+    // Check table elements to make sure adsense is not inside
+    const tableParts = html.split('<table');
+    if (tableParts.length > 1) {
+        for (let i = 1; i < tableParts.length; i++) {
+            const insideTable = tableParts[i].split('</table>')[0];
+            assert(!insideTable.includes('adsense-slot'), `${filePath}: Ad slot is NOT nested inside table [${i}]`);
+        }
+    }
+
+    // Assertion D: Footer contains privacy policy link
     assert(html.includes('href="/privacy/"') && html.includes('隱私權政策'), `${filePath} footer contains Privacy Policy link`);
 
-    // Assertion F: Under invalid/stale/placeholder Slot ID configurations, the actual <ins class="adsbygoogle"> must NOT be written
-    // (Since we are building locally and the env variables are placeholders from .env.example, they contain "REPLACE_WITH", so no actual <ins> should be rendered)
-    assert(!html.includes('class="adsbygoogle"'), `${filePath} does not render actual <ins class="adsbygoogle"> under invalid/placeholder Slot IDs`);
+    // Assertion E: Dynamic environment testing
+    if (slotsAreValid) {
+        // Production Valid ID branch
+        const slotCount = (html.match(/class="[\w-\s]*adsense-slot[\w-\s]*/g) || []).length;
+        const insCount = (html.match(/class="adsbygoogle"/g) || []).length;
+        const adSlotAttrCount = (html.match(/data-ad-slot=/g) || []).length;
+        
+        assert(slotCount === 2, `${filePath} contains exactly 2 .adsense-slot (got ${slotCount})`);
+        assert(insCount === 2, `${filePath} contains exactly 2 ins.adsbygoogle (got ${insCount})`);
+        assert(adSlotAttrCount === 2, `${filePath} contains exactly 2 data-ad-slot attributes (got ${adSlotAttrCount})`);
+
+        assert(html.includes('data-ad-position="insights"') && html.includes('data-ad-position="table"'), `${filePath} has correct ad positions`);
+        assert(!html.includes('REPLACE_WITH'), `${filePath} does not contain REPLACE_WITH`);
+        assert(!html.includes('廣告預覽'), `${filePath} does not contain "廣告預覽"`);
+        assert(!html.includes('無效 Slot ID'), `${filePath} does not contain "無效 Slot ID"`);
+
+        // Verify data-ad-slots are valid numbers and are different
+        const slotsFound = [];
+        const regex = /data-ad-slot="([^"]+)"/g;
+        let match;
+        while ((match = regex.exec(html)) !== null) {
+            slotsFound.push(match[1]);
+        }
+        assert(slotsFound.length === 2, `${filePath} found 2 ad-slot values`);
+        if (slotsFound.length === 2) {
+            assert(/^\d+$/.test(slotsFound[0]), `${filePath} slot 1 "${slotsFound[0]}" is pure digits`);
+            assert(/^\d+$/.test(slotsFound[1]), `${filePath} slot 2 "${slotsFound[1]}" is pure digits`);
+            assert(slotsFound[0] !== slotsFound[1], `${filePath} slots "${slotsFound[0]}" and "${slotsFound[1]}" are different`);
+        }
+    } else {
+        // Invalid Slot ID branch (Development / Fallback Prod)
+        const insCount = (html.match(/class="adsbygoogle"/g) || []).length;
+        assert(insCount === 0, `${filePath} contains 0 ins.adsbygoogle (got ${insCount})`);
+        assert(!html.includes('data-ad-slot="REPLACE_WITH'), `${filePath} does not render REPLACE_WITH in data-ad-slot`);
+
+        if (isProd) {
+            // Production Fallback branch
+            const slotCount = (html.match(/class="[\w-\s]*adsense-slot[\w-\s]*/g) || []).length;
+            assert(slotCount === 0, `${filePath} contains 0 .adsense-slot in Prod fallback (got ${slotCount})`);
+            assert(!html.includes('廣告預覽'), `${filePath} does not contain "廣告預覽" in Prod fallback`);
+            assert(!html.includes('adsense-slot--preview'), `${filePath} does not contain preview css class in Prod fallback`);
+        } else {
+            // Development Preview branch
+            const slotCount = (html.match(/class="[\w-\s]*adsense-slot[\w-\s]*/g) || []).length;
+            assert(slotCount === 2, `${filePath} contains exactly 2 .adsense-slot in Dev (got ${slotCount})`);
+            assert(html.includes('廣告預覽'), `${filePath} contains "廣告預覽" in Dev`);
+            assert(html.includes('adsense-slot--preview'), `${filePath} contains preview css class in Dev`);
+        }
+    }
 }
 
 // 3. Run validations on Homepage
@@ -127,6 +235,15 @@ if (fs.existsSync(insightsPath)) {
     const html = fs.readFileSync(insightsPath, 'utf8');
     assert(!html.includes('adsense-slot'), 'Insights page does not contain AdSense slots');
     assert(html.includes('href="/privacy/"') && html.includes('隱私權政策'), 'Insights page footer contains Privacy Policy link');
+}
+
+// 8. Validate sitemap.xml contains /privacy/
+console.log('--- Validating Sitemap ---');
+const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
+assert(fs.existsSync(sitemapPath), 'sitemap.xml exists');
+if (fs.existsSync(sitemapPath)) {
+    const content = fs.readFileSync(sitemapPath, 'utf8');
+    assert(content.includes('<loc>https://flightdata2.meshthings.com/privacy/</loc>'), 'Sitemap contains privacy policy URL');
 }
 
 console.log('================================================');

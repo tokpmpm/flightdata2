@@ -1,8 +1,8 @@
 {
     "version": 2,
     "name": "taiwan-flight-load-factor",
-    "buildCommand": "echo 'No build'",
-    "installCommand": "echo 'No install'",
+    "installCommand": "npm install",
+    "buildCommand": "npm run build",
     "outputDirectory": ".",
     "cleanUrls": true,
     "rewrites": [
