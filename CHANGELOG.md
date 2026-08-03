@@ -1,6 +1,30 @@
 # CHANGELOG
 
+## [2026-08-03 - 修復] AdSense 真實 Slot ID 設定與 trim() 換行符修復
+
+### 問題現狀
+正式網站 `flightdata2.meshthings.com` 的廣告位置一直顯示「廣告預覽 (無效 Slot ID)」，無法載入真實廣告。
+
+### 根本原因 (Root Cause)
+1. **環境變數未設定**：Vercel 從未設定 `ADSENSE_SLOT_INSIGHTS` 和 `ADSENSE_SLOT_TABLE`，prerender.js 落入 fallback 使用佔位符 `REPLACE_WITH_*`。
+2. **換行符污染**：即使環境變數設定後，`echo "ID"` 寫入 Vercel 時尾端帶有 `\n`，導致 HTML 輸出 `data-ad-slot="1594292426\n"`，AdSense JS 無法正確解讀。
+
+### 修正方案
+- 透過 `npx vercel env add` 設定兩個正式 Slot ID：
+  - `ADSENSE_SLOT_INSIGHTS=1594292426`
+  - `ADSENSE_SLOT_TABLE=4735461087`
+- `prerender.js` L54 加上 `String(slotId).trim()` 防止任何換行符污染 HTML 屬性值。
+- 重新 prerender 所有頁面並部署。
+
+### 驗證結果
+- 正式網站 HTML 確認包含 `data-ad-slot="1594292426"` 與 `data-ad-slot="4735461087"`（無換行符）。
+- 廣告是否實際顯示仍取決於 AdSense 帳號審核狀態與流量條件。
+
+---
+
 ## [2026-08-03 - 修復] 預渲染記憶體優化以防範 Vercel 雲端 OOM 崩潰
+
+
 
 ### 問題現狀
 在 Vercel 雲端執行 `npm run build` 時，若不使用快取從頭編譯，建置管線會在執行 `prerender.js` 載入航班數據的階段直接退出（退出碼 1），且無任何 JS 例外捕捉日誌。這導致雲端 Git 自動部署失敗。
