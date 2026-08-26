@@ -84,6 +84,18 @@
     "loadFactor": 99.27083333333333
   },
   {
+    "year": 2026,
+    "month": 7,
+    "yearMonth": "2026-07",
+    "airport": "臺南機場",
+    "destination": "沖繩",
+    "airline": "台灣虎航",
+    "flights": 18,
+    "totalSeats": 3240,
+    "passengers": 3172,
+    "loadFactor": 97.90123456790123
+  },
+  {
     "year": 2025,
     "month": 12,
     "yearMonth": "2025-12",
@@ -166,5 +178,17 @@
     "totalSeats": 3240,
     "passengers": 2927,
     "loadFactor": 90.3395061728395
+  },
+  {
+    "year": 2026,
+    "month": 7,
+    "yearMonth": "2026-07",
+    "airport": "臺南機場",
+    "destination": "熊本",
+    "airline": "台灣虎航",
+    "flights": 16,
+    "totalSeats": 2880,
+    "passengers": 2420,
+    "loadFactor": 84.02777777777779
   }
 ]
