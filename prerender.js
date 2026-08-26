@@ -9,6 +9,7 @@ const path = require('path');
 const { calculateInsightsData, generateStaticInsightsHTML } = require('./js/insights.js');
 
 const SITE_URL = 'https://flightdata2.meshthings.com';
+const MONTHLY_REPORT_PATH = '/insights/2026-07-taiwan-aviation-monthly-report/';
 
 // Custom parsing of .env if it exists locally
 if (fs.existsSync(path.join(__dirname, '.env'))) {
@@ -704,6 +705,12 @@ function build() {
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>${SITE_URL}${MONTHLY_REPORT_PATH}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>${SITE_URL}/about/</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
@@ -804,6 +811,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 ## 主要頁面與資料集 (Dataset URL)
 - 首頁 (全台機場統計): ${SITE_URL}/
+- 2026 年 7 月台灣航空月報: ${SITE_URL}${MONTHLY_REPORT_PATH}
 - 桃園國際機場 (TPE): ${SITE_URL}/airport/tpe/
 - 高雄國際機場 (KHH): ${SITE_URL}/airport/khh/
 - 臺北松山機場 (TSA): ${SITE_URL}/airport/tsa/

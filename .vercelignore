@@ -38,4 +38,7 @@ extracted/
 # Reports (不需要部署)
 verification_report.md
 japan_flight_analysis_2025.md
+
+# Local monthly-report review artifact (不部署)
+insights/2026-07-taiwan-aviation-monthly-report/review.html
 README.md

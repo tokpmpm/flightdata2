@@ -6,8 +6,9 @@
   "scripts": {
     "test": "node tests/verify_adsense.js",
     "test:ga4": "node tests/verify_ga4_events.js",
+    "test:monthly-report": "node scripts/verify_monthly_report.js",
     "quota": "npx antigravity-usage",
-    "build": "NODE_ENV=production VERCEL=1 node prerender.js && NODE_ENV=production VERCEL=1 node verify_seo.js && NODE_ENV=production VERCEL=1 node tests/verify_adsense.js",
+    "build": "NODE_ENV=production VERCEL=1 node prerender.js && NODE_ENV=production VERCEL=1 node verify_seo.js && NODE_ENV=production VERCEL=1 node tests/verify_adsense.js && node scripts/verify_monthly_report.js",
     "ship": "NODE_ENV=production VERCEL=1 node prerender.js && NODE_ENV=production VERCEL=1 node verify_seo.js && NODE_ENV=production VERCEL=1 node tests/verify_adsense.js && node tests/verify_browser_qa.js && vercel --prod"
   },
   "keywords": [],

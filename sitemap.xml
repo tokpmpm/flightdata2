@@ -7,6 +7,12 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://flightdata2.meshthings.com/insights/2026-07-taiwan-aviation-monthly-report/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://flightdata2.meshthings.com/about/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
