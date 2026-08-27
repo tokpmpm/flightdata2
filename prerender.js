@@ -124,11 +124,11 @@ function buildPageSeo(targetAirport, targetAirline, insightsData, latestYear, la
     }
 
     return {
-        title: `台灣航空載客率查詢｜${latestYear}年最新航班數據分析 (更新至${latestMonth}月)`,
+        title: `台灣航空載客率查詢｜${latestYear}年${latestMonth}月最新數據`,
         heading: '台灣航空載客率查詢',
-        description: `【${latestYear}最新數據】查詢台灣主要機場與航空公司的月度載客率、航班數、座位數與熱門航線排名，數據更新至${timeLabel}，適合航空趨勢分析。`,
+        description: '查詢台灣最新航空載客率。2026年7月整體載客率85.3%、旅客533.2萬人次，可比較華航、長榮、星宇、虎航，以及桃園、高雄、台中、松山機場的航班、座位與旅客趨勢。',
         summaryTitle: `台灣航空載客率與熱門航線摘要 (${timeLabel}更新)`,
-        summaryText: `本頁提供台灣主要機場與航空公司的載客率、航班數、座位供給、旅客量與熱門航線分析，已更新至${timeLabel}最新數據，支援快速比較座位利用率。`
+        summaryText: '查詢台灣最新航空載客率與旅客數據，包含華航、長榮、星宇、虎航，以及桃園、高雄、台中、松山等主要機場。資料已更新至 2026 年 7 月。'
     };
 }
 
@@ -620,6 +620,15 @@ function build() {
             /(<div class="top-routes-list" id="top-routes-list">)[\s\S]*?(<\/div>)/,
             `$1\n${staticHtml.routesHtml}\n$2`
         );
+
+        // Keep the numeric destination ranking out of search snippets on the homepage.
+        // The heading and human-readable search summary remain indexable.
+        if (!targetAirport && !targetAirline) {
+            html = html.replace(
+                '<div class="top-routes-list" id="top-routes-list">',
+                '<div class="top-routes-list" id="top-routes-list" data-nosnippet>'
+            );
+        }
 
         // Replace Heatmap
         html = html.replace(
