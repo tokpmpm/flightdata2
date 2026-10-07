@@ -7,7 +7,10 @@ from datetime import datetime, timezone
 
 
 def env(name, default=''):
-    return os.environ.get(name, default).strip()
+    value = os.environ.get(name)
+    if value is None or not value.strip():
+        return default
+    return value.strip()
 
 
 def month_label(year, month):
