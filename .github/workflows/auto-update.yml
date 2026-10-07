@@ -15,7 +15,7 @@ concurrency:
 
 env:
   STAGING_BRANCH: staging
-  STAGING_URL: https://flightdata2-staging-git-staging-tokpmpms-projects.vercel.app
+  STAGING_URL: https://flightdata2-staging.vercel.app
   PRODUCTION_URL: https://flightdata2.meshthings.com
   CAA_SOURCE_URL: https://www.caa.gov.tw/article.aspx?a=1752&lang=1
 
@@ -144,43 +144,44 @@ jobs:
           PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
         run: python scripts/send_update_email.py
 
-      - name: Check whether same release is already waiting for review
+      - name: Check whether a release is already waiting for review
         id: pending
         if: steps.candidate.outputs.has_changes == 'true'
         shell: bash
         run: |
-          if [ "${{ steps.state.outputs.pending_year }}" = "${{ steps.candidate.outputs.year }}" ] && \
-             [ "${{ steps.state.outputs.pending_month }}" = "${{ steps.candidate.outputs.month }}" ]; then
-            echo "same_release=true" >> "$GITHUB_OUTPUT"
+          pending_key=$(( ${{ steps.state.outputs.pending_year || 0 }} * 100 + ${{ steps.state.outputs.pending_month || 0 }} ))
+          production_key=$(( ${{ steps.state.outputs.production_year || 0 }} * 100 + ${{ steps.state.outputs.production_month || 0 }} ))
+          if [ "$pending_key" -gt "$production_key" ]; then
+            echo "has_pending_release=true" >> "$GITHUB_OUTPUT"
           else
-            echo "same_release=false" >> "$GITHUB_OUTPUT"
+            echo "has_pending_release=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Notify release still waiting for review
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release == 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release == 'true'
         env:
           NOTIFY_KIND: staging_pending
-          LATEST_YEAR: ${{ steps.candidate.outputs.year }}
-          LATEST_MONTH: ${{ steps.candidate.outputs.month }}
+          LATEST_YEAR: ${{ steps.state.outputs.pending_year }}
+          LATEST_MONTH: ${{ steps.state.outputs.pending_month }}
           PRODUCTION_YEAR: ${{ steps.state.outputs.production_year }}
           PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
           RELEASE_COMMIT: ${{ steps.state.outputs.pending_sha }}
         run: python scripts/send_update_email.py
 
       - name: Process raw XLS data
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         run: |
           echo "STAGE=process XLS data" >> "$GITHUB_ENV"
           node process_data.js
 
       - name: Build all static pages
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         run: |
           echo "STAGE=build all pages" >> "$GITHUB_ENV"
           npm run build
 
       - name: Verify generated release
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         env:
           EXPECTED_YEAR: ${{ steps.candidate.outputs.year }}
           EXPECTED_MONTH: ${{ steps.candidate.outputs.month }}
@@ -189,7 +190,7 @@ jobs:
           node scripts/verify_release.js
 
       - name: Write release metadata
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         env:
           RELEASE_YEAR: ${{ steps.candidate.outputs.year }}
           RELEASE_MONTH: ${{ steps.candidate.outputs.month }}
@@ -210,7 +211,7 @@ jobs:
 
       - name: Publish exact build to staging branch
         id: publish
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         shell: bash
         run: |
           echo "STAGE=publish staging branch" >> "$GITHUB_ENV"
@@ -224,7 +225,7 @@ jobs:
           echo "release_sha=$release_sha" >> "$GITHUB_OUTPUT"
 
       - name: Verify deployed staging site
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         env:
           BASE_URL: ${{ env.STAGING_URL }}
           EXPECTED_YEAR: ${{ steps.candidate.outputs.year }}
@@ -234,7 +235,7 @@ jobs:
           node scripts/verify_remote.js
 
       - name: Notify staging ready for review
-        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         env:
           NOTIFY_KIND: staging_ready
           LATEST_YEAR: ${{ steps.candidate.outputs.year }}
