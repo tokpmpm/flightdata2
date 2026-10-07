@@ -1,0 +1,83 @@
+name: Verify Production Data Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/release_metadata.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: flightdata-production-verification
+  cancel-in-progress: false
+
+env:
+  PRODUCTION_URL: https://flightdata2.meshthings.com
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    env:
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+      REVIEW_CHAT_URL: ${{ secrets.REVIEW_CHAT_URL }}
+      ACTIONS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Read release metadata
+        id: release
+        run: |
+          node <<'NODE' >> "$GITHUB_OUTPUT"
+          const fs = require('fs');
+          const m = JSON.parse(fs.readFileSync('data/release_metadata.json','utf8'));
+          if (!m.latest_year || !m.latest_month) process.exit(2);
+          console.log(`year=${m.latest_year}`);
+          console.log(`month=${m.latest_month}`);
+          NODE
+          echo "RUN_DATE=$(TZ=Asia/Taipei date +%F)" >> "$GITHUB_ENV"
+
+      - name: Verify production deployment
+        env:
+          BASE_URL: ${{ env.PRODUCTION_URL }}
+          EXPECTED_YEAR: ${{ steps.release.outputs.year }}
+          EXPECTED_MONTH: ${{ steps.release.outputs.month }}
+        run: |
+          echo "STAGE=verify production website" >> "$GITHUB_ENV"
+          node scripts/verify_remote.js
+
+      - name: Send production success email
+        env:
+          NOTIFY_KIND: production_success
+          LATEST_YEAR: ${{ steps.release.outputs.year }}
+          LATEST_MONTH: ${{ steps.release.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.release.outputs.year }}
+          PRODUCTION_MONTH: ${{ steps.release.outputs.month }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: python scripts/send_update_email.py
+
+      - name: Send production failure email
+        if: failure()
+        env:
+          NOTIFY_KIND: production_failed
+          LATEST_YEAR: ${{ steps.release.outputs.year }}
+          LATEST_MONTH: ${{ steps.release.outputs.month }}
+          RELEASE_COMMIT: ${{ github.sha }}
+          ERROR_STAGE: ${{ env.STAGE }}
+          ERROR_SUMMARY: The main branch changed, but the production site did not pass the release smoke test.
+        run: python scripts/send_update_email.py

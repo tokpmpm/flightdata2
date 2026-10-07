@@ -1,14 +1,23 @@
-name: Auto Update Flight Data
+name: Auto Update Flight Data to Staging
 
 on:
   schedule:
-    # UTC 04:00 (Taipei Time 12:00) from the 25th to the 31st of every month
+    # UTC 04:00 = Taipei 12:00, only 25th-31st. Weekends are skipped in the job.
     - cron: '0 4 25-31 * *'
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 permissions:
   contents: write
-  pull-requests: write
+
+concurrency:
+  group: flightdata-monthly-update
+  cancel-in-progress: false
+
+env:
+  STAGING_BRANCH: staging
+  STAGING_URL: https://flightdata2-staging-git-staging-tokpmpms-projects.vercel.app
+  PRODUCTION_URL: https://flightdata2.meshthings.com
+  CAA_SOURCE_URL: https://www.caa.gov.tw/article.aspx?a=1752&lang=1
 
 jobs:
   check-weekday:
@@ -16,26 +25,35 @@ jobs:
     outputs:
       is_weekday: ${{ steps.check.outputs.is_weekday }}
     steps:
-      - name: Check if today is a weekday
+      - name: Check Taipei weekday
         id: check
+        shell: bash
         run: |
-          day_of_week=$(date +%u)
-          if [ $day_of_week -le 5 ]; then
-            echo "is_weekday=true" >> $GITHUB_OUTPUT
-            echo "Today is a weekday (Day $day_of_week)."
+          day_of_week=$(TZ=Asia/Taipei date +%u)
+          if [ "$day_of_week" -le 5 ]; then
+            echo "is_weekday=true" >> "$GITHUB_OUTPUT"
           else
-            echo "is_weekday=false" >> $GITHUB_OUTPUT
-            echo "Today is a weekend (Day $day_of_week)."
+            echo "is_weekday=false" >> "$GITHUB_OUTPUT"
           fi
 
-  update-data:
+  update-staging:
     needs: check-weekday
     if: needs.check-weekday.outputs.is_weekday == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-
+    env:
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+      REVIEW_CHAT_URL: ${{ secrets.REVIEW_CHAT_URL }}
+      ACTIONS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: Checkout repository
+      - name: Checkout production branch
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,65 +64,194 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: npm
 
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: |
+          echo "STAGE=install dependencies" >> "$GITHUB_ENV"
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
+          npm ci || npm install
 
-      - name: Install Node.js dependencies
-        run: npm ci || npm install
-
-      - name: Run Crawler
-        run: python parse_and_download.py
-
-      - name: Check for new files
-        id: check-changes
+      - name: Read production and pending staging state
+        id: state
+        shell: bash
         run: |
-          git_status=$(git status --porcelain extracted/)
-          if [ -z "$git_status" ]; then
-            echo "New data has not been published yet. Skipping pipeline."
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+          echo "STAGE=read release state" >> "$GITHUB_ENV"
+          node <<'NODE' >> "$GITHUB_OUTPUT"
+          const fs = require('fs');
+          const rows = JSON.parse(fs.readFileSync('data/flight_data_all.json', 'utf8'));
+          const latest = rows.reduce((b,r) => Number(r.year)*100+Number(r.month) > b.key ? {key:Number(r.year)*100+Number(r.month), year:Number(r.year), month:Number(r.month)} : b, {key:0,year:0,month:0});
+          console.log(`production_year=${latest.year}`);
+          console.log(`production_month=${latest.month}`);
+          NODE
+
+          git fetch origin "$STAGING_BRANCH":refs/remotes/origin/"$STAGING_BRANCH" || true
+          if git show origin/"$STAGING_BRANCH":data/release_metadata.json > /tmp/staging_metadata.json 2>/dev/null; then
+            node <<'NODE' >> "$GITHUB_OUTPUT"
+          const fs = require('fs');
+          const m = JSON.parse(fs.readFileSync('/tmp/staging_metadata.json','utf8'));
+          console.log(`pending_year=${m.latest_year || ''}`);
+          console.log(`pending_month=${m.latest_month || ''}`);
+          NODE
+            pending_sha=$(git rev-parse origin/"$STAGING_BRANCH")
+            echo "pending_sha=$pending_sha" >> "$GITHUB_OUTPUT"
           else
-            echo "New data files found!"
-            echo "$git_status"
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "pending_year=" >> "$GITHUB_OUTPUT"
+            echo "pending_month=" >> "$GITHUB_OUTPUT"
+            echo "pending_sha=" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Process raw XLS data
-        if: steps.check-changes.outputs.has_changes == 'true'
-        run: node process_data.js
-
-      - name: Pre-render static pages (SSG)
-        if: steps.check-changes.outputs.has_changes == 'true'
-        run: npm run build
-
-      - name: Create Pull Request with update for review
-        if: steps.check-changes.outputs.has_changes == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Crawl CAA files
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          # Create and switch to preview branch
-          git checkout -b data-update-preview
-          
-          # Only commit raw data, processed JSON data, and the market outlook report
-          git add extracted/ data/ insights/2026-taiwan-aviation-market-outlook/index.html
-          git commit -m "feat(data): auto update flight data and market outlook report"
-          
-          # Force push to the preview branch
-          git push origin data-update-preview --force
-          
-          # Create a Pull Request (using GitHub CLI) if it doesn't already exist
-          gh pr create \
-            --title "📊 航空市場載客率數據與分析報告自動更新審查" \
-            --body "### 報告自動更新完成
-            爬蟲已成功抓取最新月份數據並重新渲染分析報告。
-            
-            **請至下方 Vercel Bot 產出的 Preview URL 進行網頁樣式與數據審查。**
-            審查無誤後，請直接 Merge 此 Pull Request。這將會把數據合併入 \`main\` 分支並發布至正式生產環境。" \
-            --head data-update-preview \
-            --base main || echo "PR already exists."
+          echo "STAGE=download CAA data" >> "$GITHUB_ENV"
+          python parse_and_download.py
+
+      - name: Detect CAA latest month and file changes
+        id: candidate
+        shell: bash
+        run: |
+          echo "STAGE=detect new month" >> "$GITHUB_ENV"
+          node <<'NODE' >> "$GITHUB_OUTPUT"
+          const fs = require('fs');
+          const files = fs.readdirSync('extracted');
+          let best = {key:0, year:0, month:0};
+          for (const f of files) {
+            const m = f.match(/(\d+)年(\d+)月\.xlsx?$/i);
+            if (!m) continue;
+            const year = Number(m[1]) + 1911, month = Number(m[2]), key = year*100+month;
+            if (key > best.key) best = {key,year,month};
+          }
+          if (!best.key) process.exit(2);
+          console.log(`year=${best.year}`);
+          console.log(`month=${best.month}`);
+          NODE
+
+          if [ -n "$(git status --porcelain extracted/)" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "RUN_DATE=$(TZ=Asia/Taipei date +%F)" >> "$GITHUB_ENV"
+
+      - name: Notify no new data
+        if: steps.candidate.outputs.has_changes == 'false'
+        env:
+          NOTIFY_KIND: no_data
+          LATEST_YEAR: ${{ steps.candidate.outputs.year }}
+          LATEST_MONTH: ${{ steps.candidate.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.state.outputs.production_year }}
+          PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
+        run: python scripts/send_update_email.py
+
+      - name: Check whether same release is already waiting for review
+        id: pending
+        if: steps.candidate.outputs.has_changes == 'true'
+        shell: bash
+        run: |
+          if [ "${{ steps.state.outputs.pending_year }}" = "${{ steps.candidate.outputs.year }}" ] && \
+             [ "${{ steps.state.outputs.pending_month }}" = "${{ steps.candidate.outputs.month }}" ]; then
+            echo "same_release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "same_release=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Notify release still waiting for review
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release == 'true'
+        env:
+          NOTIFY_KIND: staging_pending
+          LATEST_YEAR: ${{ steps.candidate.outputs.year }}
+          LATEST_MONTH: ${{ steps.candidate.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.state.outputs.production_year }}
+          PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
+          RELEASE_COMMIT: ${{ steps.state.outputs.pending_sha }}
+        run: python scripts/send_update_email.py
+
+      - name: Process raw XLS data
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        run: |
+          echo "STAGE=process XLS data" >> "$GITHUB_ENV"
+          node process_data.js
+
+      - name: Build all static pages
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        run: |
+          echo "STAGE=build all pages" >> "$GITHUB_ENV"
+          npm run build
+
+      - name: Verify generated release
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        env:
+          EXPECTED_YEAR: ${{ steps.candidate.outputs.year }}
+          EXPECTED_MONTH: ${{ steps.candidate.outputs.month }}
+        run: |
+          echo "STAGE=verify generated release" >> "$GITHUB_ENV"
+          node scripts/verify_release.js
+
+      - name: Write release metadata
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        env:
+          RELEASE_YEAR: ${{ steps.candidate.outputs.year }}
+          RELEASE_MONTH: ${{ steps.candidate.outputs.month }}
+        run: |
+          echo "STAGE=write release metadata" >> "$GITHUB_ENV"
+          node <<'NODE'
+          const fs = require('fs');
+          const metadata = {
+            latest_year: Number(process.env.RELEASE_YEAR),
+            latest_month: Number(process.env.RELEASE_MONTH),
+            source: 'CAA',
+            source_url: process.env.CAA_SOURCE_URL,
+            status: 'staging',
+            generated_at: new Date().toISOString()
+          };
+          fs.writeFileSync('data/release_metadata.json', JSON.stringify(metadata, null, 2) + '\n');
+          NODE
+
+      - name: Publish exact build to staging branch
+        id: publish
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        shell: bash
+        run: |
+          echo "STAGE=publish staging branch" >> "$GITHUB_ENV"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$STAGING_BRANCH"
+          git add -A
+          git commit -m "feat(data): stage CAA ${{ steps.candidate.outputs.year }}-${{ steps.candidate.outputs.month }}"
+          git push origin "$STAGING_BRANCH" --force
+          release_sha=$(git rev-parse HEAD)
+          echo "release_sha=$release_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Verify deployed staging site
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        env:
+          BASE_URL: ${{ env.STAGING_URL }}
+          EXPECTED_YEAR: ${{ steps.candidate.outputs.year }}
+          EXPECTED_MONTH: ${{ steps.candidate.outputs.month }}
+        run: |
+          echo "STAGE=verify staging website" >> "$GITHUB_ENV"
+          node scripts/verify_remote.js
+
+      - name: Notify staging ready for review
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.same_release != 'true'
+        env:
+          NOTIFY_KIND: staging_ready
+          LATEST_YEAR: ${{ steps.candidate.outputs.year }}
+          LATEST_MONTH: ${{ steps.candidate.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.state.outputs.production_year }}
+          PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
+          RELEASE_COMMIT: ${{ steps.publish.outputs.release_sha }}
+        run: python scripts/send_update_email.py
+
+      - name: Notify pipeline failure
+        if: failure()
+        env:
+          NOTIFY_KIND: update_failed
+          LATEST_YEAR: ${{ steps.candidate.outputs.year }}
+          LATEST_MONTH: ${{ steps.candidate.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.state.outputs.production_year }}
+          PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
+          ERROR_STAGE: ${{ env.STAGE }}
+          ERROR_SUMMARY: One or more automation steps failed. Production was not changed.
+        run: python scripts/send_update_email.py
