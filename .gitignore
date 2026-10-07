@@ -12,5 +12,8 @@ dist/
 build/
 .vscode/
 
+# Local monthly-report review artifact (do not commit)
+insights/2026-07-taiwan-aviation-monthly-report/review.html
+
 tests/screenshots/
 tests/ga4_qa_report.json

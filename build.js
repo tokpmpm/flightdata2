@@ -11,6 +11,9 @@ try {
     console.log('Running Stage 3: AdSense Verification...');
     execSync('node tests/verify_adsense.js', { stdio: 'inherit', env: { ...process.env, NODE_ENV: 'production', VERCEL: '1' } });
     
+    console.log('Running Stage 4: Monthly Report Verification...');
+    execSync('node scripts/verify_monthly_report.js', { stdio: 'inherit', env: { ...process.env, NODE_ENV: 'production', VERCEL: '1' } });
+    
     console.log('=== Build Pipeline Completed Successfully! ===');
     process.exit(0);
 } catch (err) {

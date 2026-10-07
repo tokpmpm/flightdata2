@@ -18,11 +18,12 @@ const XLSX = require('xlsx');
 const fs   = require('fs');
 const path = require('path');
 
-// ─── 民國→西元 映射 ────────────────────────────────────────────────────────
-const YEAR_MAP = { '111': 2022, '112': 2023, '113': 2024, '114': 2025, '115': 2026 };
-const MONTH_ZH = ['一','二','三','四','五','六','七','八','九','十','十一','十二'];
+// ─── 驗證範圍 ──────────────────────────────────────────────────────────────
+// 起始月份維持網站目前公開的分析期間；結束月份由實際 XLS/JSON 自動判定，
+// 避免新增月份時漏驗（例如 115 年 7 月）。
+const VERIFY_START = 202401;
 
-// ─── 讀取所有需要的 XLS（113-115年，符合 2024-01~2026-05）──────────────────
+// ─── 讀取驗證期間內的所有 XLS ───────────────────────────────────────────────
 function readXlsMonthly() {
     const results = {};  // key = "YYYY-MM"
     const xlsDir  = path.join(__dirname, '..', 'extracted');
@@ -35,12 +36,11 @@ function readXlsMonthly() {
 
         const rocYear  = match[1];
         const month    = parseInt(match[2]);
-        const year     = YEAR_MAP[rocYear];
-        if (!year) return;
+        const year     = Number(rocYear) + 1911;
+        if (!Number.isFinite(year)) return;
 
-        // 只處理 2024-01 ~ 2026-06
         const key = year * 100 + month;
-        if (key < 202401 || key > 202606) return;
+        if (key < VERIFY_START) return;
 
         const ym = `${year}-${String(month).padStart(2,'0')}`;
 
@@ -88,7 +88,7 @@ function readJsonMonthly() {
     const results = {};
     raw.forEach(r => {
         const key = r.year * 100 + r.month;
-        if (key < 202401 || key > 202606) return;
+        if (key < VERIFY_START) return;
 
         const ym = `${r.year}-${String(r.month).padStart(2,'0')}`;
         if (!results[ym]) results[ym] = { flights: 0, seats: 0, passengers: 0 };
@@ -109,7 +109,7 @@ const months = Array.from(
 ).sort();
 
 const minYM = months.length > 0 ? months[0] : '2024-01';
-const maxYM = months.length > 0 ? months[months.length - 1] : '2026-06';
+const maxYM = months.length > 0 ? months[months.length - 1] : '尚無資料';
 
 console.log('╔══════════════════════════════════════════════════════════════════════╗');
 console.log('  原始 XLS vs flight_data_all.json  逐月比對驗算');

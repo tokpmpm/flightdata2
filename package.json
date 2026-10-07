@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node tests/verify_adsense.js",
     "test:ga4": "node tests/verify_ga4_events.js",
+    "test:monthly-report": "node scripts/verify_monthly_report.js",
     "quota": "npx antigravity-usage",
     "build": "node build.js",
     "ship": "node build.js && node tests/verify_browser_qa.js && vercel --prod --force"
