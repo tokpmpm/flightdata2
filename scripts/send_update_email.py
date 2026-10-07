@@ -114,7 +114,8 @@ msg = EmailMessage()
 msg['Subject'] = subject
 msg['From'] = username
 msg['To'] = recipient
-msg.set_content(f'{headline}\n{detail.replace("<br>", "\n")}\nStaging: {staging_url}\nProduction: {production_url}\nActions: {actions_url}')
+plain_detail = detail.replace('<br>', '\n')
+msg.set_content(f'{headline}\n{plain_detail}\nStaging: {staging_url}\nProduction: {production_url}\nActions: {actions_url}')
 msg.add_alternative(body, subtype='html')
 
 context = ssl.create_default_context()
