@@ -9,6 +9,7 @@ const path = require('path');
 const { calculateInsightsData, generateStaticInsightsHTML } = require('./js/insights.js');
 
 const SITE_URL = 'https://flightdata2.meshthings.com';
+const MONTHLY_REPORT_PATH = '/insights/2026-07-taiwan-aviation-monthly-report/';
 
 // Custom parsing of .env if it exists locally
 if (fs.existsSync(path.join(__dirname, '.env'))) {
@@ -630,6 +631,15 @@ function build() {
             `$1\n${staticHtml.routesHtml}\n$2`
         );
 
+        // Keep the numeric destination ranking out of search snippets on the homepage.
+        // The heading and human-readable search summary remain indexable.
+        if (!targetAirport && !targetAirline) {
+            html = html.replace(
+                '<div class="top-routes-list" id="top-routes-list">',
+                '<div class="top-routes-list" id="top-routes-list" data-nosnippet>'
+            );
+        }
+
         // Replace Heatmap
         html = html.replace(
             /(<div class="heatmap-container" id="heatmap-container">)[\s\S]*?(<\/div>)/,
@@ -712,6 +722,12 @@ function build() {
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}${MONTHLY_REPORT_PATH}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>${SITE_URL}/about/</loc>
@@ -814,6 +830,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 ## 主要頁面與資料集 (Dataset URL)
 - 首頁 (全台機場統計): ${SITE_URL}/
+- 2026 年 7 月台灣航空月報: ${SITE_URL}${MONTHLY_REPORT_PATH}
 - 桃園國際機場 (TPE): ${SITE_URL}/airport/tpe/
 - 高雄國際機場 (KHH): ${SITE_URL}/airport/khh/
 - 臺北松山機場 (TSA): ${SITE_URL}/airport/tsa/

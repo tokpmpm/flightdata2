@@ -1,7 +1,7 @@
 /**
  * verify_homepage.js
  * 模擬前端 applyFilters + calculateInsightsData 的完整計算邏輯
- * 驗算 ?sy=2024&sm=1&ey=2026&em=5 這個查詢的所有顯示數字
+ * 驗算從 2024-01 到資料庫實際最新月份的所有顯示數字
  *
  * 驗算方式說明：
  * 1. 從 data/flight_data_all.json 讀取原始資料庫
@@ -18,11 +18,12 @@ const raw = JSON.parse(fs.readFileSync('./data/flight_data_all.json', 'utf8'));
 // ─── 參數（與 URL 對應）────────────────────────────────────────────────────
 const START_YEAR  = 2024;
 const START_MONTH = 1;
-const END_YEAR    = 2026;
-const END_MONTH   = 6;
+const latestKey   = raw.reduce((max, r) => Math.max(max, r.year * 100 + r.month), 0);
+const END_YEAR    = Math.floor(latestKey / 100);
+const END_MONTH   = latestKey % 100;
 
 const START_KEY = START_YEAR * 100 + START_MONTH;  // 202401
-const END_KEY   = END_YEAR   * 100 + END_MONTH;    // 202605
+const END_KEY   = END_YEAR   * 100 + END_MONTH;
 
 // ─── Step 1: applyFilters（無機場/目的地/航司篩選）──────────────────────────
 const filtered = raw.filter(r => {

@@ -4,6 +4,7 @@
 
 ## 主要頁面與資料集 (Dataset URL)
 - 首頁 (全台機場統計): https://flightdata2.meshthings.com/
+- 2026 年 7 月台灣航空月報: https://flightdata2.meshthings.com/insights/2026-07-taiwan-aviation-monthly-report/
 - 桃園國際機場 (TPE): https://flightdata2.meshthings.com/airport/tpe/
 - 高雄國際機場 (KHH): https://flightdata2.meshthings.com/airport/khh/
 - 臺北松山機場 (TSA): https://flightdata2.meshthings.com/airport/tsa/
