@@ -1,0 +1,84 @@
+name: Notify Production Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/release_metadata.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: flightdata-production-notification
+  cancel-in-progress: false
+
+env:
+  PRODUCTION_URL: https://flightdata2.meshthings.com
+
+jobs:
+  verify-and-notify:
+    runs-on: ubuntu-latest
+    env:
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+      REVIEW_CHAT_URL: ${{ secrets.REVIEW_CHAT_URL }}
+      ACTIONS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Read production release metadata
+        id: release
+        run: |
+          node <<'NODE' >> "$GITHUB_OUTPUT"
+          const fs = require('fs');
+          const m = JSON.parse(fs.readFileSync('data/release_metadata.json', 'utf8'));
+          console.log(`status=${m.status || ''}`);
+          console.log(`year=${m.latest_year || ''}`);
+          console.log(`month=${m.latest_month || ''}`);
+          console.log(`release_commit=${m.release_commit || m.approved_staging_commit || ''}`);
+          NODE
+
+      - name: Verify production website
+        if: steps.release.outputs.status == 'production'
+        env:
+          BASE_URL: ${{ env.PRODUCTION_URL }}
+          EXPECTED_YEAR: ${{ steps.release.outputs.year }}
+          EXPECTED_MONTH: ${{ steps.release.outputs.month }}
+        run: node scripts/verify_remote.js
+
+      - name: Send production success email
+        if: success() && steps.release.outputs.status == 'production'
+        env:
+          NOTIFY_KIND: production_success
+          LATEST_YEAR: ${{ steps.release.outputs.year }}
+          LATEST_MONTH: ${{ steps.release.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.release.outputs.year }}
+          PRODUCTION_MONTH: ${{ steps.release.outputs.month }}
+          RELEASE_COMMIT: ${{ steps.release.outputs.release_commit }}
+          RUN_DATE: ${{ github.event.head_commit.timestamp }}
+        run: python scripts/send_update_email.py
+
+      - name: Send production failure email
+        if: failure() && steps.release.outputs.status == 'production'
+        env:
+          NOTIFY_KIND: production_failed
+          LATEST_YEAR: ${{ steps.release.outputs.year }}
+          LATEST_MONTH: ${{ steps.release.outputs.month }}
+          PRODUCTION_YEAR: ${{ steps.release.outputs.year }}
+          PRODUCTION_MONTH: ${{ steps.release.outputs.month }}
+          RELEASE_COMMIT: ${{ steps.release.outputs.release_commit }}
+          ERROR_STAGE: Production smoke test
+          ERROR_SUMMARY: Production deployment did not pass the automated release verification. Please inspect this GitHub Actions run.
+        run: python scripts/send_update_email.py
