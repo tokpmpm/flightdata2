@@ -7,9 +7,9 @@
 const fs = require('fs');
 const path = require('path');
 const { calculateInsightsData, generateStaticInsightsHTML } = require('./js/insights.js');
+const { generateMonthlyReport } = require('./scripts/generate_monthly_report.js');
 
 const SITE_URL = 'https://flightdata2.meshthings.com';
-const MONTHLY_REPORT_PATH = '/insights/2026-07-taiwan-aviation-monthly-report/';
 
 // Custom parsing of .env if it exists locally
 if (fs.existsSync(path.join(__dirname, '.env'))) {
@@ -500,7 +500,7 @@ function build() {
         console.error('Error: template.html does not exist. Please duplicate index.html to template.html first.');
         process.exit(1);
     }
-    const templateHtml = fs.readFileSync(templatePath, 'utf8');
+    let templateHtml = fs.readFileSync(templatePath, 'utf8');
 
     // Find date range boundaries
     const sortedRecords = [...allRecords].sort((a, b) => b.yearMonth.localeCompare(a.yearMonth));
@@ -509,6 +509,14 @@ function build() {
     const globalLatestMonth = latestRecord.month;
 
     console.log(`Global date range for pre-rendering: 2024-01 to ${latestRecord.yearMonth}`);
+
+    // Generate the latest monthly report from the exact same dataset used by all pages.
+    const monthlyReport = generateMonthlyReport(allRecords, { root: __dirname, siteUrl: SITE_URL });
+    const monthlyReportPath = monthlyReport.path;
+    templateHtml = templateHtml.replace(
+        '<!-- LATEST_MONTHLY_REPORT_LINK -->',
+        `<li><a href="${monthlyReportPath}" class="nav-link">📰 ${monthlyReport.month} 月月報</a></li>`
+    );
 
     // Define function to generate page
     function generatePage(targetAirport, targetAirline, outputFilePath, relativeUrlPath) {
@@ -724,7 +732,7 @@ function build() {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${SITE_URL}${MONTHLY_REPORT_PATH}</loc>
+    <loc>${SITE_URL}${monthlyReportPath}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -830,7 +838,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 ## 主要頁面與資料集 (Dataset URL)
 - 首頁 (全台機場統計): ${SITE_URL}/
-- 2026 年 7 月台灣航空月報: ${SITE_URL}${MONTHLY_REPORT_PATH}
+- ${monthlyReport.year} 年 ${monthlyReport.month} 月台灣航空月報: ${SITE_URL}${monthlyReportPath}
 - 桃園國際機場 (TPE): ${SITE_URL}/airport/tpe/
 - 高雄國際機場 (KHH): ${SITE_URL}/airport/khh/
 - 臺北松山機場 (TSA): ${SITE_URL}/airport/tsa/
