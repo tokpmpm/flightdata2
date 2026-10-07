@@ -41,7 +41,7 @@ function maxMonth(records) {
 function assertPage(file, expected) {
   if (!fs.existsSync(file)) throw new Error(`Missing generated page: ${path.relative(root, file)}`);
   const html = fs.readFileSync(file, 'utf8');
-  const match = html.match(/id=["']header-update-time[#'][^>]*>(\d{4})年(\d{1,2})月</);
+  const match = html.match(/id=["']header-update-time["'][^>]*>(\d{4})年(\d{1,2})月</);
   if (!match) throw new Error(`No header-update-time in ${path.relative(root, file)}`);
   const actual = { year: Number(match[1]), month: Number(match[2]) };
   if (actual.year !== expected.year || actual.month !== expected.month) {
