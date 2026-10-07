@@ -15,7 +15,7 @@ concurrency:
 
 env:
   STAGING_BRANCH: staging
-  STAGING_URL: https://flightdata2-staging.vercel.app
+  STAGING_URL: https://flightdata2-staging-git-staging-tokpmpms-projects.vercel.app
   PRODUCTION_URL: https://flightdata2.meshthings.com
   CAA_SOURCE_URL: https://www.caa.gov.tw/article.aspx?a=1752&lang=1
 
