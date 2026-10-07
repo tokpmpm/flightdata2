@@ -1,0 +1,9 @@
+{
+  "latest_year": 2026,
+  "latest_month": 8,
+  "source": "CAA",
+  "source_url": "https://www.caa.gov.tw/article.aspx?a=1752&lang=1",
+  "status": "staging",
+  "base_main_commit": "770df4504a7e827fde56c905a7118eb8f55f40b1",
+  "generated_at": "2026-10-07T03:02:00Z"
+}
