@@ -55,6 +55,18 @@ async function getWithRetry(url, attempts=12) {
     }
     console.log(`OK ${route} -> ${actual.year}-${String(actual.month).padStart(2,'0')}`);
   }
+  const month2 = String(expectedMonth).padStart(2,'0');
+  const reportRoute = `/insights/${expectedYear}-${month2}-taiwan-aviation-monthly-report/`;
+  const reportRes = await getWithRetry(baseUrl + reportRoute);
+  if (!reportRes.text.includes(`${expectedYear} 年 ${expectedMonth} 月台灣航空月報`)) {
+    throw new Error(`Monthly report content mismatch at ${baseUrl + reportRoute}`);
+  }
+  console.log(`OK ${reportRoute} -> monthly report present`);
+
+  const sitemapRes = await getWithRetry(baseUrl + '/sitemap.xml');
+  if (!sitemapRes.text.includes(reportRoute)) throw new Error(`sitemap.xml missing ${reportRoute}`);
+  console.log('OK /sitemap.xml -> latest monthly report linked');
+
   const dataRes = await getWithRetry(baseUrl + '/data/flight_data_all.json');
   const remoteData = JSON.parse(dataRes.text);
   const latest = remoteData.reduce((b,r)=>Number(r.year)*100+Number(r.month)>b.key?{key:Number(r.year)*100+Number(r.month),year:Number(r.year),month:Number(r.month)}:b,{key:0,year:0,month:0});
