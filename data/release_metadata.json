@@ -1,12 +1,8 @@
 {
   "latest_year": 2026,
-  "latest_month": 8,
+  "latest_month": 9,
   "source": "CAA",
   "source_url": "https://www.caa.gov.tw/article.aspx?a=1752&lang=1",
-  "status": "production",
-  "approved_staging_commit": "15c42204cded1fb7ad53eaacdb96047d790edbae",
-  "release_commit": "15c42204cded1fb7ad53eaacdb96047d790edbae",
-  "production_deployment_id": "dpl_J6ajB4xk2vgSL9XT534DfVV5oRDv",
-  "approved_at": "2026-10-07T03:39:27Z",
-  "production_verified": true
+  "status": "staging",
+  "generated_at": "2026-10-27T09:29:13.178Z"
 }

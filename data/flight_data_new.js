@@ -396,6 +396,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 53258,
                         "passengers": 47209
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 53410,
+                        "passengers": 40553
                     }
                 ],
                 "長榮": [
@@ -790,6 +797,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 63754,
                         "passengers": 55940
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 61630,
+                        "passengers": 44036
                     }
                 ],
                 "台灣虎航": [
@@ -1184,6 +1198,13 @@ const flightData = {
                         "flights": 142,
                         "seats": 25560,
                         "passengers": 24128
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 138,
+                        "seats": 24840,
+                        "passengers": 22934
                     }
                 ],
                 "樂桃": [
@@ -1522,6 +1543,13 @@ const flightData = {
                         "flights": 122,
                         "seats": 23116,
                         "passengers": 20653
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 159,
+                        "seats": 29932,
+                        "passengers": 26049
                     }
                 ],
                 "星宇": [
@@ -1916,6 +1944,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 38656,
                         "passengers": 34500
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 38792,
+                        "passengers": 31165
                     }
                 ],
                 "泰越捷": [
@@ -2170,6 +2205,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 10962,
                         "passengers": 9197
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 8216
                     }
                 ],
                 "國泰": [
@@ -2445,6 +2487,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 27156,
                         "passengers": 24047
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 26280,
+                        "passengers": 17279
                     }
                 ],
                 "日本": [
@@ -2545,6 +2594,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 7004,
                         "passengers": 4754
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 3824,
+                        "passengers": 2603
                     }
                 ],
                 "馬印": [
@@ -2920,6 +2976,13 @@ const flightData = {
                         "flights": 122,
                         "seats": 21960,
                         "passengers": 20744
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 119,
+                        "seats": 21420,
+                        "passengers": 19984
                     }
                 ],
                 "全亞洲": [
@@ -3097,6 +3160,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 23374,
                         "passengers": 20657
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 22620,
+                        "passengers": 18361
                     }
                 ],
                 "泰獅": [
@@ -3162,6 +3232,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 7330,
                         "passengers": 5302
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 7320,
+                        "passengers": 5309
                     }
                 ]
             },
@@ -3558,6 +3635,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 37394,
                         "passengers": 32001
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 122,
+                        "seats": 38236,
+                        "passengers": 30229
                     }
                 ],
                 "中華": [
@@ -3952,6 +4036,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 38522,
                         "passengers": 34904
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 128,
+                        "seats": 35822,
+                        "passengers": 26989
                     }
                 ],
                 "長榮": [
@@ -4346,6 +4437,13 @@ const flightData = {
                         "flights": 125,
                         "seats": 39718,
                         "passengers": 34697
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 132,
+                        "seats": 43262,
+                        "passengers": 31562
                     }
                 ],
                 "台灣虎航": [
@@ -4684,6 +4782,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10365
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9896
                     }
                 ],
                 "韓亞": [
@@ -5078,6 +5183,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 34418,
                         "passengers": 30875
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 118,
+                        "seats": 34736,
+                        "passengers": 29061
                     }
                 ],
                 "酷航": [
@@ -5409,6 +5521,13 @@ const flightData = {
                         "flights": 48,
                         "seats": 16698,
                         "passengers": 15004
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 51,
+                        "seats": 18077,
+                        "passengers": 15269
                     }
                 ],
                 "真航": [
@@ -5719,6 +5838,13 @@ const flightData = {
                         "flights": 59,
                         "seats": 23187,
                         "passengers": 21823
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 23580,
+                        "passengers": 21664
                     }
                 ],
                 "濟州": [
@@ -6029,6 +6155,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11718,
                         "passengers": 11029
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 78,
+                        "seats": 14742,
+                        "passengers": 13644
                     }
                 ],
                 "荷蘭皇家": [
@@ -6334,6 +6467,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6792,
                         "passengers": 6256
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 48,
+                        "seats": 9072,
+                        "passengers": 8017
                     }
                 ]
             },
@@ -6730,6 +6870,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 21886,
                         "passengers": 19261
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 21180,
+                        "passengers": 18592
                     }
                 ]
             },
@@ -7126,6 +7273,13 @@ const flightData = {
                         "flights": 46,
                         "seats": 14476,
                         "passengers": 9834
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 41,
+                        "seats": 12946,
+                        "passengers": 8093
                     }
                 ],
                 "長榮": [
@@ -7520,6 +7674,13 @@ const flightData = {
                         "flights": 35,
                         "seats": 11970,
                         "passengers": 10667
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 25,
+                        "seats": 8550,
+                        "passengers": 7633
                     }
                 ]
             },
@@ -7867,6 +8028,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10657
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13248,
+                        "passengers": 11538
                     }
                 ],
                 "台灣虎航": [
@@ -8198,6 +8366,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10840
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 10419
                     }
                 ],
                 "星宇": [
@@ -8529,6 +8704,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18846,
                         "passengers": 17793
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 59,
+                        "seats": 18054,
+                        "passengers": 15943
                     }
                 ],
                 "酷航": [
@@ -8853,6 +9035,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 12012,
                         "passengers": 11261
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 11446,
+                        "passengers": 9754
                     }
                 ],
                 "長榮": [
@@ -9170,6 +9359,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 32612,
                         "passengers": 31534
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 31560,
+                        "passengers": 27135
                     }
                 ],
                 "馬印": [
@@ -9349,6 +9545,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4320,
                         "passengers": 3580
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 2961
                     }
                 ],
                 "泰亞洲": [
@@ -9456,6 +9659,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3348,
                         "passengers": 2839
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3276,
+                        "passengers": 2075
                     }
                 ]
             },
@@ -9852,6 +10062,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 21780,
                         "passengers": 19496
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 19296,
+                        "passengers": 15658
                     }
                 ],
                 "長榮": [
@@ -10246,6 +10463,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20026,
                         "passengers": 17963
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 19520,
+                        "passengers": 16152
                     }
                 ],
                 "馬來西亞": [
@@ -10598,6 +10822,13 @@ const flightData = {
                         "flights": 52,
                         "seats": 13212,
                         "passengers": 9851
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 52,
+                        "seats": 14140,
+                        "passengers": 9570
                     }
                 ],
                 "星宇": [
@@ -10992,6 +11223,13 @@ const flightData = {
                         "flights": 46,
                         "seats": 8648,
                         "passengers": 8263
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 9204,
+                        "passengers": 7670
                     }
                 ],
                 "全亞洲": [
@@ -11309,6 +11547,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 23374,
                         "passengers": 14971
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 61,
+                        "seats": 22997,
+                        "passengers": 14788
                     }
                 ],
                 "馬印": [
@@ -11619,6 +11864,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4644,
                         "passengers": 3007
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4662,
+                        "passengers": 2567
                     }
                 ],
                 "馬亞洲": [
@@ -12024,6 +12276,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 23118,
                         "passengers": 21337
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 24686,
+                        "passengers": 20186
                     }
                 ],
                 "台灣虎航": [
@@ -12355,6 +12614,13 @@ const flightData = {
                         "flights": 61,
                         "seats": 10980,
                         "passengers": 10054
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9459
                     }
                 ],
                 "國泰": [
@@ -12602,6 +12868,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18164,
                         "passengers": 15933
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18552,
+                        "passengers": 12276
                     }
                 ],
                 "樂桃": [
@@ -12898,6 +13171,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11072,
                         "passengers": 10002
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 9131
                     }
                 ],
                 "馬印": [
@@ -13301,6 +13581,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18432,
                         "passengers": 16924
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 17820,
+                        "passengers": 13751
                     }
                 ],
                 "長榮": [
@@ -13480,6 +13767,13 @@ const flightData = {
                         "flights": 40,
                         "seats": 5760,
                         "passengers": 4607
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 6336,
+                        "passengers": 3523
                     }
                 ],
                 "泰獅": [
@@ -13997,6 +14291,13 @@ const flightData = {
                         "flights": 106,
                         "seats": 33564,
                         "passengers": 26821
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 102,
+                        "seats": 31874,
+                        "passengers": 23992
                     }
                 ]
             },
@@ -14358,6 +14659,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20646,
                         "passengers": 17962
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 19980,
+                        "passengers": 15898
                     }
                 ]
             },
@@ -14754,6 +15062,13 @@ const flightData = {
                         "flights": 89,
                         "seats": 30438,
                         "passengers": 25820
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 85,
+                        "seats": 29070,
+                        "passengers": 20680
                     }
                 ],
                 "中華": [
@@ -14938,6 +15253,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 13464,
                         "passengers": 12155
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 13464,
+                        "passengers": 10949
                     }
                 ],
                 "達美": [
@@ -15129,6 +15451,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18910,
                         "passengers": 15133
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 58,
+                        "seats": 17748,
+                        "passengers": 13623
                     }
                 ],
                 "星宇": [
@@ -15306,6 +15635,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18972,
                         "passengers": 16338
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18360,
+                        "passengers": 15004
                     }
                 ]
             },
@@ -15702,6 +16038,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6480,
                         "passengers": 4535
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 6120,
+                        "passengers": 2673
                     }
                 ]
             },
@@ -16035,6 +16378,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10729
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9835
                     }
                 ],
                 "樂桃": [
@@ -16359,6 +16709,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11280,
                         "passengers": 10349
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 59,
+                        "seats": 11092,
+                        "passengers": 9917
                     }
                 ]
             },
@@ -16755,6 +17112,13 @@ const flightData = {
                         "flights": 248,
                         "seats": 61758,
                         "passengers": 54522
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 240,
+                        "seats": 59132,
+                        "passengers": 43906
                     }
                 ],
                 "長榮": [
@@ -17149,6 +17513,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 63656,
                         "passengers": 56510
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 61526,
+                        "passengers": 45245
                     }
                 ],
                 "台灣虎航": [
@@ -17543,6 +17914,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 22320,
                         "passengers": 21170
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 21600,
+                        "passengers": 19480
                     }
                 ],
                 "日本": [
@@ -17937,6 +18315,13 @@ const flightData = {
                         "flights": 122,
                         "seats": 23116,
                         "passengers": 18449
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 118,
+                        "seats": 20210,
+                        "passengers": 13007
                     }
                 ],
                 "樂桃": [
@@ -18275,6 +18660,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 22352,
                         "passengers": 21087
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 136,
+                        "seats": 25328,
+                        "passengers": 22931
                     }
                 ],
                 "酷航": [
@@ -18641,6 +19033,13 @@ const flightData = {
                         "flights": 97,
                         "seats": 36375,
                         "passengers": 33236
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 100,
+                        "seats": 37420,
+                        "passengers": 34383
                     }
                 ],
                 "星宇": [
@@ -19035,6 +19434,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 61638,
                         "passengers": 55896
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 59644,
+                        "passengers": 48696
                     }
                 ],
                 "酷虎": [
@@ -19375,6 +19781,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 24848,
                         "passengers": 23297
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 116,
+                        "seats": 24244,
+                        "passengers": 21997
                     }
                 ],
                 "泰獅": [
@@ -19629,6 +20042,13 @@ const flightData = {
                         "flights": 40,
                         "seats": 8600,
                         "passengers": 5599
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 9040,
+                        "passengers": 5454
                     }
                 ],
                 "國泰": [
@@ -19911,6 +20331,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 27156,
                         "passengers": 25175
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 26280,
+                        "passengers": 18260
                     }
                 ]
             },
@@ -20307,6 +20734,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 30542,
                         "passengers": 25999
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 30426,
+                        "passengers": 26002
                     }
                 ],
                 "長榮": [
@@ -20701,6 +21135,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 32034,
                         "passengers": 27250
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 31020,
+                        "passengers": 26192
                     }
                 ],
                 "越竹": [
@@ -21209,6 +21650,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11788,
                         "passengers": 10943
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11691,
+                        "passengers": 10468
                     }
                 ],
                 "越捷": [
@@ -21603,6 +22051,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14680,
                         "passengers": 11076
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 14240,
+                        "passengers": 11524
                     }
                 ],
                 "星宇": [
@@ -21913,6 +22368,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 10454
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 12588,
+                        "passengers": 10927
                     }
                 ]
             },
@@ -22309,6 +22771,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20844,
                         "passengers": 18358
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 21480,
+                        "passengers": 18983
                     }
                 ]
             },
@@ -22705,6 +23174,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20324,
                         "passengers": 16163
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 56,
+                        "seats": 18020,
+                        "passengers": 12918
                     }
                 ],
                 "星宇": [
@@ -22812,6 +23288,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 11016,
                         "passengers": 8187
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 10404,
+                        "passengers": 7305
                     }
                 ]
             },
@@ -23180,6 +23663,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20646,
                         "passengers": 17878
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 20020,
+                        "passengers": 14762
                     }
                 ]
             },
@@ -23576,6 +24066,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6214,
                         "passengers": 2692
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4516,
+                        "passengers": 1498
                     }
                 ],
                 "長榮": [
@@ -23970,6 +24467,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 19158,
                         "passengers": 11966
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18340,
+                        "passengers": 8777
                     }
                 ]
             },
@@ -24366,6 +24870,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 21104,
                         "passengers": 16918
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 56,
+                        "seats": 18384,
+                        "passengers": 12728
                     }
                 ],
                 "長榮": [
@@ -24760,6 +25271,13 @@ const flightData = {
                         "flights": 187,
                         "seats": 60691,
                         "passengers": 43516
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 58170,
+                        "passengers": 32613
                     }
                 ],
                 "新加坡": [
@@ -25065,6 +25583,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18972,
                         "passengers": 14424
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18360,
+                        "passengers": 11984
                     }
                 ]
             },
@@ -25461,6 +25986,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 43560,
                         "passengers": 35467
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 41006,
+                        "passengers": 27779
                     }
                 ],
                 "長榮": [
@@ -25855,6 +26387,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 61470,
                         "passengers": 50078
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 59740,
+                        "passengers": 41777
                     }
                 ],
                 "越南": [
@@ -26249,6 +26788,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11605,
                         "passengers": 10374
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11116,
+                        "passengers": 7604
                     }
                 ],
                 "越捷": [
@@ -26608,6 +27154,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14580,
                         "passengers": 9992
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13940,
+                        "passengers": 9693
                     }
                 ],
                 "星宇": [
@@ -27002,6 +27555,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 32268,
                         "passengers": 27369
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 31516,
+                        "passengers": 24219
                     }
                 ]
             },
@@ -27398,6 +27958,13 @@ const flightData = {
                         "flights": 362,
                         "seats": 70922,
                         "passengers": 53571
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 312,
+                        "seats": 61960,
+                        "passengers": 43375
                     }
                 ],
                 "長榮": [
@@ -27792,6 +28359,13 @@ const flightData = {
                         "flights": 405,
                         "seats": 112872,
                         "passengers": 74581
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 390,
+                        "seats": 105896,
+                        "passengers": 63337
                     }
                 ],
                 "國泰": [
@@ -28186,6 +28760,13 @@ const flightData = {
                         "flights": 735,
                         "seats": 231074,
                         "passengers": 178689
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 701,
+                        "seats": 219557,
+                        "passengers": 146907
                     }
                 ],
                 "香港": [
@@ -28524,6 +29105,13 @@ const flightData = {
                         "flights": 244,
                         "seats": 46104,
                         "passengers": 42944
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 224,
+                        "seats": 45784,
+                        "passengers": 40070
                     }
                 ],
                 "香港快運": [
@@ -28918,6 +29506,13 @@ const flightData = {
                         "flights": 248,
                         "seats": 55752,
                         "passengers": 44081
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 202,
+                        "seats": 45844,
+                        "passengers": 33277
                     }
                 ],
                 "大灣區航空": [
@@ -29237,6 +29832,13 @@ const flightData = {
                         "flights": 142,
                         "seats": 27246,
                         "passengers": 22642
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 104,
+                        "seats": 19730,
+                        "passengers": 14927
                     }
                 ],
                 "星宇": [
@@ -29421,6 +30023,13 @@ const flightData = {
                         "flights": 126,
                         "seats": 35260,
                         "passengers": 25844
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 32314,
+                        "passengers": 21550
                     }
                 ]
             },
@@ -30046,6 +30655,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 15752,
                         "passengers": 13662
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 43,
+                        "seats": 15394,
+                        "passengers": 10579
                     }
                 ],
                 "長榮": [
@@ -30440,6 +31056,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20646,
                         "passengers": 18666
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 19980,
+                        "passengers": 15537
                     }
                 ]
             },
@@ -30836,6 +31459,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 34856,
                         "passengers": 22009
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 35482,
+                        "passengers": 18687
                     }
                 ],
                 "長榮": [
@@ -31230,6 +31860,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 52102,
                         "passengers": 37178
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 50034,
+                        "passengers": 30924
                     }
                 ],
                 "宿霧太平洋": [
@@ -31603,6 +32240,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 54228,
                         "passengers": 35649
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 47016,
+                        "passengers": 35790
                     }
                 ],
                 "菲律賓": [
@@ -31997,6 +32641,13 @@ const flightData = {
                         "flights": 103,
                         "seats": 21993,
                         "passengers": 14267
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 84,
+                        "seats": 17008,
+                        "passengers": 11389
                     }
                 ],
                 "星宇": [
@@ -32251,6 +32902,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11874,
                         "passengers": 8473
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 8265
                     }
                 ],
                 "菲亞洲": [
@@ -32568,6 +33226,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11196,
                         "passengers": 9010
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10956,
+                        "passengers": 9042
                     }
                 ],
                 "荷蘭皇家": [
@@ -32815,6 +33480,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 9770,
                         "passengers": 4959
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 9640,
+                        "passengers": 4773
                     }
                 ],
                 "菲律賓皇家": [
@@ -33262,6 +33934,13 @@ const flightData = {
                         "flights": 234,
                         "seats": 62528,
                         "passengers": 55506
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 226,
+                        "seats": 58272,
+                        "passengers": 44011
                     }
                 ],
                 "長榮": [
@@ -33656,6 +34335,13 @@ const flightData = {
                         "flights": 284,
                         "seats": 96494,
                         "passengers": 69953
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 275,
+                        "seats": 94172,
+                        "passengers": 54666
                     }
                 ],
                 "泰國": [
@@ -34050,6 +34736,13 @@ const flightData = {
                         "flights": 186,
                         "seats": 51017,
                         "passengers": 37133
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 177,
+                        "seats": 46595,
+                        "passengers": 29399
                     }
                 ],
                 "泰越捷": [
@@ -34395,6 +35088,13 @@ const flightData = {
                         "flights": 136,
                         "seats": 27702,
                         "passengers": 19687
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 146,
+                        "seats": 29800,
+                        "passengers": 20973
                     }
                 ],
                 "荷蘭皇家": [
@@ -34882,6 +35582,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 38530,
                         "passengers": 35748
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 36180,
+                        "passengers": 32273
                     }
                 ]
             },
@@ -35329,6 +36036,13 @@ const flightData = {
                         "flights": 94,
                         "seats": 20230,
                         "passengers": 16608
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 110,
+                        "seats": 23670,
+                        "passengers": 18347
                     }
                 ],
                 "泰亞洲": [
@@ -35639,6 +36353,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14632,
                         "passengers": 9708
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 14160,
+                        "passengers": 8802
                     }
                 ]
             },
@@ -36035,6 +36756,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 11720,
                         "passengers": 10201
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 11254,
+                        "passengers": 10128
                     }
                 ]
             },
@@ -36431,6 +37159,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 13464,
                         "passengers": 13013
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 43,
+                        "seats": 15342,
+                        "passengers": 13692
                     }
                 ]
             },
@@ -36827,6 +37562,13 @@ const flightData = {
                         "flights": 88,
                         "seats": 23652,
                         "passengers": 19782
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 77,
+                        "seats": 21170,
+                        "passengers": 17057
                     }
                 ],
                 "長榮": [
@@ -37221,6 +37963,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 17236,
                         "passengers": 14685
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 56,
+                        "seats": 15696,
+                        "passengers": 13051
                     }
                 ],
                 "星宇": [
@@ -37391,6 +38140,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8272,
                         "passengers": 6442
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 40,
+                        "seats": 7520,
+                        "passengers": 5473
                     }
                 ]
             },
@@ -37873,6 +38629,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 7690,
                         "passengers": 5885
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 30,
+                        "seats": 8952,
+                        "passengers": 6542
                     }
                 ]
             },
@@ -38269,6 +39032,13 @@ const flightData = {
                         "flights": 104,
                         "seats": 26532,
                         "passengers": 20215
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 116,
+                        "seats": 27936,
+                        "passengers": 18369
                     }
                 ],
                 "長榮": [
@@ -38663,6 +39433,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 40632,
                         "passengers": 34945
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 39440,
+                        "passengers": 27148
                     }
                 ],
                 "新加坡": [
@@ -39057,6 +39834,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 41788,
                         "passengers": 31960
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 40440,
+                        "passengers": 32746
                     }
                 ],
                 "酷航": [
@@ -39423,6 +40207,13 @@ const flightData = {
                         "flights": 180,
                         "seats": 64710,
                         "passengers": 54021
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 186,
+                        "seats": 67318,
+                        "passengers": 55636
                     }
                 ],
                 "星宇": [
@@ -39817,6 +40608,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18972,
                         "passengers": 16229
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18360,
+                        "passengers": 13673
                     }
                 ],
                 "酷虎": [
@@ -40243,6 +41041,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 22196,
                         "passengers": 18571
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 19400,
+                        "passengers": 17230
                     }
                 ],
                 "長榮": [
@@ -40637,6 +41442,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 21886,
                         "passengers": 19684
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 21180,
+                        "passengers": 18620
                     }
                 ]
             },
@@ -41033,6 +41845,13 @@ const flightData = {
                         "flights": 168,
                         "seats": 46650,
                         "passengers": 43588
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 162,
+                        "seats": 43478,
+                        "passengers": 36557
                     }
                 ],
                 "長榮": [
@@ -41427,6 +42246,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 32484,
                         "passengers": 30738
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 33450,
+                        "passengers": 29178
                     }
                 ],
                 "台灣虎航": [
@@ -41758,6 +42584,13 @@ const flightData = {
                         "flights": 104,
                         "seats": 18720,
                         "passengers": 18273
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 104,
+                        "seats": 18720,
+                        "passengers": 17960
                     }
                 ],
                 "星宇": [
@@ -42145,6 +42978,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18666,
                         "passengers": 17951
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18342,
+                        "passengers": 17541
                     }
                 ],
                 "馬亞洲": [
@@ -42238,6 +43078,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14632,
                         "passengers": 12881
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11160,
+                        "passengers": 9921
                     }
                 ]
             },
@@ -42634,6 +43481,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 35352,
                         "passengers": 33712
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 35962,
+                        "passengers": 30950
                     }
                 ],
                 "星宇": [
@@ -43028,6 +43882,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 32913,
                         "passengers": 30232
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 32422,
+                        "passengers": 27440
                     }
                 ],
                 "澳門": [
@@ -43352,6 +44213,13 @@ const flightData = {
                         "flights": 268,
                         "seats": 46753,
                         "passengers": 39539
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 215,
+                        "seats": 38366,
+                        "passengers": 30276
                     }
                 ],
                 "台灣虎航": [
@@ -43925,6 +44793,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10438
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11054,
+                        "passengers": 8691
                     }
                 ],
                 "星宇": [
@@ -44596,6 +45471,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 20688,
                         "passengers": 15809
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 61,
+                        "seats": 18666,
+                        "passengers": 13366
                     }
                 ],
                 "長榮": [
@@ -44990,6 +45872,13 @@ const flightData = {
                         "flights": 185,
                         "seats": 57745,
                         "passengers": 42276
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 181,
+                        "seats": 57123,
+                        "passengers": 32090
                     }
                 ],
                 "聯合": [
@@ -45384,6 +46273,13 @@ const flightData = {
                         "flights": 119,
                         "seats": 37322,
                         "passengers": 28058
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 119,
+                        "seats": 37464,
+                        "passengers": 21733
                     }
                 ],
                 "星宇": [
@@ -45617,6 +46513,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18972,
                         "passengers": 13820
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18360,
+                        "passengers": 11517
                     }
                 ]
             },
@@ -45957,6 +46860,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 22196,
                         "passengers": 20938
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 21480,
+                        "passengers": 20122
                     }
                 ],
                 "長榮": [
@@ -46288,6 +47198,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 19158,
                         "passengers": 18395
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18540,
+                        "passengers": 18050
                     }
                 ]
             },
@@ -46642,6 +47559,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 19158,
                         "passengers": 16630
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18588,
+                        "passengers": 11448
                     }
                 ],
                 "中華": [
@@ -46959,6 +47883,13 @@ const flightData = {
                         "flights": 46,
                         "seats": 8280,
                         "passengers": 6958
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7560,
+                        "passengers": 4486
                     }
                 ],
                 "宿霧太平洋": [
@@ -47413,6 +48344,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 9937
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 7740
                     }
                 ]
             },
@@ -47753,6 +48691,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 10404,
                         "passengers": 9188
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 39,
+                        "seats": 11934,
+                        "passengers": 10114
                     }
                 ],
                 "長榮": [
@@ -48112,6 +49057,13 @@ const flightData = {
                         "flights": 27,
                         "seats": 7506,
                         "passengers": 6796
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 25,
+                        "seats": 6950,
+                        "passengers": 5996
                     }
                 ]
             },
@@ -48445,6 +49397,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8272,
                         "passengers": 7482
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7896,
+                        "passengers": 6389
                     }
                 ],
                 "長榮": [
@@ -48762,6 +49721,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 19158,
                         "passengers": 18187
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18540,
+                        "passengers": 15165
                     }
                 ],
                 "台灣虎航": [
@@ -49093,6 +50059,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 7920,
                         "passengers": 7295
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7560,
+                        "passengers": 5872
                     }
                 ],
                 "越南太平洋": [
@@ -49412,6 +50385,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10233
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 8190
                     }
                 ],
                 "越竹": [
@@ -49885,6 +50865,13 @@ const flightData = {
                         "flights": 12,
                         "seats": 2800,
                         "passengers": 2702
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 4160,
+                        "passengers": 3519
                     }
                 ]
             },
@@ -50490,6 +51477,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 17364,
                         "passengers": 15242
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 61,
+                        "seats": 16958,
+                        "passengers": 15259
                     }
                 ]
             },
@@ -50886,6 +51880,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 13464,
                         "passengers": 11480
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 43,
+                        "seats": 13158,
+                        "passengers": 11065
                     }
                 ],
                 "長榮": [
@@ -51298,6 +52299,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 21646,
                         "passengers": 19364
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 20420,
+                        "passengers": 18535
                     }
                 ]
             },
@@ -51694,6 +52702,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 12108,
                         "passengers": 10419
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 38,
+                        "seats": 13604,
+                        "passengers": 10158
                     }
                 ],
                 "荷蘭皇家": [
@@ -51941,6 +52956,13 @@ const flightData = {
                         "flights": 35,
                         "seats": 10045,
                         "passengers": 9412
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 9640,
+                        "passengers": 8700
                     }
                 ]
             },
@@ -52337,6 +53359,13 @@ const flightData = {
                         "flights": 116,
                         "seats": 46337,
                         "passengers": 25525
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 121,
+                        "seats": 47769,
+                        "passengers": 33849
                     }
                 ]
             },
@@ -52733,6 +53762,13 @@ const flightData = {
                         "flights": 128,
                         "seats": 38576,
                         "passengers": 30913
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 128,
+                        "seats": 38576,
+                        "passengers": 29320
                     }
                 ],
                 "長榮": [
@@ -53127,6 +54163,13 @@ const flightData = {
                         "flights": 126,
                         "seats": 40720,
                         "passengers": 33697
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 128,
+                        "seats": 41564,
+                        "passengers": 32901
                     }
                 ],
                 "國航": [
@@ -53479,6 +54522,13 @@ const flightData = {
                         "flights": 68,
                         "seats": 21088,
                         "passengers": 16549
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 68,
+                        "seats": 21128,
+                        "passengers": 14751
                     }
                 ],
                 "南方": [
@@ -53838,6 +54888,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 21600,
                         "passengers": 16288
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 21618,
+                        "passengers": 16106
                     }
                 ],
                 "東方": [
@@ -54197,6 +55254,13 @@ const flightData = {
                         "flights": 112,
                         "seats": 32280,
                         "passengers": 29306
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 110,
+                        "seats": 31610,
+                        "passengers": 26502
                     }
                 ],
                 "吉祥": [
@@ -54514,6 +55578,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 9328,
                         "passengers": 8500
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 9328,
+                        "passengers": 8327
                     }
                 ],
                 "春秋": [
@@ -54824,6 +55895,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 7788,
                         "passengers": 7332
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7800,
+                        "passengers": 7265
                     }
                 ]
             },
@@ -55459,6 +56537,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14582,
                         "passengers": 12468
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13424,
+                        "passengers": 10329
                     }
                 ],
                 "廈門": [
@@ -55853,6 +56938,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 12420,
                         "passengers": 11842
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 12420,
+                        "passengers": 11273
                     }
                 ]
             },
@@ -56249,6 +57341,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 8791
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 8984
                     }
                 ],
                 "長榮": [
@@ -56643,6 +57742,13 @@ const flightData = {
                         "flights": 63,
                         "seats": 19467,
                         "passengers": 16428
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18606,
+                        "passengers": 15667
                     }
                 ],
                 "國航": [
@@ -57037,6 +58143,13 @@ const flightData = {
                         "flights": 98,
                         "seats": 25654,
                         "passengers": 21051
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 94,
+                        "seats": 25586,
+                        "passengers": 20402
                     }
                 ],
                 "海南": [
@@ -57333,6 +58446,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 5624,
                         "passengers": 4776
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 5636,
+                        "passengers": 4469
                     }
                 ]
             },
@@ -57659,6 +58779,13 @@ const flightData = {
                         "flights": 35,
                         "seats": 11305,
                         "passengers": 10106
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 35,
+                        "seats": 11625,
+                        "passengers": 10822
                     }
                 ]
             },
@@ -57985,6 +59112,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10794
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 10021
                     }
                 ],
                 "釜山": [
@@ -58302,6 +59436,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 28214,
                         "passengers": 26705
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 124,
+                        "seats": 27204,
+                        "passengers": 24388
                     }
                 ],
                 "大韓": [
@@ -58598,6 +59739,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10908,
                         "passengers": 9578
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10894,
+                        "passengers": 7968
                     }
                 ],
                 "濟州": [
@@ -58908,6 +60056,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 23436,
                         "passengers": 21896
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 22680,
+                        "passengers": 20632
                     }
                 ],
                 "中華": [
@@ -59204,6 +60359,13 @@ const flightData = {
                         "flights": 182,
                         "seats": 32760,
                         "passengers": 29526
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 179,
+                        "seats": 32740,
+                        "passengers": 24030
                     }
                 ],
                 "真航": [
@@ -59402,6 +60564,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11340,
                         "passengers": 10680
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 10731
                     }
                 ],
                 "易斯達": [
@@ -59565,6 +60734,13 @@ const flightData = {
                         "flights": 126,
                         "seats": 23814,
                         "passengers": 22466
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 165,
+                        "seats": 31167,
+                        "passengers": 26953
                     }
                 ],
                 "長榮": [
@@ -59644,6 +60820,13 @@ const flightData = {
                         "flights": 108,
                         "seats": 19872,
                         "passengers": 18934
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 102,
+                        "seats": 18768,
+                        "passengers": 13844
                     }
                 ],
                 "星宇": [
@@ -59667,6 +60850,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11280,
                         "passengers": 10729
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 88,
+                        "seats": 16544,
+                        "passengers": 13862
                     }
                 ]
             },
@@ -59769,6 +60959,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 7956,
                         "passengers": 6131
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 7956,
+                        "passengers": 5305
                     }
                 ],
                 "星宇": [
@@ -59827,6 +61024,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 12600,
                         "passengers": 8731
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 11900,
+                        "passengers": 7340
                     }
                 ]
             },
@@ -60153,6 +61357,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10725
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 10139
                     }
                 ],
                 "德威": [
@@ -60682,6 +61893,13 @@ const flightData = {
                         "flights": 59,
                         "seats": 11115,
                         "passengers": 10622
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 64,
+                        "seats": 12090,
+                        "passengers": 11114
                     }
                 ],
                 "真航": [
@@ -60761,6 +61979,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11282,
                         "passengers": 10496
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 61,
+                        "seats": 11476,
+                        "passengers": 10220
                     }
                 ],
                 "泰瑞(德威)": [
@@ -60777,6 +62002,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11718,
                         "passengers": 10950
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 10361
                     }
                 ]
             },
@@ -61279,6 +62511,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14632,
                         "passengers": 7851
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11160,
+                        "passengers": 6834
                     }
                 ]
             },
@@ -61598,6 +62837,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3348,
                         "passengers": 2698
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3276,
+                        "passengers": 2238
                     }
                 ],
                 "中華": [
@@ -61908,6 +63154,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10154
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 8524
                     }
                 ],
                 "長榮": [
@@ -62218,6 +63471,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11408,
                         "passengers": 11029
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 9527
                     }
                 ],
                 "星宇": [
@@ -62444,6 +63704,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 6414,
                         "passengers": 6004
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 7722,
+                        "passengers": 6835
                     }
                 ]
             },
@@ -63174,6 +64441,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11718,
                         "passengers": 10271
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9094
                     }
                 ]
             },
@@ -63549,6 +64823,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 2968,
                         "passengers": 2456
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 2968,
+                        "passengers": 2178
                     }
                 ]
             },
@@ -63861,6 +65142,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11408,
                         "passengers": 10597
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 8976
                     }
                 ],
                 "台灣虎航": [
@@ -64157,6 +65445,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4226
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4118
                     }
                 ],
                 "星宇": [
@@ -64446,6 +65741,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18414,
                         "passengers": 17226
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 17820,
+                        "passengers": 14384
                     }
                 ],
                 "泰越捷": [
@@ -64739,6 +66041,13 @@ const flightData = {
                         "flights": 27,
                         "seats": 8262,
                         "passengers": 7220
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 25,
+                        "seats": 7650,
+                        "passengers": 6836
                     }
                 ],
                 "星宇": [
@@ -64748,6 +66057,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 8044,
                         "passengers": 6741
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 27,
+                        "seats": 9450,
+                        "passengers": 7991
                     }
                 ]
             },
@@ -65025,6 +66341,13 @@ const flightData = {
                         "flights": 112,
                         "seats": 25450,
                         "passengers": 22942
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 26114,
+                        "passengers": 20348
                     }
                 ],
                 "長榮": [
@@ -65300,6 +66623,13 @@ const flightData = {
                         "flights": 108,
                         "seats": 21104,
                         "passengers": 19766
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 22080,
+                        "passengers": 16757
                     }
                 ],
                 "台灣虎航": [
@@ -65575,6 +66905,13 @@ const flightData = {
                         "flights": 114,
                         "seats": 20520,
                         "passengers": 19696
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 21600,
+                        "passengers": 20379
                     }
                 ],
                 "樂桃": [
@@ -65850,6 +67187,13 @@ const flightData = {
                         "flights": 159,
                         "seats": 29892,
                         "passengers": 28029
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 33840,
+                        "passengers": 30042
                     }
                 ],
                 "馬印": [
@@ -66365,6 +67709,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18864,
                         "passengers": 17603
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 86,
+                        "seats": 22944,
+                        "passengers": 18605
                     }
                 ],
                 "泰亞洲": [
@@ -66556,6 +67907,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 13688,
                         "passengers": 12089
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 14160,
+                        "passengers": 9765
                     }
                 ],
                 "泰越捷": [
@@ -66712,6 +68070,13 @@ const flightData = {
                         "flights": 54,
                         "seats": 12420,
                         "passengers": 10216
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13780,
+                        "passengers": 10063
                     }
                 ],
                 "日本越洋": [
@@ -66763,6 +68128,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 9570,
                         "passengers": 8612
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 68,
+                        "seats": 11220,
+                        "passengers": 7235
                     }
                 ],
                 "泰獅": [
@@ -66772,6 +68144,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3870,
                         "passengers": 3038
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 30,
+                        "seats": 6450,
+                        "passengers": 3822
                     }
                 ]
             },
@@ -67014,6 +68393,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 3023
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2855
                     }
                 ],
                 "泰獅": [
@@ -67391,6 +68777,13 @@ const flightData = {
                         "flights": 46,
                         "seats": 8280,
                         "passengers": 7265
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 52,
+                        "seats": 9360,
+                        "passengers": 7003
                     }
                 ]
             },
@@ -67647,6 +69040,13 @@ const flightData = {
                         "flights": 76,
                         "seats": 13680,
                         "passengers": 10908
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 64,
+                        "seats": 11520,
+                        "passengers": 8679
                     }
                 ],
                 "易斯達": [
@@ -67859,6 +69259,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8292,
                         "passengers": 7356
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 47,
+                        "seats": 8865,
+                        "passengers": 7089
                     }
                 ]
             },
@@ -68171,6 +69578,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 3900,
                         "passengers": 2635
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 3900,
+                        "passengers": 2367
                     }
                 ]
             },
@@ -68387,6 +69801,13 @@ const flightData = {
                         "flights": 12,
                         "seats": 2800,
                         "passengers": 2300
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 14,
+                        "seats": 3340,
+                        "passengers": 2381
                     }
                 ]
             },
@@ -68821,6 +70242,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11408,
                         "passengers": 9322
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 8117
                     }
                 ],
                 "台灣虎航": [
@@ -69089,6 +70517,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2951
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2633
                     }
                 ]
             },
@@ -69387,6 +70822,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 19158,
                         "passengers": 14081
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18230,
+                        "passengers": 12478
                     }
                 ],
                 "宿霧太平洋": [
@@ -69720,6 +71162,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 7682
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 56,
+                        "seats": 10528,
+                        "passengers": 6343
                     }
                 ]
             },
@@ -70018,6 +71467,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 5508,
                         "passengers": 4490
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 17,
+                        "seats": 5202,
+                        "passengers": 4395
                     }
                 ]
             },
@@ -70218,6 +71674,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11408,
                         "passengers": 10594
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 8619
                     }
                 ]
             },
@@ -70730,6 +72193,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 7920,
                         "passengers": 7738
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7560,
+                        "passengers": 7232
                     }
                 ],
                 "星宇": [
@@ -70949,6 +72419,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8272,
                         "passengers": 7821
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 8272,
+                        "passengers": 7157
                     }
                 ],
                 "長榮": [
@@ -71249,6 +72726,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 8677
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 56,
+                        "seats": 10080,
+                        "passengers": 7738
                     }
                 ],
                 "星宇": [
@@ -71503,6 +72987,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 18414,
                         "passengers": 13778
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 17602,
+                        "passengers": 13807
                     }
                 ]
             },
@@ -71626,6 +73117,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1440,
                         "passengers": 1205
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2162
                     }
                 ]
             },
@@ -71877,6 +73375,13 @@ const flightData = {
                         "flights": 5,
                         "seats": 920,
                         "passengers": 876
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 3,
+                        "seats": 552,
+                        "passengers": 516
                     }
                 ]
             },
@@ -72168,6 +73673,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4442
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4182
                     }
                 ]
             },
@@ -72466,6 +73978,13 @@ const flightData = {
                         "flights": 80,
                         "seats": 14400,
                         "passengers": 13142
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 76,
+                        "seats": 13680,
+                        "passengers": 12002
                     }
                 ]
             },
@@ -72750,6 +74269,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 3060
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2917
                     }
                 ]
             },
@@ -73062,6 +74588,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 9283
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 7896
                     }
                 ]
             },
@@ -73346,6 +74879,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2764
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2643
                     }
                 ]
             },
@@ -73651,6 +75191,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2704
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2369
                     }
                 ]
             },
@@ -74135,6 +75682,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 9408,
                         "passengers": 6670
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 9360,
+                        "passengers": 6994
                     }
                 ]
             },
@@ -74426,6 +75980,13 @@ const flightData = {
                         "flights": 70,
                         "seats": 11456,
                         "passengers": 9447
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 68,
+                        "seats": 11718,
+                        "passengers": 9654
                     }
                 ]
             },
@@ -74682,6 +76243,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 10898,
                         "passengers": 9392
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10638,
+                        "passengers": 9182
                     }
                 ]
             },
@@ -74973,6 +76541,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 8764,
                         "passengers": 6817
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 8892,
+                        "passengers": 7498
                     }
                 ],
                 "國航": [
@@ -75262,6 +76837,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 10990,
                         "passengers": 9003
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10636,
+                        "passengers": 8379
                     }
                 ],
                 "廈門": [
@@ -75551,6 +77133,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1336,
                         "passengers": 1188
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1348,
+                        "passengers": 1170
                     }
                 ]
             },
@@ -75828,6 +77417,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10286,
                         "passengers": 9513
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10200,
+                        "passengers": 8971
                     }
                 ]
             },
@@ -76084,6 +77680,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1384,
                         "passengers": 1173
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1384,
+                        "passengers": 1348
                     }
                 ],
                 "東方": [
@@ -76338,6 +77941,13 @@ const flightData = {
                         "flights": 19,
                         "seats": 3192,
                         "passengers": 3025
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2702,
+                        "passengers": 2520
                     }
                 ]
             },
@@ -76615,6 +78225,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4576,
                         "passengers": 4409
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4576,
+                        "passengers": 4309
                     }
                 ],
                 "東方": [
@@ -76890,6 +78507,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1440,
                         "passengers": 1395
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1440,
+                        "passengers": 1385
                     }
                 ]
             },
@@ -78043,6 +79667,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 7424,
                         "passengers": 6459
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 7406,
+                        "passengers": 6075
                     }
                 ]
             },
@@ -78341,6 +79972,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 13430,
                         "passengers": 11218
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 12796,
+                        "passengers": 10155
                     }
                 ],
                 "立榮": [
@@ -78637,6 +80275,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 14468,
                         "passengers": 11098
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 13864,
+                        "passengers": 9440
                     }
                 ],
                 "南方": [
@@ -78933,6 +80578,13 @@ const flightData = {
                         "flights": 54,
                         "seats": 15268,
                         "passengers": 12045
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 50,
+                        "seats": 15222,
+                        "passengers": 12396
                     }
                 ],
                 "深圳": [
@@ -79229,6 +80881,13 @@ const flightData = {
                         "flights": 68,
                         "seats": 12472,
                         "passengers": 9851
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 68,
+                        "seats": 12470,
+                        "passengers": 9370
                     }
                 ]
             },
@@ -79527,6 +81186,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 13396,
                         "passengers": 10344
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 11186,
+                        "passengers": 9399
                     }
                 ],
                 "長榮": [
@@ -79816,6 +81482,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 9132,
                         "passengers": 7915
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 24,
+                        "seats": 8028,
+                        "passengers": 6911
                     }
                 ],
                 "南方": [
@@ -80105,6 +81778,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 22328,
                         "passengers": 18000
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 21604,
+                        "passengers": 18573
                     }
                 ],
                 "海南": [
@@ -80394,6 +82074,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4348,
                         "passengers": 3565
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 5104,
+                        "passengers": 3771
                     }
                 ]
             },
@@ -80684,6 +82371,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4784,
                         "passengers": 3843
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4784,
+                        "passengers": 3856
                     }
                 ]
             },
@@ -80919,6 +82613,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 3011
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2596
                     }
                 ]
             },
@@ -80986,6 +82687,13 @@ const flightData = {
                         "flights": 1,
                         "seats": 150,
                         "passengers": 144
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 24,
+                        "seats": 3864,
+                        "passengers": 2888
                     }
                 ]
             },
@@ -81281,6 +82989,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 6220,
                         "passengers": 4895
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 5960,
+                        "passengers": 4091
                     }
                 ],
                 "星宇": [
@@ -81465,6 +83180,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4888,
                         "passengers": 4439
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4888,
+                        "passengers": 3595
                     }
                 ],
                 "越竹": [
@@ -81525,6 +83247,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 10328,
                         "passengers": 8550
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 48,
+                        "seats": 9984,
+                        "passengers": 7181
                     }
                 ]
             },
@@ -81706,6 +83435,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 3016
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 15,
+                        "seats": 2700,
+                        "passengers": 2429
                     }
                 ]
             },
@@ -81913,6 +83649,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4099
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 3425
                     }
                 ]
             },
@@ -82131,6 +83874,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2629
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2796
                     }
                 ]
             },
@@ -82316,6 +84066,13 @@ const flightData = {
                         "flights": 30,
                         "seats": 5400,
                         "passengers": 5081
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 36,
+                        "seats": 6480,
+                        "passengers": 6235
                     }
                 ]
             },
@@ -82439,6 +84196,13 @@ const flightData = {
                         "flights": 88,
                         "seats": 16192,
                         "passengers": 14732
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 86,
+                        "seats": 15824,
+                        "passengers": 10776
                     }
                 ],
                 "星宇": [
@@ -82560,6 +84324,13 @@ const flightData = {
                         "flights": 80,
                         "seats": 15040,
                         "passengers": 13979
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 76,
+                        "seats": 14288,
+                        "passengers": 10806
                     }
                 ]
             },
@@ -82648,6 +84419,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 12958,
                         "passengers": 11802
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 12470,
+                        "passengers": 10201
                     }
                 ]
             },
@@ -82729,6 +84507,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 17236,
                         "passengers": 12149
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 16680,
+                        "passengers": 9562
                     }
                 ]
             },
@@ -82803,6 +84588,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4512,
                         "passengers": 3884
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 36,
+                        "seats": 6768,
+                        "passengers": 5449
                     }
                 ]
             },
@@ -82919,6 +84711,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2902
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2612
                     }
                 ]
             },
@@ -83042,6 +84841,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 3069
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2887
                     }
                 ]
             },
@@ -83139,6 +84945,13 @@ const flightData = {
                         "flights": 35,
                         "seats": 9730,
                         "passengers": 8600
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 9452,
+                        "passengers": 7023
                     }
                 ]
             },
@@ -83157,6 +84970,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 5194,
                         "passengers": 4672
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 4704,
+                        "passengers": 4064
                     }
                 ],
                 "國航": [
@@ -83173,6 +84993,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 8424,
                         "passengers": 7002
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 7858,
+                        "passengers": 6517
                     }
                 ],
                 "中華": [
@@ -83182,6 +85009,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 5586,
                         "passengers": 4537
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 4812,
+                        "passengers": 4225
                     }
                 ]
             }
@@ -83566,6 +85400,13 @@ const flightData = {
                         "flights": 88,
                         "seats": 17864,
                         "passengers": 12063
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 86,
+                        "seats": 17458,
+                        "passengers": 12467
                     }
                 ],
                 "越捷": [
@@ -83897,6 +85738,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14260,
                         "passengers": 10802
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 68,
+                        "seats": 15640,
+                        "passengers": 9931
                     }
                 ]
             },
@@ -84230,6 +86078,13 @@ const flightData = {
                         "flights": 98,
                         "seats": 19894,
                         "passengers": 16439
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 94,
+                        "seats": 19082,
+                        "passengers": 14433
                     }
                 ],
                 "越捷": [
@@ -84561,6 +86416,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14260,
                         "passengers": 11405
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13800,
+                        "passengers": 8318
                     }
                 ]
             },
@@ -84929,6 +86791,13 @@ const flightData = {
                         "flights": 248,
                         "seats": 78946,
                         "passengers": 60688
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 236,
+                        "seats": 79490,
+                        "passengers": 51873
                     }
                 ],
                 "香港快運": [
@@ -85323,6 +87192,13 @@ const flightData = {
                         "flights": 170,
                         "seats": 36756,
                         "passengers": 26962
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 130,
+                        "seats": 28172,
+                        "passengers": 17637
                     }
                 ],
                 "中華": [
@@ -85619,6 +87495,13 @@ const flightData = {
                         "flights": 96,
                         "seats": 17280,
                         "passengers": 14456
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 92,
+                        "seats": 16472,
+                        "passengers": 10804
                     }
                 ],
                 "長榮": [
@@ -85824,6 +87707,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 22816,
                         "passengers": 18451
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 22080,
+                        "passengers": 12888
                     }
                 ],
                 "華信": [
@@ -85896,6 +87786,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 4424,
                         "passengers": 2842
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 12,
+                        "seats": 1896,
+                        "passengers": 981
                     }
                 ]
             },
@@ -86257,6 +88154,13 @@ const flightData = {
                         "flights": 22,
                         "seats": 3476,
                         "passengers": 2707
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 36,
+                        "seats": 6128,
+                        "passengers": 3784
                     }
                 ],
                 "菲亞洲": [
@@ -86567,6 +88471,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6480,
                         "passengers": 5426
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 6120,
+                        "passengers": 4981
                     }
                 ],
                 "宿霧太平洋": [
@@ -86744,6 +88655,13 @@ const flightData = {
                         "flights": 30,
                         "seats": 6844,
                         "passengers": 4508
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 6136,
+                        "passengers": 4197
                     }
                 ]
             },
@@ -87140,6 +89058,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 5652,
                         "passengers": 4387
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 24,
+                        "seats": 4144,
+                        "passengers": 3140
                     }
                 ],
                 "廈門": [
@@ -87443,6 +89368,13 @@ const flightData = {
                         "flights": 10,
                         "seats": 1840,
                         "passengers": 1558
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1352,
+                        "passengers": 1210
                     }
                 ]
             },
@@ -87769,6 +89701,13 @@ const flightData = {
                         "flights": 96,
                         "seats": 17664,
                         "passengers": 15073
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 96,
+                        "seats": 17664,
+                        "passengers": 12430
                     }
                 ],
                 "台灣虎航": [
@@ -88093,6 +90032,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10434
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9644
                     }
                 ],
                 "中華": [
@@ -88403,6 +90349,13 @@ const flightData = {
                         "flights": 88,
                         "seats": 15268,
                         "passengers": 13842
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 86,
+                        "seats": 14996,
+                        "passengers": 10950
                     }
                 ],
                 "樂桃": [
@@ -88664,6 +90617,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 13516,
                         "passengers": 12336
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13004,
+                        "passengers": 10629
                     }
                 ],
                 "馬亞洲": [
@@ -88687,6 +90647,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11532,
                         "passengers": 10016
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13960,
+                        "passengers": 11259
                     }
                 ]
             },
@@ -89013,6 +90980,13 @@ const flightData = {
                         "flights": 61,
                         "seats": 11346,
                         "passengers": 8168
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13960,
+                        "passengers": 8685
                     }
                 ],
                 "馬印": [
@@ -89460,6 +91434,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 19406,
                         "passengers": 16272
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 18540,
+                        "passengers": 11324
                     }
                 ],
                 "中華": [
@@ -89777,6 +91758,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 22320,
                         "passengers": 20034
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 21600,
+                        "passengers": 15815
                     }
                 ],
                 "台灣虎航": [
@@ -90094,6 +92082,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10660
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9669
                     }
                 ],
                 "泰亞洲": [
@@ -90285,6 +92280,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3186,
                         "passengers": 2439
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3432,
+                        "passengers": 1791
                     }
                 ],
                 "聯合": [
@@ -90385,6 +92387,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 10292,
                         "passengers": 8794
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 58,
+                        "seats": 9628,
+                        "passengers": 7283
                     }
                 ],
                 "捷星日本": [
@@ -90450,6 +92459,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10174
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 58,
+                        "seats": 10440,
+                        "passengers": 8636
                     }
                 ]
             },
@@ -90769,6 +92785,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 5040,
                         "passengers": 4911
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4302
                     }
                 ],
                 "馬印": [
@@ -91281,6 +93304,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 9796,
                         "passengers": 7958
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 58,
+                        "seats": 9208,
+                        "passengers": 5916
                     }
                 ],
                 "泰國": [
@@ -91528,6 +93558,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 10644,
                         "passengers": 6933
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 57,
+                        "seats": 9918,
+                        "passengers": 5604
                     }
                 ]
             },
@@ -91847,6 +93884,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4578
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4495
                     }
                 ],
                 "長榮": [
@@ -92129,6 +94173,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11408,
                         "passengers": 10314
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 9375
                     }
                 ],
                 "中華": [
@@ -92250,6 +94301,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 3792,
                         "passengers": 3583
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4108,
+                        "passengers": 3642
                     }
                 ]
             },
@@ -92548,6 +94606,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 7920,
                         "passengers": 7279
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 7920,
+                        "passengers": 6400
                     }
                 ],
                 "越竹": [
@@ -92790,6 +94855,13 @@ const flightData = {
                         "flights": 12,
                         "seats": 2760,
                         "passengers": 2091
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 14,
+                        "seats": 3220,
+                        "passengers": 1640
                     }
                 ]
             },
@@ -93130,6 +95202,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 7040,
                         "passengers": 6088
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7032,
+                        "passengers": 5505
                     }
                 ],
                 "長榮": [
@@ -93454,6 +95533,13 @@ const flightData = {
                         "flights": 40,
                         "seats": 12520,
                         "passengers": 10508
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 12978,
+                        "passengers": 10050
                     }
                 ],
                 "吉祥": [
@@ -93757,6 +95843,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4924,
                         "passengers": 4187
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 5052,
+                        "passengers": 3986
                     }
                 ],
                 "春秋": [
@@ -93829,6 +95922,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4272,
                         "passengers": 4053
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4752,
+                        "passengers": 4260
                     }
                 ]
             },
@@ -94423,6 +96523,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11160,
                         "passengers": 10112
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 7551
                     }
                 ],
                 "長榮": [
@@ -94705,6 +96812,13 @@ const flightData = {
                         "flights": 61,
                         "seats": 11224,
                         "passengers": 9565
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 6423
                     }
                 ],
                 "濟州": [
@@ -94755,6 +96869,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 10666
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9295
                     }
                 ]
             },
@@ -95195,6 +97316,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6480,
                         "passengers": 6117
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 32,
+                        "seats": 5760,
+                        "passengers": 5271
                     }
                 ],
                 "德威": [
@@ -95500,6 +97628,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4914,
                         "passengers": 4621
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4914,
+                        "passengers": 4433
                     }
                 ],
                 "泰瑞(德威)": [
@@ -95516,6 +97651,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6768,
                         "passengers": 6267
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 6426,
+                        "passengers": 5408
                     }
                 ]
             },
@@ -95814,6 +97956,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14312,
                         "passengers": 13811
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13846,
+                        "passengers": 12783
                     }
                 ],
                 "濟州": [
@@ -95928,6 +98077,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11718,
                         "passengers": 10616
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9798
                     }
                 ],
                 "德威": [
@@ -95974,6 +98130,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 10730
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 8368
                     }
                 ]
             },
@@ -96258,6 +98421,13 @@ const flightData = {
                         "flights": 46,
                         "seats": 10786,
                         "passengers": 9916
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 9978,
+                        "passengers": 7747
                     }
                 ],
                 "台灣虎航": [
@@ -96794,6 +98964,13 @@ const flightData = {
                         "flights": 158,
                         "seats": 27244,
                         "passengers": 21392
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 155,
+                        "seats": 26434,
+                        "passengers": 21129
                     }
                 ]
             },
@@ -97085,6 +99262,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4134,
                         "passengers": 2751
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4766,
+                        "passengers": 3559
                     }
                 ]
             },
@@ -97362,6 +99546,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1472,
                         "passengers": 1170
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1352,
+                        "passengers": 1127
                     }
                 ]
             },
@@ -97611,6 +99802,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2688,
                         "passengers": 2076
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2688,
+                        "passengers": 2375
                     }
                 ],
                 "南方": [
@@ -97844,6 +100042,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4368,
                         "passengers": 3766
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4602,
+                        "passengers": 3708
                     }
                 ]
             },
@@ -98135,6 +100340,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 2844,
                         "passengers": 2353
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2616,
+                        "passengers": 1958
                     }
                 ]
             },
@@ -98370,6 +100582,13 @@ const flightData = {
                         "flights": 27,
                         "seats": 4308,
                         "passengers": 3657
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 27,
+                        "seats": 4398,
+                        "passengers": 3190
                     }
                 ]
             },
@@ -98598,6 +100817,13 @@ const flightData = {
                         "flights": 54,
                         "seats": 8532,
                         "passengers": 8096
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 56,
+                        "seats": 9862,
+                        "passengers": 8431
                     }
                 ],
                 "台灣虎航": [
@@ -98824,6 +101050,13 @@ const flightData = {
                         "flights": 72,
                         "seats": 12960,
                         "passengers": 12594
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 77,
+                        "seats": 13860,
+                        "passengers": 13795
                     }
                 ],
                 "泰獅": [
@@ -98966,6 +101199,13 @@ const flightData = {
                         "flights": 22,
                         "seats": 4730,
                         "passengers": 3068
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 30,
+                        "seats": 6450,
+                        "passengers": 2675
                     }
                 ]
             },
@@ -99187,6 +101427,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3186,
                         "passengers": 2285
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3432,
+                        "passengers": 2057
                     }
                 ],
                 "泰獅": [
@@ -99329,6 +101576,13 @@ const flightData = {
                         "flights": 52,
                         "seats": 11180,
                         "passengers": 7109
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 58,
+                        "seats": 12470,
+                        "passengers": 6305
                     }
                 ]
             },
@@ -99642,6 +101896,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4264
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4204
                     }
                 ]
             },
@@ -99713,6 +101974,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2874,
                         "passengers": 2554
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3264,
+                        "passengers": 2571
                     }
                 ]
             },
@@ -99844,6 +102112,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 5040,
                         "passengers": 4810
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4243
                     }
                 ]
             },
@@ -99988,6 +102263,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4511
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4443
                     }
                 ],
                 "泰獅": [
@@ -100053,6 +102335,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 5590,
                         "passengers": 3549
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 5590,
+                        "passengers": 3151
                     }
                 ]
             },
@@ -100378,6 +102667,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6480,
                         "passengers": 6167
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 35,
+                        "seats": 6300,
+                        "passengers": 5931
                     }
                 ],
                 "泰瑞(德威)": [
@@ -100394,6 +102690,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6768,
                         "passengers": 6000
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 6426,
+                        "passengers": 5464
                     }
                 ]
             },
@@ -100630,6 +102933,13 @@ const flightData = {
                         "flights": 38,
                         "seats": 6004,
                         "passengers": 4192
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 5460,
+                        "passengers": 3869
                     }
                 ],
                 "台灣虎航": [
@@ -100695,6 +103005,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2224
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2588
                     }
                 ]
             },
@@ -100818,6 +103135,35 @@ const flightData = {
                         "flights": 8,
                         "seats": 1264,
                         "passengers": 1241
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 10,
+                        "seats": 1580,
+                        "passengers": 1508
+                    }
+                ]
+            },
+            "小松": {
+                "台灣虎航": [
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2623
+                    }
+                ]
+            },
+            "石垣島": {
+                "台灣虎航": [
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2906
                     }
                 ]
             }
@@ -101153,6 +103499,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 4424,
                         "passengers": 4158
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 24,
+                        "seats": 3798,
+                        "passengers": 3282
                     }
                 ],
                 "長榮": [
@@ -101477,6 +103830,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 6256,
                         "passengers": 5509
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 36,
+                        "seats": 6624,
+                        "passengers": 4742
                     }
                 ],
                 "德威": [
@@ -102034,6 +104394,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4873,
                         "passengers": 4542
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4881,
+                        "passengers": 4438
                     }
                 ],
                 "泰瑞(德威)": [
@@ -102050,6 +104417,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6804,
                         "passengers": 6252
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 6426,
+                        "passengers": 5751
                     }
                 ]
             },
@@ -102418,6 +104792,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 38068,
                         "passengers": 36041
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 36840,
+                        "passengers": 32150
                     }
                 ],
                 "長榮": [
@@ -102749,6 +105130,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 42408,
                         "passengers": 39501
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 41040,
+                        "passengers": 35950
                     }
                 ],
                 "日本": [
@@ -103143,6 +105531,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 27584,
                         "passengers": 25164
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 26448,
+                        "passengers": 21428
                     }
                 ],
                 "全日空": [
@@ -103537,6 +105932,13 @@ const flightData = {
                         "flights": 118,
                         "seats": 28582,
                         "passengers": 25747
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 28920,
+                        "passengers": 24728
                     }
                 ]
             },
@@ -103933,6 +106335,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4784,
                         "passengers": 4239
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4784,
+                        "passengers": 3603
                     }
                 ],
                 "廈門": [
@@ -104292,6 +106701,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10200,
                         "passengers": 9665
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 10200,
+                        "passengers": 9262
                     }
                 ]
             },
@@ -104678,6 +107094,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4416,
                         "passengers": 3403
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4784,
+                        "passengers": 3421
                     }
                 ],
                 "上海": [
@@ -104981,6 +107404,13 @@ const flightData = {
                         "flights": 84,
                         "seats": 14736,
                         "passengers": 13530
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 86,
+                        "seats": 14620,
+                        "passengers": 11610
                     }
                 ]
             },
@@ -105279,6 +107709,13 @@ const flightData = {
                         "flights": 50,
                         "seats": 15350,
                         "passengers": 14055
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 52,
+                        "seats": 15964,
+                        "passengers": 13920
                     }
                 ],
                 "長榮": [
@@ -105575,6 +108012,13 @@ const flightData = {
                         "flights": 52,
                         "seats": 17784,
                         "passengers": 15881
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 50,
+                        "seats": 17100,
+                        "passengers": 14312
                     }
                 ],
                 "國航": [
@@ -105871,6 +108315,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 10574,
                         "passengers": 8754
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 10574,
+                        "passengers": 7622
                     }
                 ],
                 "上海": [
@@ -106167,6 +108618,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4212,
                         "passengers": 3747
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4468,
+                        "passengers": 3865
                     }
                 ],
                 "東方": [
@@ -106463,6 +108921,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 17736,
                         "passengers": 16292
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 17916,
+                        "passengers": 15739
                     }
                 ]
             },
@@ -106719,6 +109184,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 3792,
                         "passengers": 3268
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 28,
+                        "seats": 4424,
+                        "passengers": 3301
                     }
                 ],
                 "廈門": [
@@ -107001,6 +109473,13 @@ const flightData = {
                         "flights": 50,
                         "seats": 8492,
                         "passengers": 7953
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 52,
+                        "seats": 8832,
+                        "passengers": 7674
                     }
                 ]
             },
@@ -107555,6 +110034,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1336,
                         "passengers": 1041
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1336,
+                        "passengers": 1153
                     }
                 ],
                 "四川": [
@@ -107809,6 +110295,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4196
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4271
                     }
                 ]
             },
@@ -108048,6 +110541,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 2844,
                         "passengers": 2484
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 2844,
+                        "passengers": 2522
                     }
                 ]
             },
@@ -108066,6 +110566,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 7592,
                         "passengers": 6788
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 34,
+                        "seats": 10134,
+                        "passengers": 8903
                     }
                 ]
             }
@@ -108408,6 +110915,13 @@ const flightData = {
                         "flights": 248,
                         "seats": 53332,
                         "passengers": 37674
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 180,
+                        "seats": 38672,
+                        "passengers": 27122
                     }
                 ],
                 "香港": [
@@ -108813,6 +111327,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 9796,
                         "passengers": 8464
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 58,
+                        "seats": 9164,
+                        "passengers": 6845
                     }
                 ],
                 "越捷": [
@@ -109123,6 +111644,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14360,
                         "passengers": 10187
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 13860,
+                        "passengers": 9021
                     }
                 ]
             },
@@ -109435,6 +111963,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 14220,
                         "passengers": 12546
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 78,
+                        "seats": 17960,
+                        "passengers": 13367
                     }
                 ]
             },
@@ -109854,6 +112389,13 @@ const flightData = {
                         "flights": 74,
                         "seats": 13912,
                         "passengers": 12226
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 9406
                     }
                 ],
                 "澳門": [
@@ -110010,6 +112552,13 @@ const flightData = {
                         "flights": 114,
                         "seats": 19075,
                         "passengers": 15664
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 109,
+                        "seats": 18940,
+                        "passengers": 14663
                     }
                 ]
             },
@@ -110266,6 +112815,13 @@ const flightData = {
                         "flights": 10,
                         "seats": 1624,
                         "passengers": 1369
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1356,
+                        "passengers": 1114
                     }
                 ]
             },
@@ -110496,6 +113052,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3384,
                         "passengers": 3004
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3384,
+                        "passengers": 2598
                     }
                 ]
             },
@@ -110894,6 +113457,13 @@ const flightData = {
                         "flights": 12,
                         "seats": 2780,
                         "passengers": 2621
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 14,
+                        "seats": 3220,
+                        "passengers": 2591
                     }
                 ],
                 "星宇": [
@@ -111145,6 +113715,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8272,
                         "passengers": 6667
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7896,
+                        "passengers": 5862
                     }
                 ]
             },
@@ -111296,6 +113873,13 @@ const flightData = {
                         "flights": 112,
                         "seats": 21056,
                         "passengers": 19629
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 22560,
+                        "passengers": 18860
                     }
                 ],
                 "台灣虎航": [
@@ -111340,6 +113924,13 @@ const flightData = {
                         "flights": 15,
                         "seats": 2700,
                         "passengers": 2612
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 17,
+                        "seats": 3060,
+                        "passengers": 2953
                     }
                 ],
                 "中華": [
@@ -111356,6 +113947,13 @@ const flightData = {
                         "flights": 92,
                         "seats": 21620,
                         "passengers": 16821
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 94,
+                        "seats": 22090,
+                        "passengers": 13291
                     }
                 ]
             },
@@ -111483,6 +114081,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4437
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4069
                     }
                 ]
             },
@@ -111545,6 +114150,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 10928
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 59,
+                        "seats": 11092,
+                        "passengers": 10011
                     }
                 ]
             },
@@ -111768,6 +114380,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 23436,
                         "passengers": 22110
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 120,
+                        "seats": 22680,
+                        "passengers": 20038
                     }
                 ],
                 "德威": [
@@ -111912,6 +114531,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11718,
                         "passengers": 10612
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9305
                     }
                 ]
             },
@@ -112035,6 +114661,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11656,
                         "passengers": 10950
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 9647
                     }
                 ]
             },
@@ -112144,6 +114777,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 3143
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 17,
+                        "seats": 3060,
+                        "passengers": 2965
                     }
                 ]
             },
@@ -112197,6 +114837,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6768,
                         "passengers": 5684
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 42,
+                        "seats": 7896,
+                        "passengers": 5930
                     }
                 ]
             },
@@ -112243,6 +114890,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8316,
                         "passengers": 7246
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 8316,
+                        "passengers": 6182
                     }
                 ],
                 "星宇": [
@@ -112266,6 +114920,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8272,
                         "passengers": 7406
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 9186
                     }
                 ]
             },
@@ -112312,6 +114973,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8272,
                         "passengers": 6113
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 26,
+                        "seats": 4888,
+                        "passengers": 4059
                     }
                 ]
             },
@@ -112330,6 +114998,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1408,
                         "passengers": 1366
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 8,
+                        "seats": 1408,
+                        "passengers": 1357
                     }
                 ]
             },
@@ -112348,6 +115023,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3062,
                         "passengers": 1496
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3112,
+                        "passengers": 2067
                     }
                 ],
                 "東方": [
@@ -112364,6 +115046,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3012,
                         "passengers": 2890
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3124,
+                        "passengers": 2819
                     }
                 ]
             }
@@ -112500,6 +115189,13 @@ const flightData = {
                         "flights": 17,
                         "seats": 3060,
                         "passengers": 3033
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2861
                     }
                 ]
             },
@@ -112567,6 +115263,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2058
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2644
                     }
                 ]
             }

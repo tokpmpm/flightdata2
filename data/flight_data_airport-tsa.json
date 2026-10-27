@@ -384,6 +384,18 @@
     "loadFactor": 93.9873417721519
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "首爾金浦",
+    "airline": "中華",
+    "flights": 24,
+    "totalSeats": 3798,
+    "passengers": 3282,
+    "loadFactor": 86.41390205371248
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -766,6 +778,18 @@
     "totalSeats": 6256,
     "passengers": 5509,
     "loadFactor": 88.05946291560103
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "首爾金浦",
+    "airline": "長榮",
+    "flights": 36,
+    "totalSeats": 6624,
+    "passengers": 4742,
+    "loadFactor": 71.58816425120773
   },
   {
     "year": 2024,
@@ -1513,6 +1537,18 @@
   },
   {
     "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "首爾金浦",
+    "airline": "易斯達",
+    "flights": 26,
+    "totalSeats": 4881,
+    "passengers": 4438,
+    "loadFactor": 90.9239909854538
+  },
+  {
+    "year": 2026,
     "month": 7,
     "yearMonth": "2026-07",
     "airport": "臺北松山機場",
@@ -1534,6 +1570,18 @@
     "totalSeats": 6804,
     "passengers": 6252,
     "loadFactor": 91.88712522045856
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "首爾金浦",
+    "airline": "泰瑞(德威)",
+    "flights": 34,
+    "totalSeats": 6426,
+    "passengers": 5751,
+    "loadFactor": 89.49579831932773
   },
   {
     "year": 2024,
@@ -1920,6 +1968,18 @@
     "loadFactor": 94.67531785226437
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "東京羽田",
+    "airline": "中華",
+    "flights": 120,
+    "totalSeats": 36840,
+    "passengers": 32150,
+    "loadFactor": 87.26927252985885
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -2302,6 +2362,18 @@
     "totalSeats": 42408,
     "passengers": 39501,
     "loadFactor": 93.14516129032258
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "東京羽田",
+    "airline": "長榮",
+    "flights": 120,
+    "totalSeats": 41040,
+    "passengers": 35950,
+    "loadFactor": 87.59746588693957
   },
   {
     "year": 2024,
@@ -2688,6 +2760,18 @@
     "loadFactor": 91.22679814385151
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "東京羽田",
+    "airline": "日本",
+    "flights": 120,
+    "totalSeats": 26448,
+    "passengers": 21428,
+    "loadFactor": 81.01935874168178
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -3070,6 +3154,18 @@
     "totalSeats": 28582,
     "passengers": 25747,
     "loadFactor": 90.08116996711217
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "東京羽田",
+    "airline": "全日空",
+    "flights": 120,
+    "totalSeats": 28920,
+    "passengers": 24728,
+    "loadFactor": 85.50484094052558
   },
   {
     "year": 2024,
@@ -3456,6 +3552,18 @@
     "loadFactor": 88.60785953177258
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "廈門",
+    "airline": "立榮",
+    "flights": 26,
+    "totalSeats": 4784,
+    "passengers": 3603,
+    "loadFactor": 75.31354515050167
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -3838,6 +3946,18 @@
     "totalSeats": 10200,
     "passengers": 9665,
     "loadFactor": 94.75490196078431
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "廈門",
+    "airline": "廈門",
+    "flights": 60,
+    "totalSeats": 10200,
+    "passengers": 9262,
+    "loadFactor": 90.80392156862746
   },
   {
     "year": 2024,
@@ -4224,6 +4344,18 @@
     "loadFactor": 77.06068840579711
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海浦東",
+    "airline": "立榮",
+    "flights": 26,
+    "totalSeats": 4784,
+    "passengers": 3421,
+    "loadFactor": 71.50919732441471
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -4606,6 +4738,18 @@
     "totalSeats": 14736,
     "passengers": 13530,
     "loadFactor": 91.81596091205212
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海浦東",
+    "airline": "上海",
+    "flights": 86,
+    "totalSeats": 14620,
+    "passengers": 11610,
+    "loadFactor": 79.41176470588235
   },
   {
     "year": 2024,
@@ -4992,6 +5136,18 @@
     "loadFactor": 91.56351791530945
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海虹橋",
+    "airline": "中華",
+    "flights": 52,
+    "totalSeats": 15964,
+    "passengers": 13920,
+    "loadFactor": 87.19619143071911
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -5374,6 +5530,18 @@
     "totalSeats": 17784,
     "passengers": 15881,
     "loadFactor": 89.29937022042284
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海虹橋",
+    "airline": "長榮",
+    "flights": 50,
+    "totalSeats": 17100,
+    "passengers": 14312,
+    "loadFactor": 83.69590643274853
   },
   {
     "year": 2024,
@@ -5760,6 +5928,18 @@
     "loadFactor": 82.78797049366369
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海虹橋",
+    "airline": "國航",
+    "flights": 34,
+    "totalSeats": 10574,
+    "passengers": 7622,
+    "loadFactor": 72.08246642708531
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -6142,6 +6322,18 @@
     "totalSeats": 4212,
     "passengers": 3747,
     "loadFactor": 88.96011396011396
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海虹橋",
+    "airline": "上海",
+    "flights": 26,
+    "totalSeats": 4468,
+    "passengers": 3865,
+    "loadFactor": 86.50402864816473
   },
   {
     "year": 2024,
@@ -6528,6 +6720,18 @@
     "loadFactor": 91.85836716283265
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "上海虹橋",
+    "airline": "東方",
+    "flights": 60,
+    "totalSeats": 17916,
+    "passengers": 15739,
+    "loadFactor": 87.84885018977451
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -6912,6 +7116,18 @@
     "loadFactor": 86.18143459915612
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "福州",
+    "airline": "華信",
+    "flights": 28,
+    "totalSeats": 4424,
+    "passengers": 3301,
+    "loadFactor": 74.61573236889693
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -7294,6 +7510,18 @@
     "totalSeats": 8492,
     "passengers": 7953,
     "loadFactor": 93.65284974093264
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "福州",
+    "airline": "廈門",
+    "flights": 52,
+    "totalSeats": 8832,
+    "passengers": 7674,
+    "loadFactor": 86.88858695652173
   },
   {
     "year": 2024,
@@ -8052,6 +8280,18 @@
     "loadFactor": 77.91916167664671
   },
   {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "重慶",
+    "airline": "國航",
+    "flights": 8,
+    "totalSeats": 1336,
+    "passengers": 1153,
+    "loadFactor": 86.30239520958084
+  },
+  {
     "year": 2024,
     "month": 10,
     "yearMonth": "2024-10",
@@ -8434,6 +8674,18 @@
     "totalSeats": 4680,
     "passengers": 4196,
     "loadFactor": 89.65811965811966
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "重慶",
+    "airline": "四川",
+    "flights": 26,
+    "totalSeats": 4680,
+    "passengers": 4271,
+    "loadFactor": 91.26068376068376
   },
   {
     "year": 2024,
@@ -8821,6 +9073,18 @@
   },
   {
     "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "武漢",
+    "airline": "華信",
+    "flights": 18,
+    "totalSeats": 2844,
+    "passengers": 2522,
+    "loadFactor": 88.67791842475387
+  },
+  {
+    "year": 2026,
     "month": 7,
     "yearMonth": "2026-07",
     "airport": "臺北松山機場",
@@ -8842,5 +9106,17 @@
     "totalSeats": 7592,
     "passengers": 6788,
     "loadFactor": 89.40990516332981
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺北松山機場",
+    "destination": "成都雙流",
+    "airline": "四川",
+    "flights": 34,
+    "totalSeats": 10134,
+    "passengers": 8903,
+    "loadFactor": 87.85277284389184
   }
 ]
