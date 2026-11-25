@@ -289,6 +289,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "香港",
+    "airline": "香港快運",
+    "flights": 198,
+    "totalSeats": 43288,
+    "passengers": 33290,
+    "loadFactor": 76.90352984660876
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -817,6 +829,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "胡志明市",
+    "airline": "華信",
+    "flights": 60,
+    "totalSeats": 9480,
+    "passengers": 7278,
+    "loadFactor": 76.77215189873418
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -1213,6 +1237,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "胡志明市",
+    "airline": "越捷",
+    "flights": 38,
+    "totalSeats": 8740,
+    "passengers": 7069,
+    "loadFactor": 80.88100686498856
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -1606,6 +1642,18 @@
     "totalSeats": 7740,
     "passengers": 6727,
     "loadFactor": 86.91214470284237
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "河內",
+    "airline": "越捷",
+    "flights": 58,
+    "totalSeats": 13340,
+    "passengers": 11597,
+    "loadFactor": 86.93403298350825
   },
   {
     "year": 2026,
@@ -2257,6 +2305,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "澳門",
+    "airline": "星宇",
+    "flights": 72,
+    "totalSeats": 13536,
+    "passengers": 10831,
+    "loadFactor": 80.01625295508275
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -2530,6 +2590,18 @@
     "totalSeats": 9516,
     "passengers": 6450,
     "loadFactor": 67.78058007566204
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "澳門",
+    "airline": "澳門",
+    "flights": 87,
+    "totalSeats": 14950,
+    "passengers": 11833,
+    "loadFactor": 79.15050167224081
   },
   {
     "year": 2026,
@@ -2929,6 +3001,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "南京",
+    "airline": "東方",
+    "flights": 8,
+    "totalSeats": 1356,
+    "passengers": 1033,
+    "loadFactor": 76.17994100294986
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -3322,6 +3406,18 @@
     "totalSeats": 4888,
     "passengers": 3565,
     "loadFactor": 72.93371522094927
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "富國島",
+    "airline": "星宇",
+    "flights": 16,
+    "totalSeats": 3008,
+    "passengers": 2143,
+    "loadFactor": 71.24335106382979
   },
   {
     "year": 2026,
@@ -4009,6 +4105,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "峴港",
+    "airline": "越捷",
+    "flights": 16,
+    "totalSeats": 3680,
+    "passengers": 2883,
+    "loadFactor": 78.34239130434783
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -4441,6 +4549,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "高松",
+    "airline": "星宇",
+    "flights": 42,
+    "totalSeats": 7896,
+    "passengers": 6348,
+    "loadFactor": 80.3951367781155
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -4705,6 +4825,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "沖繩",
+    "airline": "星宇",
+    "flights": 114,
+    "totalSeats": 21432,
+    "passengers": 18071,
+    "loadFactor": 84.31784247853676
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -4813,6 +4945,66 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "沖繩",
+    "airline": "中華",
+    "flights": 82,
+    "totalSeats": 19270,
+    "passengers": 13309,
+    "loadFactor": 69.06590555267255
+  },
+  {
+    "year": 2026,
+    "month": 7,
+    "yearMonth": "2026-07",
+    "airport": "臺中清泉崗機場",
+    "destination": "沖繩",
+    "airline": "中華",
+    "flights": 22,
+    "totalSeats": 5170,
+    "passengers": 3911,
+    "loadFactor": 75.64796905222437
+  },
+  {
+    "year": 2026,
+    "month": 8,
+    "yearMonth": "2026-08",
+    "airport": "臺中清泉崗機場",
+    "destination": "沖繩",
+    "airline": "中華",
+    "flights": 92,
+    "totalSeats": 21620,
+    "passengers": 16821,
+    "loadFactor": 77.80296022201665
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺中清泉崗機場",
+    "destination": "沖繩",
+    "airline": "中華",
+    "flights": 94,
+    "totalSeats": 22090,
+    "passengers": 13291,
+    "loadFactor": 60.16749660479855
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "沖繩",
+    "airline": "台灣虎航",
+    "flights": 16,
+    "totalSeats": 2880,
+    "passengers": 2590,
+    "loadFactor": 89.93055555555556
+  },
+  {
+    "year": 2026,
     "month": 3,
     "yearMonth": "2026-03",
     "airport": "臺中清泉崗機場",
@@ -4894,42 +5086,6 @@
     "totalSeats": 3060,
     "passengers": 2953,
     "loadFactor": 96.50326797385621
-  },
-  {
-    "year": 2026,
-    "month": 7,
-    "yearMonth": "2026-07",
-    "airport": "臺中清泉崗機場",
-    "destination": "沖繩",
-    "airline": "中華",
-    "flights": 22,
-    "totalSeats": 5170,
-    "passengers": 3911,
-    "loadFactor": 75.64796905222437
-  },
-  {
-    "year": 2026,
-    "month": 8,
-    "yearMonth": "2026-08",
-    "airport": "臺中清泉崗機場",
-    "destination": "沖繩",
-    "airline": "中華",
-    "flights": 92,
-    "totalSeats": 21620,
-    "passengers": 16821,
-    "loadFactor": 77.80296022201665
-  },
-  {
-    "year": 2026,
-    "month": 9,
-    "yearMonth": "2026-09",
-    "airport": "臺中清泉崗機場",
-    "destination": "沖繩",
-    "airline": "中華",
-    "flights": 94,
-    "totalSeats": 22090,
-    "passengers": 13291,
-    "loadFactor": 60.16749660479855
   },
   {
     "year": 2024,
@@ -5041,6 +5197,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "名古屋",
+    "airline": "台灣虎航",
+    "flights": 24,
+    "totalSeats": 4320,
+    "passengers": 3911,
+    "loadFactor": 90.5324074074074
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -5148,6 +5316,18 @@
     "loadFactor": 86.94444444444444
   },
   {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "名古屋",
+    "airline": "星宇",
+    "flights": 8,
+    "totalSeats": 1504,
+    "passengers": 1297,
+    "loadFactor": 86.23670212765957
+  },
+  {
     "year": 2024,
     "month": 7,
     "yearMonth": "2024-07",
@@ -5170,6 +5350,18 @@
     "totalSeats": 4680,
     "passengers": 4450,
     "loadFactor": 95.08547008547008
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "東京成田",
+    "airline": "星宇",
+    "flights": 58,
+    "totalSeats": 10904,
+    "passengers": 9864,
+    "loadFactor": 90.46221570066031
   },
   {
     "year": 2026,
@@ -5401,6 +5593,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "首爾仁川",
+    "airline": "大韓",
+    "flights": 14,
+    "totalSeats": 1960,
+    "passengers": 1549,
+    "loadFactor": 79.03061224489795
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -5530,6 +5734,18 @@
     "totalSeats": 10962,
     "passengers": 8829,
     "loadFactor": 80.54187192118226
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "首爾仁川",
+    "airline": "真航",
+    "flights": 120,
+    "totalSeats": 22680,
+    "passengers": 20562,
+    "loadFactor": 90.66137566137567
   },
   {
     "year": 2026,
@@ -5857,6 +6073,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "首爾仁川",
+    "airline": "泰瑞(德威)",
+    "flights": 60,
+    "totalSeats": 11340,
+    "passengers": 9869,
+    "loadFactor": 87.02821869488537
+  },
+  {
+    "year": 2026,
     "month": 7,
     "yearMonth": "2026-07",
     "airport": "臺中清泉崗機場",
@@ -5998,6 +6226,18 @@
     "totalSeats": 11280,
     "passengers": 9561,
     "loadFactor": 84.76063829787233
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "神戶",
+    "airline": "星宇",
+    "flights": 58,
+    "totalSeats": 10904,
+    "passengers": 9905,
+    "loadFactor": 90.83822450476889
   },
   {
     "year": 2026,
@@ -6193,6 +6433,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "濟州",
+    "airline": "台灣虎航",
+    "flights": 16,
+    "totalSeats": 2880,
+    "passengers": 2709,
+    "loadFactor": 94.0625
+  },
+  {
+    "year": 2026,
     "month": 1,
     "yearMonth": "2026-01",
     "airport": "臺中清泉崗機場",
@@ -6301,6 +6553,186 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "札幌",
+    "airline": "星宇",
+    "flights": 48,
+    "totalSeats": 9024,
+    "passengers": 6321,
+    "loadFactor": 70.0465425531915
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 42,
+    "totalSeats": 7938,
+    "passengers": 6394,
+    "loadFactor": 80.54925673973294
+  },
+  {
+    "year": 2026,
+    "month": 3,
+    "yearMonth": "2026-03",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 4,
+    "totalSeats": 756,
+    "passengers": 579,
+    "loadFactor": 76.5873015873016
+  },
+  {
+    "year": 2026,
+    "month": 4,
+    "yearMonth": "2026-04",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 42,
+    "totalSeats": 7560,
+    "passengers": 6404,
+    "loadFactor": 84.70899470899471
+  },
+  {
+    "year": 2026,
+    "month": 5,
+    "yearMonth": "2026-05",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 44,
+    "totalSeats": 7938,
+    "passengers": 6628,
+    "loadFactor": 83.49710254472159
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 44,
+    "totalSeats": 8316,
+    "passengers": 7337,
+    "loadFactor": 88.22751322751323
+  },
+  {
+    "year": 2026,
+    "month": 7,
+    "yearMonth": "2026-07",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 44,
+    "totalSeats": 8316,
+    "passengers": 7470,
+    "loadFactor": 89.82683982683982
+  },
+  {
+    "year": 2026,
+    "month": 8,
+    "yearMonth": "2026-08",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 44,
+    "totalSeats": 8316,
+    "passengers": 7246,
+    "loadFactor": 87.13323713323713
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "真航",
+    "flights": 44,
+    "totalSeats": 8316,
+    "passengers": 6182,
+    "loadFactor": 74.33862433862434
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "星宇",
+    "flights": 52,
+    "totalSeats": 9776,
+    "passengers": 8168,
+    "loadFactor": 83.55155482815057
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "yearMonth": "2026-06",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "星宇",
+    "flights": 26,
+    "totalSeats": 4888,
+    "passengers": 4523,
+    "loadFactor": 92.53273322422258
+  },
+  {
+    "year": 2026,
+    "month": 7,
+    "yearMonth": "2026-07",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "星宇",
+    "flights": 34,
+    "totalSeats": 6392,
+    "passengers": 5938,
+    "loadFactor": 92.89737171464331
+  },
+  {
+    "year": 2026,
+    "month": 8,
+    "yearMonth": "2026-08",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "星宇",
+    "flights": 44,
+    "totalSeats": 8272,
+    "passengers": 7406,
+    "loadFactor": 89.53094777562862
+  },
+  {
+    "year": 2026,
+    "month": 9,
+    "yearMonth": "2026-09",
+    "airport": "臺中清泉崗機場",
+    "destination": "釜山",
+    "airline": "星宇",
+    "flights": 60,
+    "totalSeats": 11280,
+    "passengers": 9186,
+    "loadFactor": 81.43617021276596
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "下地島",
+    "airline": "星宇",
+    "flights": 28,
+    "totalSeats": 5264,
+    "passengers": 4336,
+    "loadFactor": 82.37082066869301
+  },
+  {
+    "year": 2026,
     "month": 2,
     "yearMonth": "2026-02",
     "airport": "臺中清泉崗機場",
@@ -6397,135 +6829,15 @@
   },
   {
     "year": 2026,
-    "month": 3,
-    "yearMonth": "2026-03",
+    "month": 10,
+    "yearMonth": "2026-10",
     "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 4,
-    "totalSeats": 756,
-    "passengers": 579,
-    "loadFactor": 76.5873015873016
-  },
-  {
-    "year": 2026,
-    "month": 4,
-    "yearMonth": "2026-04",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 42,
-    "totalSeats": 7560,
-    "passengers": 6404,
-    "loadFactor": 84.70899470899471
-  },
-  {
-    "year": 2026,
-    "month": 5,
-    "yearMonth": "2026-05",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 44,
-    "totalSeats": 7938,
-    "passengers": 6628,
-    "loadFactor": 83.49710254472159
-  },
-  {
-    "year": 2026,
-    "month": 6,
-    "yearMonth": "2026-06",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 44,
-    "totalSeats": 8316,
-    "passengers": 7337,
-    "loadFactor": 88.22751322751323
-  },
-  {
-    "year": 2026,
-    "month": 7,
-    "yearMonth": "2026-07",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 44,
-    "totalSeats": 8316,
-    "passengers": 7470,
-    "loadFactor": 89.82683982683982
-  },
-  {
-    "year": 2026,
-    "month": 8,
-    "yearMonth": "2026-08",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 44,
-    "totalSeats": 8316,
-    "passengers": 7246,
-    "loadFactor": 87.13323713323713
-  },
-  {
-    "year": 2026,
-    "month": 9,
-    "yearMonth": "2026-09",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "真航",
-    "flights": 44,
-    "totalSeats": 8316,
-    "passengers": 6182,
-    "loadFactor": 74.33862433862434
-  },
-  {
-    "year": 2026,
-    "month": 6,
-    "yearMonth": "2026-06",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
+    "destination": "熊本",
     "airline": "星宇",
-    "flights": 26,
-    "totalSeats": 4888,
-    "passengers": 4523,
-    "loadFactor": 92.53273322422258
-  },
-  {
-    "year": 2026,
-    "month": 7,
-    "yearMonth": "2026-07",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "星宇",
-    "flights": 34,
-    "totalSeats": 6392,
-    "passengers": 5938,
-    "loadFactor": 92.89737171464331
-  },
-  {
-    "year": 2026,
-    "month": 8,
-    "yearMonth": "2026-08",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "星宇",
-    "flights": 44,
-    "totalSeats": 8272,
-    "passengers": 7406,
-    "loadFactor": 89.53094777562862
-  },
-  {
-    "year": 2026,
-    "month": 9,
-    "yearMonth": "2026-09",
-    "airport": "臺中清泉崗機場",
-    "destination": "釜山",
-    "airline": "星宇",
-    "flights": 60,
-    "totalSeats": 11280,
-    "passengers": 9186,
-    "loadFactor": 81.43617021276596
+    "flights": 32,
+    "totalSeats": 6016,
+    "passengers": 5115,
+    "loadFactor": 85.02327127659575
   },
   {
     "year": 2026,
@@ -6613,6 +6925,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "青島",
+    "airline": "山東",
+    "flights": 10,
+    "totalSeats": 1760,
+    "passengers": 1481,
+    "loadFactor": 84.14772727272727
+  },
+  {
+    "year": 2026,
     "month": 7,
     "yearMonth": "2026-07",
     "airport": "臺中清泉崗機場",
@@ -6649,6 +6973,18 @@
   },
   {
     "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "成都天府",
+    "airline": "長龍",
+    "flights": 18,
+    "totalSeats": 3132,
+    "passengers": 2444,
+    "loadFactor": 78.03320561941251
+  },
+  {
+    "year": 2026,
     "month": 7,
     "yearMonth": "2026-07",
     "airport": "臺中清泉崗機場",
@@ -6682,6 +7018,18 @@
     "totalSeats": 3112,
     "passengers": 2067,
     "loadFactor": 66.4203084832905
+  },
+  {
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10",
+    "airport": "臺中清泉崗機場",
+    "destination": "成都天府",
+    "airline": "東方",
+    "flights": 16,
+    "totalSeats": 2804,
+    "passengers": 2584,
+    "loadFactor": 92.15406562054208
   },
   {
     "year": 2026,
