@@ -57,6 +57,8 @@ jobs:
       NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
       REVIEW_CHAT_URL: ${{ secrets.REVIEW_CHAT_URL }}
       ACTIONS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      # "審核通過並部署正式站" button in the review email.
+      RELEASE_WORKFLOW_URL: https://github.com/${{ github.repository }}/actions/workflows/release-production.yml
     steps:
       - name: Checkout production branch
         uses: actions/checkout@v4

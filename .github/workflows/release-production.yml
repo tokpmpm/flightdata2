@@ -1,0 +1,187 @@
+name: Release Approved Staging to Production
+
+# The "審核通過並部署正式站" button in the staging review email opens this workflow.
+# Pressing "Run workflow" IS the approval. The run re-verifies the current staging release,
+# merges it into main, deploys production on Vercel, verifies the live site, then emails.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write      # merge the approved staging commit into main
+  deployments: read    # wait for the staging Vercel deployment
+  statuses: read
+
+concurrency:
+  # Same group as the monthly staging update: a release never overlaps a staging rebuild.
+  group: flightdata-monthly-update
+  cancel-in-progress: false
+
+env:
+  STAGING_URL: https://flightdata2-staging-git-staging-tokpmpms-projects.vercel.app
+  PRODUCTION_URL: https://flightdata2.meshthings.com
+  VERCEL_ENVIRONMENT: Preview
+  VERCEL_WAIT_TIMEOUT_SECONDS: '300'
+  VERCEL_POLL_INTERVAL_SECONDS: '10'
+  VERIFY_FRESHNESS_TIMEOUT_SECONDS: '300'
+  VERIFY_POLL_INTERVAL_SECONDS: '10'
+  VERCEL_CLI_VERSION: '50.32.3'
+
+jobs:
+  release:
+    # Only the workflow definition on main may release.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+      ACTIONS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Check Vercel production credentials
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          echo "STAGE=check Vercel credentials" >> "$GITHUB_ENV"
+          missing=""
+          [ -n "$VERCEL_TOKEN" ] || missing="$missing VERCEL_TOKEN"
+          [ -n "$VERCEL_ORG_ID" ] || missing="$missing VERCEL_ORG_ID"
+          [ -n "$VERCEL_PROJECT_ID" ] || missing="$missing VERCEL_PROJECT_ID"
+          if [ -n "$missing" ]; then
+            echo "::error title=Missing repository secrets::$missing (Settings > Secrets and variables > Actions)"
+            exit 1
+          fi
+          echo "Vercel credentials present."
+
+      - name: Read staging release
+        id: release
+        run: |
+          echo "STAGE=read staging release" >> "$GITHUB_ENV"
+          git fetch --no-tags origin "+refs/heads/staging:refs/remotes/origin/staging"
+          staging_sha=$(git rev-parse origin/staging)
+          echo "staging_sha=$staging_sha" >> "$GITHUB_OUTPUT"
+          git show "$staging_sha:data/release_metadata.json" > "$RUNNER_TEMP/staging_metadata.json"
+          STAGING_SHA="$staging_sha" \
+          STAGING_METADATA_FILE="$RUNNER_TEMP/staging_metadata.json" \
+          PRODUCTION_METADATA_FILE=data/release_metadata.json \
+            node scripts/prepare_production_release.js check
+
+      - name: Wait for staging Vercel deployment READY
+        id: staging_vercel
+        if: steps.release.outputs.should_release == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: ${{ steps.release.outputs.staging_sha }}
+        run: |
+          echo "STAGE=wait for staging deployment" >> "$GITHUB_ENV"
+          node scripts/wait_for_vercel_deployment.js
+
+      - name: Re-verify staging site before release
+        if: steps.release.outputs.should_release == 'true'
+        env:
+          BASE_URL: ${{ env.STAGING_URL }}
+          EXPECTED_YEAR: ${{ steps.release.outputs.release_year }}
+          EXPECTED_MONTH: ${{ steps.release.outputs.release_month }}
+          EXPECTED_SHA: ${{ steps.release.outputs.staging_sha }}
+          DEPLOYMENT_URL: ${{ steps.staging_vercel.outputs.deployment_url }}
+          EXPECTED_METADATA_FILE: data/release_metadata.json
+        run: |
+          echo "STAGE=re-verify staging website" >> "$GITHUB_ENV"
+          WT="$RUNNER_TEMP/staging-release"
+          trap 'git worktree remove --force "$WT" >/dev/null 2>&1 || true' EXIT
+          git worktree add --detach "$WT" "$EXPECTED_SHA"
+          actual_sha=$(git -C "$WT" rev-parse HEAD)
+          if [ "$actual_sha" != "$EXPECTED_SHA" ]; then
+            echo "::error title=Staging worktree mismatch::worktree HEAD $actual_sha != expected $EXPECTED_SHA"
+            exit 1
+          fi
+          RELEASE_ROOT="$WT" node scripts/verify_remote.js
+
+      - name: Merge approved staging commit into main (local only)
+        id: merge
+        if: steps.release.outputs.should_release == 'true'
+        env:
+          STAGING_SHA: ${{ steps.release.outputs.staging_sha }}
+          RELEASE_LABEL: ${{ steps.release.outputs.release_label }}
+          GITHUB_RUN_URL: ${{ env.ACTIONS_URL }}
+        run: |
+          echo "STAGE=merge staging into main" >> "$GITHUB_ENV"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-ff --no-edit -m "Release $RELEASE_LABEL CAA aviation data (approved staging commit)" "$STAGING_SHA"
+          node scripts/prepare_production_release.js finalize
+          git add data/release_metadata.json
+          git commit -m "chore(release): mark approved $RELEASE_LABEL data live in production"
+          echo "main_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy production on Vercel
+        id: deploy
+        if: steps.release.outputs.should_release == 'true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          echo "STAGE=deploy production" >> "$GITHUB_ENV"
+          url=$(npx --yes "vercel@${VERCEL_CLI_VERSION}" deploy --prod --yes --token "$VERCEL_TOKEN")
+          echo "Production deployment: $url"
+          echo "deployment_url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Verify production site
+        if: steps.release.outputs.should_release == 'true'
+        env:
+          BASE_URL: ${{ env.PRODUCTION_URL }}
+          EXPECTED_YEAR: ${{ steps.release.outputs.release_year }}
+          EXPECTED_MONTH: ${{ steps.release.outputs.release_month }}
+          EXPECTED_SHA: ${{ steps.merge.outputs.main_sha }}
+          EXPECTED_METADATA_FILE: data/release_metadata.json
+        run: |
+          echo "STAGE=verify production website" >> "$GITHUB_ENV"
+          node scripts/verify_remote.js
+
+      - name: Push release to main
+        if: steps.release.outputs.should_release == 'true'
+        run: |
+          echo "STAGE=push main" >> "$GITHUB_ENV"
+          git push origin HEAD:main
+
+      - name: Send production success email
+        if: steps.release.outputs.should_release == 'true'
+        env:
+          NOTIFY_KIND: production_success
+          LATEST_YEAR: ${{ steps.release.outputs.release_year }}
+          LATEST_MONTH: ${{ steps.release.outputs.release_month }}
+          PRODUCTION_YEAR: ${{ steps.release.outputs.release_year }}
+          PRODUCTION_MONTH: ${{ steps.release.outputs.release_month }}
+          RELEASE_COMMIT: ${{ steps.release.outputs.staging_sha }}
+        run: python scripts/send_update_email.py
+
+      - name: Send production failure email
+        if: failure()
+        env:
+          NOTIFY_KIND: production_failed
+          LATEST_YEAR: ${{ steps.release.outputs.release_year }}
+          LATEST_MONTH: ${{ steps.release.outputs.release_month }}
+          RELEASE_COMMIT: ${{ steps.release.outputs.staging_sha }}
+          ERROR_STAGE: ${{ env.STAGE }}
+          ERROR_SUMMARY: ${{ steps.deploy.outcome == 'success' && '正式站已部署新版本，但之後的步驟（正式站驗收或推送 main）失敗。請先檢查正式站與這次執行紀錄，不要直接重按。' || '正式站沒有任何變更。排除原因後，可再按一次「審核通過並部署正式站」。' }}
+        run: python scripts/send_update_email.py
