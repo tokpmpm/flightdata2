@@ -23,6 +23,8 @@ password = env('SMTP_PASSWORD')
 host = env('SMTP_HOST', 'smtp.gmail.com')
 port = int(env('SMTP_PORT', '465'))
 review_chat_url = env('REVIEW_CHAT_URL')
+# "Approve & deploy" button target (release-production.yml). When set, replaces the ChatGPT review step.
+release_workflow_url = env('RELEASE_WORKFLOW_URL')
 staging_url = env('STAGING_URL')
 production_url = env('PRODUCTION_URL', 'https://flightdata2.meshthings.com')
 actions_url = env('ACTIONS_URL')
@@ -122,14 +124,21 @@ def button(label, url, color='#111827'):
 
 if kind in ('staging_ready', 'staging_pending'):
     button('查看 Staging', staging_url, '#2563eb')
-    button('回 ChatGPT 審核', review_chat_url, '#111827')
+    if release_workflow_url:
+        button('審核通過並部署正式站', release_workflow_url, '#16a34a')
+    else:
+        button('回 ChatGPT 審核', review_chat_url, '#111827')
 if kind in ('production_success', 'production_failed'):
     button('查看正式站', production_url, '#16a34a')
 if actions_url:
     button('查看 GitHub Actions', actions_url, '#6b7280')
 
 approval_text = ''
-if kind in ('staging_ready', 'staging_pending') and latest_year and latest_month:
+if kind in ('staging_ready', 'staging_pending') and latest_year and latest_month and release_workflow_url:
+    approval_text = ('<p style="margin:20px 0 0">確認 staging 無誤後，按「<strong>審核通過並部署正式站</strong>」，'
+                     '在打開的 GitHub 頁面按 <strong>Run workflow</strong> → <strong>Run workflow</strong>。<br>'
+                     '系統會再驗收一次 staging，通過後才合併並部署正式站，完成後寄信通知。不按就不會發布。</p>')
+elif kind in ('staging_ready', 'staging_pending') and latest_year and latest_month:
     approval_text = f'<p style="margin:20px 0 0">確認無誤後，在這個 ChatGPT 對話輸入：<br><strong>flightdata2 {latest_year}-{int(latest_month):02d} 審核通過</strong></p>'
 
 body = f'''<!doctype html>
@@ -150,6 +159,10 @@ if dry_run:
     print(f'[DRY RUN] Detail: {detail}')
     for r in rows:
         print(f'[DRY RUN] Row: {r}')
+    for b in buttons:
+        print(f'[DRY RUN] Button: {b}')
+    if approval_text:
+        print(f'[DRY RUN] Approval: {approval_text}')
     raise SystemExit(0)
 
 msg = EmailMessage()
@@ -157,7 +170,8 @@ msg['Subject'] = subject
 msg['From'] = username
 msg['To'] = recipient
 plain_detail = detail.replace('<br>', '\n')
-msg.set_content(f'{headline}\n{plain_detail}\nStaging: {staging_url}\nProduction: {production_url}\nActions: {actions_url}')
+approve_line = f'\n審核通過並部署正式站: {release_workflow_url}' if release_workflow_url and kind in ('staging_ready', 'staging_pending') else ''
+msg.set_content(f'{headline}\n{plain_detail}\nStaging: {staging_url}\nProduction: {production_url}\nActions: {actions_url}{approve_line}')
 msg.add_alternative(body, subtype='html')
 
 context = ssl.create_default_context()
