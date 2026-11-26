@@ -34,8 +34,16 @@ release_commit = env('RELEASE_COMMIT')
 error_stage = env('ERROR_STAGE', 'GitHub Actions pipeline')
 error_summary = env('ERROR_SUMMARY', '請查看 GitHub Actions 執行紀錄。')
 run_date = env('RUN_DATE') or datetime.now(timezone.utc).strftime('%Y-%m-%d')
+# Set by scripts/wait_for_vercel_deployment.js or scripts/verify_remote.js via $GITHUB_ENV.
+failure_type = env('FAILURE_TYPE')
+failure_detail = env('FAILURE_DETAIL')
+deployment_state = env('DEPLOYMENT_STATE')
+deployment_url = env('DEPLOYMENT_URL')
+expected_site_month = env('EXPECTED_SITE_MONTH')
+actual_site_month = env('ACTUAL_SITE_MONTH')
+dry_run = env('EMAIL_DRY_RUN') == '1'
 
-if not recipient or not username or not password:
+if not dry_run and (not recipient or not username or not password):
     missing = [name for name, value in [('NOTIFY_EMAIL', recipient), ('SMTP_USERNAME', username), ('SMTP_PASSWORD', password)] if not value]
     raise SystemExit('Missing required email configuration: ' + ', '.join(missing))
 
@@ -50,7 +58,15 @@ subjects = {
     'production_success': f'[FlightData2] {latest} 正式站更新完成 ✅',
     'production_failed': f'[FlightData2] {latest} 正式站驗證失敗 ❌',
 }
+failure_subjects = {
+    'deployment_failed': f'[FlightData2] {latest} Staging 部署失敗 ❌',
+    'deployment_timeout': f'[FlightData2] {latest} Staging 部署逾時 ❌',
+    'deployment_status_unavailable': f'[FlightData2] {latest} Staging 部署狀態無法確認 ❌',
+    'site_verification_failed': f'[FlightData2] {latest} Staging 網站驗收失敗 ❌',
+}
 subject = subjects.get(kind, '[FlightData2] 自動更新通知')
+if kind == 'update_failed' and failure_type in failure_subjects:
+    subject = failure_subjects[failure_type]
 
 rows = []
 def row(label, value):
@@ -64,6 +80,18 @@ if production_year and production_month:
     row('正式站目前月份', production)
 if release_commit:
     row('Release commit', release_commit[:12])
+if kind == 'update_failed' and failure_type:
+    row('失敗類型', {
+        'deployment_failed': '部署失敗（Vercel）',
+        'deployment_timeout': '部署逾時（Vercel 未在時限內 READY）',
+        'deployment_status_unavailable': '部署狀態無法確認',
+        'site_verification_failed': '網站驗收失敗（部署已 READY）',
+    }.get(failure_type, failure_type))
+    row('Vercel deployment 狀態', deployment_state)
+    row('Deployment URL', deployment_url)
+    row('預期月份', expected_site_month)
+    row('網站實際月份', actual_site_month)
+    row('失敗細節', failure_detail)
 
 if kind == 'no_data':
     headline = '本次檢查沒有發現新的 CAA 月資料。'
@@ -77,6 +105,12 @@ elif kind == 'staging_ready':
 elif kind == 'production_success':
     headline = f'{latest} 已正式發布。'
     detail = 'Production smoke test 已通過。'
+elif kind == 'update_failed' and failure_type == 'site_verification_failed':
+    headline = f'{latest} 資料已處理並推送到 staging，Vercel 部署已 READY，但網站驗收未通過。'
+    detail = f'這不是資料更新失敗；失敗階段：{html.escape(error_stage)}。正式站未變更，請勿審核通過，先檢查 staging 網站。'
+elif kind == 'update_failed' and failure_type in ('deployment_failed', 'deployment_timeout', 'deployment_status_unavailable'):
+    headline = f'{latest} 資料已處理並推送到 staging，但 Vercel 部署未就緒，因此沒有執行網站驗收。'
+    detail = f'失敗階段：{html.escape(error_stage)}。正式站未變更，請檢查 Vercel staging 部署。'
 else:
     headline = 'FlightData2 自動流程發生問題。'
     detail = f'失敗階段：{error_stage}<br>{html.escape(error_summary)}'
@@ -109,6 +143,14 @@ body = f'''<!doctype html>
 {approval_text}
 <p style="margin-top:28px;color:#6b7280;font-size:13px">來源：交通部民用航空局 CAA。此信由 FlightData2 GitHub Actions 自動寄送。</p>
 </div></body></html>'''
+
+if dry_run:
+    print(f'[DRY RUN] Subject: {subject}')
+    print(f'[DRY RUN] Headline: {headline}')
+    print(f'[DRY RUN] Detail: {detail}')
+    for r in rows:
+        print(f'[DRY RUN] Row: {r}')
+    raise SystemExit(0)
 
 msg = EmailMessage()
 msg['Subject'] = subject
