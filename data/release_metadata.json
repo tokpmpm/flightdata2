@@ -3,6 +3,11 @@
   "latest_month": 10,
   "source": "CAA",
   "source_url": "https://www.caa.gov.tw/article.aspx?a=1752&lang=1",
-  "status": "staging",
-  "generated_at": "2026-11-25T13:45:47.470Z"
+  "status": "production",
+  "generated_at": "2026-11-25T13:45:47.470Z",
+  "approved_staging_commit": "6e00cce373a08feda82f670d45103c0b1c383f1a",
+  "release_commit": "6e00cce373a08feda82f670d45103c0b1c383f1a",
+  "approved_at": "2026-11-26T03:59:18.612Z",
+  "approved_via": "github-actions-release-button",
+  "release_run_url": "https://github.com/tokpmpm/flightdata2/actions/runs/45752288289"
 }
