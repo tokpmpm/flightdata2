@@ -71,6 +71,18 @@ check(html.includes(fmt(cur.passengers)), '月報旅客數與資料一致');
 check(html.includes(curLf.toFixed(2) + '%'), '月報最新載客率與資料一致');
 check(html.includes(prevLf.toFixed(2) + '%'), '月報去年同期載客率與資料一致');
 
+// 載客率差值（百分比相減）必須寫「個百分點」，不得直接接 %。
+const lfDiff = Math.abs(Number((curLf - prevLf).toFixed(2))).toFixed(2);
+check(html.includes(lfDiff + ' 個百分點'), '月報載客率差值以「個百分點」表示（' + lfDiff + ' 個百分點）');
+const insightsRoot = path.join(ROOT, 'insights');
+const monthlyDirs = fs.readdirSync(insightsRoot).filter(d => /^\d{4}-\d{2}-taiwan-aviation-monthly-report$/.test(d) && fs.existsSync(path.join(insightsRoot, d, 'index.html')));
+const badLfUnit = /載客率較去年同期<\/span><b>[+\-−]?\d+(\.\d+)?%|變化 [+\-−]?\d+(\.\d+)?%|一年(提高|下降) \d+(\.\d+)?%|增速差為 [+\-−]?\d+(\.\d+)? 個百分比|加權載客率<\/th>(<td>[^<]*<\/td>){2}<td>[+\-−]?\d+(\.\d+)?%/;
+for (const d of monthlyDirs) {
+  const page = fs.readFileSync(path.join(insightsRoot, d, 'index.html'), 'utf8');
+  const bad = page.match(badLfUnit);
+  check(!bad, d + ' 載客率差值未直接接 %' + (bad ? '（發現：' + bad[0] + '）' : ''));
+}
+
 for (const airline of ['長榮','中華','星宇','台灣虎航']) {
   const s = sum(currentRows.filter(r => r.airline === airline));
   check(s.passengers > 0 && html.includes(fmt(s.passengers)), airline + ' 旅客數存在且正確');
@@ -83,6 +95,24 @@ for (const airport of ['桃園國際機場','高雄國際機場','臺北松山�
 check(home.includes(reportUrl), '首頁導覽指向最新月報');
 check(!home.includes('/insights/2026-07-taiwan-aviation-monthly-report/') || (year === 2026 && month === 7), '首頁不再固定指向 2026/07 月報');
 check(sitemap.includes('https://flightdata2.meshthings.com' + reportUrl), 'sitemap 收錄最新月報');
+// 所有 insights 頁（各期月報、專題）與 /insights/ 索引都必須在 sitemap，且有上一期／下一期連結正確性。
+const insightSlugs = fs.readdirSync(insightsRoot).filter(d => fs.statSync(path.join(insightsRoot, d)).isDirectory() && fs.existsSync(path.join(insightsRoot, d, 'index.html')));
+for (const d of insightSlugs) {
+  check(sitemap.includes('<loc>https://flightdata2.meshthings.com/insights/' + d + '/</loc>'), 'sitemap 收錄 /insights/' + d + '/');
+}
+check(sitemap.includes('<loc>https://flightdata2.meshthings.com/insights/</loc>'), 'sitemap 收錄 /insights/ 索引頁');
+const insightsIndexPath = path.join(insightsRoot, 'index.html');
+check(fs.existsSync(insightsIndexPath), '/insights/index.html 存在');
+if (fs.existsSync(insightsIndexPath)) {
+  const idx = fs.readFileSync(insightsIndexPath, 'utf8');
+  check(idx.includes('<link rel="canonical" href="https://flightdata2.meshthings.com/insights/">') && /<html lang="zh-TW">/.test(idx), '/insights/ 有 canonical 與 lang="zh-TW"');
+  for (const d of insightSlugs) check(idx.includes('href="/insights/' + d + '/"'), '/insights/ 列出 ' + d);
+}
+check(home.includes('href="/insights/"'), '首頁導覽有「全部月報」連結');
+for (const m of html.matchAll(/rel="(?:prev|next)" href="(\/insights\/[^"]+\/)"/g)) {
+  check(fs.existsSync(path.join(ROOT, m[1], 'index.html')), '月報上一期／下一期連結目標存在: ' + m[1]);
+}
+
 check(llms.includes(year + ' 年 ' + month + ' 月台灣航空月報'), 'llms.txt 使用最新月報月份');
 check(llms.includes('https://flightdata2.meshthings.com' + reportUrl), 'llms.txt 指向最新月報');
 
