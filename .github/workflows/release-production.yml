@@ -154,6 +154,8 @@ jobs:
           EXPECTED_MONTH: ${{ steps.release.outputs.release_month }}
           EXPECTED_SHA: ${{ steps.merge.outputs.main_sha }}
           EXPECTED_METADATA_FILE: data/release_metadata.json
+          # The staging wait step exports DEPLOYMENT_URL (staging) via $GITHUB_ENV; never compare production to it.
+          DEPLOYMENT_URL: ''
         run: |
           echo "STAGE=verify production website" >> "$GITHUB_ENV"
           node scripts/verify_remote.js

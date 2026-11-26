@@ -239,6 +239,13 @@ test('R3. 發布期間遠端 main 被別人更新 → 推 main 被拒絕（不�
   assert.strictEqual(sh(`git --git-dir="${fx.remote}" rev-parse main`, fx.tmp), before);
 });
 
+test('W6. 正式站驗收必須清空 DEPLOYMENT_URL（避免沿用 staging 等待步驟寫入 $GITHUB_ENV 的 staging 網址）', () => {
+  const env = step(release(), 'Verify production site').env;
+  assert.ok(Object.prototype.hasOwnProperty.call(env, 'DEPLOYMENT_URL'), 'DEPLOYMENT_URL must be set explicitly');
+  assert.strictEqual(env.DEPLOYMENT_URL, '');
+  assert.strictEqual(env.BASE_URL, '${{ env.PRODUCTION_URL }}');
+});
+
 let finished = false;
 process.on('exit', code => {
   if (!finished && code === 0) { console.log('\nFAIL test runner exited before all tests completed'); process.exitCode = 1; }
