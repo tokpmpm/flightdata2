@@ -343,6 +343,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 186,
+                        "seats": 54500,
+                        "passengers": 47088
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 186,
                         "seats": 54366,
@@ -741,6 +748,13 @@ const flightData = {
                         "flights": 181,
                         "seats": 61992,
                         "passengers": 48493
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 180,
+                        "seats": 61602,
+                        "passengers": 54177
                     },
                     {
                         "year": 2026,
@@ -1145,6 +1159,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 134,
+                        "seats": 24120,
+                        "passengers": 21750
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 22320,
@@ -1487,6 +1508,13 @@ const flightData = {
                         "flights": 124,
                         "seats": 23356,
                         "passengers": 20296
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 188,
+                        "seats": 35716,
+                        "passengers": 31019
                     },
                     {
                         "year": 2026,
@@ -1891,6 +1919,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 38542,
+                        "passengers": 34659
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 37168,
@@ -2149,6 +2184,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 13800,
                         "passengers": 11604
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10962,
+                        "passengers": 8116
                     },
                     {
                         "year": 2026,
@@ -2434,6 +2476,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 26280,
+                        "passengers": 22979
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 27156,
@@ -2594,6 +2643,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 7004,
                         "passengers": 4754
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 6,
+                        "seats": 1434,
+                        "passengers": 1179
                     },
                     {
                         "year": 2026,
@@ -2923,6 +2979,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 118,
+                        "seats": 21240,
+                        "passengers": 19534
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 122,
                         "seats": 21960,
@@ -3107,6 +3170,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 46,
+                        "seats": 17342,
+                        "passengers": 13557
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 23334,
@@ -3179,6 +3249,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 7750,
+                        "passengers": 5364
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 36,
                         "seats": 7022,
@@ -3239,6 +3316,15 @@ const flightData = {
                         "flights": 34,
                         "seats": 7320,
                         "passengers": 5309
+                    }
+                ],
+                "馬亞洲": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 4248,
+                        "passengers": 3141
                     }
                 ]
             },
@@ -3579,6 +3665,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 35950,
                         "passengers": 27972
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 36810,
+                        "passengers": 32971
                     },
                     {
                         "year": 2026,
@@ -3983,6 +4076,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 35924,
+                        "passengers": 31453
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 35600,
@@ -4384,6 +4484,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 132,
+                        "seats": 43550,
+                        "passengers": 38308
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 160,
                         "seats": 42638,
@@ -4726,6 +4833,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 10440,
                         "passengers": 8970
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 11160,
+                        "passengers": 10279
                     },
                     {
                         "year": 2026,
@@ -5130,6 +5244,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 118,
+                        "seats": 33662,
+                        "passengers": 31234
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 43042,
@@ -5468,6 +5589,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 49,
+                        "seats": 17275,
+                        "passengers": 15057
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 23118,
@@ -5782,6 +5910,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 23580,
                         "passengers": 21552
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 24366,
+                        "passengers": 22678
                     },
                     {
                         "year": 2026,
@@ -6102,6 +6237,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10962,
+                        "passengers": 10189
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11718,
@@ -6411,6 +6553,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 6426,
                         "passengers": 5885
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10962,
+                        "passengers": 9825
                     },
                     {
                         "year": 2026,
@@ -6817,6 +6966,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 21180,
+                        "passengers": 19439
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 21886,
@@ -7217,6 +7373,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 12852,
                         "passengers": 8224
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 45,
+                        "seats": 14245,
+                        "passengers": 9345
                     },
                     {
                         "year": 2026,
@@ -7621,6 +7784,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 27,
+                        "seats": 9234,
+                        "passengers": 8263
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 35,
                         "seats": 11458,
@@ -7975,6 +8145,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 15810,
+                        "passengers": 14562
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 96,
                         "seats": 28316,
@@ -8310,6 +8487,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 10440,
                         "passengers": 8588
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9762
                     },
                     {
                         "year": 2026,
@@ -8651,6 +8835,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18360,
+                        "passengers": 16576
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 18414,
@@ -8982,6 +9173,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 12676,
+                        "passengers": 10629
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 22106,
@@ -9306,6 +9504,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 31748,
+                        "passengers": 27642
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 32612,
@@ -9492,6 +9697,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 17,
+                        "seats": 3060,
+                        "passengers": 1834
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -9603,6 +9815,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10800,
                         "passengers": 6426
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 5856,
+                        "passengers": 3989
                     },
                     {
                         "year": 2026,
@@ -10009,6 +10228,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19192,
+                        "passengers": 16218
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 18972,
@@ -10410,6 +10636,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19580,
+                        "passengers": 15007
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 20226,
@@ -10766,6 +10999,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 16426,
                         "passengers": 14082
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 52,
+                        "seats": 13920,
+                        "passengers": 11411
                     },
                     {
                         "year": 2026,
@@ -11170,6 +11410,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 17820,
+                        "passengers": 15247
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8272,
@@ -11494,6 +11741,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 46,
+                        "seats": 17342,
+                        "passengers": 13309
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 23334,
@@ -11811,6 +12065,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 4788,
+                        "passengers": 3507
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 34,
                         "seats": 6210,
@@ -11874,6 +12135,13 @@ const flightData = {
                     }
                 ],
                 "馬亞洲": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 17,
+                        "seats": 4012,
+                        "passengers": 3347
+                    },
                     {
                         "year": 2026,
                         "month": 8,
@@ -12223,6 +12491,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 25969,
+                        "passengers": 22601
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 30968,
@@ -12561,6 +12836,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 63,
+                        "seats": 11340,
+                        "passengers": 10267
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -12812,6 +13094,13 @@ const flightData = {
                         "flights": 56,
                         "seats": 24240,
                         "passengers": 12138
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 20050,
+                        "passengers": 16086
                     },
                     {
                         "year": 2026,
@@ -13115,6 +13404,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11280,
                         "passengers": 8770
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11088,
+                        "passengers": 9129
                     },
                     {
                         "year": 2026,
@@ -13528,6 +13824,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 17602,
+                        "passengers": 14961
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11874,
@@ -13711,6 +14014,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 6048,
                         "passengers": 4725
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 6048,
+                        "passengers": 4632
                     },
                     {
                         "year": 2026,
@@ -14238,6 +14548,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 96,
+                        "seats": 30172,
+                        "passengers": 26129
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 90,
                         "seats": 27882,
@@ -14603,6 +14920,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 19980,
                         "passengers": 15859
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19980,
+                        "passengers": 16318
                     },
                     {
                         "year": 2026,
@@ -15009,6 +15333,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 88,
+                        "seats": 30096,
+                        "passengers": 21223
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 91,
                         "seats": 31122,
@@ -15197,6 +15528,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 13464,
                         "passengers": 10429
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 43,
+                        "seats": 13158,
+                        "passengers": 9690
                     },
                     {
                         "year": 2026,
@@ -15398,6 +15736,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 16973,
+                        "passengers": 13341
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 18910,
@@ -15579,6 +15924,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18360,
                         "passengers": 13491
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 18972,
+                        "passengers": 15031
                     },
                     {
                         "year": 2026,
@@ -15985,6 +16337,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 6480,
+                        "passengers": 3433
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 36,
                         "seats": 6480,
@@ -16325,6 +16684,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9485
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -16653,6 +17019,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11280,
                         "passengers": 9320
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 61,
+                        "seats": 11460,
+                        "passengers": 9956
                     },
                     {
                         "year": 2026,
@@ -17059,6 +17432,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 243,
+                        "seats": 61099,
+                        "passengers": 50232
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 248,
                         "seats": 63760,
@@ -17457,6 +17837,13 @@ const flightData = {
                         "flights": 180,
                         "seats": 61498,
                         "passengers": 40101
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 182,
+                        "seats": 62244,
+                        "passengers": 53717
                     },
                     {
                         "year": 2026,
@@ -17861,6 +18248,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 115,
+                        "seats": 20700,
+                        "passengers": 17217
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 120,
                         "seats": 21600,
@@ -18262,6 +18656,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 103,
+                        "seats": 17328,
+                        "passengers": 12778
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 8928,
@@ -18604,6 +19005,13 @@ const flightData = {
                         "flights": 123,
                         "seats": 22772,
                         "passengers": 21282
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 143,
+                        "seats": 26684,
+                        "passengers": 24702
                     },
                     {
                         "year": 2026,
@@ -18977,6 +19385,13 @@ const flightData = {
                         "flights": 103,
                         "seats": 38625,
                         "passengers": 34627
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 105,
+                        "seats": 39375,
+                        "passengers": 33956
                     },
                     {
                         "year": 2026,
@@ -19381,6 +19796,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 184,
+                        "seats": 60614,
+                        "passengers": 52280
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 186,
                         "seats": 50254,
@@ -19728,6 +20150,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 114,
+                        "seats": 24116,
+                        "passengers": 21428
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 28236,
@@ -19986,6 +20415,13 @@ const flightData = {
                         "flights": 50,
                         "seats": 9928,
                         "passengers": 8594
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 38,
+                        "seats": 8170,
+                        "passengers": 4830
                     },
                     {
                         "year": 2026,
@@ -20275,6 +20711,13 @@ const flightData = {
                         "flights": 56,
                         "seats": 24381,
                         "passengers": 13750
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 26280,
+                        "passengers": 21446
                     },
                     {
                         "year": 2026,
@@ -20681,6 +21124,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 29432,
+                        "passengers": 25918
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 26798,
@@ -21079,6 +21529,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 31000,
                         "passengers": 24840
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 31020,
+                        "passengers": 27595
                     },
                     {
                         "year": 2026,
@@ -21597,6 +22054,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 74,
+                        "seats": 14428,
+                        "passengers": 12607
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11655,
@@ -21998,6 +22462,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 13940,
+                        "passengers": 11224
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 28540,
@@ -22312,6 +22783,13 @@ const flightData = {
                         "flights": 57,
                         "seats": 10716,
                         "passengers": 8832
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 17820,
+                        "passengers": 15823
                     },
                     {
                         "year": 2026,
@@ -22718,6 +23196,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 59,
+                        "seats": 20550,
+                        "passengers": 18751
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 61,
                         "seats": 18666,
@@ -23121,6 +23606,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19244,
+                        "passengers": 15053
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 21832,
@@ -23232,6 +23724,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 10404,
                         "passengers": 5893
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 35,
+                        "seats": 10710,
+                        "passengers": 8176
                     },
                     {
                         "year": 2026,
@@ -23607,6 +24106,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 19980,
                         "passengers": 13127
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 20020,
+                        "passengers": 17009
                     },
                     {
                         "year": 2026,
@@ -24013,6 +24519,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 25,
+                        "seats": 4254,
+                        "passengers": 1662
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 46,
                         "seats": 7364,
@@ -24411,6 +24924,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18540,
                         "passengers": 12507
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18444,
+                        "passengers": 10162
                     },
                     {
                         "year": 2026,
@@ -24817,6 +25337,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19504,
+                        "passengers": 14261
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 21156,
@@ -25218,6 +25745,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 182,
+                        "seats": 59176,
+                        "passengers": 40654
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 186,
                         "seats": 60318,
@@ -25527,6 +26061,13 @@ const flightData = {
                         "flights": 78,
                         "seats": 23868,
                         "passengers": 11821
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 63,
+                        "seats": 19630,
+                        "passengers": 13988
                     },
                     {
                         "year": 2026,
@@ -25933,6 +26474,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 41612,
+                        "passengers": 28132
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 40224,
@@ -26331,6 +26879,13 @@ const flightData = {
                         "flights": 180,
                         "seats": 58180,
                         "passengers": 37390
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 180,
+                        "seats": 59680,
+                        "passengers": 44219
                     },
                     {
                         "year": 2026,
@@ -26735,6 +27290,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 11734,
+                        "passengers": 9317
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11446,
@@ -27098,6 +27660,13 @@ const flightData = {
                         "flights": 68,
                         "seats": 15040,
                         "passengers": 10301
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 38,
+                        "seats": 8760,
+                        "passengers": 6377
                     },
                     {
                         "year": 2026,
@@ -27499,6 +28068,13 @@ const flightData = {
                         "flights": 118,
                         "seats": 30572,
                         "passengers": 19485
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 114,
+                        "seats": 31804,
+                        "passengers": 23782
                     },
                     {
                         "year": 2026,
@@ -27905,6 +28481,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 344,
+                        "seats": 69557,
+                        "passengers": 50104
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 371,
                         "seats": 66120,
@@ -28303,6 +28886,13 @@ const flightData = {
                         "flights": 422,
                         "seats": 113588,
                         "passengers": 64713
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 380,
+                        "seats": 107944,
+                        "passengers": 71586
                     },
                     {
                         "year": 2026,
@@ -28707,6 +29297,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 727,
+                        "seats": 235568,
+                        "passengers": 178465
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 676,
                         "seats": 228526,
@@ -29049,6 +29646,13 @@ const flightData = {
                         "flights": 174,
                         "seats": 35534,
                         "passengers": 30729
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 212,
+                        "seats": 40386,
+                        "passengers": 34832
                     },
                     {
                         "year": 2026,
@@ -29453,6 +30057,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 232,
+                        "seats": 52964,
+                        "passengers": 41590
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 248,
                         "seats": 57784,
@@ -29779,6 +30390,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 114,
+                        "seats": 21586,
+                        "passengers": 16712
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 116,
                         "seats": 21756,
@@ -29967,6 +30585,13 @@ const flightData = {
                         "flights": 100,
                         "seats": 29042,
                         "passengers": 18982
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 33896,
+                        "passengers": 24357
                     },
                     {
                         "year": 2026,
@@ -30602,6 +31227,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 43,
+                        "seats": 15394,
+                        "passengers": 10461
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 34,
                         "seats": 12172,
@@ -31000,6 +31632,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 19980,
                         "passengers": 15758
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19980,
+                        "passengers": 15109
                     },
                     {
                         "year": 2026,
@@ -31406,6 +32045,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 36132,
+                        "passengers": 20380
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 150,
                         "seats": 43564,
@@ -31807,6 +32453,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 181,
+                        "seats": 49457,
+                        "passengers": 33007
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 186,
                         "seats": 58386,
@@ -32184,6 +32837,13 @@ const flightData = {
                         "flights": 88,
                         "seats": 37246,
                         "passengers": 23604
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 115,
+                        "seats": 52785,
+                        "passengers": 41043
                     },
                     {
                         "year": 2026,
@@ -32588,6 +33248,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 110,
+                        "seats": 24356,
+                        "passengers": 16839
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 30288,
@@ -32846,6 +33513,13 @@ const flightData = {
                         "flights": 32,
                         "seats": 6016,
                         "passengers": 5303
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 13242,
+                        "passengers": 8726
                     },
                     {
                         "year": 2026,
@@ -33173,6 +33847,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 66,
+                        "seats": 12060,
+                        "passengers": 9779
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 152,
                         "seats": 27384,
@@ -33424,6 +34105,13 @@ const flightData = {
                         "flights": 32,
                         "seats": 8800,
                         "passengers": 3584
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 9194,
+                        "passengers": 3778
                     },
                     {
                         "year": 2026,
@@ -33881,6 +34569,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 244,
+                        "seats": 57776,
+                        "passengers": 51218
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 248,
                         "seats": 71114,
@@ -34279,6 +34974,13 @@ const flightData = {
                         "flights": 272,
                         "seats": 93541,
                         "passengers": 47134
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 281,
+                        "seats": 95717,
+                        "passengers": 69114
                     },
                     {
                         "year": 2026,
@@ -34683,6 +35385,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 179,
+                        "seats": 45235,
+                        "passengers": 36226
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 186,
                         "seats": 48512,
@@ -35032,6 +35741,13 @@ const flightData = {
                         "flights": 154,
                         "seats": 30720,
                         "passengers": 19840
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 133,
+                        "seats": 25866,
+                        "passengers": 19216
                     },
                     {
                         "year": 2026,
@@ -35529,6 +36245,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 37050,
+                        "passengers": 33307
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 37944,
@@ -35983,6 +36706,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 106,
+                        "seats": 22800,
+                        "passengers": 18064
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 116,
                         "seats": 23836,
@@ -36297,6 +37027,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 14160,
                         "passengers": 9527
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 13400,
+                        "passengers": 10126
                     },
                     {
                         "year": 2026,
@@ -36703,6 +37440,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 37,
+                        "seats": 12247,
+                        "passengers": 11542
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 45,
                         "seats": 14810,
@@ -37103,6 +37847,13 @@ const flightData = {
                         "flights": 43,
                         "seats": 13174,
                         "passengers": 11528
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 47,
+                        "seats": 16826,
+                        "passengers": 15036
                     },
                     {
                         "year": 2026,
@@ -37509,6 +38260,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 78,
+                        "seats": 21600,
+                        "passengers": 18630
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 88,
                         "seats": 24160,
@@ -37910,6 +38668,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 16680,
+                        "passengers": 14959
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 17236,
@@ -38084,6 +38849,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 5264,
                         "passengers": 3157
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 6016,
+                        "passengers": 4521
                     },
                     {
                         "year": 2026,
@@ -38576,6 +39348,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 10448,
+                        "passengers": 8194
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 36,
                         "seats": 12876,
@@ -38976,6 +39755,13 @@ const flightData = {
                         "flights": 110,
                         "seats": 27070,
                         "passengers": 15179
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 123,
+                        "seats": 30206,
+                        "passengers": 23777
                     },
                     {
                         "year": 2026,
@@ -39380,6 +40166,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 39800,
+                        "passengers": 32263
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 41112,
@@ -39781,6 +40574,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 122,
+                        "seats": 41046,
+                        "passengers": 38869
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 41788,
@@ -40151,6 +40951,13 @@ const flightData = {
                         "flights": 196,
                         "seats": 72230,
                         "passengers": 55649
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 190,
+                        "seats": 69326,
+                        "passengers": 63150
                     },
                     {
                         "year": 2026,
@@ -40552,6 +41359,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 17838,
                         "passengers": 9832
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18360,
+                        "passengers": 15824
                     },
                     {
                         "year": 2026,
@@ -40988,6 +41802,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19608,
+                        "passengers": 15585
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 22196,
@@ -41386,6 +42207,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 21180,
                         "passengers": 16891
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 59,
+                        "seats": 20827,
+                        "passengers": 18352
                     },
                     {
                         "year": 2026,
@@ -41792,6 +42620,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 158,
+                        "seats": 42590,
+                        "passengers": 38578
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 142,
                         "seats": 37026,
@@ -42193,6 +43028,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 144,
+                        "seats": 37362,
+                        "passengers": 34125
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 142,
                         "seats": 34758,
@@ -42528,6 +43370,13 @@ const flightData = {
                         "flights": 94,
                         "seats": 16920,
                         "passengers": 15553
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 94,
+                        "seats": 16920,
+                        "passengers": 15906
                     },
                     {
                         "year": 2026,
@@ -42925,6 +43774,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18333,
+                        "passengers": 17098
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 18414,
@@ -43022,6 +43878,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11160,
                         "passengers": 9851
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11860,
+                        "passengers": 10994
                     },
                     {
                         "year": 2026,
@@ -43428,6 +44291,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 33398,
+                        "passengers": 27083
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 36008,
@@ -43829,6 +44699,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 32388,
+                        "passengers": 26421
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 122,
                         "seats": 25152,
@@ -44157,6 +45034,13 @@ const flightData = {
                         "flights": 208,
                         "seats": 35362,
                         "passengers": 27791
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 206,
+                        "seats": 37528,
+                        "passengers": 30037
                     },
                     {
                         "year": 2026,
@@ -44737,6 +45621,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10800,
                         "passengers": 9486
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9362
                     },
                     {
                         "year": 2026,
@@ -45418,6 +46309,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 59,
+                        "seats": 18522,
+                        "passengers": 14527
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 20948,
@@ -45816,6 +46714,13 @@ const flightData = {
                         "flights": 178,
                         "seats": 59034,
                         "passengers": 30032
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 182,
+                        "seats": 57736,
+                        "passengers": 41411
                     },
                     {
                         "year": 2026,
@@ -46220,6 +47125,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 122,
+                        "seats": 38640,
+                        "passengers": 28860
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 108,
                         "seats": 34348,
@@ -46457,6 +47369,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18360,
                         "passengers": 9749
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 63,
+                        "seats": 19278,
+                        "passengers": 13919
                     },
                     {
                         "year": 2026,
@@ -46807,6 +47726,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 20778,
+                        "passengers": 17570
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 19202,
@@ -47145,6 +48071,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18540,
+                        "passengers": 16876
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 19158,
@@ -47205,6 +48138,15 @@ const flightData = {
                         "flights": 60,
                         "seats": 18540,
                         "passengers": 18050
+                    }
+                ],
+                "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 7896,
+                        "passengers": 7008
                     }
                 ]
             },
@@ -47503,6 +48445,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18520,
                         "passengers": 10195
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18312,
+                        "passengers": 12014
                     },
                     {
                         "year": 2026,
@@ -47827,6 +48776,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 7402,
                         "passengers": 3716
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 44,
+                        "seats": 7920,
+                        "passengers": 4332
                     },
                     {
                         "year": 2026,
@@ -48291,6 +49247,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10904,
+                        "passengers": 7865
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11656,
@@ -48635,6 +49598,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 12120,
                         "passengers": 9817
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 11016,
+                        "passengers": 9866
                     },
                     {
                         "year": 2026,
@@ -49004,6 +49974,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 25,
+                        "seats": 6950,
+                        "passengers": 6607
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 7228,
@@ -49344,6 +50321,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 13024,
+                        "passengers": 8840
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8272,
@@ -49665,6 +50649,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18540,
                         "passengers": 15194
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 15068,
+                        "passengers": 10925
                     },
                     {
                         "year": 2026,
@@ -50006,6 +50997,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 7560,
+                        "passengers": 5465
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 46,
                         "seats": 8280,
@@ -50329,6 +51327,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10440,
                         "passengers": 7859
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 6462
                     },
                     {
                         "year": 2026,
@@ -50837,6 +51842,13 @@ const flightData = {
                         "flights": 14,
                         "seats": 3240,
                         "passengers": 1671
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 12,
+                        "seats": 2760,
+                        "passengers": 2180
                     },
                     {
                         "year": 2026,
@@ -51424,6 +52436,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 16680,
+                        "passengers": 15135
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 49,
                         "seats": 13622,
@@ -51824,6 +52843,13 @@ const flightData = {
                         "flights": 41,
                         "seats": 12546,
                         "passengers": 10116
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 44,
+                        "seats": 13464,
+                        "passengers": 10810
                     },
                     {
                         "year": 2026,
@@ -52246,6 +53272,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 19980,
+                        "passengers": 18267
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 20586,
@@ -52649,6 +53682,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 11808,
+                        "passengers": 10338
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 36,
                         "seats": 11016,
@@ -52900,6 +53940,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 9376,
                         "passengers": 8251
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 31,
+                        "seats": 8906,
+                        "passengers": 8387
                     },
                     {
                         "year": 2026,
@@ -53306,6 +54353,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 113,
+                        "seats": 45976,
+                        "passengers": 34861
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 112,
                         "seats": 50348,
@@ -53706,6 +54760,13 @@ const flightData = {
                         "flights": 126,
                         "seats": 42800,
                         "passengers": 28116
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 126,
+                        "seats": 38974,
+                        "passengers": 30395
                     },
                     {
                         "year": 2026,
@@ -54110,6 +55171,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 128,
+                        "seats": 41990,
+                        "passengers": 32815
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 134,
                         "seats": 41814,
@@ -54466,6 +55534,13 @@ const flightData = {
                         "flights": 68,
                         "seats": 21148,
                         "passengers": 13469
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 68,
+                        "seats": 21088,
+                        "passengers": 15795
                     },
                     {
                         "year": 2026,
@@ -54835,6 +55910,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 21616,
+                        "passengers": 17423
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 22332,
@@ -55201,6 +56283,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 110,
+                        "seats": 31416,
+                        "passengers": 25989
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 116,
                         "seats": 32916,
@@ -55525,6 +56614,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 11292,
+                        "passengers": 9465
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8878,
@@ -55839,6 +56935,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 8556,
                         "passengers": 7803
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 7776,
+                        "passengers": 7335
                     },
                     {
                         "year": 2026,
@@ -56484,6 +57587,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 11976,
+                        "passengers": 9408
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 12416,
@@ -56882,6 +57992,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 9972,
                         "passengers": 8245
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 12006,
+                        "passengers": 10143
                     },
                     {
                         "year": 2026,
@@ -57288,6 +58405,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 11160,
+                        "passengers": 8896
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11414,
@@ -57686,6 +58810,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18540,
                         "passengers": 13711
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18588,
+                        "passengers": 14341
                     },
                     {
                         "year": 2026,
@@ -58090,6 +59221,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 96,
+                        "seats": 27516,
+                        "passengers": 20877
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 98,
                         "seats": 25478,
@@ -58390,6 +59528,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 5636,
                         "passengers": 4611
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 7890,
+                        "passengers": 6032
                     },
                     {
                         "year": 2026,
@@ -58726,6 +59871,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 33,
+                        "seats": 10679,
+                        "passengers": 9963
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 34,
                         "seats": 9452,
@@ -59059,6 +60211,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 10043
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -59383,6 +60542,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 118,
+                        "seats": 25716,
+                        "passengers": 21950
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 27876,
@@ -59683,6 +60849,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10380,
                         "passengers": 8486
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10548,
+                        "passengers": 7694
                     },
                     {
                         "year": 2026,
@@ -60003,6 +61176,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 118,
+                        "seats": 22302,
+                        "passengers": 20334
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 105,
                         "seats": 19845,
@@ -60306,6 +61486,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 176,
+                        "seats": 32200,
+                        "passengers": 26972
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 22574,
@@ -60511,6 +61698,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 10577
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11712,
@@ -60681,6 +61875,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 155,
+                        "seats": 29283,
+                        "passengers": 26413
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 89,
                         "seats": 16743,
@@ -60767,6 +61968,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 92,
+                        "seats": 20678,
+                        "passengers": 17609
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11408,
@@ -60830,6 +62038,13 @@ const flightData = {
                     }
                 ],
                 "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 10666
+                    },
                     {
                         "year": 2026,
                         "month": 6,
@@ -60906,6 +62121,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 7344,
+                        "passengers": 6000
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 27,
                         "seats": 8262,
@@ -60969,6 +62191,13 @@ const flightData = {
                     }
                 ],
                 "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 12600,
+                        "passengers": 10797
+                    },
                     {
                         "year": 2026,
                         "month": 1,
@@ -61301,6 +62530,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 10440,
                         "passengers": 9294
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10440,
+                        "passengers": 9551
                     },
                     {
                         "year": 2026,
@@ -61840,6 +63076,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11334,
+                        "passengers": 10324
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 63,
                         "seats": 11883,
@@ -61926,6 +63169,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11286,
+                        "passengers": 10172
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11660,
@@ -61989,6 +63239,13 @@ const flightData = {
                     }
                 ],
                 "泰瑞(德威)": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 10189
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -62458,6 +63715,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11860,
+                        "passengers": 6046
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11532,
@@ -62784,6 +64048,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 5856,
+                        "passengers": 4509
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11532,
@@ -63098,6 +64369,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 7560,
                         "passengers": 5516
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9296
                     },
                     {
                         "year": 2026,
@@ -63418,6 +64696,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 10398
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11408,
@@ -63648,6 +64933,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4888,
                         "passengers": 4350
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 7662,
+                        "passengers": 7205
                     },
                     {
                         "year": 2026,
@@ -64430,6 +65722,13 @@ const flightData = {
                 "泰瑞(德威)": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9167
+                    },
+                    {
+                        "year": 2026,
                         "month": 7,
                         "flights": 58,
                         "seats": 10962,
@@ -64770,6 +66069,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 17,
+                        "seats": 2802,
+                        "passengers": 1593
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 16,
                         "seats": 2656,
@@ -65089,6 +66395,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 14540,
+                        "passengers": 13276
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 15908,
@@ -65392,6 +66705,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 3809
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4680,
@@ -65685,6 +67005,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 17226,
                         "passengers": 13789
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 17820,
+                        "passengers": 16208
                     },
                     {
                         "year": 2026,
@@ -65988,6 +67315,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 27,
+                        "seats": 8366,
+                        "passengers": 7906
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 17,
                         "seats": 5202,
@@ -66051,6 +67385,13 @@ const flightData = {
                     }
                 ],
                 "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 11900,
+                        "passengers": 10036
+                    },
                     {
                         "year": 2026,
                         "month": 8,
@@ -66285,6 +67626,13 @@ const flightData = {
                         "flights": 118,
                         "seats": 36974,
                         "passengers": 30707
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 118,
+                        "seats": 28358,
+                        "passengers": 23250
                     },
                     {
                         "year": 2026,
@@ -66570,6 +67918,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 116,
+                        "seats": 21682,
+                        "passengers": 18912
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 22816,
@@ -66852,6 +68207,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 116,
+                        "seats": 20880,
+                        "passengers": 19868
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 112,
                         "seats": 20160,
@@ -67131,6 +68493,13 @@ const flightData = {
                         "flights": 180,
                         "seats": 32592,
                         "passengers": 29817
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 182,
+                        "seats": 34008,
+                        "passengers": 29949
                     },
                     {
                         "year": 2026,
@@ -67656,6 +69025,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 17586,
+                        "passengers": 15773
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11874,
@@ -67854,6 +69230,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 13400,
+                        "passengers": 9477
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11244,
@@ -68017,6 +69400,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 11844,
+                        "passengers": 8462
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11860,
@@ -68079,7 +69469,37 @@ const flightData = {
                         "passengers": 10063
                     }
                 ],
+                "泰獅": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 6880,
+                        "passengers": 4026
+                    },
+                    {
+                        "year": 2026,
+                        "month": 8,
+                        "flights": 18,
+                        "seats": 3870,
+                        "passengers": 3038
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 30,
+                        "seats": 6450,
+                        "passengers": 3822
+                    }
+                ],
                 "日本越洋": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 80,
+                        "seats": 13200,
+                        "passengers": 10388
+                    },
                     {
                         "year": 2026,
                         "month": 2,
@@ -68135,22 +69555,6 @@ const flightData = {
                         "flights": 68,
                         "seats": 11220,
                         "passengers": 7235
-                    }
-                ],
-                "泰獅": [
-                    {
-                        "year": 2026,
-                        "month": 8,
-                        "flights": 18,
-                        "seats": 3870,
-                        "passengers": 3038
-                    },
-                    {
-                        "year": 2026,
-                        "month": 9,
-                        "flights": 30,
-                        "seats": 6450,
-                        "passengers": 3822
                     }
                 ]
             },
@@ -68337,6 +69741,13 @@ const flightData = {
                         "flights": 17,
                         "seats": 3060,
                         "passengers": 2303
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 14,
+                        "seats": 2520,
+                        "passengers": 2406
                     },
                     {
                         "year": 2026,
@@ -68724,6 +70135,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 52,
+                        "seats": 9360,
+                        "passengers": 8078
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 42,
                         "seats": 7560,
@@ -68987,6 +70405,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 68,
+                        "seats": 12240,
+                        "passengers": 10320
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 22320,
@@ -69203,6 +70628,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11310,
                         "passengers": 9172
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 44,
+                        "seats": 8292,
+                        "passengers": 7173
                     },
                     {
                         "year": 2026,
@@ -69525,6 +70957,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 4200,
+                        "passengers": 2469
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 3900,
@@ -69745,6 +71184,13 @@ const flightData = {
                         "flights": 12,
                         "seats": 2780,
                         "passengers": 2333
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 12,
+                        "seats": 2800,
+                        "passengers": 2098
                     },
                     {
                         "year": 2026,
@@ -70189,6 +71635,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 12290,
+                        "passengers": 10259
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 64,
                         "seats": 11776,
@@ -70461,6 +71914,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2344
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 3027
                     },
                     {
                         "year": 2026,
@@ -70766,6 +72226,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 18540,
                         "passengers": 10294
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 17552,
+                        "passengers": 13285
                     },
                     {
                         "year": 2026,
@@ -71109,6 +72576,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11498,
+                        "passengers": 7681
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 74,
                         "seats": 13912,
@@ -71414,6 +72888,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 17,
+                        "seats": 5202,
+                        "passengers": 4661
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 5508,
@@ -71618,6 +73099,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4784,
                         "passengers": 3959
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 9626
                     },
                     {
                         "year": 2026,
@@ -72140,6 +73628,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 48,
+                        "seats": 8640,
+                        "passengers": 8243
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 7920,
@@ -72366,6 +73861,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 46,
+                        "seats": 8648,
+                        "passengers": 6828
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8272,
@@ -72456,6 +73958,13 @@ const flightData = {
                         "flights": 1,
                         "seats": 184,
                         "passengers": 175
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 5,
+                        "seats": 920,
+                        "passengers": 817
                     }
                 ]
             },
@@ -72670,6 +74179,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 7560,
                         "passengers": 5854
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 8677
                     },
                     {
                         "year": 2026,
@@ -72934,6 +74450,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 17602,
+                        "passengers": 14497
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 18414,
@@ -73075,6 +74598,13 @@ const flightData = {
                         "flights": 37,
                         "seats": 5954,
                         "passengers": 5625
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 3014
                     },
                     {
                         "year": 2026,
@@ -73364,6 +74894,13 @@ const flightData = {
                 "長榮": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 15,
+                        "seats": 2760,
+                        "passengers": 2490
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 5,
                         "seats": 920,
@@ -73617,6 +75154,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4320,
                         "passengers": 3544
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4183
                     },
                     {
                         "year": 2026,
@@ -73925,6 +75469,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 78,
+                        "seats": 14040,
+                        "passengers": 12460
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 80,
                         "seats": 14400,
@@ -74213,6 +75764,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2397
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2984
                     },
                     {
                         "year": 2026,
@@ -74535,6 +76093,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 11160,
+                        "passengers": 9640
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -74823,6 +76388,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2456
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2665
                     },
                     {
                         "year": 2026,
@@ -75135,6 +76707,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2618
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2198
                     },
                     {
                         "year": 2026,
@@ -75629,6 +77208,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 9048,
+                        "passengers": 7064
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 9672,
@@ -75927,6 +77513,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 66,
+                        "seats": 11562,
+                        "passengers": 9390
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 70,
                         "seats": 10346,
@@ -76187,6 +77780,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 10088,
                         "passengers": 7980
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10596,
+                        "passengers": 8856
                     },
                     {
                         "year": 2026,
@@ -76488,6 +78088,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 8816,
+                        "passengers": 7233
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 8720,
@@ -76781,6 +78388,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10956,
                         "passengers": 8245
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10620,
+                        "passengers": 8169
                     },
                     {
                         "year": 2026,
@@ -77080,6 +78694,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1348,
+                        "passengers": 1134
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 10,
                         "seats": 1688,
@@ -77364,6 +78985,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 9996,
+                        "passengers": 8528
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 10528,
@@ -77627,6 +79255,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1384,
+                        "passengers": 1174
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 10,
                         "seats": 1740,
@@ -77885,6 +79520,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3000,
                         "passengers": 2399
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3024,
+                        "passengers": 2822
                     },
                     {
                         "year": 2026,
@@ -78172,6 +79814,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4224,
+                        "passengers": 3854
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4576,
@@ -78451,6 +80100,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1440,
                         "passengers": 1308
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1440,
+                        "passengers": 1281
                     },
                     {
                         "year": 2026,
@@ -79614,6 +81270,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 8396,
+                        "passengers": 6709
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 7432,
@@ -79916,6 +81579,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 12022,
                         "passengers": 9607
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 13036,
+                        "passengers": 10584
                     },
                     {
                         "year": 2026,
@@ -80222,6 +81892,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 13836,
+                        "passengers": 9071
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 13614,
@@ -80525,6 +82202,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 52,
+                        "seats": 16394,
+                        "passengers": 12477
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 54,
                         "seats": 15300,
@@ -80825,6 +82509,13 @@ const flightData = {
                         "flights": 62,
                         "seats": 11368,
                         "passengers": 9057
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 66,
+                        "seats": 12096,
+                        "passengers": 9824
                     },
                     {
                         "year": 2026,
@@ -81133,6 +82824,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 44,
+                        "seats": 13320,
+                        "passengers": 11081
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 46,
                         "seats": 8280,
@@ -81426,6 +83124,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 7996,
                         "passengers": 6433
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 7642,
+                        "passengers": 5955
                     },
                     {
                         "year": 2026,
@@ -81725,6 +83430,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 21616,
+                        "passengers": 18409
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 19148,
@@ -82018,6 +83730,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4300,
                         "passengers": 3430
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 7932,
+                        "passengers": 5783
                     },
                     {
                         "year": 2026,
@@ -82318,6 +84037,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4784,
+                        "passengers": 4223
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4784,
@@ -82560,6 +84286,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 3008
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3240,
@@ -82666,6 +84399,13 @@ const flightData = {
                         "flights": 1,
                         "seats": 150,
                         "passengers": 144
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4188,
+                        "passengers": 3452
                     },
                     {
                         "year": 2026,
@@ -82936,6 +84676,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 6540,
+                        "passengers": 4329
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 32,
                         "seats": 7540,
@@ -83127,6 +84874,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4512,
+                        "passengers": 3257
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4888,
@@ -83206,6 +84960,13 @@ const flightData = {
                     }
                 ],
                 "太陽富國": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 12480,
+                        "passengers": 8222
+                    },
                     {
                         "year": 2026,
                         "month": 3,
@@ -83379,6 +85140,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2603
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2573
                     },
                     {
                         "year": 2026,
@@ -83593,6 +85361,13 @@ const flightData = {
                         "flights": 22,
                         "seats": 3562,
                         "passengers": 2234
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 5040,
+                        "passengers": 4055
                     },
                     {
                         "year": 2026,
@@ -83821,6 +85596,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2749
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3240,
@@ -84020,6 +85802,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 5760,
+                        "passengers": 5330
+                    },
+                    {
+                        "year": 2026,
                         "month": 2,
                         "flights": 16,
                         "seats": 2880,
@@ -84140,6 +85929,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3312,
                         "passengers": 2571
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 84,
+                        "seats": 15456,
+                        "passengers": 12093
                     },
                     {
                         "year": 2026,
@@ -84271,6 +86067,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 78,
+                        "seats": 14664,
+                        "passengers": 12567
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 36,
                         "seats": 6768,
@@ -84366,6 +86169,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 46,
+                        "seats": 13718,
+                        "passengers": 11934
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 12786,
@@ -84454,6 +86264,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 16680,
+                        "passengers": 13216
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 60,
                         "seats": 16680,
@@ -84539,6 +86356,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3384,
                         "passengers": 3218
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 30,
+                        "seats": 5640,
+                        "passengers": 4729
                     },
                     {
                         "year": 2026,
@@ -84655,6 +86479,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2736
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2899
                     },
                     {
                         "year": 2026,
@@ -84785,6 +86616,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2880,
                         "passengers": 2136
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2910
                     },
                     {
                         "year": 2026,
@@ -84927,6 +86765,13 @@ const flightData = {
                 "長榮": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 33,
+                        "seats": 9174,
+                        "passengers": 7937
+                    },
+                    {
+                        "year": 2026,
                         "month": 6,
                         "flights": 5,
                         "seats": 1390,
@@ -84956,7 +86801,37 @@ const flightData = {
                 ]
             },
             "成都雙流": {
+                "中華": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 3134,
+                        "passengers": 2813
+                    },
+                    {
+                        "year": 2026,
+                        "month": 8,
+                        "flights": 18,
+                        "seats": 5586,
+                        "passengers": 4537
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 18,
+                        "seats": 4812,
+                        "passengers": 4225
+                    }
+                ],
                 "長榮": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 4960,
+                        "passengers": 3882
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -84982,6 +86857,13 @@ const flightData = {
                 "國航": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 8620,
+                        "passengers": 6612
+                    },
+                    {
+                        "year": 2026,
                         "month": 7,
                         "flights": 2,
                         "seats": 566,
@@ -85000,22 +86882,6 @@ const flightData = {
                         "flights": 34,
                         "seats": 7858,
                         "passengers": 6517
-                    }
-                ],
-                "中華": [
-                    {
-                        "year": 2026,
-                        "month": 8,
-                        "flights": 18,
-                        "seats": 5586,
-                        "passengers": 4537
-                    },
-                    {
-                        "year": 2026,
-                        "month": 9,
-                        "flights": 18,
-                        "seats": 4812,
-                        "passengers": 4225
                     }
                 ]
             }
@@ -85344,6 +87210,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 12180,
                         "passengers": 8725
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 86,
+                        "seats": 17458,
+                        "passengers": 13962
                     },
                     {
                         "year": 2026,
@@ -85682,6 +87555,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 7720,
                         "passengers": 6476
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 13340,
+                        "passengers": 10639
                     },
                     {
                         "year": 2026,
@@ -86025,6 +87905,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 96,
+                        "seats": 19488,
+                        "passengers": 15347
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 12586,
@@ -86360,6 +88247,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 6420,
                         "passengers": 5372
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 8280,
+                        "passengers": 6652
                     },
                     {
                         "year": 2026,
@@ -86735,6 +88629,13 @@ const flightData = {
                         "flights": 228,
                         "seats": 62650,
                         "passengers": 43591
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 236,
+                        "seats": 78596,
+                        "passengers": 58447
                     },
                     {
                         "year": 2026,
@@ -87139,6 +89040,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 166,
+                        "seats": 36728,
+                        "passengers": 25070
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 168,
                         "seats": 36876,
@@ -87442,6 +89350,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 83,
+                        "seats": 14808,
+                        "passengers": 10117
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 96,
                         "seats": 17280,
@@ -87651,6 +89566,13 @@ const flightData = {
                         "flights": 110,
                         "seats": 20240,
                         "passengers": 11123
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 22080,
+                        "passengers": 14666
                     },
                     {
                         "year": 2026,
@@ -88101,6 +90023,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 6120,
+                        "passengers": 3344
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 34,
                         "seats": 5372,
@@ -88418,6 +90347,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 11160,
+                        "passengers": 8544
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -88599,6 +90535,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4844,
                         "passengers": 3160
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 48,
+                        "seats": 11036,
+                        "passengers": 7436
                     },
                     {
                         "year": 2026,
@@ -89005,6 +90948,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 4644,
+                        "passengers": 3525
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 28,
                         "seats": 5040,
@@ -89312,6 +91262,13 @@ const flightData = {
                         "flights": 8,
                         "seats": 1472,
                         "passengers": 1012
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1352,
+                        "passengers": 1231
                     },
                     {
                         "year": 2026,
@@ -89648,6 +91605,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 94,
+                        "seats": 17296,
+                        "passengers": 13439
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 98,
                         "seats": 18032,
@@ -89979,6 +91943,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9766
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -90296,6 +92267,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 86,
+                        "seats": 14908,
+                        "passengers": 12257
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 88,
                         "seats": 23204,
@@ -90564,6 +92542,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 66,
+                        "seats": 13772,
+                        "passengers": 11808
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11776,
@@ -90627,6 +92612,13 @@ const flightData = {
                     }
                 ],
                 "馬亞洲": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 14632,
+                        "passengers": 12412
+                    },
                     {
                         "year": 2026,
                         "month": 6,
@@ -90924,6 +92916,13 @@ const flightData = {
                         "flights": 36,
                         "seats": 6696,
                         "passengers": 5286
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 14632,
+                        "passengers": 9829
                     },
                     {
                         "year": 2026,
@@ -91381,6 +93380,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 18540,
+                        "passengers": 13627
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11408,
@@ -91702,6 +93708,13 @@ const flightData = {
                         "flights": 112,
                         "seats": 20160,
                         "passengers": 13607
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 122,
+                        "seats": 21894,
+                        "passengers": 17567
                     },
                     {
                         "year": 2026,
@@ -92029,6 +94042,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10800,
+                        "passengers": 9174
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -92227,6 +94247,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 40,
+                        "seats": 7572,
+                        "passengers": 5090
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 10974,
@@ -92334,6 +94361,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 9628,
+                        "passengers": 7643
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 10292,
@@ -92403,6 +94437,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 5040,
                         "passengers": 4191
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 62,
+                        "seats": 11160,
+                        "passengers": 8726
                     },
                     {
                         "year": 2026,
@@ -92729,6 +94770,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 4387
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4388
                     },
                     {
                         "year": 2026,
@@ -93251,6 +95299,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 9524,
+                        "passengers": 7428
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 9796,
@@ -93502,6 +95557,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10248,
                         "passengers": 4778
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 10440,
+                        "passengers": 7356
                     },
                     {
                         "year": 2026,
@@ -93831,6 +95893,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4320,
+                        "passengers": 4083
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3240,
@@ -94120,6 +96189,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 56,
+                        "seats": 10304,
+                        "passengers": 8630
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8096,
@@ -94245,6 +96321,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2528,
                         "passengers": 2021
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 4424,
+                        "passengers": 3940
                     },
                     {
                         "year": 2026,
@@ -94553,6 +96636,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 40,
+                        "seats": 7200,
+                        "passengers": 5534
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 7920,
@@ -94827,6 +96917,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 5980,
                         "passengers": 2741
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 9,
+                        "seats": 2070,
+                        "passengers": 1394
                     },
                     {
                         "year": 2026,
@@ -95146,6 +97243,13 @@ const flightData = {
                         "flights": 42,
                         "seats": 6636,
                         "passengers": 5432
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 44,
+                        "seats": 7568,
+                        "passengers": 5900
                     },
                     {
                         "year": 2026,
@@ -95480,6 +97584,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 12978,
+                        "passengers": 9822
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8096,
@@ -95790,6 +97901,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 6120,
+                        "passengers": 4667
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4572,
@@ -95873,6 +97991,13 @@ const flightData = {
                         "flights": 18,
                         "seats": 3348,
                         "passengers": 2202
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4344,
+                        "passengers": 4154
                     },
                     {
                         "year": 2026,
@@ -96470,6 +98595,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 6120,
+                        "passengers": 5362
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 19406,
@@ -96759,6 +98891,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11040,
+                        "passengers": 8166
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11408,
@@ -96856,6 +98995,13 @@ const flightData = {
                     }
                 ],
                 "泰瑞(德威)": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9593
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -97034,6 +99180,13 @@ const flightData = {
                         "flights": 16,
                         "seats": 2528,
                         "passengers": 1545
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 5040,
+                        "passengers": 3934
                     },
                     {
                         "year": 2026,
@@ -97260,6 +99413,13 @@ const flightData = {
                         "flights": 44,
                         "seats": 7920,
                         "passengers": 6303
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 6480,
+                        "passengers": 6038
                     },
                     {
                         "year": 2026,
@@ -97575,6 +99735,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 5292,
+                        "passengers": 4852
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 28,
                         "seats": 5292,
@@ -97638,6 +99805,13 @@ const flightData = {
                     }
                 ],
                 "泰瑞(德威)": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 6426,
+                        "passengers": 5561
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -97903,6 +100077,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 13846,
+                        "passengers": 12954
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 14262,
@@ -98024,6 +100205,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 10221
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11718,
@@ -98086,6 +100274,36 @@ const flightData = {
                         "passengers": 9798
                     }
                 ],
+                "泰瑞(德威)": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 46,
+                        "seats": 8694,
+                        "passengers": 6655
+                    },
+                    {
+                        "year": 2026,
+                        "month": 7,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 9975
+                    },
+                    {
+                        "year": 2026,
+                        "month": 8,
+                        "flights": 62,
+                        "seats": 11656,
+                        "passengers": 10730
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 8368
+                    }
+                ],
                 "德威": [
                     {
                         "year": 2026,
@@ -98114,29 +100332,6 @@ const flightData = {
                         "flights": 59,
                         "seats": 11092,
                         "passengers": 9119
-                    }
-                ],
-                "泰瑞(德威)": [
-                    {
-                        "year": 2026,
-                        "month": 7,
-                        "flights": 60,
-                        "seats": 11280,
-                        "passengers": 9975
-                    },
-                    {
-                        "year": 2026,
-                        "month": 8,
-                        "flights": 62,
-                        "seats": 11656,
-                        "passengers": 10730
-                    },
-                    {
-                        "year": 2026,
-                        "month": 9,
-                        "flights": 60,
-                        "seats": 11340,
-                        "passengers": 8368
                     }
                 ]
             },
@@ -98365,6 +100560,13 @@ const flightData = {
                         "flights": 38,
                         "seats": 6992,
                         "passengers": 5402
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 48,
+                        "seats": 11082,
+                        "passengers": 8550
                     },
                     {
                         "year": 2026,
@@ -98911,6 +101113,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 154,
+                        "seats": 26222,
+                        "passengers": 20720
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 132,
                         "seats": 22732,
@@ -99209,6 +101418,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4368,
+                        "passengers": 3080
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4068,
@@ -99493,6 +101709,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1352,
+                        "passengers": 1121
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 10,
                         "seats": 1840,
@@ -99749,6 +101972,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2688,
+                        "passengers": 2247
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3024,
@@ -99986,6 +102216,13 @@ const flightData = {
                         "flights": 24,
                         "seats": 4032,
                         "passengers": 3267
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4602,
+                        "passengers": 3957
                     },
                     {
                         "year": 2026,
@@ -100287,6 +102524,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3020,
+                        "passengers": 2292
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 2844,
@@ -100529,6 +102773,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 5232,
+                        "passengers": 4073
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 28,
                         "seats": 4424,
@@ -100761,6 +103012,13 @@ const flightData = {
                         "flights": 52,
                         "seats": 8526,
                         "passengers": 7338
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10440,
+                        "passengers": 9779
                     },
                     {
                         "year": 2026,
@@ -100997,6 +103255,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 75,
+                        "seats": 13500,
+                        "passengers": 13191
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11160,
@@ -101143,6 +103408,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 6530,
                         "passengers": 4431
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 20,
+                        "seats": 4300,
+                        "passengers": 1671
                     },
                     {
                         "year": 2026,
@@ -101374,6 +103646,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 40,
+                        "seats": 7572,
+                        "passengers": 5510
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 10974,
@@ -101520,6 +103799,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 6530,
                         "passengers": 4213
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 48,
+                        "seats": 10320,
+                        "passengers": 5691
                     },
                     {
                         "year": 2026,
@@ -101843,6 +104129,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4320,
+                        "passengers": 3877
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4680,
@@ -101963,6 +104256,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3264,
+                        "passengers": 2647
+                    },
+                    {
+                        "year": 2026,
                         "month": 7,
                         "flights": 12,
                         "seats": 2154,
@@ -102056,6 +104356,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4680,
                         "passengers": 2747
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4680,
+                        "passengers": 4319
                     },
                     {
                         "year": 2026,
@@ -102210,6 +104517,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 5760,
+                        "passengers": 5364
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 28,
                         "seats": 5040,
@@ -102279,6 +104593,13 @@ const flightData = {
                         "flights": 28,
                         "seats": 6020,
                         "passengers": 5186
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 5160,
+                        "passengers": 3163
                     },
                     {
                         "year": 2026,
@@ -102614,6 +104935,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 5760,
+                        "passengers": 5330
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 36,
                         "seats": 6480,
@@ -102677,6 +105005,13 @@ const flightData = {
                     }
                 ],
                 "泰瑞(德威)": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 6804,
+                        "passengers": 5731
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -102880,6 +105215,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 5460,
+                        "passengers": 3973
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 34,
                         "seats": 5372,
@@ -102949,6 +105291,13 @@ const flightData = {
                         "flights": 6,
                         "seats": 1080,
                         "passengers": 786
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2248
                     },
                     {
                         "year": 2026,
@@ -103082,6 +105431,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 5,
+                        "seats": 790,
+                        "passengers": 741
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 8,
                         "seats": 1264,
@@ -103149,6 +105505,13 @@ const flightData = {
                 "台灣虎航": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3240,
+                        "passengers": 2952
+                    },
+                    {
+                        "year": 2026,
                         "month": 9,
                         "flights": 16,
                         "seats": 2880,
@@ -103158,6 +105521,13 @@ const flightData = {
             },
             "石垣島": {
                 "台灣虎航": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2577
+                    },
                     {
                         "year": 2026,
                         "month": 9,
@@ -103443,6 +105813,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4186,
                         "passengers": 3687
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4144,
+                        "passengers": 3762
                     },
                     {
                         "year": 2026,
@@ -103774,6 +106151,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 6256,
                         "passengers": 4980
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 34,
+                        "seats": 6256,
+                        "passengers": 5355
                     },
                     {
                         "year": 2026,
@@ -104341,6 +106725,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 5280,
+                        "passengers": 4672
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 28,
                         "seats": 5257,
@@ -104404,6 +106795,13 @@ const flightData = {
                     }
                 ],
                 "泰瑞(德威)": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 6048,
+                        "passengers": 5490
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -104736,6 +107134,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 36840,
                         "passengers": 31737
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 121,
+                        "seats": 37147,
+                        "passengers": 33350
                     },
                     {
                         "year": 2026,
@@ -105074,6 +107479,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 41040,
                         "passengers": 36417
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 119,
+                        "seats": 40698,
+                        "passengers": 38700
                     },
                     {
                         "year": 2026,
@@ -105478,6 +107890,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 122,
+                        "seats": 28114,
+                        "passengers": 24239
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 27245,
@@ -105876,6 +108295,13 @@ const flightData = {
                         "flights": 120,
                         "seats": 28824,
                         "passengers": 23723
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 124,
+                        "seats": 29747,
+                        "passengers": 26420
                     },
                     {
                         "year": 2026,
@@ -106282,6 +108708,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4416,
+                        "passengers": 3129
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4784,
@@ -106645,6 +109078,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 10176,
                         "passengers": 8689
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 9860,
+                        "passengers": 8952
                     },
                     {
                         "year": 2026,
@@ -107041,6 +109481,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4784,
+                        "passengers": 3415
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4784,
@@ -107351,6 +109798,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 82,
+                        "seats": 14828,
+                        "passengers": 11915
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 88,
                         "seats": 14984,
@@ -107653,6 +110107,13 @@ const flightData = {
                         "flights": 52,
                         "seats": 15964,
                         "passengers": 14050
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 52,
+                        "seats": 15964,
+                        "passengers": 13550
                     },
                     {
                         "year": 2026,
@@ -107959,6 +110420,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 52,
+                        "seats": 17784,
+                        "passengers": 14335
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 54,
                         "seats": 18468,
@@ -108259,6 +110727,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 10523,
                         "passengers": 7015
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 36,
+                        "seats": 10885,
+                        "passengers": 8808
                     },
                     {
                         "year": 2026,
@@ -108565,6 +111040,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4128,
+                        "passengers": 3436
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4576,
@@ -108868,6 +111350,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 17256,
+                        "passengers": 15258
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 18312,
@@ -109128,6 +111617,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4186,
                         "passengers": 2959
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 26,
+                        "seats": 4150,
+                        "passengers": 3211
                     },
                     {
                         "year": 2026,
@@ -109417,6 +111913,13 @@ const flightData = {
                         "flights": 52,
                         "seats": 8660,
                         "passengers": 7418
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 50,
+                        "seats": 8544,
+                        "passengers": 7491
                     },
                     {
                         "year": 2026,
@@ -109981,6 +112484,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 10,
+                        "seats": 1670,
+                        "passengers": 1321
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 10,
                         "seats": 1670,
@@ -110242,6 +112752,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4320,
+                        "passengers": 3837
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4680,
@@ -110488,6 +113005,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 2868,
+                        "passengers": 2463
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 2886,
@@ -110553,6 +113077,13 @@ const flightData = {
             },
             "成都雙流": {
                 "四川": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 9504,
+                        "passengers": 8139
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -110859,6 +113390,13 @@ const flightData = {
                         "flights": 174,
                         "seats": 39948,
                         "passengers": 30898
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 198,
+                        "seats": 43288,
+                        "passengers": 33290
                     },
                     {
                         "year": 2026,
@@ -111274,6 +113812,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 9480,
+                        "passengers": 7278
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 9796,
@@ -111588,6 +114133,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 7820,
                         "passengers": 5973
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 38,
+                        "seats": 8740,
+                        "passengers": 7069
                     },
                     {
                         "year": 2026,
@@ -111907,6 +114459,13 @@ const flightData = {
                         "flights": 34,
                         "seats": 7740,
                         "passengers": 6727
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 13340,
+                        "passengers": 11597
                     },
                     {
                         "year": 2026,
@@ -112336,6 +114895,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 72,
+                        "seats": 13536,
+                        "passengers": 10831
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 11656,
@@ -112496,6 +115062,13 @@ const flightData = {
                         "flights": 56,
                         "seats": 9516,
                         "passengers": 6450
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 87,
+                        "seats": 14950,
+                        "passengers": 11833
                     },
                     {
                         "year": 2026,
@@ -112762,6 +115335,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1356,
+                        "passengers": 1033
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 10,
                         "seats": 1480,
@@ -112996,6 +115576,13 @@ const flightData = {
                         "flights": 26,
                         "seats": 4888,
                         "passengers": 3565
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 3008,
+                        "passengers": 2143
                     },
                     {
                         "year": 2026,
@@ -113404,6 +115991,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 3680,
+                        "passengers": 2883
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 14,
                         "seats": 3220,
@@ -113662,6 +116256,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 7896,
+                        "passengers": 6348
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 44,
                         "seats": 8272,
@@ -113820,6 +116421,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 114,
+                        "seats": 21432,
+                        "passengers": 18071
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 124,
                         "seats": 23312,
@@ -113882,7 +116490,44 @@ const flightData = {
                         "passengers": 18860
                     }
                 ],
+                "中華": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 82,
+                        "seats": 19270,
+                        "passengers": 13309
+                    },
+                    {
+                        "year": 2026,
+                        "month": 7,
+                        "flights": 22,
+                        "seats": 5170,
+                        "passengers": 3911
+                    },
+                    {
+                        "year": 2026,
+                        "month": 8,
+                        "flights": 92,
+                        "seats": 21620,
+                        "passengers": 16821
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 94,
+                        "seats": 22090,
+                        "passengers": 13291
+                    }
+                ],
                 "台灣虎航": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2590
+                    },
                     {
                         "year": 2026,
                         "month": 3,
@@ -113931,29 +116576,6 @@ const flightData = {
                         "flights": 17,
                         "seats": 3060,
                         "passengers": 2953
-                    }
-                ],
-                "中華": [
-                    {
-                        "year": 2026,
-                        "month": 7,
-                        "flights": 22,
-                        "seats": 5170,
-                        "passengers": 3911
-                    },
-                    {
-                        "year": 2026,
-                        "month": 8,
-                        "flights": 92,
-                        "seats": 21620,
-                        "passengers": 16821
-                    },
-                    {
-                        "year": 2026,
-                        "month": 9,
-                        "flights": 94,
-                        "seats": 22090,
-                        "passengers": 13291
                     }
                 ]
             },
@@ -114028,6 +116650,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 24,
+                        "seats": 4320,
+                        "passengers": 3911
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 26,
                         "seats": 4680,
@@ -114089,6 +116718,15 @@ const flightData = {
                         "seats": 4680,
                         "passengers": 4069
                     }
+                ],
+                "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1504,
+                        "passengers": 1297
+                    }
                 ]
             },
             "東京成田": {
@@ -114109,6 +116747,13 @@ const flightData = {
                     }
                 ],
                 "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10904,
+                        "passengers": 9864
+                    },
                     {
                         "year": 2026,
                         "month": 3,
@@ -114248,6 +116893,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 14,
+                        "seats": 1960,
+                        "passengers": 1549
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 62,
                         "seats": 9556,
@@ -114324,6 +116976,13 @@ const flightData = {
                         "flights": 58,
                         "seats": 10962,
                         "passengers": 8829
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 120,
+                        "seats": 22680,
+                        "passengers": 20562
                     },
                     {
                         "year": 2026,
@@ -114520,6 +117179,13 @@ const flightData = {
                 "泰瑞(德威)": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 60,
+                        "seats": 11340,
+                        "passengers": 9869
+                    },
+                    {
+                        "year": 2026,
                         "month": 7,
                         "flights": 62,
                         "seats": 11718,
@@ -114605,6 +117271,13 @@ const flightData = {
                         "flights": 60,
                         "seats": 11280,
                         "passengers": 9561
+                    },
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 58,
+                        "seats": 10904,
+                        "passengers": 9905
                     },
                     {
                         "year": 2026,
@@ -114724,6 +117397,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2709
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3240,
@@ -114787,8 +117467,123 @@ const flightData = {
                     }
                 ]
             },
+            "札幌": {
+                "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 48,
+                        "seats": 9024,
+                        "passengers": 6321
+                    }
+                ]
+            },
+            "釜山": {
+                "真航": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 42,
+                        "seats": 7938,
+                        "passengers": 6394
+                    },
+                    {
+                        "year": 2026,
+                        "month": 3,
+                        "flights": 4,
+                        "seats": 756,
+                        "passengers": 579
+                    },
+                    {
+                        "year": 2026,
+                        "month": 4,
+                        "flights": 42,
+                        "seats": 7560,
+                        "passengers": 6404
+                    },
+                    {
+                        "year": 2026,
+                        "month": 5,
+                        "flights": 44,
+                        "seats": 7938,
+                        "passengers": 6628
+                    },
+                    {
+                        "year": 2026,
+                        "month": 6,
+                        "flights": 44,
+                        "seats": 8316,
+                        "passengers": 7337
+                    },
+                    {
+                        "year": 2026,
+                        "month": 7,
+                        "flights": 44,
+                        "seats": 8316,
+                        "passengers": 7470
+                    },
+                    {
+                        "year": 2026,
+                        "month": 8,
+                        "flights": 44,
+                        "seats": 8316,
+                        "passengers": 7246
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 44,
+                        "seats": 8316,
+                        "passengers": 6182
+                    }
+                ],
+                "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 52,
+                        "seats": 9776,
+                        "passengers": 8168
+                    },
+                    {
+                        "year": 2026,
+                        "month": 6,
+                        "flights": 26,
+                        "seats": 4888,
+                        "passengers": 4523
+                    },
+                    {
+                        "year": 2026,
+                        "month": 7,
+                        "flights": 34,
+                        "seats": 6392,
+                        "passengers": 5938
+                    },
+                    {
+                        "year": 2026,
+                        "month": 8,
+                        "flights": 44,
+                        "seats": 8272,
+                        "passengers": 7406
+                    },
+                    {
+                        "year": 2026,
+                        "month": 9,
+                        "flights": 60,
+                        "seats": 11280,
+                        "passengers": 9186
+                    }
+                ]
+            },
             "下地島": {
                 "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 28,
+                        "seats": 5264,
+                        "passengers": 4336
+                    },
                     {
                         "year": 2026,
                         "month": 2,
@@ -114847,91 +117642,15 @@ const flightData = {
                     }
                 ]
             },
-            "釜山": {
-                "真航": [
-                    {
-                        "year": 2026,
-                        "month": 3,
-                        "flights": 4,
-                        "seats": 756,
-                        "passengers": 579
-                    },
-                    {
-                        "year": 2026,
-                        "month": 4,
-                        "flights": 42,
-                        "seats": 7560,
-                        "passengers": 6404
-                    },
-                    {
-                        "year": 2026,
-                        "month": 5,
-                        "flights": 44,
-                        "seats": 7938,
-                        "passengers": 6628
-                    },
-                    {
-                        "year": 2026,
-                        "month": 6,
-                        "flights": 44,
-                        "seats": 8316,
-                        "passengers": 7337
-                    },
-                    {
-                        "year": 2026,
-                        "month": 7,
-                        "flights": 44,
-                        "seats": 8316,
-                        "passengers": 7470
-                    },
-                    {
-                        "year": 2026,
-                        "month": 8,
-                        "flights": 44,
-                        "seats": 8316,
-                        "passengers": 7246
-                    },
-                    {
-                        "year": 2026,
-                        "month": 9,
-                        "flights": 44,
-                        "seats": 8316,
-                        "passengers": 6182
-                    }
-                ],
-                "星宇": [
-                    {
-                        "year": 2026,
-                        "month": 6,
-                        "flights": 26,
-                        "seats": 4888,
-                        "passengers": 4523
-                    },
-                    {
-                        "year": 2026,
-                        "month": 7,
-                        "flights": 34,
-                        "seats": 6392,
-                        "passengers": 5938
-                    },
-                    {
-                        "year": 2026,
-                        "month": 8,
-                        "flights": 44,
-                        "seats": 8272,
-                        "passengers": 7406
-                    },
-                    {
-                        "year": 2026,
-                        "month": 9,
-                        "flights": 60,
-                        "seats": 11280,
-                        "passengers": 9186
-                    }
-                ]
-            },
             "熊本": {
                 "星宇": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 32,
+                        "seats": 6016,
+                        "passengers": 5115
+                    },
                     {
                         "year": 2026,
                         "month": 3,
@@ -114987,6 +117706,13 @@ const flightData = {
                 "山東": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 10,
+                        "seats": 1760,
+                        "passengers": 1481
+                    },
+                    {
+                        "year": 2026,
                         "month": 7,
                         "flights": 4,
                         "seats": 704,
@@ -115012,6 +117738,13 @@ const flightData = {
                 "長龍": [
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 18,
+                        "seats": 3132,
+                        "passengers": 2444
+                    },
+                    {
+                        "year": 2026,
                         "month": 7,
                         "flights": 2,
                         "seats": 348,
@@ -115033,6 +117766,13 @@ const flightData = {
                     }
                 ],
                 "東方": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2804,
+                        "passengers": 2584
+                    },
                     {
                         "year": 2026,
                         "month": 7,
@@ -115136,6 +117876,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 17,
+                        "seats": 3060,
+                        "passengers": 2990
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3240,
@@ -115210,6 +117957,13 @@ const flightData = {
                     },
                     {
                         "year": 2026,
+                        "month": 10,
+                        "flights": 16,
+                        "seats": 2880,
+                        "passengers": 2157
+                    },
+                    {
+                        "year": 2026,
                         "month": 1,
                         "flights": 18,
                         "seats": 3240,
@@ -115270,6 +118024,17 @@ const flightData = {
                         "flights": 18,
                         "seats": 3240,
                         "passengers": 2644
+                    }
+                ]
+            },
+            "河內": {
+                "越捷": [
+                    {
+                        "year": 2026,
+                        "month": 10,
+                        "flights": 8,
+                        "seats": 1440,
+                        "passengers": 869
                     }
                 ]
             }
