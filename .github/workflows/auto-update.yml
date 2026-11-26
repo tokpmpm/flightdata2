@@ -8,6 +8,9 @@ on:
 
 permissions:
   contents: write
+  # Read-only: poll the deployment status Vercel reports back to GitHub for the staging commit.
+  deployments: read
+  statuses: read
 
 concurrency:
   group: flightdata-monthly-update
@@ -18,6 +21,12 @@ env:
   STAGING_URL: https://flightdata2-staging-git-staging-tokpmpms-projects.vercel.app
   PRODUCTION_URL: https://flightdata2.meshthings.com
   CAA_SOURCE_URL: https://www.caa.gov.tw/article.aspx?a=1752&lang=1
+  # Vercel project "flightdata2-staging" deploys the staging branch as a Preview deployment.
+  VERCEL_ENVIRONMENT: Preview
+  VERCEL_WAIT_TIMEOUT_SECONDS: '300'
+  VERCEL_POLL_INTERVAL_SECONDS: '10'
+  VERIFY_FRESHNESS_TIMEOUT_SECONDS: '180'
+  VERIFY_POLL_INTERVAL_SECONDS: '10'
 
 jobs:
   check-weekday:
@@ -157,6 +166,47 @@ jobs:
             echo "has_pending_release=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Wait for pending staging Vercel deployment READY
+        id: pending_vercel
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: ${{ steps.state.outputs.pending_sha }}
+        run: |
+          echo "STAGE=wait for Vercel staging deployment" >> "$GITHUB_ENV"
+          node scripts/wait_for_vercel_deployment.js
+
+      - name: Verify pending staging site
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release == 'true'
+        env:
+          BASE_URL: ${{ env.STAGING_URL }}
+          EXPECTED_YEAR: ${{ steps.state.outputs.pending_year }}
+          EXPECTED_MONTH: ${{ steps.state.outputs.pending_month }}
+          EXPECTED_SHA: ${{ steps.state.outputs.pending_sha }}
+          DEPLOYMENT_URL: ${{ steps.pending_vercel.outputs.deployment_url }}
+          EXPECTED_METADATA_FILE: data/release_metadata.json
+        run: |
+          echo "STAGE=verify staging website" >> "$GITHUB_ENV"
+          # Compare against the data committed in the pending staging commit, never main's files.
+          if ! [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error title=Invalid pending staging SHA::'$EXPECTED_SHA' is not a full 40-char SHA"
+            exit 1
+          fi
+          WT="$RUNNER_TEMP/staging-release"
+          trap 'git worktree remove --force "$WT" >/dev/null 2>&1 || true' EXIT
+          if ! git cat-file -e "${EXPECTED_SHA}^{commit}" 2>/dev/null; then
+            # Shallow or partial checkout: fetch the exact commit.
+            git fetch --no-tags origin "$EXPECTED_SHA"
+          fi
+          git worktree add --detach "$WT" "$EXPECTED_SHA"
+          actual_sha=$(git -C "$WT" rev-parse HEAD)
+          if [ "$actual_sha" != "$EXPECTED_SHA" ]; then
+            echo "::error title=Staging worktree mismatch::worktree HEAD $actual_sha != expected $EXPECTED_SHA"
+            exit 1
+          fi
+          echo "Verifying against staging worktree at $actual_sha"
+          RELEASE_ROOT="$WT" node scripts/verify_remote.js
+
       - name: Notify release still waiting for review
         if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release == 'true'
         env:
@@ -224,12 +274,25 @@ jobs:
           release_sha=$(git rev-parse HEAD)
           echo "release_sha=$release_sha" >> "$GITHUB_OUTPUT"
 
+      - name: Wait for Vercel staging deployment READY
+        id: vercel
+        if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: ${{ steps.publish.outputs.release_sha }}
+        run: |
+          echo "STAGE=wait for Vercel staging deployment" >> "$GITHUB_ENV"
+          node scripts/wait_for_vercel_deployment.js
+
       - name: Verify deployed staging site
         if: steps.candidate.outputs.has_changes == 'true' && steps.pending.outputs.has_pending_release != 'true'
         env:
           BASE_URL: ${{ env.STAGING_URL }}
           EXPECTED_YEAR: ${{ steps.candidate.outputs.year }}
           EXPECTED_MONTH: ${{ steps.candidate.outputs.month }}
+          EXPECTED_SHA: ${{ steps.publish.outputs.release_sha }}
+          DEPLOYMENT_URL: ${{ steps.vercel.outputs.deployment_url }}
+          EXPECTED_METADATA_FILE: data/release_metadata.json
         run: |
           echo "STAGE=verify staging website" >> "$GITHUB_ENV"
           node scripts/verify_remote.js
@@ -255,4 +318,7 @@ jobs:
           PRODUCTION_MONTH: ${{ steps.state.outputs.production_month }}
           ERROR_STAGE: ${{ env.STAGE }}
           ERROR_SUMMARY: One or more automation steps failed. Production was not changed.
+          RELEASE_COMMIT: ${{ steps.publish.outputs.release_sha || steps.state.outputs.pending_sha }}
+          # FAILURE_TYPE / FAILURE_DETAIL / DEPLOYMENT_STATE / DEPLOYMENT_URL /
+          # EXPECTED_SITE_MONTH / ACTUAL_SITE_MONTH are exported via $GITHUB_ENV by the wait/verify scripts.
         run: python scripts/send_update_email.py
