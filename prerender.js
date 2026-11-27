@@ -8,6 +8,9 @@ const fs = require('fs');
 const path = require('path');
 const { calculateInsightsData, generateStaticInsightsHTML } = require('./js/insights.js');
 const { generateMonthlyReport } = require('./scripts/generate_monthly_report.js');
+const { loadDestinationMap, computeRouteInsights, renderRouteRankingsSection, routeFaq, routeItemLists, shortAirport } = require('./scripts/route_insights.js');
+const { generateHolidayPreviews } = require('./scripts/generate_holiday_preview.js');
+const { GA_SNIPPET, ensureGa } = require('./scripts/ga.js');
 
 const SITE_URL = 'https://flightdata2.meshthings.com';
 
@@ -202,7 +205,7 @@ function renderStaticTable(filteredData) {
 /**
  * Generate rich JSON-LD structure schemas (Dataset, FAQPage, BreadcrumbList, DataCatalog)
  */
-function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, latestYear, latestMonth, allRecords = []) {
+function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, latestYear, latestMonth, allRecords = [], routeInfo = null) {
     const latestYM = `${latestYear}-${String(latestMonth).padStart(2, '0')}`;
     const startYM = `${DEFAULT_START_YEAR}-${String(DEFAULT_START_MONTH).padStart(2, '0')}`;
 
@@ -352,6 +355,17 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
         });
     }
 
+    // Latest-month route rankings (see scripts/route_insights.js)
+    if (routeInfo && routeInfo.data) {
+        for (const f of routeFaq(routeInfo.data, routeInfo.subject)) {
+            faqSchema.mainEntity.push({
+                "@type": "Question",
+                "name": f.q,
+                "acceptedAnswer": { "@type": "Answer", "text": f.a }
+            });
+        }
+    }
+
     const schemas = [
         datasetSchema,
         {
@@ -372,6 +386,10 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
 
     if (breadcrumbList.itemListElement.length > 1) {
         schemas.push(breadcrumbList);
+    }
+
+    if (routeInfo && routeInfo.data) {
+        schemas.push(...routeItemLists(routeInfo.data, routeInfo.subject, canonicalUrl));
     }
 
     // 4. DataCatalog (Only on Homepage)
@@ -488,6 +506,7 @@ function renderInsightsIndex(pages) {
 <title>${title}</title>
 <meta name="description" content="${desc}"><meta name="robots" content="index,follow"><link rel="canonical" href="${canonical}">
 <meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:type" content="website"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${SITE_URL}/og-card.png"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image">
+${GA_SNIPPET}
 ${jsonLd.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 <style>${css}</style></head><body>
 <header class="nav"><nav class="navin" aria-label="主要導航"><a class="brand" href="/"><span class="logo">✈</span><span>台灣航空數據月報</span></a><div class="navlinks"><a href="/">首頁</a><a href="/about/">方法論</a><a href="/insights/" aria-current="page">全部月報</a></div></nav></header>
@@ -576,8 +595,15 @@ function build() {
 
     console.log(`Global date range for pre-rendering: 2024-01 to ${latestRecord.yearMonth}`);
 
+    const destinationMap = loadDestinationMap(__dirname);
+    const buildDate = new Date().toISOString().split('T')[0];
+
+    // Holiday previews (e.g. /insights/2027-cny-japan-flights/), driven by data/holiday_previews.json.
+    const latestReportPath = `/insights/${globalLatestYear}-${String(globalLatestMonth).padStart(2, '0')}-taiwan-aviation-monthly-report/`;
+    const holidayPreviews = generateHolidayPreviews(allRecords, { root: __dirname, siteUrl: SITE_URL, destinationMap, buildDate, latestReportPath });
+
     // Generate the latest monthly report from the exact same dataset used by all pages.
-    const monthlyReport = generateMonthlyReport(allRecords, { root: __dirname, siteUrl: SITE_URL });
+    const monthlyReport = generateMonthlyReport(allRecords, { root: __dirname, siteUrl: SITE_URL, featureLinks: holidayPreviews });
     const monthlyReportPath = monthlyReport.path;
     templateHtml = templateHtml.replace(
         '<!-- LATEST_MONTHLY_REPORT_LINK -->',
@@ -608,6 +634,24 @@ function build() {
             const currentVal = r.year * 100 + r.month;
             return currentVal >= startVal && currentVal <= endVal;
         });
+
+        // Latest-month route rankings for this page's scope
+        const routeScope = targetAirport ? 'airport' : (targetAirline ? 'airline' : 'all');
+        const routeSubject = targetAirport ? `${shortAirport(targetAirport)}機場` : (targetAirline ? (airlineFullNames[targetAirline] || targetAirline) : '全台');
+        const routeData = computeRouteInsights(filteredRecords, { scope: routeScope, destinationMap });
+        const routeExtraLinks = routeScope === 'all'
+            ? Object.keys(airportCodes).map(ap => ({ href: `/airport/${airportCodes[ap]}/#route-rankings`, text: `${shortAirport(ap)}機場航線排行` }))
+            : [{ href: '/#route-rankings', text: '全台航線排行' }, { href: monthlyReport.path, text: `${monthlyReport.month} 月月報` }];
+        const routeSectionHtml = renderRouteRankingsSection(routeData, {
+            subject: routeSubject, extraLinks: routeExtraLinks,
+            pagePath: relativeUrlPath, pageAirport: targetAirport || ''
+        });
+        // Holiday entry sits right under the search summary (above the filters), not inside the
+        // rankings, which now live below the data table.
+        const holidayEntryHtml = routeScope === 'all'
+            ? holidayPreviews.filter(h => h.active)
+                .map(h => `<p class="holiday-entry">🧧 連假預告：<a href="${h.path}">${escapeHtmlAttr(h.title)}</a></p>`).join('\n')
+            : '';
 
         // Calculate insights & get static HTML
         const insightsData = calculateInsightsData(filteredRecords, allRecords);
@@ -644,6 +688,8 @@ function build() {
 
         html = html.replace('<!-- ADSENSE_INSIGHTS_SLOT -->', insightsAdHtml);
         html = html.replace('<!-- ADSENSE_TABLE_SLOT -->', tableAdHtml);
+        html = html.replace('<!-- ROUTE_RANKINGS_SECTION -->', routeSectionHtml);
+        html = html.replace('<!-- HOLIDAY_ENTRY -->', holidayEntryHtml);
 
         // Inject page metadata
         html = html.replace(/<title>.*?<\/title>/, `<title>${pageTitle}</title>`);
@@ -668,7 +714,7 @@ function build() {
         html = html.replace('</head>', `${ogTags}\n</head>`);
 
         // Inject dynamic JSON-LD schemas
-        const jsonLdHtml = generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, pageLatestYear, pageLatestMonth, allRecords);
+        const jsonLdHtml = generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canonicalUrl, insightsData, pageLatestYear, pageLatestMonth, allRecords, { data: routeData, subject: routeSubject });
         html = html.replace('</head>', `${jsonLdHtml}\n</head>`);
 
         // Inject breadcrumbs if not homepage
@@ -788,8 +834,19 @@ function build() {
     }
 
     // 4b. Collect all insights pages (monthly reports + feature articles) and build /insights/ index
-    const now = new Date().toISOString().split('T')[0];
-    const insightPages = collectInsightPages(path.join(__dirname, 'insights'), now);
+    const now = buildDate;
+    const insightsRoot = path.join(__dirname, 'insights');
+    for (const slug of fs.readdirSync(insightsRoot)) {
+        const file = path.join(insightsRoot, slug, 'index.html');
+        if (!fs.existsSync(file)) continue;
+        const before = fs.readFileSync(file, 'utf8');
+        const after = ensureGa(before);
+        if (after !== before) {
+            fs.writeFileSync(file, after, 'utf8');
+            console.log(`Injected GA4 into insights/${slug}/index.html`);
+        }
+    }
+    const insightPages = collectInsightPages(insightsRoot, now);
     fs.writeFileSync(path.join(__dirname, 'insights', 'index.html'), renderInsightsIndex(insightPages), 'utf8');
     console.log(`Generated insights/index.html (${insightPages.length} pages)`);
 
@@ -918,7 +975,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 - 首頁 (全台機場統計): ${SITE_URL}/
 - ${monthlyReport.year} 年 ${monthlyReport.month} 月台灣航空月報: ${SITE_URL}${monthlyReportPath}
 - 全部月報與市場洞察列表: ${SITE_URL}/insights/
-- 桃園國際機場 (TPE): ${SITE_URL}/airport/tpe/
+${holidayPreviews.map(h => `- ${h.title}: ${SITE_URL}${h.path}\n`).join('')}- 桃園國際機場 (TPE): ${SITE_URL}/airport/tpe/
 - 高雄國際機場 (KHH): ${SITE_URL}/airport/khh/
 - 臺北松山機場 (TSA): ${SITE_URL}/airport/tsa/
 - 臺中清泉崗機場 (RMQ): ${SITE_URL}/airport/rmq/
