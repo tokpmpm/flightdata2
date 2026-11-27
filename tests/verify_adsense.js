@@ -246,6 +246,44 @@ if (fs.existsSync(sitemapPath)) {
     assert(content.includes('<loc>https://flightdata2.meshthings.com/privacy/</loc>'), 'Sitemap contains privacy policy URL');
 }
 
+// 9. initAdSense() must skip zero-width / too-narrow slots (avoids "No slot size for availableWidth=0")
+console.log('--- Validating initAdSense() slot-width guard ---');
+{
+    const vm = require('vm');
+    const appJs = fs.readFileSync(path.join(__dirname, '..', 'js', 'app.js'), 'utf8');
+    const start = appJs.indexOf('const ADSENSE_MIN_SLOT_WIDTH');
+    const fnStart = appJs.indexOf('function initAdSense()');
+    assert(start !== -1 && fnStart !== -1, 'js/app.js defines ADSENSE_MIN_SLOT_WIDTH and initAdSense()');
+    if (start !== -1 && fnStart !== -1) {
+        // Extract from the constant through the end of initAdSense (matching braces).
+        let i = appJs.indexOf('{', fnStart), depth = 0;
+        for (; i < appJs.length; i++) {
+            if (appJs[i] === '{') depth++;
+            else if (appJs[i] === '}' && --depth === 0) break;
+        }
+        const src = appJs.slice(start, i + 1);
+        const makeSlot = (w) => ({ offsetWidth: w, attrs: {}, getBoundingClientRect() { return { width: w }; },
+            setAttribute(k, v) { this.attrs[k] = v; } });
+        const slots = [makeSlot(0), makeSlot(77), makeSlot(728)];
+        const listeners = [];
+        const sandbox = {
+            console: { log() {}, warn() {} },
+            setTimeout, clearTimeout,
+            document: { querySelectorAll: () => slots.filter(s => s.attrs['data-ad-initialized'] !== 'true') },
+            window: { adsbygoogle: [], addEventListener: (type) => listeners.push(type) },
+        };
+        vm.createContext(sandbox);
+        vm.runInContext(src + '\ninitAdSense();', sandbox);
+        assert(sandbox.window.adsbygoogle.length === 1, `initAdSense pushes only visible slots (pushed ${sandbox.window.adsbygoogle.length}, expected 1)`);
+        assert(slots[0].attrs['data-ad-initialized'] === undefined && slots[1].attrs['data-ad-initialized'] === undefined, 'Zero-width / 77px slots are NOT marked initialized (can retry later)');
+        assert(slots[2].attrs['data-ad-initialized'] === 'true', 'Visible 728px slot is marked initialized');
+        assert(listeners.includes('resize'), 'Deferred slots register a resize retry');
+        slots[0].offsetWidth = 320;
+        vm.runInContext('initAdSense();', sandbox);
+        assert(sandbox.window.adsbygoogle.length === 2 && slots[0].attrs['data-ad-initialized'] === 'true', 'Previously hidden slot initializes once it has width');
+    }
+}
+
 console.log('================================================');
 if (errorCount > 0) {
     console.error(`❌ AdSense & Privacy Verification failed with ${errorCount} error(s).`);

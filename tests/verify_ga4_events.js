@@ -1035,7 +1035,7 @@ async function runGA4Tests() {
                 'airline/cal/index.html'
             ];
 
-            const expectedScriptTag = '/js/app.js?v=20260803-adsense-2';
+            const expectedScriptTag = '/js/app.js?v=20261126-adsense-3';
             let allVersionsMatch = true;
             const versionDetails = [];
 

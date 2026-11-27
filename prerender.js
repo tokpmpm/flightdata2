@@ -434,6 +434,72 @@ function generateJsonLd(targetAirport, targetAirline, pageTitle, pageDesc, canon
     return schemas.map(s => `<script type="application/ld+json">${JSON.stringify(s, null, 2)}</script>`).join('\n');
 }
 
+function escapeHtmlAttr(v) {
+    return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/**
+ * Scan insights/<slug>/index.html (monthly reports + feature articles).
+ * lastmod = the page's own JSON-LD dateModified (fallback: datePublished, footer build <time>, then build date),
+ * so untouched older reports keep their real modification date instead of "today".
+ */
+function collectInsightPages(insightsDir, fallbackDate) {
+    if (!fs.existsSync(insightsDir)) return [];
+    const pages = [];
+    for (const slug of fs.readdirSync(insightsDir)) {
+        const file = path.join(insightsDir, slug, 'index.html');
+        if (!fs.statSync(path.join(insightsDir, slug)).isDirectory() || !fs.existsSync(file)) continue;
+        const html = fs.readFileSync(file, 'utf8');
+        const textOf = (re) => { const m = html.match(re); return m ? m[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : ''; };
+        const dateOf = (re) => { const m = html.match(re); return m ? m[1] : ''; };
+        const monthly = slug.match(/^(\d{4})-(\d{2})-taiwan-aviation-monthly-report$/);
+        const datePublished = dateOf(/"datePublished":\s*"(\d{4}-\d{2}-\d{2})/);
+        const lastmod = dateOf(/"dateModified":\s*"(\d{4}-\d{2}-\d{2})/) || datePublished
+            || dateOf(/<time datetime="(\d{4}-\d{2}-\d{2})">/) || fallbackDate;
+        pages.push({
+            slug,
+            path: `/insights/${slug}/`,
+            type: monthly ? 'monthly' : 'feature',
+            sortKey: monthly ? `${monthly[1]}-${monthly[2]}` : (datePublished || lastmod).slice(0, 7),
+            title: textOf(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || textOf(/<title>([\s\S]*?)<\/title>/i) || slug,
+            description: (html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '',
+            lastmod
+        });
+    }
+    return pages.sort((a, b) => b.sortKey.localeCompare(a.sortKey) || b.slug.localeCompare(a.slug));
+}
+
+function renderInsightsIndex(pages) {
+    const canonical = `${SITE_URL}/insights/`;
+    const title = '台灣航空月報與市場洞察總覽｜各期月報列表';
+    const desc = '依月份整理台灣航空數據月報與市場洞察專題：航班、座位、旅客、載客率與主要機場、航空公司趨勢，資料來源為交通部民用航空局。';
+    const item = (p) => `<li><a href="${p.path}">${escapeHtmlAttr(p.title)}</a>${p.description ? `<p>${p.description}</p>` : ''}<small>更新：<time datetime="${p.lastmod}">${p.lastmod}</time></small></li>`;
+    const monthly = pages.filter(p => p.type === 'monthly');
+    const features = pages.filter(p => p.type === 'feature');
+    const jsonLd = [
+        { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, description: desc, url: canonical, inLanguage: 'zh-Hant-TW',
+          mainEntity: { '@type': 'ItemList', itemListElement: pages.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE_URL + p.path, name: p.title })) } },
+        { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+            { '@type': 'ListItem', position: 1, name: '首頁', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: '月報與洞察', item: canonical }] }
+    ];
+    const css = ':root{--bg:#f6ecd8;--paper:#fffaf1;--line:#dec7a2;--text:#4a3427;--muted:#7c6654;--accent:#c67c4d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#3b2b20;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;line-height:1.7}a{color:#8e4f2c}.wrap{max-width:880px;margin:auto;padding:0 20px}.nav{background:#fbf5ea;border-bottom:1px solid var(--line)}.navin{max-width:880px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--text);text-decoration:none}.logo{width:40px;height:40px;border-radius:13px;background:var(--accent);color:#fff;display:grid;place-items:center}.navlinks{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;font-weight:800}.navlinks a{text-decoration:none}h1{font-size:clamp(30px,5vw,44px);line-height:1.15;margin:40px 0 10px}.lead{color:var(--muted)}h2{margin-top:32px}.list{list-style:none;padding:0;display:grid;gap:12px}.list li{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px}.list a{font-size:19px;font-weight:900;text-decoration:none}.list p{margin:6px 0;font-size:14px}.list small{font-size:12px;color:var(--muted)}.foot{margin-top:44px;padding:20px 0;border-top:1px solid #d5bc95;font-size:12px;color:#77604e}';
+    return `<!doctype html><html lang="zh-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<meta name="description" content="${desc}"><meta name="robots" content="index,follow"><link rel="canonical" href="${canonical}">
+<meta property="og:title" content="${title}"><meta property="og:description" content="${desc}"><meta property="og:type" content="website"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${SITE_URL}/og-card.png"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image">
+${jsonLd.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
+<style>${css}</style></head><body>
+<header class="nav"><nav class="navin" aria-label="主要導航"><a class="brand" href="/"><span class="logo">✈</span><span>台灣航空數據月報</span></a><div class="navlinks"><a href="/">首頁</a><a href="/about/">方法論</a><a href="/insights/" aria-current="page">全部月報</a></div></nav></header>
+<main class="wrap"><h1>台灣航空月報與市場洞察</h1><p class="lead">依資料月份由新到舊排列。每期月報整理當月航班、座位、旅客與載客率，並與去年同期比較。</p>
+<section aria-labelledby="monthly-title"><h2 id="monthly-title">各期月報</h2><ul class="list">${monthly.map(item).join('')}</ul></section>
+${features.length ? `<section aria-labelledby="feature-title"><h2 id="feature-title">專題分析</h2><ul class="list">${features.map(item).join('')}</ul></section>` : ''}
+</main>
+<footer class="wrap foot"><p>資料來源：<a href="https://www.caa.gov.tw/article.aspx?a=1752&amp;lang=1" rel="nofollow">交通部民用航空局</a> ｜ <a href="/about/">方法論</a> ｜ <a href="/privacy/">隱私權政策</a></p></footer>
+</body></html>
+`;
+}
+
 /**
  * Main build pipeline
  */
@@ -515,7 +581,8 @@ function build() {
     const monthlyReportPath = monthlyReport.path;
     templateHtml = templateHtml.replace(
         '<!-- LATEST_MONTHLY_REPORT_LINK -->',
-        `<li><a href="${monthlyReportPath}" class="nav-link">📰 ${monthlyReport.month} 月月報</a></li>`
+        `<li><a href="${monthlyReportPath}" class="nav-link">📰 ${monthlyReport.month} 月月報</a></li>
+                        <li><a href="/insights/" class="nav-link">🗂️ 全部月報</a></li>`
     );
 
     // Define function to generate page
@@ -720,9 +787,14 @@ function build() {
         );
     }
 
+    // 4b. Collect all insights pages (monthly reports + feature articles) and build /insights/ index
+    const now = new Date().toISOString().split('T')[0];
+    const insightPages = collectInsightPages(path.join(__dirname, 'insights'), now);
+    fs.writeFileSync(path.join(__dirname, 'insights', 'index.html'), renderInsightsIndex(insightPages), 'utf8');
+    console.log(`Generated insights/index.html (${insightPages.length} pages)`);
+
     // 5. Generate sitemap.xml
     console.log('Generating sitemap.xml...');
-    const now = new Date().toISOString().split('T')[0];
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -732,12 +804,18 @@ function build() {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${SITE_URL}${monthlyReportPath}</loc>
-    <lastmod>${now}</lastmod>
+    <loc>${SITE_URL}/insights/</loc>
+    <lastmod>${insightPages.reduce((m, p) => p.lastmod > m ? p.lastmod : m, '') || now}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  <url>
+${insightPages.map(p => `  <url>
+    <loc>${SITE_URL}${p.path}</loc>
+    <lastmod>${p.lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${p.path === monthlyReportPath ? '0.8' : '0.6'}</priority>
+  </url>
+`).join('')}  <url>
     <loc>${SITE_URL}/about/</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
@@ -839,6 +917,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 ## 主要頁面與資料集 (Dataset URL)
 - 首頁 (全台機場統計): ${SITE_URL}/
 - ${monthlyReport.year} 年 ${monthlyReport.month} 月台灣航空月報: ${SITE_URL}${monthlyReportPath}
+- 全部月報與市場洞察列表: ${SITE_URL}/insights/
 - 桃園國際機場 (TPE): ${SITE_URL}/airport/tpe/
 - 高雄國際機場 (KHH): ${SITE_URL}/airport/khh/
 - 臺北松山機場 (TSA): ${SITE_URL}/airport/tsa/

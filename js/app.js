@@ -1319,12 +1319,23 @@ function triggerInlineFlightAnimation() {
 /**
  * Safe Google AdSense slots initialization
  */
+const ADSENSE_MIN_SLOT_WIDTH = 120;
+let adSenseResizeRetryBound = false;
+
 function initAdSense() {
     const slots = document.querySelectorAll('ins.adsbygoogle:not([data-ad-initialized="true"])');
     if (slots.length === 0) return;
-    
+
     console.log(`Initializing ${slots.length} AdSense slot(s)...`);
+    let deferred = 0;
     slots.forEach(slot => {
+        // Hidden or too-narrow slots make AdSense throw "No slot size for availableWidth=…".
+        // Skip them without marking initialized so a later call (e.g. after resize) can retry.
+        const width = slot.offsetWidth || (slot.getBoundingClientRect ? slot.getBoundingClientRect().width : 0);
+        if (!width || width < ADSENSE_MIN_SLOT_WIDTH) {
+            deferred++;
+            return;
+        }
         slot.setAttribute('data-ad-initialized', 'true');
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -1332,5 +1343,14 @@ function initAdSense() {
             console.warn('AdSense initialization skipped:', error);
         }
     });
+
+    if (deferred > 0 && !adSenseResizeRetryBound && typeof window !== 'undefined' && window.addEventListener) {
+        adSenseResizeRetryBound = true;
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(initAdSense, 300);
+        });
+    }
 }
 
