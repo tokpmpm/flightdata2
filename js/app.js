@@ -102,6 +102,10 @@ async function initApp() {
         // Set up event listeners
         setupEventListeners();
 
+        // Route ranking links (#route-rankings) set the filters in place; compact filter bar.
+        setupRouteRankingLinks();
+        initFilterBar();
+
         // Initial render
         updateDashboard();
 
@@ -113,6 +117,14 @@ async function initApp() {
 
         // Initialize AdSense slots safely
         initAdSense();
+
+        // The dashboard re-renders after load, so the browser's own jump to a #anchor
+        // (e.g. #route-rankings from monthly reports) can be lost. Re-apply it once.
+        if (window.location.hash) {
+            const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+            // 'instant' bypasses the page's CSS smooth scrolling, which gets interrupted by late layout.
+            if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
 
         console.log('Application initialized successfully');
     } catch (error) {
@@ -420,6 +432,107 @@ function setupEventListeners() {
 }
 
 /**
+ * Scroll helper that respects prefers-reduced-motion.
+ */
+function scrollToSection(el) {
+    if (!el) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ behavior: reduce ? 'instant' : 'smooth', block: 'start' });
+}
+
+/**
+ * Route rankings (prerendered by scripts/route_insights.js): clicking a route name sets
+ * airport + destination filters on this page, keeps the visitor's period (AppState.dateRange),
+ * keeps the airline lock on airline pages, then shows the result at the insights section.
+ * The links' href is a no-JS fallback (?airport=…&dest=…).
+ */
+function setupRouteRankingLinks() {
+    const section = document.getElementById('route-rankings');
+    if (!section) return;
+    section.addEventListener('click', (e) => {
+        const link = e.target.closest('a.rr-link');
+        if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        applyRouteFilter(link.dataset.airport || '', link.dataset.destination || '');
+    });
+}
+
+function applyRouteFilter(airport, destination) {
+    // '' airport = 全部機場 (e.g. homepage destination rows); the destination list then covers all airports.
+    AppState.selectedAirport = airport;
+    document.getElementById('airport-select').value = airport;
+    updateDestinationDropdown(airport);
+    AppState.selectedDestination = destination;
+    document.getElementById('destination-select').value = destination;
+
+    // Drop #route-rankings so a reload or shared link opens at the filtered result, not the rankings.
+    window.history.replaceState({}, '', window.location.pathname + window.location.search);
+
+    updateDashboard(false, true);
+    trackGA4('route_ranking_click', {
+        airport: airport || 'all_airports',
+        destination: destination,
+        airline_scope: AppState.selectedAirline || 'all_airlines'
+    });
+    scrollToSection(document.getElementById('insights-section'));
+}
+
+/**
+ * Compact filter bar (desktop) / floating filter button (≤640px, CSS decides which shows).
+ */
+function filterBarText() {
+    const p2 = (n) => String(n).padStart(2, '0');
+    const r = AppState.dateRange;
+    const parts = [`${r.startYear}/${p2(r.startMonth)}–${r.endYear}/${p2(r.endMonth)}`];
+    if (AppState.selectedAirline) parts.push(airlineFullNames[AppState.selectedAirline] || AppState.selectedAirline);
+    parts.push(AppState.selectedAirport || '全部機場');
+    parts.push(AppState.selectedDestination || '全部航點');
+    return parts.join('・');
+}
+
+function updateFilterBar() {
+    const text = filterBarText();
+    const el = document.getElementById('filter-bar-text');
+    if (el) el.textContent = text;
+    const floatBtn = document.getElementById('float-filter-btn');
+    if (floatBtn) floatBtn.setAttribute('aria-label', `調整篩選條件（目前：${text}），捲回數據篩選區`);
+}
+
+function initFilterBar() {
+    const bar = document.getElementById('filter-bar');
+    const floatBtn = document.getElementById('float-filter-btn');
+    const filters = document.querySelector('.filters-section');
+    if (!bar || !floatBtn || !filters || typeof IntersectionObserver === 'undefined') return;
+
+    const goToFilters = () => {
+        scrollToSection(filters);
+        const first = document.getElementById('airport-select');
+        if (first) first.focus({ preventScroll: true });
+    };
+    document.getElementById('filter-bar-btn').addEventListener('click', goToFilters);
+    floatBtn.addEventListener('click', goToFilters);
+
+    // Show only once the filters card has scrolled above the viewport (not while it is below it).
+    const setVisible = () => {
+        const scrolledPast = filters.getBoundingClientRect().bottom < 0;
+        bar.hidden = !scrolledPast;
+        floatBtn.hidden = !scrolledPast;
+    };
+    const observer = new IntersectionObserver(setVisible);
+    observer.observe(filters);
+    // The observer only fires when visibility changes; an instant jump from "below" to "above"
+    // (anchor links, fast flings, reload mid-page) never crosses it, so also check on scroll.
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; setVisible(); });
+    }, { passive: true });
+    setVisible();
+    updateFilterBar();
+}
+
+/**
  * Reset all filters to default
  */
 function resetFilters() {
@@ -534,6 +647,8 @@ function updateDashboard(skipTable = false, showAnimation = false) {
 
     // Sync state to URL params
     syncStateToURL();
+
+    updateFilterBar();
 
     if (showAnimation) {
         triggerInlineFlightAnimation();
@@ -993,7 +1108,9 @@ function syncStateToURL() {
     const isAirportSubpage = path.includes('/airport/');
     const isAirlineSubpage = path.includes('/airline/');
     
-    if (!isAirportSubpage && !isAirlineSubpage && AppState.selectedAirport) {
+    // Airport subpages encode the airport in the path. Home and airline pages use ?airport=
+    // (airline pages get one when a visitor picks a route from the rankings).
+    if (!isAirportSubpage && AppState.selectedAirport) {
         const code = AIRPORT_CODES[AppState.selectedAirport];
         urlParams.set('airport', code || AppState.selectedAirport);
     }
@@ -1008,8 +1125,9 @@ function syncStateToURL() {
     urlParams.set('em', AppState.dateRange.endMonth);
     
     const queryString = urlParams.toString();
-    const newURL = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
-    
+    // Keep the #anchor (e.g. #route-rankings linked from monthly reports) when rewriting the query.
+    const newURL = (queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname) + window.location.hash;
+
     window.history.replaceState({}, '', newURL);
 }
 
