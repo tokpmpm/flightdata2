@@ -515,8 +515,9 @@ function initFilterBar() {
     // Show only once the filters card has scrolled above the viewport (not while it is below it).
     const setVisible = () => {
         const scrolledPast = filters.getBoundingClientRect().bottom < 0;
-        bar.hidden = !scrolledPast;
-        floatBtn.hidden = !scrolledPast;
+        // Write only on change; this runs on every scroll frame.
+        if (bar.hidden === scrolledPast) bar.hidden = !scrolledPast;
+        if (floatBtn.hidden === scrolledPast) floatBtn.hidden = !scrolledPast;
     };
     const observer = new IntersectionObserver(setVisible);
     observer.observe(filters);

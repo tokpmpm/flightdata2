@@ -1580,9 +1580,15 @@ body {
     gap: 8px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(4px);
-    animation: float-btn-bounce 3s infinite ease-in-out;
+    /* No backdrop-filter and no infinite animation: this fixed button sits over the AdSense
+       anchor ad (cross-origin iframe), and Chrome periodically painted the area white while
+       blurring the iframe behind a moving element. The background is opaque anyway. */
+    animation: float-btn-bounce 1.2s ease-in-out 2;
     white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-float-share { animation: none; }
 }
 
 @keyframes float-btn-bounce {
