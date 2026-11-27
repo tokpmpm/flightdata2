@@ -96,6 +96,15 @@ const airlineFullNames = {
     '台灣虎航': '台灣虎航'
 };
 
+// Friend site: same airline's page on taiwanairlinedata.com (route-level breakdown).
+// Editorial, contextual link on airline pages only — not sitewide.
+const FRIEND_SITE_AIRLINE_URLS = {
+    '中華': 'https://taiwanairlinedata.com/airlines/china-airlines',
+    '長榮': 'https://taiwanairlinedata.com/airlines/eva-air',
+    '星宇': 'https://taiwanairlinedata.com/airlines/starlux',
+    '台灣虎航': 'https://taiwanairlinedata.com/airlines/tigerair-taiwan'
+};
+
 // Start Years and Months configurations
 const DEFAULT_START_YEAR = 2024;
 const DEFAULT_START_MONTH = 1;
@@ -730,7 +739,8 @@ function build() {
             /(<section class="search-summary" id="search-summary" aria-labelledby="search-summary-title">)[\s\S]*?(<\/section>)/,
             `$1
                 <h2 id="search-summary-title">${seo.summaryTitle}</h2>
-                <p>${seo.summaryText}</p>
+                <p>${seo.summaryText}</p>${targetAirline && FRIEND_SITE_AIRLINE_URLS[targetAirline] ? `
+                <p class="friend-link">想依航線查看${airlineFullNames[targetAirline] || targetAirline}各條航線的載客率？可參考 <a href="${FRIEND_SITE_AIRLINE_URLS[targetAirline]}" target="_blank" rel="noopener">台灣航空載客率資料庫的${airlineFullNames[targetAirline] || targetAirline}頁</a>。</p>` : ''}
             $2`
         );
 
