@@ -17,3 +17,6 @@ insights/2026-07-taiwan-aviation-monthly-report/review.html
 
 tests/screenshots/
 tests/ga4_qa_report.json
+
+# SEO weekly loop: raw GSC/GA4 snapshots stay local (public repo)
+seo/snapshots/
