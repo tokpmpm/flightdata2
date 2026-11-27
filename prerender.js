@@ -109,14 +109,24 @@ const FRIEND_SITE_AIRLINE_URLS = {
 const DEFAULT_START_YEAR = 2024;
 const DEFAULT_START_MONTH = 1;
 
+// SEO title experiments (one at a time, see seo/experiments.csv). Keyed by airport code.
+// To revert an experiment, delete its entry: the page falls back to the shared template.
+const AIRPORT_TITLE_EXPERIMENTS = {
+    // E001 (2026-11): KHH gets "旅客人次" queries (入境/出入境人數) but CTR ~1% with a 載客率-only title.
+    khh: (latestYear, latestMonth) => `高雄機場旅客人次與載客率｜${latestYear}年最新數據 (更新至${latestMonth}月)｜KHH`
+};
+
 function buildPageSeo(targetAirport, targetAirline, insightsData, latestYear, latestMonth) {
     const formattedMonth = String(latestMonth).padStart(2, '0');
     const timeLabel = `${latestYear}年${formattedMonth}月`;
 
     if (targetAirport) {
         const code = airportCodes[targetAirport].toUpperCase();
+        const titleExperiment = AIRPORT_TITLE_EXPERIMENTS[airportCodes[targetAirport]];
         return {
-            title: `${targetAirport}載客率查詢｜${latestYear}年最新數據 (更新至${latestMonth}月)｜${code} 航班分析`,
+            title: titleExperiment
+                ? titleExperiment(latestYear, latestMonth)
+                : `${targetAirport}載客率查詢｜${latestYear}年最新數據 (更新至${latestMonth}月)｜${code} 航班分析`,
             heading: `${targetAirport}載客率查詢`,
             description: `【${latestYear}最新數據】查詢${targetAirport}月度載客率、航班數、座位數與熱門航線排名，數據更新至${timeLabel}。支援依航空公司與目的地分析座位利用率。`,
             summaryTitle: `${targetAirport}航班載客率摘要 (${timeLabel}更新)`,
