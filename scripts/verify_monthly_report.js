@@ -116,5 +116,32 @@ for (const m of html.matchAll(/rel="(?:prev|next)" href="(\/insights\/[^"]+\/)"/
 check(llms.includes(year + ' 年 ' + month + ' 月台灣航空月報'), 'llms.txt 使用最新月報月份');
 check(llms.includes('https://flightdata2.meshthings.com' + reportUrl), 'llms.txt 指向最新月報');
 
+// Google Dataset rich results: every Dataset (including nested ones such as WebPage.about)
+// needs a 50–5000 character description, and creator must be Person or Organization.
+function collectDatasets(node, out) {
+  if (Array.isArray(node)) { node.forEach(n => collectDatasets(n, out)); return out; }
+  if (node && typeof node === 'object') {
+    if (node['@type'] === 'Dataset') out.push(node);
+    Object.values(node).forEach(v => collectDatasets(v, out));
+  }
+  return out;
+}
+const insightsDir = path.join(ROOT, 'insights');
+for (const slug of fs.readdirSync(insightsDir)) {
+  const file = path.join(insightsDir, slug, 'index.html');
+  if (!fs.existsSync(file)) continue;
+  const page = fs.readFileSync(file, 'utf8');
+  for (const m of page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let json;
+    try { json = JSON.parse(m[1]); } catch (e) { check(false, slug + ' JSON-LD 可解析'); continue; }
+    for (const ds of collectDatasets(json, [])) {
+      const len = (ds.description || '').length;
+      check(len >= 50 && len <= 5000, slug + ' Dataset「' + ds.name + '」description 長度 50–5000（目前 ' + len + '）');
+      const creators = ds.creator === undefined ? [] : [].concat(ds.creator);
+      check(creators.every(c => c && ['Person', 'Organization'].includes(c['@type'])), slug + ' Dataset「' + ds.name + '」creator 為 Person 或 Organization');
+    }
+  }
+}
+
 console.log('\nMonthly report verification: ' + (checks - failures) + '/' + checks + ' checks passed.');
 if (failures) process.exit(1);
